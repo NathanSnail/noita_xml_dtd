@@ -49,7 +49,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]]:
         ]
     if ty == "types::fcolor":
         return [
-            (".g", "xs:float"),
+            (".r", "xs:float"),
             (".g", "xs:float"),
             (".b", "xs:float"),
             (".a", "xs:float"),

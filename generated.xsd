@@ -11525,7 +11525,7 @@
 					<xs:documentation>if set, this entity is loaded to the emission position by the emitter when it emits</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="color.g" type="xs:float" default="0">
+            <xs:attribute name="color.r" type="xs:float" default="0">
 				<xs:annotation>
 					
 					<xs:documentation>original color</xs:documentation>
@@ -11549,7 +11549,7 @@
 					<xs:documentation>original color</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="color_change.g" type="xs:float" default="0">
+            <xs:attribute name="color_change.r" type="xs:float" default="0">
 				<xs:annotation>
 					
 					<xs:documentation>how much the color changes in a second</xs:documentation>
