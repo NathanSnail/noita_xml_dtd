@@ -1,0 +1,4 @@
+<?xml-model href="test.dtd" type="application/xml-dtd"?>
+<Entity>
+	<ControlsComponent />
+</Entity>

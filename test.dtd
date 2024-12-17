@@ -1,0 +1,7 @@
+<!ELEMENT Entity (ControlsComponent | DamageModelComponent | AIComponent)*>
+<!ELEMENT ControlsComponent EMPTY>
+<!ATTLIST ControlsComponent 
+	enabled CDATA "0"> 
+	<!-- whether it receives m&k input -->
+<!ELEMENT DamageModelComponent EMPTY>
+<!ELEMENT AIComponent EMPTY>

@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Root element -->
+	<xs:element name="Entity">
+		<xs:annotation>
+			<xs:documentation> hi bye </xs:documentation>
+			<xs:documentation> `[0 - 2]` ```lua print("hi") ``` </xs:documentation>
+			<xs:documentation> good xml node for making hämis </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="DamageModelComponent" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DamageModelComponent">
+		<xs:annotation>
+			<xs:documentation>hi</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="hp" type="xs:float" use="required">
+				<xs:annotation>
+					<xs:documentation> The 'hp' attribute specifies the hit points of the
+						damage model. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
