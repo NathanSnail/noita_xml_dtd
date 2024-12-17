@@ -170,6 +170,7 @@ def flush_cur():
     global components
     components.append(Component(cur_type, current_fields))
     current_fields = []
+    cur_type = ""
 
 for l in docs.split("\n"):
     if l == "":

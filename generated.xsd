@@ -14,7 +14,7 @@
 			<xs:sequence>
 				<xs:choice maxOccurs="unbounded">
 					<xs:element ref="Entity" />
-					<xs:element ref="AIAttackComponent" /><xs:element ref="AIAttackComponent" /><xs:element ref="AIComponent" /><xs:element ref="AIComponent" /><xs:element ref="AbilityComponent" /><xs:element ref="AbilityComponent" /><xs:element ref="AdvancedFishAIComponent" /><xs:element ref="AdvancedFishAIComponent" /><xs:element ref="AltarComponent" /><xs:element ref="AltarComponent" /><xs:element ref="AnimalAIComponent" /><xs:element ref="AnimalAIComponent" /><xs:element ref="ArcComponent" /><xs:element ref="ArcComponent" /><xs:element ref="AreaDamageComponent" /><xs:element ref="AreaDamageComponent" /><xs:element ref="AttachToEntityComponent" /><xs:element ref="AttachToEntityComponent" /><xs:element ref="AudioComponent" /><xs:element ref="AudioComponent" /><xs:element ref="AudioListenerComponent" /><xs:element ref="AudioListenerComponent" /><xs:element ref="AudioLoopComponent" /><xs:element ref="AudioLoopComponent" /><xs:element ref="BiomeTrackerComponent" /><xs:element ref="BiomeTrackerComponent" /><xs:element ref="BlackHoleComponent" /><xs:element ref="BlackHoleComponent" /><xs:element ref="BookComponent" /><xs:element ref="BookComponent" /><xs:element ref="BossDragonComponent" /><xs:element ref="BossDragonComponent" /><xs:element ref="BossHealthBarComponent" /><xs:element ref="BossHealthBarComponent" /><xs:element ref="CameraBoundComponent" /><xs:element ref="CameraBoundComponent" /><xs:element ref="CardinalMovementComponent" /><xs:element ref="CardinalMovementComponent" /><xs:element ref="CellEaterComponent" /><xs:element ref="CellEaterComponent" /><xs:element ref="CharacterCollisionComponent" /><xs:element ref="CharacterCollisionComponent" /><xs:element ref="CharacterDataComponent" /><xs:element ref="CharacterDataComponent" /><xs:element ref="CharacterPlatformingComponent" /><xs:element ref="CharacterPlatformingComponent" /><xs:element ref="CharacterStatsComponent" /><xs:element ref="CharacterStatsComponent" /><xs:element ref="CollisionTriggerComponent" /><xs:element ref="CollisionTriggerComponent" /><xs:element ref="ConsumableTeleportComponent" /><xs:element ref="ConsumableTeleportComponent" /><xs:element ref="ControllerGoombaAIComponent" /><xs:element ref="ControllerGoombaAIComponent" /><xs:element ref="ControlsComponent" /><xs:element ref="ControlsComponent" /><xs:element ref="CrawlerAnimalComponent" /><xs:element ref="CrawlerAnimalComponent" /><xs:element ref="CutThroughWorldDoneHereComponent" /><xs:element ref="CutThroughWorldDoneHereComponent" /><xs:element ref="DamageModelComponent" /><xs:element ref="DamageModelComponent" /><xs:element ref="DamageNearbyEntitiesComponent" /><xs:element ref="DamageNearbyEntitiesComponent" /><xs:element ref="DebugFollowMouseComponent" /><xs:element ref="DebugFollowMouseComponent" /><xs:element ref="DebugLogMessagesComponent" /><xs:element ref="DebugLogMessagesComponent" /><xs:element ref="DebugSpatialVisualizerComponent" /><xs:element ref="DebugSpatialVisualizerComponent" /><xs:element ref="DieIfSpeedBelowComponent" /><xs:element ref="DieIfSpeedBelowComponent" /><xs:element ref="DroneLauncherComponent" /><xs:element ref="DroneLauncherComponent" /><xs:element ref="DrugEffectComponent" /><xs:element ref="DrugEffectComponent" /><xs:element ref="DrugEffectModifierComponent" /><xs:element ref="DrugEffectModifierComponent" /><xs:element ref="ElectricChargeComponent" /><xs:element ref="ElectricChargeComponent" /><xs:element ref="ElectricityComponent" /><xs:element ref="ElectricityComponent" /><xs:element ref="ElectricityReceiverComponent" /><xs:element ref="ElectricityReceiverComponent" /><xs:element ref="ElectricitySourceComponent" /><xs:element ref="ElectricitySourceComponent" /><xs:element ref="EndingMcGuffinComponent" /><xs:element ref="EndingMcGuffinComponent" /><xs:element ref="EnergyShieldComponent" /><xs:element ref="EnergyShieldComponent" /><xs:element ref="ExplodeOnDamageComponent" /><xs:element ref="ExplodeOnDamageComponent" /><xs:element ref="ExplosionComponent" /><xs:element ref="ExplosionComponent" /><xs:element ref="FishAIComponent" /><xs:element ref="FishAIComponent" /><xs:element ref="FlyingComponent" /><xs:element ref="FlyingComponent" /><xs:element ref="FogOfWarRadiusComponent" /><xs:element ref="FogOfWarRadiusComponent" /><xs:element ref="FogOfWarRemoverComponent" /><xs:element ref="FogOfWarRemoverComponent" /><xs:element ref="GameAreaEffectComponent" /><xs:element ref="GameAreaEffectComponent" /><xs:element ref="GameEffectComponent" /><xs:element ref="GameEffectComponent" /><xs:element ref="GameLogComponent" /><xs:element ref="GameLogComponent" /><xs:element ref="GameStatsComponent" /><xs:element ref="GameStatsComponent" /><xs:element ref="GasBubbleComponent" /><xs:element ref="GasBubbleComponent" /><xs:element ref="GenomeDataComponent" /><xs:element ref="GenomeDataComponent" /><xs:element ref="GhostComponent" /><xs:element ref="GhostComponent" /><xs:element ref="GodInfoComponent" /><xs:element ref="GodInfoComponent" /><xs:element ref="GunComponent" /><xs:element ref="GunComponent" /><xs:element ref="HealthBarComponent" /><xs:element ref="HealthBarComponent" /><xs:element ref="HitEffectComponent" /><xs:element ref="HitEffectComponent" /><xs:element ref="HitboxComponent" /><xs:element ref="HitboxComponent" /><xs:element ref="HomingComponent" /><xs:element ref="HomingComponent" /><xs:element ref="HotspotComponent" /><xs:element ref="HotspotComponent" /><xs:element ref="IKLimbAttackerComponent" /><xs:element ref="IKLimbAttackerComponent" /><xs:element ref="IKLimbComponent" /><xs:element ref="IKLimbComponent" /><xs:element ref="IKLimbWalkerComponent" /><xs:element ref="IKLimbWalkerComponent" /><xs:element ref="IKLimbsAnimatorComponent" /><xs:element ref="IKLimbsAnimatorComponent" /><xs:element ref="IngestionComponent" /><xs:element ref="IngestionComponent" /><xs:element ref="InheritTransformComponent" /><xs:element ref="InheritTransformComponent" /><xs:element ref="InteractableComponent" /><xs:element ref="InteractableComponent" /><xs:element ref="Inventory2Component" /><xs:element ref="Inventory2Component" /><xs:element ref="InventoryComponent" /><xs:element ref="InventoryComponent" /><xs:element ref="InventoryGuiComponent" /><xs:element ref="InventoryGuiComponent" /><xs:element ref="ItemAIKnowledgeComponent" /><xs:element ref="ItemAIKnowledgeComponent" /><xs:element ref="ItemActionComponent" /><xs:element ref="ItemActionComponent" /><xs:element ref="ItemAlchemyComponent" /><xs:element ref="ItemAlchemyComponent" /><xs:element ref="ItemChestComponent" /><xs:element ref="ItemChestComponent" /><xs:element ref="ItemComponent" /><xs:element ref="ItemComponent" /><xs:element ref="ItemCostComponent" /><xs:element ref="ItemCostComponent" /><xs:element ref="ItemPickUpperComponent" /><xs:element ref="ItemPickUpperComponent" /><xs:element ref="ItemRechargeNearGroundComponent" /><xs:element ref="ItemRechargeNearGroundComponent" /><xs:element ref="ItemStashComponent" /><xs:element ref="ItemStashComponent" /><xs:element ref="KickComponent" /><xs:element ref="KickComponent" /><xs:element ref="LaserEmitterComponent" /><xs:element ref="LaserEmitterComponent" /><xs:element ref="LevitationComponent" /><xs:element ref="LevitationComponent" /><xs:element ref="LifetimeComponent" /><xs:element ref="LifetimeComponent" /><xs:element ref="LightComponent" /><xs:element ref="LightComponent" /><xs:element ref="LightningComponent" /><xs:element ref="LightningComponent" /><xs:element ref="LimbBossComponent" /><xs:element ref="LimbBossComponent" /><xs:element ref="LiquidDisplacerComponent" /><xs:element ref="LiquidDisplacerComponent" /><xs:element ref="LoadEntitiesComponent" /><xs:element ref="LoadEntitiesComponent" /><xs:element ref="LocationMarkerComponent" /><xs:element ref="LocationMarkerComponent" /><xs:element ref="LooseGroundComponent" /><xs:element ref="LooseGroundComponent" /><xs:element ref="LuaComponent" /><xs:element ref="LuaComponent" /><xs:element ref="MagicConvertMaterialComponent" /><xs:element ref="MagicConvertMaterialComponent" /><xs:element ref="MagicXRayComponent" /><xs:element ref="MagicXRayComponent" /><xs:element ref="ManaReloaderComponent" /><xs:element ref="ManaReloaderComponent" /><xs:element ref="MaterialAreaCheckerComponent" /><xs:element ref="MaterialAreaCheckerComponent" /><xs:element ref="MaterialInventoryComponent" /><xs:element ref="MaterialInventoryComponent" /><xs:element ref="MaterialSeaSpawnerComponent" /><xs:element ref="MaterialSeaSpawnerComponent" /><xs:element ref="MaterialSuckerComponent" /><xs:element ref="MaterialSuckerComponent" /><xs:element ref="MoveToSurfaceOnCreateComponent" /><xs:element ref="MoveToSurfaceOnCreateComponent" /><xs:element ref="MusicEnergyAffectorComponent" /><xs:element ref="MusicEnergyAffectorComponent" /><xs:element ref="NinjaRopeComponent" /><xs:element ref="NinjaRopeComponent" /><xs:element ref="NullDamageComponent" /><xs:element ref="NullDamageComponent" /><xs:element ref="OrbComponent" /><xs:element ref="OrbComponent" /><xs:element ref="ParticleEmitterComponent" /><xs:element ref="ParticleEmitterComponent" /><xs:element ref="PathFindingComponent" /><xs:element ref="PathFindingComponent" /><xs:element ref="PathFindingGridMarkerComponent" /><xs:element ref="PathFindingGridMarkerComponent" /><xs:element ref="PhysicsAIComponent" /><xs:element ref="PhysicsAIComponent" /><xs:element ref="PhysicsBody2Component" /><xs:element ref="PhysicsBody2Component" /><xs:element ref="PhysicsBodyCollisionDamageComponent" /><xs:element ref="PhysicsBodyCollisionDamageComponent" /><xs:element ref="PhysicsBodyComponent" /><xs:element ref="PhysicsBodyComponent" /><xs:element ref="PhysicsImageShapeComponent" /><xs:element ref="PhysicsImageShapeComponent" /><xs:element ref="PhysicsJoint2Component" /><xs:element ref="PhysicsJoint2Component" /><xs:element ref="PhysicsJoint2MutatorComponent" /><xs:element ref="PhysicsJoint2MutatorComponent" /><xs:element ref="PhysicsJointComponent" /><xs:element ref="PhysicsJointComponent" /><xs:element ref="PhysicsKeepInWorldComponent" /><xs:element ref="PhysicsKeepInWorldComponent" /><xs:element ref="PhysicsPickUpComponent" /><xs:element ref="PhysicsPickUpComponent" /><xs:element ref="PhysicsRagdollComponent" /><xs:element ref="PhysicsRagdollComponent" /><xs:element ref="PhysicsShapeComponent" /><xs:element ref="PhysicsShapeComponent" /><xs:element ref="PhysicsThrowableComponent" /><xs:element ref="PhysicsThrowableComponent" /><xs:element ref="PixelSceneComponent" /><xs:element ref="PixelSceneComponent" /><xs:element ref="PixelSpriteComponent" /><xs:element ref="PixelSpriteComponent" /><xs:element ref="PlatformShooterPlayerComponent" /><xs:element ref="PlatformShooterPlayerComponent" /><xs:element ref="PlayerCollisionComponent" /><xs:element ref="PlayerCollisionComponent" /><xs:element ref="PlayerStatsComponent" /><xs:element ref="PlayerStatsComponent" /><xs:element ref="PositionSeedComponent" /><xs:element ref="PositionSeedComponent" /><xs:element ref="PotionComponent" /><xs:element ref="PotionComponent" /><xs:element ref="PressurePlateComponent" /><xs:element ref="PressurePlateComponent" /><xs:element ref="ProjectileComponent" /><xs:element ref="ProjectileComponent" /><xs:element ref="RotateTowardsComponent" /><xs:element ref="RotateTowardsComponent" /><xs:element ref="SetLightAlphaFromVelocityComponent" /><xs:element ref="SetLightAlphaFromVelocityComponent" /><xs:element ref="SetStartVelocityComponent" /><xs:element ref="SetStartVelocityComponent" /><xs:element ref="ShotEffectComponent" /><xs:element ref="ShotEffectComponent" /><xs:element ref="SimplePhysicsComponent" /><xs:element ref="SimplePhysicsComponent" /><xs:element ref="SineWaveComponent" /><xs:element ref="SineWaveComponent" /><xs:element ref="SpriteAnimatorComponent" /><xs:element ref="SpriteAnimatorComponent" /><xs:element ref="SpriteComponent" /><xs:element ref="SpriteComponent" /><xs:element ref="SpriteOffsetAnimatorComponent" /><xs:element ref="SpriteOffsetAnimatorComponent" /><xs:element ref="SpriteParticleEmitterComponent" /><xs:element ref="SpriteParticleEmitterComponent" /><xs:element ref="SpriteStainsComponent" /><xs:element ref="SpriteStainsComponent" /><xs:element ref="StatusEffectDataComponent" /><xs:element ref="StatusEffectDataComponent" /><xs:element ref="StreamingKeepAliveComponent" /><xs:element ref="StreamingKeepAliveComponent" /><xs:element ref="TelekinesisComponent" /><xs:element ref="TelekinesisComponent" /><xs:element ref="TeleportComponent" /><xs:element ref="TeleportComponent" /><xs:element ref="TeleportProjectileComponent" /><xs:element ref="TeleportProjectileComponent" /><xs:element ref="TextLogComponent" /><xs:element ref="TextLogComponent" /><xs:element ref="TorchComponent" /><xs:element ref="TorchComponent" /><xs:element ref="UIIconComponent" /><xs:element ref="UIIconComponent" /><xs:element ref="UIInfoComponent" /><xs:element ref="UIInfoComponent" /><xs:element ref="VariableStorageComponent" /><xs:element ref="VariableStorageComponent" /><xs:element ref="VelocityComponent" /><xs:element ref="VelocityComponent" /><xs:element ref="VerletPhysicsComponent" /><xs:element ref="VerletPhysicsComponent" /><xs:element ref="VerletWeaponComponent" /><xs:element ref="VerletWeaponComponent" /><xs:element ref="VerletWorldJointComponent" /><xs:element ref="VerletWorldJointComponent" /><xs:element ref="WalletComponent" /><xs:element ref="WalletComponent" /><xs:element ref="WalletValuableComponent" /><xs:element ref="WalletValuableComponent" /><xs:element ref="WorldStateComponent" /><xs:element ref="WorldStateComponent" /><xs:element ref="WormAIComponent" /><xs:element ref="WormAIComponent" /><xs:element ref="WormAttractorComponent" /><xs:element ref="WormAttractorComponent" /><xs:element ref="WormComponent" /><xs:element ref="WormComponent" /><xs:element ref="WormPlayerComponent" /><xs:element ref="WormPlayerComponent" />
+					<xs:element ref="AIAttackComponent" /><xs:element ref="AIComponent" /><xs:element ref="AbilityComponent" /><xs:element ref="AdvancedFishAIComponent" /><xs:element ref="AltarComponent" /><xs:element ref="AnimalAIComponent" /><xs:element ref="ArcComponent" /><xs:element ref="AreaDamageComponent" /><xs:element ref="AttachToEntityComponent" /><xs:element ref="AudioComponent" /><xs:element ref="AudioListenerComponent" /><xs:element ref="AudioLoopComponent" /><xs:element ref="BiomeTrackerComponent" /><xs:element ref="BlackHoleComponent" /><xs:element ref="BookComponent" /><xs:element ref="BossDragonComponent" /><xs:element ref="BossHealthBarComponent" /><xs:element ref="CameraBoundComponent" /><xs:element ref="CardinalMovementComponent" /><xs:element ref="CellEaterComponent" /><xs:element ref="CharacterCollisionComponent" /><xs:element ref="CharacterDataComponent" /><xs:element ref="CharacterPlatformingComponent" /><xs:element ref="CharacterStatsComponent" /><xs:element ref="CollisionTriggerComponent" /><xs:element ref="ConsumableTeleportComponent" /><xs:element ref="ControllerGoombaAIComponent" /><xs:element ref="ControlsComponent" /><xs:element ref="CrawlerAnimalComponent" /><xs:element ref="CutThroughWorldDoneHereComponent" /><xs:element ref="DamageModelComponent" /><xs:element ref="DamageNearbyEntitiesComponent" /><xs:element ref="DebugFollowMouseComponent" /><xs:element ref="DebugLogMessagesComponent" /><xs:element ref="DebugSpatialVisualizerComponent" /><xs:element ref="DieIfSpeedBelowComponent" /><xs:element ref="DroneLauncherComponent" /><xs:element ref="DrugEffectComponent" /><xs:element ref="DrugEffectModifierComponent" /><xs:element ref="ElectricChargeComponent" /><xs:element ref="ElectricityComponent" /><xs:element ref="ElectricityReceiverComponent" /><xs:element ref="ElectricitySourceComponent" /><xs:element ref="EndingMcGuffinComponent" /><xs:element ref="EnergyShieldComponent" /><xs:element ref="ExplodeOnDamageComponent" /><xs:element ref="ExplosionComponent" /><xs:element ref="FishAIComponent" /><xs:element ref="FlyingComponent" /><xs:element ref="FogOfWarRadiusComponent" /><xs:element ref="FogOfWarRemoverComponent" /><xs:element ref="GameAreaEffectComponent" /><xs:element ref="GameEffectComponent" /><xs:element ref="GameLogComponent" /><xs:element ref="GameStatsComponent" /><xs:element ref="GasBubbleComponent" /><xs:element ref="GenomeDataComponent" /><xs:element ref="GhostComponent" /><xs:element ref="GodInfoComponent" /><xs:element ref="GunComponent" /><xs:element ref="HealthBarComponent" /><xs:element ref="HitEffectComponent" /><xs:element ref="HitboxComponent" /><xs:element ref="HomingComponent" /><xs:element ref="HotspotComponent" /><xs:element ref="IKLimbAttackerComponent" /><xs:element ref="IKLimbComponent" /><xs:element ref="IKLimbWalkerComponent" /><xs:element ref="IKLimbsAnimatorComponent" /><xs:element ref="IngestionComponent" /><xs:element ref="InheritTransformComponent" /><xs:element ref="InteractableComponent" /><xs:element ref="Inventory2Component" /><xs:element ref="InventoryComponent" /><xs:element ref="InventoryGuiComponent" /><xs:element ref="ItemAIKnowledgeComponent" /><xs:element ref="ItemActionComponent" /><xs:element ref="ItemAlchemyComponent" /><xs:element ref="ItemChestComponent" /><xs:element ref="ItemComponent" /><xs:element ref="ItemCostComponent" /><xs:element ref="ItemPickUpperComponent" /><xs:element ref="ItemRechargeNearGroundComponent" /><xs:element ref="ItemStashComponent" /><xs:element ref="KickComponent" /><xs:element ref="LaserEmitterComponent" /><xs:element ref="LevitationComponent" /><xs:element ref="LifetimeComponent" /><xs:element ref="LightComponent" /><xs:element ref="LightningComponent" /><xs:element ref="LimbBossComponent" /><xs:element ref="LiquidDisplacerComponent" /><xs:element ref="LoadEntitiesComponent" /><xs:element ref="LocationMarkerComponent" /><xs:element ref="LooseGroundComponent" /><xs:element ref="LuaComponent" /><xs:element ref="MagicConvertMaterialComponent" /><xs:element ref="MagicXRayComponent" /><xs:element ref="ManaReloaderComponent" /><xs:element ref="MaterialAreaCheckerComponent" /><xs:element ref="MaterialInventoryComponent" /><xs:element ref="MaterialSeaSpawnerComponent" /><xs:element ref="MaterialSuckerComponent" /><xs:element ref="MoveToSurfaceOnCreateComponent" /><xs:element ref="MusicEnergyAffectorComponent" /><xs:element ref="NinjaRopeComponent" /><xs:element ref="NullDamageComponent" /><xs:element ref="OrbComponent" /><xs:element ref="ParticleEmitterComponent" /><xs:element ref="PathFindingComponent" /><xs:element ref="PathFindingGridMarkerComponent" /><xs:element ref="PhysicsAIComponent" /><xs:element ref="PhysicsBody2Component" /><xs:element ref="PhysicsBodyCollisionDamageComponent" /><xs:element ref="PhysicsBodyComponent" /><xs:element ref="PhysicsImageShapeComponent" /><xs:element ref="PhysicsJoint2Component" /><xs:element ref="PhysicsJoint2MutatorComponent" /><xs:element ref="PhysicsJointComponent" /><xs:element ref="PhysicsKeepInWorldComponent" /><xs:element ref="PhysicsPickUpComponent" /><xs:element ref="PhysicsRagdollComponent" /><xs:element ref="PhysicsShapeComponent" /><xs:element ref="PhysicsThrowableComponent" /><xs:element ref="PixelSceneComponent" /><xs:element ref="PixelSpriteComponent" /><xs:element ref="PlatformShooterPlayerComponent" /><xs:element ref="PlayerCollisionComponent" /><xs:element ref="PlayerStatsComponent" /><xs:element ref="PositionSeedComponent" /><xs:element ref="PotionComponent" /><xs:element ref="PressurePlateComponent" /><xs:element ref="ProjectileComponent" /><xs:element ref="RotateTowardsComponent" /><xs:element ref="SetLightAlphaFromVelocityComponent" /><xs:element ref="SetStartVelocityComponent" /><xs:element ref="ShotEffectComponent" /><xs:element ref="SimplePhysicsComponent" /><xs:element ref="SineWaveComponent" /><xs:element ref="SpriteAnimatorComponent" /><xs:element ref="SpriteComponent" /><xs:element ref="SpriteOffsetAnimatorComponent" /><xs:element ref="SpriteParticleEmitterComponent" /><xs:element ref="SpriteStainsComponent" /><xs:element ref="StatusEffectDataComponent" /><xs:element ref="StreamingKeepAliveComponent" /><xs:element ref="TelekinesisComponent" /><xs:element ref="TeleportComponent" /><xs:element ref="TeleportProjectileComponent" /><xs:element ref="TextLogComponent" /><xs:element ref="TorchComponent" /><xs:element ref="UIIconComponent" /><xs:element ref="UIInfoComponent" /><xs:element ref="VariableStorageComponent" /><xs:element ref="VelocityComponent" /><xs:element ref="VerletPhysicsComponent" /><xs:element ref="VerletWeaponComponent" /><xs:element ref="VerletWorldJointComponent" /><xs:element ref="WalletComponent" /><xs:element ref="WalletValuableComponent" /><xs:element ref="WorldStateComponent" /><xs:element ref="WormAIComponent" /><xs:element ref="WormAttractorComponent" /><xs:element ref="WormComponent" /><xs:element ref="WormPlayerComponent" /><xs:element ref="" />
 				</xs:choice>
 			</xs:sequence>
 		</xs:complexType>
@@ -172,10 +172,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="AIAttackComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="AIComponent">
 		<xs:complexType>
             			<xs:attribute name="TEMP_TEMP_TEMP" type="xs:float" default="0">
@@ -185,10 +181,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="AIComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="AbilityComponent">
 		<xs:complexType>
@@ -472,10 +464,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="AbilityComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="AdvancedFishAIComponent">
 		<xs:complexType>
             			<xs:attribute name="move_check_range_min" type="xs:float" default="16">
@@ -593,10 +581,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="AdvancedFishAIComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="AltarComponent">
 		<xs:complexType>
             			<xs:attribute name="recognized_entity_tags" type="xs:string" default="">
@@ -637,10 +621,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="AltarComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="AnimalAIComponent">
 		<xs:complexType>
@@ -1370,10 +1350,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="AnimalAIComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ArcComponent">
 		<xs:complexType>
             			<xs:attribute name="lifetime" type="xs:int" default="60">
@@ -1390,10 +1366,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="ArcComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="AreaDamageComponent">
 		<xs:complexType>
@@ -1454,10 +1426,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="AreaDamageComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="AttachToEntityComponent">
 		<xs:complexType>
             			<xs:attribute name="only_position" type="NoitaBool" default="0">
@@ -1498,10 +1466,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="AttachToEntityComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="AudioComponent">
 		<xs:complexType>
@@ -1555,10 +1519,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="AudioComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="AudioListenerComponent">
 		<xs:complexType>
             			<xs:attribute name="z" type="xs:float" default="0">
@@ -1567,10 +1527,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="AudioListenerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="AudioLoopComponent">
 		<xs:complexType>
@@ -1660,10 +1616,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="AudioLoopComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="BiomeTrackerComponent">
 		<xs:complexType>
             			<xs:attribute name="limit_to_every_n_frame" type="xs:int" default="0">
@@ -1679,10 +1631,6 @@
 					<xs:documentation>used to track in which biome we are at</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="BiomeTrackerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="BlackHoleComponent">
 		<xs:complexType>
@@ -1717,10 +1665,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="BlackHoleComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="BookComponent">
 		<xs:complexType>
             			<xs:attribute name="TEMP_TEMPY" type="xs:float" default="0">
@@ -1735,10 +1679,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="BookComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="BossDragonComponent">
 		<xs:complexType>
@@ -2007,10 +1947,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="BossDragonComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="BossHealthBarComponent">
 		<xs:complexType>
             			<xs:attribute name="gui" type="NoitaBool" default="1">
@@ -2043,10 +1979,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="BossHealthBarComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="CameraBoundComponent">
 		<xs:complexType>
@@ -2087,10 +2019,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="CameraBoundComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="CardinalMovementComponent">
 		<xs:complexType>
             			<xs:attribute name="horizontal_movement" type="NoitaBool" default="1">
@@ -2123,10 +2051,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="CardinalMovementComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="CellEaterComponent">
 		<xs:complexType>
@@ -2174,10 +2098,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="CellEaterComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="CharacterCollisionComponent">
 		<xs:complexType>
             			<xs:attribute name="getting_crushed_threshold" type="xs:int" default="5">
@@ -2210,10 +2130,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="CharacterCollisionComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="CharacterDataComponent">
 		<xs:complexType>
@@ -2481,10 +2397,6 @@
 					<xs:documentation>moved this here from CharacterCollisionComponent - since that is multithreaded and we needed a non multithreaded version</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="CharacterDataComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="CharacterPlatformingComponent">
 		<xs:complexType>
@@ -2801,14 +2713,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="CharacterPlatformingComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="CharacterStatsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="CharacterStatsComponent">
 		<xs:complexType>
             
@@ -2876,10 +2780,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="CollisionTriggerComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ConsumableTeleportComponent">
 		<xs:complexType>
             			<xs:attribute name="create_other_end" type="NoitaBool" default="0">
@@ -2936,10 +2836,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ConsumableTeleportComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ControllerGoombaAIComponent">
 		<xs:complexType>
@@ -3027,10 +2923,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ControllerGoombaAIComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ControlsComponent">
 		<xs:complexType>
@@ -3617,10 +3509,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ControlsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="CrawlerAnimalComponent">
 		<xs:complexType>
             			<xs:attribute name="ray_length" type="xs:float" default="5">
@@ -3900,10 +3788,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="CrawlerAnimalComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="CutThroughWorldDoneHereComponent">
 		<xs:complexType>
             			<xs:attribute name="id_of_done_cut" type="xs:unsignedInt" default="0">
@@ -3912,10 +3796,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="CutThroughWorldDoneHereComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="DamageModelComponent">
 		<xs:complexType>
@@ -4427,10 +4307,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="DamageModelComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="DamageNearbyEntitiesComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:float" default="10">
@@ -4502,14 +4378,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="DamageNearbyEntitiesComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="DebugFollowMouseComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="DebugFollowMouseComponent">
 		<xs:complexType>
             
@@ -4528,10 +4396,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="DebugLogMessagesComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="DebugSpatialVisualizerComponent">
 		<xs:complexType>
@@ -4566,10 +4430,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="DebugSpatialVisualizerComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="DieIfSpeedBelowComponent">
 		<xs:complexType>
             			<xs:attribute name="min_speed" type="xs:float" default="1">
@@ -4585,10 +4445,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="DieIfSpeedBelowComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="DroneLauncherComponent">
 		<xs:complexType>
             			<xs:attribute name="drone_entity_file" type="xs:string" default="data/entities/misc/player_drone.xml">
@@ -4598,20 +4454,7 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="DroneLauncherComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="DrugEffectComponent">
-		<xs:complexType>
-            
-
-		</xs:complexType>
-    </xs:element>	<xs:element name="DrugEffectComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="DrugEffectModifierComponent">
 		<xs:complexType>
             
 
@@ -4619,6 +4462,7 @@
     </xs:element>	<xs:element name="DrugEffectModifierComponent">
 		<xs:complexType>
             
+
 		</xs:complexType>
     </xs:element>	<xs:element name="ElectricChargeComponent">
 		<xs:complexType>
@@ -4658,10 +4502,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ElectricChargeComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ElectricityComponent">
 		<xs:complexType>
@@ -4774,10 +4614,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ElectricityComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ElectricityReceiverComponent">
 		<xs:complexType>
             			<xs:attribute name="offset_x" type="xs:int" default="0">
@@ -4835,10 +4671,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ElectricityReceiverComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ElectricitySourceComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:int" default="5">
@@ -4860,10 +4692,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ElectricitySourceComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="EndingMcGuffinComponent">
 		<xs:complexType>
             			<xs:attribute name="TEMP_TEMPY" type="xs:float" default="0">
@@ -4878,10 +4706,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="EndingMcGuffinComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="EnergyShieldComponent">
 		<xs:complexType>
@@ -4940,10 +4764,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="EnergyShieldComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ExplodeOnDamageComponent">
 		<xs:complexType>
             			<xs:attribute name="explode_on_death_percent" type="xs:float" default="1">
@@ -4978,10 +4798,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ExplodeOnDamageComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ExplosionComponent">
 		<xs:complexType>
             			<xs:attribute name="timeout_frames" type="xs:int" default="0">
@@ -5010,10 +4826,6 @@
 			</xs:attribute>
 
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="ExplosionComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="FishAIComponent">
 		<xs:complexType>
@@ -5084,10 +4896,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="FishAIComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="FlyingComponent">
 		<xs:complexType>
             			<xs:attribute name="type" type="xs:int" default="0">
@@ -5121,10 +4929,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="FlyingComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="FogOfWarRadiusComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:float" default="256">
@@ -5134,10 +4938,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="FogOfWarRadiusComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="FogOfWarRemoverComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:float" default="140">
@@ -5146,10 +4946,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="FogOfWarRemoverComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="GameAreaEffectComponent">
 		<xs:complexType>
@@ -5174,10 +4970,6 @@
 
 
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="GameAreaEffectComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="GameEffectComponent">
 		<xs:complexType>
@@ -5337,10 +5129,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="GameEffectComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="GameLogComponent">
 		<xs:complexType>
             			<xs:attribute name="report_death" type="NoitaBool" default="1">
@@ -5368,10 +5156,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="GameLogComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="GameStatsComponent">
 		<xs:complexType>
@@ -5412,10 +5196,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="GameStatsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="GasBubbleComponent">
 		<xs:complexType>
             			<xs:attribute name="acceleration" type="xs:float" default="-1">
@@ -5436,10 +5216,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="GasBubbleComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="GenomeDataComponent">
 		<xs:complexType>
@@ -5479,10 +5255,6 @@
 					<xs:documentation>if 1, fire mage doesn't attack this</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="GenomeDataComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="GhostComponent">
 		<xs:complexType>
@@ -5584,10 +5356,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="GhostComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="GodInfoComponent">
 		<xs:complexType>
             			<xs:attribute name="mana_current" type="xs:float" default="0">
@@ -5610,19 +5378,7 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="GodInfoComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="GunComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="GunComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="HealthBarComponent">
 		<xs:complexType>
             
 		</xs:complexType>
@@ -5647,10 +5403,6 @@
 
 
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="HitEffectComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="HitboxComponent">
 		<xs:complexType>
@@ -5721,10 +5473,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="HitboxComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="HomingComponent">
 		<xs:complexType>
             			<xs:attribute name="target_tag" type="xs:string" default="homing_target">
@@ -5777,10 +5525,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="HomingComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="HotspotComponent">
 		<xs:complexType>
             			<xs:attribute name="transform_with_scale" type="NoitaBool" default="1">
@@ -5807,10 +5551,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="HotspotComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="IKLimbAttackerComponent">
 		<xs:complexType>
@@ -5864,10 +5604,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="IKLimbAttackerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="IKLimbComponent">
 		<xs:complexType>
@@ -5962,10 +5698,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="IKLimbComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="IKLimbWalkerComponent">
 		<xs:complexType>
             			<xs:attribute name="ground_attachment_min_spread" type="xs:float" default="16">
@@ -6053,10 +5785,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="IKLimbWalkerComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="IKLimbsAnimatorComponent">
 		<xs:complexType>
             			<xs:attribute name="future_state_samples" type="xs:int" default="10">
@@ -6126,10 +5854,6 @@
 					<xs:documentation>Will be set to true if at least one leg is attached to ground.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="IKLimbsAnimatorComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="IngestionComponent">
 		<xs:complexType>
@@ -6201,10 +5925,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="IngestionComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="InheritTransformComponent">
 		<xs:complexType>
             			<xs:attribute name="use_root_parent" type="NoitaBool" default="0">
@@ -6251,10 +5971,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="InheritTransformComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="InteractableComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:float" default="10">
@@ -6281,10 +5997,6 @@
 					<xs:documentation>If > 0, only 1 instance of this interaction can be display at the same time</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="InteractableComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="Inventory2Component">
 		<xs:complexType>
@@ -6371,10 +6083,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="Inventory2Component">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="InventoryComponent">
 		<xs:complexType>
             			<xs:attribute name="ui_container_type" type="xs:int" default="1">
@@ -6433,10 +6141,6 @@
 			</xs:attribute>
 
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="InventoryComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="InventoryGuiComponent">
 		<xs:complexType>
@@ -6514,10 +6218,6 @@
 					<xs:documentation>for animations of shaking them bars</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="InventoryGuiComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemAIKnowledgeComponent">
 		<xs:complexType>
@@ -6600,10 +6300,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ItemAIKnowledgeComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ItemActionComponent">
 		<xs:complexType>
             			<xs:attribute name="action_id" type="xs:string" default="">
@@ -6612,10 +6308,6 @@
 					<xs:documentation>the name ID of the action</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemActionComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemAlchemyComponent">
 		<xs:complexType>
@@ -6655,10 +6347,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemAlchemyComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemChestComponent">
 		<xs:complexType>
@@ -6710,10 +6398,6 @@
 					<xs:documentation>this is used to figure out what we spawn from this chest</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemChestComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemComponent">
 		<xs:complexType>
@@ -6965,10 +6649,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ItemComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ItemCostComponent">
 		<xs:complexType>
             			<xs:attribute name="cost" type="xs:int" default="100">
@@ -6989,10 +6669,6 @@
 					<xs:documentation>used to change the text on the sprite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemCostComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemPickUpperComponent">
 		<xs:complexType>
@@ -7034,10 +6710,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ItemPickUpperComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ItemRechargeNearGroundComponent">
 		<xs:complexType>
             			<xs:attribute name="TEMP_TEMPY" type="xs:float" default="0">
@@ -7052,10 +6724,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemRechargeNearGroundComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ItemStashComponent">
 		<xs:complexType>
@@ -7083,10 +6751,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="ItemStashComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="KickComponent">
 		<xs:complexType>
@@ -7139,10 +6803,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="KickComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="LaserEmitterComponent">
 		<xs:complexType>
             			<xs:attribute name="is_emitting" type="NoitaBool" default="1">
@@ -7164,10 +6824,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="LaserEmitterComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LevitationComponent">
 		<xs:complexType>
@@ -7195,10 +6851,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="LevitationComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LifetimeComponent">
 		<xs:complexType>
@@ -7269,10 +6921,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="LifetimeComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="LightComponent">
 		<xs:complexType>
             			<xs:attribute name="update_properties" type="NoitaBool" default="0">
@@ -7337,10 +6985,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="LightComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="LightningComponent">
 		<xs:complexType>
             			<xs:attribute name="sprite_lightning_file" type="xs:string" default="data/particles/lightning_ray.png">
@@ -7382,10 +7026,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="LightningComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="LimbBossComponent">
 		<xs:complexType>
             			<xs:attribute name="state" type="xs:int" default="0">
@@ -7412,10 +7052,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="LimbBossComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LiquidDisplacerComponent">
 		<xs:complexType>
@@ -7449,10 +7085,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="LiquidDisplacerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LoadEntitiesComponent">
 		<xs:complexType>
@@ -7493,10 +7125,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="LoadEntitiesComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="LocationMarkerComponent">
 		<xs:complexType>
             			<xs:attribute name="id" type="xs:int" default="0">
@@ -7505,10 +7133,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="LocationMarkerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LooseGroundComponent">
 		<xs:complexType>
@@ -7584,10 +7208,6 @@
 					<xs:documentation>how many chunks are we allowed to do, -1 = infinite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="LooseGroundComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="LuaComponent">
 		<xs:complexType>
@@ -7835,10 +7455,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="LuaComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="MagicConvertMaterialComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:int" default="256">
@@ -7982,10 +7598,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="MagicConvertMaterialComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="MagicXRayComponent">
 		<xs:complexType>
             			<xs:attribute name="radius" type="xs:int" default="256">
@@ -8012,14 +7624,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="MagicXRayComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
-    </xs:element>	<xs:element name="ManaReloaderComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ManaReloaderComponent">
 		<xs:complexType>
@@ -8105,10 +7709,6 @@
 					<xs:documentation>keeps track of how often we've checked</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="MaterialAreaCheckerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="MaterialInventoryComponent">
 		<xs:complexType>
@@ -8252,10 +7852,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="MaterialInventoryComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="MaterialSeaSpawnerComponent">
 		<xs:complexType>
             			<xs:attribute name="speed" type="xs:int" default="10">
@@ -8330,10 +7926,6 @@
 					<xs:documentation>Offset of the center of the area to cover</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="MaterialSeaSpawnerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="MaterialSuckerComponent">
 		<xs:complexType>
@@ -8434,10 +8026,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="MaterialSuckerComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="MoveToSurfaceOnCreateComponent">
 		<xs:complexType>
             			<xs:attribute name="lookup_radius" type="xs:float" default="64">
@@ -8465,10 +8053,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="MoveToSurfaceOnCreateComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="MusicEnergyAffectorComponent">
 		<xs:complexType>
@@ -8509,10 +8093,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="MusicEnergyAffectorComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="NinjaRopeComponent">
 		<xs:complexType>
             			<xs:attribute name="max_length" type="xs:float" default="356">
@@ -8529,10 +8109,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="NinjaRopeComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="NullDamageComponent">
 		<xs:complexType>
             			<xs:attribute name="null_chance" type="xs:float" default="1">
@@ -8542,10 +8118,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="NullDamageComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="OrbComponent">
 		<xs:complexType>
             			<xs:attribute name="orb_id" type="xs:int" default="0">
@@ -8554,10 +8126,6 @@
 					<xs:documentation>must be unique for every orb in the world</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="OrbComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ParticleEmitterComponent">
 		<xs:complexType>
@@ -9009,10 +8577,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ParticleEmitterComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PathFindingComponent">
 		<xs:complexType>
             			<xs:attribute name="search_depth_max_no_goal" type="xs:int" default="20">
@@ -9243,10 +8807,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PathFindingComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PathFindingGridMarkerComponent">
 		<xs:complexType>
             			<xs:attribute name="marker_work_flag" type="xs:int" default="0">
@@ -9274,10 +8834,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="PathFindingGridMarkerComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsAIComponent">
 		<xs:complexType>
@@ -9468,10 +9024,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsAIComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsBody2Component">
 		<xs:complexType>
             
@@ -9651,10 +9203,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsBody2Component">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsBodyCollisionDamageComponent">
 		<xs:complexType>
             			<xs:attribute name="speed_threshold" type="xs:float" default="60">
@@ -9669,10 +9217,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsBodyCollisionDamageComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsBodyComponent">
 		<xs:complexType>
@@ -9866,10 +9410,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsBodyComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsImageShapeComponent">
 		<xs:complexType>
             			<xs:attribute name="is_root" type="NoitaBool" default="0">
@@ -9933,10 +9473,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsImageShapeComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsJoint2Component">
 		<xs:complexType>
@@ -10020,10 +9556,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsJoint2Component">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsJoint2MutatorComponent">
 		<xs:complexType>
             			<xs:attribute name="joint_id" type="xs:unsignedInt" default="0">
@@ -10068,10 +9600,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsJoint2MutatorComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsJointComponent">
 		<xs:complexType>
@@ -10150,10 +9678,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsJointComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsKeepInWorldComponent">
 		<xs:complexType>
             			<xs:attribute name="check_whole_aabb" type="NoitaBool" default="0">
@@ -10192,10 +9716,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsKeepInWorldComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsPickUpComponent">
 		<xs:complexType>
@@ -10263,10 +9783,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsPickUpComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsRagdollComponent">
 		<xs:complexType>
             			<xs:attribute name="filename" type="xs:string" default="">
@@ -10294,10 +9810,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsRagdollComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsShapeComponent">
 		<xs:complexType>
@@ -10392,10 +9904,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsShapeComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PhysicsThrowableComponent">
 		<xs:complexType>
             			<xs:attribute name="throw_force_coeff" type="xs:float" default="1">
@@ -10465,10 +9973,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PhysicsThrowableComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PixelSceneComponent">
 		<xs:complexType>
             			<xs:attribute name="pixel_scene" type="xs:string" default="">
@@ -10519,10 +10023,6 @@
 					<xs:documentation>if on - won't do the edge textures for the pixel scene</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PixelSceneComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PixelSpriteComponent">
 		<xs:complexType>
@@ -10575,10 +10075,6 @@
 				</xs:annotation>
 			</xs:attribute>
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="PixelSpriteComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PlatformShooterPlayerComponent">
 		<xs:complexType>
@@ -10836,10 +10332,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PlatformShooterPlayerComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PlayerCollisionComponent">
 		<xs:complexType>
             			<xs:attribute name="getting_crushed_threshold" type="xs:int" default="5">
@@ -10880,10 +10372,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="PlayerCollisionComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PlayerStatsComponent">
 		<xs:complexType>
             			<xs:attribute name="lives" type="xs:int" default="1">
@@ -10905,10 +10393,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PlayerStatsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PositionSeedComponent">
 		<xs:complexType>
             			<xs:attribute name="pos_x" type="xs:float" default="0">
@@ -10923,10 +10407,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PositionSeedComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="PotionComponent">
 		<xs:complexType>
@@ -10985,10 +10465,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="PotionComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="PressurePlateComponent">
 		<xs:complexType>
             			<xs:attribute name="check_every_x_frames" type="xs:int" default="30">
@@ -11039,10 +10515,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="PressurePlateComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="ProjectileComponent">
 		<xs:complexType>
@@ -11538,10 +11010,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="ProjectileComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="RotateTowardsComponent">
 		<xs:complexType>
             			<xs:attribute name="entity_with_tag" type="xs:string" default="player_unit">
@@ -11550,10 +11018,6 @@
 					<xs:documentation>will rotate this entity towards the closest entity with tag</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="RotateTowardsComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SetLightAlphaFromVelocityComponent">
 		<xs:complexType>
@@ -11575,10 +11039,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="SetLightAlphaFromVelocityComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SetStartVelocityComponent">
 		<xs:complexType>
@@ -11619,10 +11079,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="SetStartVelocityComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="ShotEffectComponent">
 		<xs:complexType>
             			<xs:attribute name="extra_modifier" type="xs:string" default="">
@@ -11633,10 +11089,6 @@
 			</xs:attribute>
 
 
-		</xs:complexType>
-    </xs:element>	<xs:element name="ShotEffectComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SimplePhysicsComponent">
 		<xs:complexType>
@@ -11659,10 +11111,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="SimplePhysicsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="SineWaveComponent">
 		<xs:complexType>
             			<xs:attribute name="sinewave_freq" type="xs:float" default="1">
@@ -11683,10 +11131,6 @@
 					<xs:documentation>-1 seems to fix some problems with this... sinewave_m * sinf( sinewave_freq * lifetime++)</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="SineWaveComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SpriteAnimatorComponent">
 		<xs:complexType>
@@ -11710,10 +11154,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="SpriteAnimatorComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SpriteComponent">
 		<xs:complexType>
@@ -11882,10 +11322,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="SpriteComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="SpriteOffsetAnimatorComponent">
 		<xs:complexType>
             			<xs:attribute name="x_amount" type="xs:float" default="0">
@@ -11930,10 +11366,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="SpriteOffsetAnimatorComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="SpriteParticleEmitterComponent">
 		<xs:complexType>
@@ -12340,10 +11772,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="SpriteParticleEmitterComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="SpriteStainsComponent">
 		<xs:complexType>
             			<xs:attribute name="sprite_id" type="xs:int" default="0">
@@ -12368,10 +11796,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="SpriteStainsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="StatusEffectDataComponent">
 		<xs:complexType>
             
@@ -12394,10 +11818,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="StatusEffectDataComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="StreamingKeepAliveComponent">
 		<xs:complexType>
             			<xs:attribute name="TEMP_TEMPY" type="xs:float" default="0">
@@ -12412,10 +11832,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="StreamingKeepAliveComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="TelekinesisComponent">
 		<xs:complexType>
@@ -12510,10 +11926,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="TelekinesisComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="TeleportComponent">
 		<xs:complexType>
             			<xs:attribute name="target_x_is_absolute_position" type="NoitaBool" default="0">
@@ -12591,10 +12003,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="TeleportComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="TeleportProjectileComponent">
 		<xs:complexType>
             			<xs:attribute name="min_distance_from_wall" type="xs:float" default="16">
@@ -12617,10 +12025,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="TeleportProjectileComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="TextLogComponent">
 		<xs:complexType>
             			<xs:attribute name="key" type="xs:string" default="">
@@ -12641,10 +12045,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="TextLogComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="TorchComponent">
 		<xs:complexType>
@@ -12703,10 +12103,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="TorchComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="UIIconComponent">
 		<xs:complexType>
             			<xs:attribute name="icon_sprite_file" type="xs:string" default="">
@@ -12746,10 +12142,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="UIIconComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="UIInfoComponent">
 		<xs:complexType>
             			<xs:attribute name="name" type="xs:string" default="">
@@ -12758,10 +12150,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="UIInfoComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="VariableStorageComponent">
 		<xs:complexType>
@@ -12795,10 +12183,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="VariableStorageComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="VelocityComponent">
 		<xs:complexType>
@@ -12922,10 +12306,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="VelocityComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="VerletPhysicsComponent">
 		<xs:complexType>
@@ -13121,10 +12501,6 @@
 
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="VerletPhysicsComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="VerletWeaponComponent">
 		<xs:complexType>
             			<xs:attribute name="damage_radius" type="xs:float" default="5">
@@ -13182,10 +12558,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="VerletWeaponComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="VerletWorldJointComponent">
 		<xs:complexType>
             			<xs:attribute name="verlet_point_index" type="xs:int" default="0">
@@ -13214,10 +12586,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="VerletWorldJointComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="WalletComponent">
 		<xs:complexType>
             			<xs:attribute name="money" type="xs:int" default="0">
@@ -13245,10 +12613,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="WalletComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="WalletValuableComponent">
 		<xs:complexType>
             			<xs:attribute name="money_value" type="xs:int" default="10">
@@ -13257,10 +12621,6 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="WalletValuableComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="WorldStateComponent">
 		<xs:complexType>
@@ -13603,10 +12963,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="WorldStateComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="WormAIComponent">
 		<xs:complexType>
             			<xs:attribute name="speed" type="xs:float" default="1">
@@ -13748,10 +13104,6 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="WormAIComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="WormAttractorComponent">
 		<xs:complexType>
             			<xs:attribute name="direction" type="xs:int" default="1">
@@ -13766,10 +13118,6 @@
 					<xs:documentation>radius of detracting worms</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-		</xs:complexType>
-    </xs:element>	<xs:element name="WormAttractorComponent">
-		<xs:complexType>
-            
 		</xs:complexType>
     </xs:element>	<xs:element name="WormComponent">
 		<xs:complexType>
@@ -13943,10 +13291,6 @@
 			</xs:attribute>
 
 		</xs:complexType>
-    </xs:element>	<xs:element name="WormComponent">
-		<xs:complexType>
-            
-		</xs:complexType>
     </xs:element>	<xs:element name="WormPlayerComponent">
 		<xs:complexType>
             			<xs:attribute name="mPrevPosition.x" type="xs:float" default="">
@@ -13974,7 +13318,7 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
-    </xs:element>	<xs:element name="WormPlayerComponent">
+    </xs:element>	<xs:element name="">
 		<xs:complexType>
             
 		</xs:complexType>

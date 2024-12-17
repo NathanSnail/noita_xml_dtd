@@ -1,4 +1,3 @@
 <?xml-model href="generated.xsd" type="application/xml-xsd"?>
 <Entity>
-	<AIComponent mTargetPos.x=""/>
 </Entity>
