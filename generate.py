@@ -207,7 +207,7 @@ out = f"""
 			<xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:sequence>
+			<xs:sequence minOccurs="0">
 				<xs:choice maxOccurs="unbounded">
 					<xs:element ref="Entity" />
 					{"".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
