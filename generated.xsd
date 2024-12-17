@@ -4423,9 +4423,9 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="color">
+            <xs:attribute name="color" type="xs:unsignedInt" default="4294967295">
 				<xs:annotation>
-					<xs:documentation>`color` - `                                                          4294967295 [0, 1]`</xs:documentation>
+					<xs:documentation>`4294967295` - `[0, 1]`</xs:documentation>
 					
 				</xs:annotation>
 			</xs:attribute>
@@ -6392,9 +6392,9 @@
 					<xs:documentation>file names of other entities we should spawn from this chest, comma separated</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="mSeed">
+            <xs:attribute name="mSeed" type="xs:unsignedInt" default="0">
 				<xs:annotation>
-					<xs:documentation>`mSeed` - `                                                          0 [0, 1]`</xs:documentation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 					<xs:documentation>this is used to figure out what we spawn from this chest</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -6935,21 +6935,21 @@
 					<xs:documentation>The radius of the light in world pixels.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="r">
+            <xs:attribute name="r" type="xs:unsignedInt" default="255">
 				<xs:annotation>
-					<xs:documentation>`r` - `                                                              255 [0, 255]`</xs:documentation>
+					<xs:documentation>`255` - `[0, 255]`</xs:documentation>
 					<xs:documentation>Color red 0-255</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="g">
+            <xs:attribute name="g" type="xs:unsignedInt" default="178">
 				<xs:annotation>
-					<xs:documentation>`g` - `                                                              178 [0, 255]`</xs:documentation>
+					<xs:documentation>`178` - `[0, 255]`</xs:documentation>
 					<xs:documentation>Color green 0-255</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="b">
+            <xs:attribute name="b" type="xs:unsignedInt" default="118">
 				<xs:annotation>
-					<xs:documentation>`b` - `                                                              118 [0, 255]`</xs:documentation>
+					<xs:documentation>`118` - `[0, 255]`</xs:documentation>
 					<xs:documentation>Color blue 0-255</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -10596,21 +10596,21 @@
 					
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="shoot_light_flash_r">
+            <xs:attribute name="shoot_light_flash_r" type="xs:unsignedInt" default="255">
 				<xs:annotation>
-					<xs:documentation>`shoot_light_flash_r` - `                                            255 [0, 255]`</xs:documentation>
+					<xs:documentation>`255` - `[0, 255]`</xs:documentation>
 					
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="shoot_light_flash_g">
+            <xs:attribute name="shoot_light_flash_g" type="xs:unsignedInt" default="180">
 				<xs:annotation>
-					<xs:documentation>`shoot_light_flash_g` - `                                            180 [0, 255]`</xs:documentation>
+					<xs:documentation>`180` - `[0, 255]`</xs:documentation>
 					
 				</xs:annotation>
 			</xs:attribute>
-            <xs:attribute name="t" type="xs:unsignedInt" default="shoot_light_flash_b">
+            <xs:attribute name="shoot_light_flash_b" type="xs:unsignedInt" default="150">
 				<xs:annotation>
-					<xs:documentation>`shoot_light_flash_b` - `                                            150 [0, 255]`</xs:documentation>
+					<xs:documentation>`150` - `[0, 255]`</xs:documentation>
 					
 				</xs:annotation>
 			</xs:attribute>

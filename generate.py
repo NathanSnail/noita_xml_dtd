@@ -121,12 +121,18 @@ def render_component(comp: Component) -> str:
         1:
     ]
 
+def trim_end(s: str):
+    while s[-1] == " ":
+        s = s[:-1]
+    return s
 
 def do_var_line(line: str) -> Field:
     shift = 0
     ty = ""
     if line[27] == " ":
-        ty = line[4:28].replace(" ", "")
+        ty = trim_end(line[4:28])
+        if "unsigned" in ty:
+            print(ty)
     else:
         ty_part = line[4:].split(" ")[0]
         if "::Enum" in ty_part:
