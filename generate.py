@@ -168,6 +168,8 @@ def flush_cur():
     global cur_type
     global current_fields
     global components
+    if cur_type == "":
+        return
     components.append(Component(cur_type, current_fields))
     current_fields = []
     cur_type = ""
