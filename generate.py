@@ -19,6 +19,9 @@ class Component:
     fields: list[Field]
 
 
+def xml_encode(s: str) -> str:
+    return s.replace(">", "&gt;").replace("<", "&lt;")
+
 def get_xml_type(ty: str) -> list[tuple[str, str]]:
     lens = "LensValue"
     unsigned = "unsigned"
@@ -99,7 +102,7 @@ def render_field(field: Field) -> str:
 			<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ""}">
 				<xs:annotation>
 					{f"<xs:documentation>`{field.default}` - `{field.values}`</xs:documentation>" if field.default != "-" else ""}
-					{f"<xs:documentation>{field.comment}</xs:documentation>" if field.comment != "" else ""}
+					{f"<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
 				</xs:annotation>
 			</xs:attribute>"""[
             1:

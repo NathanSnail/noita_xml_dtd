@@ -1372,7 +1372,7 @@
             			<xs:attribute name="circle_radius" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will only damage entities inside the aabb rectangle which are closer than 'circle_radius' to the aabb center.</xs:documentation>
+					<xs:documentation>if &gt; 0, will only damage entities inside the aabb rectangle which are closer than 'circle_radius' to the aabb center.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="damage_per_frame" type="xs:float" default="10">
@@ -1443,13 +1443,13 @@
 			<xs:attribute name="target_sprite_id" type="xs:int" default="-1">
 				<xs:annotation>
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if >= 0, the Nth sprite transform in target entity is inherited</xs:documentation>
+					<xs:documentation>if &gt;= 0, the Nth sprite transform in target entity is inherited</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="rotate_based_on_x_scale" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if 1, the rotation is set to 0 deg if scale >= 0 else to 180 deg</xs:documentation>
+					<xs:documentation>if 1, the rotation is set to 0 deg if scale &gt;= 0 else to 180 deg</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="destroy_component_when_target_is_gone" type="NoitaBool" default="1">
@@ -1621,7 +1621,7 @@
             			<xs:attribute name="limit_to_every_n_frame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 1, we will only check the biome every n frames</xs:documentation>
+					<xs:documentation>if &gt; 1, we will only check the biome every n frames</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 
@@ -3814,7 +3814,7 @@
 			<xs:attribute name="max_hp_cap" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 12]`</xs:documentation>
-					<xs:documentation>the maximum 'max_hp' that this can have, <= 0 means no limits. Used by perks such as GLASS_CANNON</xs:documentation>
+					<xs:documentation>the maximum 'max_hp' that this can have, &lt;= 0 means no limits. Used by perks such as GLASS_CANNON</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="max_hp_old" type="xs:float" default="0">
@@ -3994,7 +3994,7 @@
 			<xs:attribute name="ragdoll_blood_amount_absolute" type="xs:int" default="-1">
 				<xs:annotation>
 					<xs:documentation>`-1` - `[-1, 1000]`</xs:documentation>
-					<xs:documentation>if > -1, this is the absolute amount of blood we share between particle emitters in the ragdoll</xs:documentation>
+					<xs:documentation>if &gt; -1, this is the absolute amount of blood we share between particle emitters in the ragdoll</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="blood_sprite_directional" type="xs:string" default="">
@@ -4030,7 +4030,7 @@
 			<xs:attribute name="ragdollify_root_angular_damping" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>If ragdoll_filenames_file= and > 0, the angular damping of the first ragdoll body is set to this value.</xs:documentation>
+					<xs:documentation>If ragdoll_filenames_file= and &gt; 0, the angular damping of the first ragdoll body is set to this value.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="ragdollify_disintegrate_nonroot" type="NoitaBool" default="0">
@@ -4988,7 +4988,7 @@
 			<xs:attribute name="exclusivity_group" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, previous game effects with the same exclusivity group as new one will be removed when calling LoadGameEffectEntityTo</xs:documentation>
+					<xs:documentation>if &gt; 0, previous game effects with the same exclusivity group as new one will be removed when calling LoadGameEffectEntityTo</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="report_block_msg" type="NoitaBool" default="1">
@@ -5948,7 +5948,7 @@
 			<xs:attribute name="parent_sprite_id" type="xs:int" default="-1">
 				<xs:annotation>
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if >= 0, the Nth sprite transform in parent entity is inherited</xs:documentation>
+					<xs:documentation>if &gt;= 0, the Nth sprite transform in parent entity is inherited</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="always_use_immediate_parent_rotation" type="NoitaBool" default="0">
@@ -5960,7 +5960,7 @@
 			<xs:attribute name="rotate_based_on_x_scale" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if 1, the rotation is set to 0 deg if scale >= 0 else to 180 deg</xs:documentation>
+					<xs:documentation>if 1, the rotation is set to 0 deg if scale &gt;= 0 else to 180 deg</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 
@@ -5994,7 +5994,7 @@
 			<xs:attribute name="exclusivity_group" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>If > 0, only 1 instance of this interaction can be display at the same time</xs:documentation>
+					<xs:documentation>If &gt; 0, only 1 instance of this interaction can be display at the same time</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
@@ -6512,7 +6512,7 @@
 			<xs:attribute name="max_child_items" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>number of items this can hold inside itself. TODO: get rid of all uses of 'ability->gun_config.deck_capacity' and replace them with this!</xs:documentation>
+					<xs:documentation>number of items this can hold inside itself. TODO: get rid of all uses of 'ability-&gt;gun_config.deck_capacity' and replace them with this!</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="ui_sprite" type="xs:string" default="">
@@ -6974,7 +6974,7 @@
 			<xs:attribute name="blinking_freq" type="xs:float" default="1">
 				<xs:annotation>
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if less than 1, will blink randomly when rand() < blinking_freq</xs:documentation>
+					<xs:documentation>if less than 1, will blink randomly when rand() &lt; blinking_freq</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="mAlpha" type="xs:float" default="1">
@@ -7145,7 +7145,7 @@
 			<xs:attribute name="max_durability" type="xs:int" default="2147483647">
 				<xs:annotation>
 					<xs:documentation>`2147483647` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if material durability > max_durability, it is not loosened</xs:documentation>
+					<xs:documentation>if material durability &gt; max_durability, it is not loosened</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="max_distance" type="xs:float" default="256">
@@ -7175,7 +7175,7 @@
 			<xs:attribute name="chunk_probability" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will drop box2d chunks of the ceiling</xs:documentation>
+					<xs:documentation>if &gt; 0, will drop box2d chunks of the ceiling</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="chunk_max_angle" type="xs:float" default="0.7">
@@ -7238,7 +7238,7 @@
 			<xs:attribute name="execute_times" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>How many times should the script be executed? < 1 means infinite</xs:documentation>
+					<xs:documentation>How many times should the script be executed? &lt; 1 means infinite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="limit_how_many_times_per_frame" type="xs:int" default="-1">
@@ -7292,7 +7292,7 @@
 			<xs:attribute name="script_damage_about_to_be_received" type="xs:string" default="">
 				<xs:annotation>
 					
-					<xs:documentation>if set, calls function 'damage_about_to_be_received( damage:number, x:number, y:number, entity_thats_responsible:int, critical_hit_chance:int )' when we receive a message (Message_DamageAboutToBeReceived) -> new_damage:number,new_critical_hit_chance:int</xs:documentation>
+					<xs:documentation>if set, calls function 'damage_about_to_be_received( damage:number, x:number, y:number, entity_thats_responsible:int, critical_hit_chance:int )' when we receive a message (Message_DamageAboutToBeReceived) -&gt; new_damage:number,new_critical_hit_chance:int</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="script_item_picked_up" type="xs:string" default="">
@@ -7508,7 +7508,7 @@
 			<xs:attribute name="fan_the_flames" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will call UpdateFire() fan_the_flames times</xs:documentation>
+					<xs:documentation>if &gt; 0, will call UpdateFire() fan_the_flames times</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="temperature_reaction_temp" type="xs:int" default="0">
@@ -7520,7 +7520,7 @@
 			<xs:attribute name="ignite_materials" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will call Ignite() with ingite_materials as probability_of_fire</xs:documentation>
+					<xs:documentation>if &gt; 0, will call Ignite() with ingite_materials as probability_of_fire</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="loop" type="NoitaBool" default="0">
@@ -7550,7 +7550,7 @@
 			<xs:attribute name="reaction_audio_amount" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will generate chemical reaction audio at converted cells</xs:documentation>
+					<xs:documentation>if &gt; 0, will generate chemical reaction audio at converted cells</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="convert_same_material" type="NoitaBool" default="1">
@@ -7646,7 +7646,7 @@
 			<xs:attribute name="count_min" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>If > 0, and look_for_failure=0, will send message if material count exceeds this number of cells</xs:documentation>
+					<xs:documentation>If &gt; 0, and look_for_failure=0, will send message if material count exceeds this number of cells</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="always_check_fullness" type="NoitaBool" default="0">
@@ -7781,19 +7781,19 @@
 			<xs:attribute name="do_reactions" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 100]`</xs:documentation>
-					<xs:documentation>NOTE( Petri ): 15.8.2023 - if > 0, will do CellReactions between the materials. Value is the percent chance of how often. 100 = every frame </xs:documentation>
+					<xs:documentation>NOTE( Petri ): 15.8.2023 - if &gt; 0, will do CellReactions between the materials. Value is the percent chance of how often. 100 = every frame </xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="do_reactions_explosions" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>requires do_reactions > 0 - are we allowed to do reaction explosions?</xs:documentation>
+					<xs:documentation>requires do_reactions &gt; 0 - are we allowed to do reaction explosions?</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="do_reactions_entities" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>requires do_reactions > 0 - are we allowed to load entities when doing reactions?</xs:documentation>
+					<xs:documentation>requires do_reactions &gt; 0 - are we allowed to load entities when doing reactions?</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="reaction_speed" type="xs:int" default="5">
@@ -7811,13 +7811,13 @@
 			<xs:attribute name="max_capacity" type="xs:float" default="-1">
 				<xs:annotation>
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
-					<xs:documentation>how much materials we can store in total. < 0 = infinite</xs:documentation>
+					<xs:documentation>how much materials we can store in total. &lt; 0 = infinite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="audio_collision_size_modifier_amount" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, 'fullness of this container' * 'audio_collision_size_modifier_amount' is added to collision audio event size</xs:documentation>
+					<xs:documentation>if &gt; 0, 'fullness of this container' * 'audio_collision_size_modifier_amount' is added to collision audio event size</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="last_frame_drank" type="xs:int" default="-100">
@@ -8065,7 +8065,7 @@
 			<xs:attribute name="fade_range" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 256]`</xs:documentation>
-					<xs:documentation>if > 0, fade between 0 and energy_target based on distance to this entity</xs:documentation>
+					<xs:documentation>if &gt; 0, fade between 0 and energy_target based on distance to this entity</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="trigger_danger_music" type="NoitaBool" default="1">
@@ -8216,7 +8216,7 @@
 			<xs:attribute name="custom_alpha" type="xs:float" default="-1">
 				<xs:annotation>
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if >= 0, will use this as particle alpha</xs:documentation>
+					<xs:documentation>if &gt;= 0, will use this as particle alpha</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="x_pos_offset_min" type="xs:float" default="0">
@@ -8324,7 +8324,7 @@
 			<xs:attribute name="attractor_force" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 100]`</xs:documentation>
-					<xs:documentation>If > 0, an attractor is created at the position of the entity that owns this component</xs:documentation>
+					<xs:documentation>If &gt; 0, an attractor is created at the position of the entity that owns this component</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="emission_interval_min_frames" type="xs:int" default="5">
@@ -8372,7 +8372,7 @@
 			<xs:attribute name="trail_gap" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, trail particles will be generated this far from each other between our old and new position, else [count_min-count_max] particles will be generated on the line</xs:documentation>
+					<xs:documentation>if &gt; 0, trail particles will be generated this far from each other between our old and new position, else [count_min-count_max] particles will be generated on the line</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="render_on_grid" type="NoitaBool" default="0">
@@ -8480,13 +8480,13 @@
 			<xs:attribute name="area_circle_radius.min" type="xs:float" default="">
 				<xs:annotation>
 					
-					<xs:documentation>If > 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.</xs:documentation>
+					<xs:documentation>If &gt; 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="area_circle_radius.max" type="xs:float" default="">
 				<xs:annotation>
 					
-					<xs:documentation>If > 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.</xs:documentation>
+					<xs:documentation>If &gt; 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="gravity.x" type="xs:float" default="">
@@ -9485,25 +9485,25 @@
 			<xs:attribute name="break_force" type="xs:float" default="1.3">
 				<xs:annotation>
 					<xs:documentation>`1.3` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will break if theres a force too strong.</xs:documentation>
+					<xs:documentation>if &gt; 0, will break if theres a force too strong.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="break_distance" type="xs:float" default="1.4142">
 				<xs:annotation>
 					<xs:documentation>`1.4142` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will break if the anchors on the bodies get further than this.</xs:documentation>
+					<xs:documentation>if &gt; 0, will break if the anchors on the bodies get further than this.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="break_on_body_modified" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 1, will break if an attached body is modified</xs:documentation>
+					<xs:documentation>if &gt; 1, will break if an attached body is modified</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="break_on_shear_angle_deg" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, will break if the angle between the linked bodies becomes greater than this</xs:documentation>
+					<xs:documentation>if &gt; 0, will break if the angle between the linked bodies becomes greater than this</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="body1_id" type="xs:int" default="0">
@@ -10707,7 +10707,7 @@
 			<xs:attribute name="ground_penetration_coeff" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 5]`</xs:documentation>
-					<xs:documentation>if > 0, this, along with VelocityComponent.mass affects how far we penetrate in materials</xs:documentation>
+					<xs:documentation>if &gt; 0, this, along with VelocityComponent.mass affects how far we penetrate in materials</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="ground_penetration_max_durability_to_destroy" type="xs:int" default="0">
@@ -10803,7 +10803,7 @@
 			<xs:attribute name="on_death_item_pickable_radius" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, makes items closer than this radius pickable on death</xs:documentation>
+					<xs:documentation>if &gt; 0, makes items closer than this radius pickable on death</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="penetrate_world" type="NoitaBool" default="0">
@@ -10875,7 +10875,7 @@
 			<xs:attribute name="damage_scale_max_speed" type="xs:float" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0 and damage_scaled_by_speed = 1, will use this instead of mInitialSpeed when calculating the damage</xs:documentation>
+					<xs:documentation>if &gt; 0 and damage_scaled_by_speed = 1, will use this instead of mInitialSpeed when calculating the damage</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="collide_with_entities" type="NoitaBool" default="1">
@@ -12249,7 +12249,7 @@
 			<xs:attribute name="liquid_death_threshold" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, entity will die if liquid hit count is greater than this.</xs:documentation>
+					<xs:documentation>if &gt; 0, entity will die if liquid hit count is greater than this.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="liquid_drag" type="xs:float" default="1">
@@ -12819,7 +12819,7 @@
 			<xs:attribute name="perk_hp_drop_chance" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
-					<xs:documentation>if > 0, then there's chance that killing an enemy will drop bloodmoney_50</xs:documentation>
+					<xs:documentation>if &gt; 0, then there's chance that killing an enemy will drop bloodmoney_50</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="perk_gold_is_forever" type="NoitaBool" default="0">
