@@ -1,2 +1,4 @@
 <?xml-model href="generated.xsd" type="application/xml-xsd"?>
-<Entity></Entity>
+<Entity>
+	<Transform rotation="0.0" position.x="0.0" />
+</Entity>
