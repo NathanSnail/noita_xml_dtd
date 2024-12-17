@@ -92,32 +92,37 @@ def get_xml_type(ty: str) -> list[tuple[str, str]]:
     # print(f"fail: {ty}")
     return []
 
-
-def render_field(field: Field) -> str:
-    tys = get_xml_type(field.ty)
-    if len(tys) == 0:
-        return ""
-    return "\n".join(
-        f"""
-            <xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}">
-				<xs:annotation>
-					{f"<xs:documentation>`{field.default}` - `{field.values}`</xs:documentation>" if field.default != "-" else ""}
-					{f"<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
+def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
+    if docs != "" or field.comment != "":
+        return f"""
+			<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}">
+				<xs:annotation>{
+					f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
+					f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
 				</xs:annotation>
 			</xs:attribute>"""[
             1:
         ]
-        for suffix, ty in tys
-    )
+    return f"""\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}" />"""
+
+
+def render_field(field: Field) -> str:
+    tys = get_xml_type(field.ty)
+    if len(tys) == 0:
+        return "<!-- Some Object -->"
+    docs = ""
+    if field.default != "-":
+        docs = f"`{field.default}` - `{field.values}`"
+    return "\n".join([render_sub_field(field, suffix, docs, ty) for suffix, ty in tys])
 
 
 def render_component(comp: Component) -> str:
     return f"""
 	<xs:element name="{comp.name}">
 		<xs:complexType>
-            {"\n".join([render_field(x) for x in comp.fields])}
+{"\n".join([render_field(x) for x in comp.fields])}
 		</xs:complexType>
-    </xs:element>"""[
+	</xs:element>"""[
         1:
     ]
 
@@ -210,14 +215,13 @@ out = f"""
 			<xs:sequence minOccurs="0">
 				<xs:choice maxOccurs="unbounded">
 					<xs:element ref="Entity" />
-					{"".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
+					{"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
 				</xs:choice>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 """
-for component in components:
-    out += render_component(component)
-out += "</xs:schema>"
+out += "\n".join([render_component(component) for component in components])
+out += "\n</xs:schema>"
 # out = out.replace("\t","").replace("\n","")
 open("generated.xsd","w").write(out)
