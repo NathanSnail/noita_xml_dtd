@@ -1,7 +1,7 @@
 import os
 import re
 from dataclasses import dataclass
-PRIMARY_FILE = False
+PRIMARY_FILE = True
 
 
 @dataclass
@@ -163,14 +163,23 @@ docs = open(docs_path, "r").read()
 cur_type = ""
 current_fields = []
 components: list[Component] = []
+
+def flush_cur():
+    global cur_type
+    global current_fields
+    global components
+    components.append(Component(cur_type, current_fields))
+    current_fields = []
+
 for l in docs.split("\n"):
     if l == "":
+        flush_cur()
         continue
     if l[:4] == "    ":
         current_fields.append(do_var_line(l))
     elif l[0] != " ":
         if cur_type != "":
-            components.append(Component(cur_type, current_fields))
+            flush_cur()
         cur_type = l
 
 out = f"""
