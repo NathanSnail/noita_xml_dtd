@@ -1,9 +1,15 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="NoitaBool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Root element -->
 	<xs:element name="Entity">
 		<xs:annotation>
-			<xs:documentation> hi bye </xs:documentation>
-			<xs:documentation> `[0 - 2]` ```lua print("hi") ``` </xs:documentation>
+			<xs:documentation> range: `[0 - 2]` </xs:documentation>
+			<xs:documentation> # header </xs:documentation>
 			<xs:documentation> good xml node for making hämis </xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
@@ -20,6 +26,12 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:attribute name="hp" type="xs:float" use="required">
+				<xs:annotation>
+					<xs:documentation> The 'hp' attribute specifies the hit points of the
+						damage model. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="banaan" type="NoitaBool" use="required">
 				<xs:annotation>
 					<xs:documentation> The 'hp' attribute specifies the hit points of the
 						damage model. </xs:documentation>

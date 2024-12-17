@@ -1,4 +1,4 @@
 <?xml-model href="test.xsd" type="application/xml-xsd"?>
 <Entity>
-	<DamageModelComponent hp="banana" />
+	<DamageModelComponent hp="13" banaan="0" />
 </Entity>

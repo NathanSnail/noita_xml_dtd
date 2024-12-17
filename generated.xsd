@@ -1,0 +1,1681 @@
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="NoitaBool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Entity">
+		<xs:annotation>
+			<xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Entity" />
+					<xs:element ref="AIAttackComponent" /><xs:element ref="AIComponent" /><xs:element ref="AbilityComponent" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AIAttackComponent">
+		<xs:complexType>
+            			<xs:attribute name="use_probability" type="xs:int" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 100]`</xs:documentation>
+					<xs:documentation>The probability for using this attack if it's otherwise possible</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="min_distance" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The minimum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_distance" type="xs:float" default="160">
+				<xs:annotation>
+					<xs:documentation>`160` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The maximum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="angular_range_deg" type="xs:float" default="90">
+				<xs:annotation>
+					<xs:documentation>`90` - `[0, 90]`</xs:documentation>
+					<xs:documentation>When looking for threats/prey this is our field of view around the X axis. 90 means we scan the whole 180 degrees around the X axis, to the left and right.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="state_duration_frames" type="xs:int" default="45">
+				<xs:annotation>
+					<xs:documentation>`45` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>How long do we stay in the attack state, before other states are allowed?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between" type="xs:int" default="180">
+				<xs:annotation>
+					<xs:documentation>`180` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait between these attacks</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between_global" type="xs:int" default="30">
+				<xs:annotation>
+					<xs:documentation>`30` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait after this attack before doing any other ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_name" type="xs:string" default="attack_ranged">
+				<xs:annotation>
+					<xs:documentation>`attack_ranged` - `[0, 1]`</xs:documentation>
+					<xs:documentation>The animation to play when performing this attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_landing_ranged_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we try to land before doing the attack, if there's ground near nearby under us</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_action_frame" type="xs:int" default="2">
+				<xs:annotation>
+					<xs:documentation>`2` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The frame of the 'attack_ranged' animation during which the ranged attack actually occurs</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_message" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we do ranged attacks by sending a Message_UseItem</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_predict" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we attempt to predict target movement and shoot accordingly</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_file" type="xs:string" default="data/entities/projectiles/spear.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/projectiles/spear.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>File to projectile entity that is created when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_min" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Minimum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_max" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Maximum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_laser_sight" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we draw a laser sight to our target. Requires entity to have a sprite with tag 'laser_sight'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we use a laser sight</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_speed" type="xs:float" default="3">
+				<xs:annotation>
+					<xs:documentation>`3` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How fast can we rotate our aim to track targets</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_shooting_ok_angle_deg" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If our aim is closer than this to the target we shoot</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRangedAttackCurrentAimAngle" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>which direction does our gun currently point at, physically saying?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TEMP_TEMP_TEMP" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="cooldown_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>the projectile entity file</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sprite_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_count" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="never_reload" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reload_time_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_max" type="xs:float" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_charge_speed" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand_amount" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does the item rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_hand_amount" type="xs:float" default="0.7">
+				<xs:annotation>
+					<xs:documentation>`0.7` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does hand sprite rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fast_projectile" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, then the velocity of the bullet is increased quite a bit. Lightning requires this</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="swim_propel_amount" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_charged_actions" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="charge_wait_frames" type="xs:int" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_recovery_speed" type="xs:float" default="15">
+				<xs:annotation>
+					<xs:documentation>`15` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How quickly does the item return to resting state after getting recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_max" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Maximum distance moved by recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_offset_coeff" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item distance moved by recoil = mItemRecoil * item_recoil_offset_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_rotation_coeff" type="xs:float" default="5">
+				<xs:annotation>
+					<xs:documentation>`5` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item rotation by recoil = mItemRecoil * item_recoil_rotation_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="base_item_file" type="xs:string" default="data/entities/base_item.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/base_item.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>when dropping / throwing the item, this is the base_item that we add the ability component to</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_entity_file_as_projectile_info_proxy" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="click_to_use" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_shot" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times player has shot this 'ability'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_edited" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times this has been edited</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="shooting_reduces_amount_in_inventory" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="simulate_throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the item will be work as normal ability, but throwing animation is played by the user</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="drop_as_item_on_death" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ui_name" type="xs:string" default="[NOT_SET]">
+				<xs:annotation>
+					<xs:documentation>`[NOT_SET]` - `[0, 1]`</xs:documentation>
+					<xs:documentation>way to name the weapons</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_gun_script" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the default ability behaviour is replaced with one that uses the lua gun system.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="is_petris_gun" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, TODO( PETRI)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="gun_level" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[1, 10]`</xs:documentation>
+					<xs:documentation>the level of the wand, set in gun_procedural.lua</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="add_these_child_actions" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>e.g. 'bullet,bullet,damage' ... actions are parsed into a string. These are added as actual entities when the item is initialized</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="current_slot_durability" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>After this many slots the last slot of the gun is removed. -1 means not initialized/infinite.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCastDelayStartFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadFramesLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mChargeCount" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mIsInitialized" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+
+			<xs:attribute name="mAmmoLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextChargeFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mItemRecoil" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_min" type="xs:float" default="16">
+				<xs:annotation>
+					<xs:documentation>`16` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_max" type="xs:float" default="64">
+				<xs:annotation>
+					<xs:documentation>`64` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="flock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="avoid_predators" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mHasTargetDirection" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNumFailedTargetSearches" type="xs:unsignedInt" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckAreWeStuck" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckFlockWants" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFramePredatorAvoidance" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mScared" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mWantsToBeInFlock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element>	<xs:element name="AIComponent">
+		<xs:complexType>
+            			<xs:attribute name="use_probability" type="xs:int" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 100]`</xs:documentation>
+					<xs:documentation>The probability for using this attack if it's otherwise possible</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="min_distance" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The minimum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_distance" type="xs:float" default="160">
+				<xs:annotation>
+					<xs:documentation>`160` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The maximum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="angular_range_deg" type="xs:float" default="90">
+				<xs:annotation>
+					<xs:documentation>`90` - `[0, 90]`</xs:documentation>
+					<xs:documentation>When looking for threats/prey this is our field of view around the X axis. 90 means we scan the whole 180 degrees around the X axis, to the left and right.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="state_duration_frames" type="xs:int" default="45">
+				<xs:annotation>
+					<xs:documentation>`45` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>How long do we stay in the attack state, before other states are allowed?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between" type="xs:int" default="180">
+				<xs:annotation>
+					<xs:documentation>`180` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait between these attacks</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between_global" type="xs:int" default="30">
+				<xs:annotation>
+					<xs:documentation>`30` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait after this attack before doing any other ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_name" type="xs:string" default="attack_ranged">
+				<xs:annotation>
+					<xs:documentation>`attack_ranged` - `[0, 1]`</xs:documentation>
+					<xs:documentation>The animation to play when performing this attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_landing_ranged_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we try to land before doing the attack, if there's ground near nearby under us</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_action_frame" type="xs:int" default="2">
+				<xs:annotation>
+					<xs:documentation>`2` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The frame of the 'attack_ranged' animation during which the ranged attack actually occurs</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_message" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we do ranged attacks by sending a Message_UseItem</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_predict" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we attempt to predict target movement and shoot accordingly</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_file" type="xs:string" default="data/entities/projectiles/spear.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/projectiles/spear.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>File to projectile entity that is created when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_min" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Minimum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_max" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Maximum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_laser_sight" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we draw a laser sight to our target. Requires entity to have a sprite with tag 'laser_sight'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we use a laser sight</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_speed" type="xs:float" default="3">
+				<xs:annotation>
+					<xs:documentation>`3` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How fast can we rotate our aim to track targets</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_shooting_ok_angle_deg" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If our aim is closer than this to the target we shoot</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRangedAttackCurrentAimAngle" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>which direction does our gun currently point at, physically saying?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TEMP_TEMP_TEMP" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="cooldown_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>the projectile entity file</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sprite_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_count" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="never_reload" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reload_time_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_max" type="xs:float" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_charge_speed" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand_amount" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does the item rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_hand_amount" type="xs:float" default="0.7">
+				<xs:annotation>
+					<xs:documentation>`0.7` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does hand sprite rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fast_projectile" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, then the velocity of the bullet is increased quite a bit. Lightning requires this</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="swim_propel_amount" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_charged_actions" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="charge_wait_frames" type="xs:int" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_recovery_speed" type="xs:float" default="15">
+				<xs:annotation>
+					<xs:documentation>`15` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How quickly does the item return to resting state after getting recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_max" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Maximum distance moved by recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_offset_coeff" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item distance moved by recoil = mItemRecoil * item_recoil_offset_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_rotation_coeff" type="xs:float" default="5">
+				<xs:annotation>
+					<xs:documentation>`5` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item rotation by recoil = mItemRecoil * item_recoil_rotation_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="base_item_file" type="xs:string" default="data/entities/base_item.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/base_item.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>when dropping / throwing the item, this is the base_item that we add the ability component to</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_entity_file_as_projectile_info_proxy" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="click_to_use" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_shot" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times player has shot this 'ability'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_edited" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times this has been edited</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="shooting_reduces_amount_in_inventory" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="simulate_throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the item will be work as normal ability, but throwing animation is played by the user</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="drop_as_item_on_death" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ui_name" type="xs:string" default="[NOT_SET]">
+				<xs:annotation>
+					<xs:documentation>`[NOT_SET]` - `[0, 1]`</xs:documentation>
+					<xs:documentation>way to name the weapons</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_gun_script" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the default ability behaviour is replaced with one that uses the lua gun system.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="is_petris_gun" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, TODO( PETRI)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="gun_level" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[1, 10]`</xs:documentation>
+					<xs:documentation>the level of the wand, set in gun_procedural.lua</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="add_these_child_actions" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>e.g. 'bullet,bullet,damage' ... actions are parsed into a string. These are added as actual entities when the item is initialized</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="current_slot_durability" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>After this many slots the last slot of the gun is removed. -1 means not initialized/infinite.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCastDelayStartFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadFramesLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mChargeCount" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mIsInitialized" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+
+			<xs:attribute name="mAmmoLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextChargeFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mItemRecoil" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_min" type="xs:float" default="16">
+				<xs:annotation>
+					<xs:documentation>`16` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_max" type="xs:float" default="64">
+				<xs:annotation>
+					<xs:documentation>`64` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="flock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="avoid_predators" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mHasTargetDirection" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNumFailedTargetSearches" type="xs:unsignedInt" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckAreWeStuck" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckFlockWants" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFramePredatorAvoidance" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mScared" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mWantsToBeInFlock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element>	<xs:element name="AbilityComponent">
+		<xs:complexType>
+            			<xs:attribute name="use_probability" type="xs:int" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 100]`</xs:documentation>
+					<xs:documentation>The probability for using this attack if it's otherwise possible</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="min_distance" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The minimum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_distance" type="xs:float" default="160">
+				<xs:annotation>
+					<xs:documentation>`160` - `[0, 10000]`</xs:documentation>
+					<xs:documentation>The maximum distance from enemy at which we can perform this attack.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="angular_range_deg" type="xs:float" default="90">
+				<xs:annotation>
+					<xs:documentation>`90` - `[0, 90]`</xs:documentation>
+					<xs:documentation>When looking for threats/prey this is our field of view around the X axis. 90 means we scan the whole 180 degrees around the X axis, to the left and right.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="state_duration_frames" type="xs:int" default="45">
+				<xs:annotation>
+					<xs:documentation>`45` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>How long do we stay in the attack state, before other states are allowed?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between" type="xs:int" default="180">
+				<xs:annotation>
+					<xs:documentation>`180` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait between these attacks</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="frames_between_global" type="xs:int" default="30">
+				<xs:annotation>
+					<xs:documentation>`30` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The minimum number of frames we wait after this attack before doing any other ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_name" type="xs:string" default="attack_ranged">
+				<xs:annotation>
+					<xs:documentation>`attack_ranged` - `[0, 1]`</xs:documentation>
+					<xs:documentation>The animation to play when performing this attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_landing_ranged_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we try to land before doing the attack, if there's ground near nearby under us</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_action_frame" type="xs:int" default="2">
+				<xs:annotation>
+					<xs:documentation>`2` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>The frame of the 'attack_ranged' animation during which the ranged attack actually occurs</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					<xs:documentation>'attack_ranged_entity_file' is created here when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_x" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_root_offset_y" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_message" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we do ranged attacks by sending a Message_UseItem</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_predict" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we attempt to predict target movement and shoot accordingly</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_file" type="xs:string" default="data/entities/projectiles/spear.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/projectiles/spear.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>File to projectile entity that is created when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_min" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Minimum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_entity_count_max" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1000]`</xs:documentation>
+					<xs:documentation>Maximum number of projectiles shot when performing a ranged attack</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_use_laser_sight" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we draw a laser sight to our target. Requires entity to have a sprite with tag 'laser_sight'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_enabled" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, we use a laser sight</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_speed" type="xs:float" default="3">
+				<xs:annotation>
+					<xs:documentation>`3` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How fast can we rotate our aim to track targets</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="attack_ranged_aim_rotation_shooting_ok_angle_deg" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If our aim is closer than this to the target we shoot</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRangedAttackCurrentAimAngle" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>which direction does our gun currently point at, physically saying?</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TEMP_TEMP_TEMP" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="cooldown_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>the projectile entity file</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sprite_file" type="xs:string" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="entity_count" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 60000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="never_reload" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="reload_time_frames" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_max" type="xs:float" default="100">
+				<xs:annotation>
+					<xs:documentation>`100` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mana_charge_speed" type="xs:float" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_in_hand_amount" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does the item rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rotate_hand_amount" type="xs:float" default="0.7">
+				<xs:annotation>
+					<xs:documentation>`0.7` - `[0, 1]`</xs:documentation>
+					<xs:documentation>[0-1], how much does hand sprite rotate related to the actual aiming angle</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fast_projectile" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, then the velocity of the bullet is increased quite a bit. Lightning requires this</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="swim_propel_amount" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[-1000, 1000]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_charged_actions" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="charge_wait_frames" type="xs:int" default="10">
+				<xs:annotation>
+					<xs:documentation>`10` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_recovery_speed" type="xs:float" default="15">
+				<xs:annotation>
+					<xs:documentation>`15` - `[0, 1]`</xs:documentation>
+					<xs:documentation>How quickly does the item return to resting state after getting recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_max" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Maximum distance moved by recoil</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_offset_coeff" type="xs:float" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item distance moved by recoil = mItemRecoil * item_recoil_offset_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="item_recoil_rotation_coeff" type="xs:float" default="5">
+				<xs:annotation>
+					<xs:documentation>`5` - `[0, 1]`</xs:documentation>
+					<xs:documentation>Item rotation by recoil = mItemRecoil * item_recoil_rotation_coeff</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="base_item_file" type="xs:string" default="data/entities/base_item.xml">
+				<xs:annotation>
+					<xs:documentation>`data/entities/base_item.xml` - `[0, 1]`</xs:documentation>
+					<xs:documentation>when dropping / throwing the item, this is the base_item that we add the ability component to</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_entity_file_as_projectile_info_proxy" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="click_to_use" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_shot" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times player has shot this 'ability'</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stat_times_player_has_edited" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>used to track how many times this has been edited</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="shooting_reduces_amount_in_inventory" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="simulate_throw_as_item" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the item will be work as normal ability, but throwing animation is played by the user</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="max_amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="amount_in_inventory" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="drop_as_item_on_death" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ui_name" type="xs:string" default="[NOT_SET]">
+				<xs:annotation>
+					<xs:documentation>`[NOT_SET]` - `[0, 1]`</xs:documentation>
+					<xs:documentation>way to name the weapons</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="use_gun_script" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>If 1, the default ability behaviour is replaced with one that uses the lua gun system.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="is_petris_gun" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>if 1, TODO( PETRI)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="gun_level" type="xs:int" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[1, 10]`</xs:documentation>
+					<xs:documentation>the level of the wand, set in gun_procedural.lua</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="add_these_child_actions" type="xs:string" default="">
+				<xs:annotation>
+					
+					<xs:documentation>e.g. 'bullet,bullet,damage' ... actions are parsed into a string. These are added as actual entities when the item is initialized</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="current_slot_durability" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					<xs:documentation>After this many slots the last slot of the gun is removed. -1 means not initialized/infinite.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCastDelayStartFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadFramesLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mReloadNextFrameUsable" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mChargeCount" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					<xs:documentation>hax, don't touch!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mIsInitialized" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+
+
+			<xs:attribute name="mAmmoLeft" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextChargeFrame" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mItemRecoil" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_min" type="xs:float" default="16">
+				<xs:annotation>
+					<xs:documentation>`16` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="move_check_range_max" type="xs:float" default="64">
+				<xs:annotation>
+					<xs:documentation>`64` - `[0, 2]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="flock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="avoid_predators" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mHasTargetDirection" type="NoitaBool" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.x" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.y" type="xs:float" default="">
+				<xs:annotation>
+					
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNumFailedTargetSearches" type="xs:unsignedInt" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckAreWeStuck" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFrameCheckFlockWants" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mNextFramePredatorAvoidance" type="xs:int" default="-1">
+				<xs:annotation>
+					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mScared" type="xs:float" default="0">
+				<xs:annotation>
+					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mWantsToBeInFlock" type="NoitaBool" default="1">
+				<xs:annotation>
+					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
+					
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element></xs:schema>
