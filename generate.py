@@ -99,7 +99,7 @@ def render_field(field: Field) -> str:
         return ""
     return "\n".join(
         f"""
-			<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ""}">
+            <xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}">
 				<xs:annotation>
 					{f"<xs:documentation>`{field.default}` - `{field.values}`</xs:documentation>" if field.default != "-" else ""}
 					{f"<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
