@@ -8,6 +8,7 @@
 	<!-- Root element -->
 	<xs:element name="Entity">
 		<xs:annotation>
+			<xs:documentation> <![CDATA[ ```lua <br>print("hi")<br>```]]> </xs:documentation>
 			<xs:documentation> range: `[0 - 2]` </xs:documentation>
 			<xs:documentation> # header </xs:documentation>
 			<xs:documentation> good xml node for making hämis </xs:documentation>

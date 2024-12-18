@@ -1,4 +1,20 @@
 <?xml-model href="generated.xsd" type="application/xml-xsd"?>
 <Entity>
 	<Transform rotation="0.0" position.x="0.0" />
+	<InheritTransformComponent
+		<Transform position.x="0.0" />
+	</InheritTransformComponent>
+	<CameraBoundComponent max_count="10" />
+	<InheritTransformComponent
+		<Transform position.x="0.0" />
+		<Transform position.x="0.0" />
+	</InheritTransformComponent>
+	<OrbComponent orb_id="0" />
+	<Entity>
+		<InheritTransformComponent>
+			<Transform position.x="0.0" />
+		</InheritTransformComponent>
+		<CameraBoundComponent> </CameraBoundComponent>
+	</Entity>
+	<AnimalAIComponent />
 </Entity>

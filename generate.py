@@ -24,6 +24,7 @@ class Component:
 def xml_encode(s: str) -> str:
     return s.replace(">", "&gt;").replace("<", "&lt;")
 
+
 def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
@@ -97,6 +98,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     # print(f"fail: {ty}")
     return []
 
+
 def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
     if docs != "" or field.comment != "":
         return f"""
@@ -114,17 +116,22 @@ def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
 def render_field(field: Field) -> tuple[str, str]:
     tys = get_xml_type(field.ty)
     if type(tys) is str:
-        return f"""\t\t\t<xs:sequence minOccurs="0"> <xs:element name="{field.name}" type="{tys}" /></xs:sequence>""", ""
+        return (
+            f"""\t\t\t<xs:sequence minOccurs="0"> <xs:element name="{field.name}" type="{tys}" /></xs:sequence>""",
+            "",
+        )
     if len(tys) == 0:
         return "", f"\t\t\t<!-- Some Unknown Type: {field.ty} for {field.name} -->"
     docs = ""
     if field.default != "-":
         docs = f"`{field.default}` - `{field.values}`"
-    return "", "\n".join([render_sub_field(field, suffix, docs, ty) for suffix, ty in tys])
+    return "", "\n".join(
+        [render_sub_field(field, suffix, docs, ty) for suffix, ty in tys]
+    )
 
 
 def render_component(comp: Component) -> str:
-    fields =[render_field(x) for x in comp.fields] 
+    fields = [render_field(x) for x in comp.fields]
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
@@ -137,10 +144,12 @@ def render_component(comp: Component) -> str:
         1:
     ]
 
+
 def trim_end(s: str):
     while s[-1] == " ":
         s = s[:-1]
     return s
+
 
 def do_var_line(line: str) -> Field:
     shift = 0
@@ -181,13 +190,18 @@ def do_var_line(line: str) -> Field:
     return Field(field, ty, default, example, comment)
 
 
-docs_path = os.path.expanduser(
-    "~/.local/share/Steam/steamapps/common/Noita/component_documentation.txt"
-) if PRIMARY_FILE else "./small_comp_docs.txt"
+docs_path = (
+    os.path.expanduser(
+        "~/.local/share/Steam/steamapps/common/Noita/component_documentation.txt"
+    )
+    if PRIMARY_FILE
+    else "./small_comp_docs.txt"
+)
 docs = open(docs_path, "r").read()
 cur_type = ""
 current_fields = []
 components: list[Component] = []
+
 
 def flush_cur():
     global cur_type
@@ -198,6 +212,7 @@ def flush_cur():
     components.append(Component(cur_type, current_fields))
     current_fields = []
     cur_type = ""
+
 
 for l in docs.split("\n"):
     if l == "":
@@ -219,11 +234,31 @@ out = f"""
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="Transform">
-		<xs:attribute name="position.x" type="xs:decimal" default="0" />
-		<xs:attribute name="position.y" type="xs:decimal" default="0" />
-		<xs:attribute name="scale.x" type="xs:decimal" default="0" />
-		<xs:attribute name="scale.y" type="xs:decimal" default="0" />
-		<xs:attribute name="rotation" type="xs:decimal" default="0" />
+		<xs:attribute name="position.x" type="xs:decimal" default="0" >
+			<xs:annotation>
+					<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="position.y" type="xs:decimal" default="0" >
+			<xs:annotation>
+					<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="scale.x" type="xs:decimal" default="1" >
+			<xs:annotation>
+					<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="scale.y" type="xs:decimal" default="1" >
+			<xs:annotation>
+					<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rotation" type="xs:decimal" default="0" >
+			<xs:annotation>
+					<xs:documentation>Measured in degrees</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:element name="Entity">
 		<xs:annotation>
@@ -243,4 +278,4 @@ out = f"""
 out += "\n".join([render_component(component) for component in components])
 out += "\n</xs:schema>"
 # out = out.replace("\t","").replace("\n","")
-open("generated.xsd","w").write(out)
+open("generated.xsd", "w").write(out)
