@@ -101,9 +101,16 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
 
 
 def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
+    if field.default != "-":
+        if ty == "xs:decimal":
+            value = float(field.default)
+            field.default = f"{value:.15f}".rstrip('0').rstrip('.')  # This ensures no scientific notation
+        default = field.default
+    else:
+        default = "" if ty == "xs:string" else "0"
     if docs != "" or field.comment != "":
         return f"""
-                        <xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}">
+                        <xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
                                 <xs:annotation>{
             f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
             f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
