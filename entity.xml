@@ -1,11 +1,11 @@
 <?xml-model href="generated.xsd" type="application/xml-xsd"?>
 <Entity>
 	<Transform rotation="0.0" position.x="0.0" />
-	<InheritTransformComponent
+	<InheritTransformComponent>
 		<Transform position.x="0.0" />
 	</InheritTransformComponent>
 	<CameraBoundComponent max_count="10" />
-	<InheritTransformComponent
+	<InheritTransformComponent>
 		<Transform position.x="0.0" />
 		<Transform position.x="0.0" />
 	</InheritTransformComponent>
@@ -17,4 +17,11 @@
 		<CameraBoundComponent> </CameraBoundComponent>
 	</Entity>
 	<AnimalAIComponent />
+
+	<!-- this is fucked -->
+	<SpriteComponent
+		image_file="whatever"
+		offset_x="5"
+		offset_y="5">
+	</SpriteComponent>
 </Entity>
