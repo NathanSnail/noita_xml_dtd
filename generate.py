@@ -144,7 +144,7 @@ def render_component(comp: Component) -> str:
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
         <xs:element name="{comp.name}">
-                <xs:complexType>
+                <xs:complexType mixed="true">
 {"\n".join(objects)}
 {"\n".join(attrs)}
                 \t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
