@@ -271,20 +271,38 @@ out = f"""
                         </xs:annotation>
                 </xs:attribute>
         </xs:complexType>
+        <xs:complexType name="EntityBase">
+            <xs:sequence minOccurs="0">
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="Entity" />
+                    <xs:element ref="Base" />
+                    <xs:element name="Transform" type="Transform" />
+                    {"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string"></xs:attribute>
+            <xs:attribute name="tags" type="xs:string"></xs:attribute>
+        </xs:complexType>
         <xs:element name="Entity">
                 <xs:annotation>
                         <xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
-                        <xs:sequence minOccurs="0">
-                                <xs:element name="Transform" type="Transform" />
-                                <xs:choice maxOccurs="unbounded" minOccurs="0">
-                                        <xs:element ref="Entity" />
-                                        {"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
-                                </xs:choice>
-                        </xs:sequence>
-                        <xs:attribute name="name" type="xs:string"></xs:attribute>
-                        <xs:attribute name="tags" type="xs:string"></xs:attribute>
+                        <xs:complexContent>
+                                <xs:extension base="EntityBase" />
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        <xs:element name="Base">
+                <xs:annotation>
+                        <xs:documentation>Base file</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="EntityBase">
+                                    <xs:attribute name="file" type="xs:string" />
+                                </xs:extension>
+                        </xs:complexContent>
                 </xs:complexType>
         </xs:element>
 """
