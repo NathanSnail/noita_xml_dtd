@@ -281,6 +281,8 @@ out = f"""
                                         {"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
                                 </xs:choice>
                         </xs:sequence>
+                        <xs:attribute name="name" type="xs:string"></xs:attribute>
+                        <xs:attribute name="tags" type="xs:string"></xs:attribute>
                 </xs:complexType>
         </xs:element>
 """
