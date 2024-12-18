@@ -147,6 +147,8 @@ def render_component(comp: Component) -> str:
                 <xs:complexType>
 {"\n".join(objects)}
 {"\n".join(attrs)}
+                \t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
+                \t<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
                 </xs:complexType>
         </xs:element>"""[
         1:
