@@ -32,6 +32,281 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
+		<xs:simpleType name="MOVETOSURFACE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENTITY"/>
+			<xs:enumeration value="VERLET_ROPE_ONE_JOINT"/>
+			<xs:enumeration value="VERLET_ROPE_TWO_JOINTS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RAGDOLL_FX">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="NORMAL"/>
+			<xs:enumeration value="BLOOD_EXPLOSION"/>
+			<xs:enumeration value="BLOOD_SPRAY"/>
+			<xs:enumeration value="FROZEN"/>
+			<xs:enumeration value="CONVERT_TO_MATERIAL"/>
+			<xs:enumeration value="CUSTOM_RAGDOLL_ENTITY"/>
+			<xs:enumeration value="DISINTEGRATED"/>
+			<xs:enumeration value="NO_RAGDOLL_FILE"/>
+			<xs:enumeration value="PLAYER_RAGDOLL_CAMERA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="INVENTORY_KIND">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="QUICK"/>
+			<xs:enumeration value="FULL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DAMAGE_TYPES">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DAMAGE_MELEE"/>
+			<xs:enumeration value="DAMAGE_PROJECTILE"/>
+			<xs:enumeration value="DAMAGE_EXPLOSION"/>
+			<xs:enumeration value="DAMAGE_BITE"/>
+			<xs:enumeration value="DAMAGE_FIRE"/>
+			<xs:enumeration value="DAMAGE_MATERIAL"/>
+			<xs:enumeration value="DAMAGE_FALL"/>
+			<xs:enumeration value="DAMAGE_ELECTRICITY"/>
+			<xs:enumeration value="DAMAGE_DROWNING"/>
+			<xs:enumeration value="DAMAGE_PHYSICS_BODY_DAMAGED"/>
+			<xs:enumeration value="DAMAGE_DRILL"/>
+			<xs:enumeration value="DAMAGE_SLICE"/>
+			<xs:enumeration value="DAMAGE_ICE"/>
+			<xs:enumeration value="DAMAGE_HEALING"/>
+			<xs:enumeration value="DAMAGE_PHYSICS_HIT"/>
+			<xs:enumeration value="DAMAGE_RADIOACTIVE"/>
+			<xs:enumeration value="DAMAGE_POISON"/>
+			<xs:enumeration value="DAMAGE_MATERIAL_WITH_FLASH"/>
+			<xs:enumeration value="DAMAGE_OVEREATING"/>
+			<xs:enumeration value="DAMAGE_CURSE"/>
+			<xs:enumeration value="DAMAGE_HOLY"/>
+			<xs:enumeration value="NONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AUDIO_LAYER">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EFFECT_GAME"/>
+			<xs:enumeration value="EFFECT_UI"/>
+			<xs:enumeration value="AMBIENCE"/>
+			<xs:enumeration value="MUSIC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GAME_EFFECT">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="ELECTROCUTION"/>
+			<xs:enumeration value="FROZEN"/>
+			<xs:enumeration value="ON_FIRE"/>
+			<xs:enumeration value="POISON"/>
+			<xs:enumeration value="BERSERK"/>
+			<xs:enumeration value="CHARM"/>
+			<xs:enumeration value="POLYMORPH"/>
+			<xs:enumeration value="POLYMORPH_RANDOM"/>
+			<xs:enumeration value="BLINDNESS"/>
+			<xs:enumeration value="TELEPATHY"/>
+			<xs:enumeration value="TELEPORTATION"/>
+			<xs:enumeration value="REGENERATION"/>
+			<xs:enumeration value="LEVITATION"/>
+			<xs:enumeration value="MOVEMENT_SLOWER"/>
+			<xs:enumeration value="FARTS"/>
+			<xs:enumeration value="DRUNK"/>
+			<xs:enumeration value="BREATH_UNDERWATER"/>
+			<xs:enumeration value="RADIOACTIVE"/>
+			<xs:enumeration value="WET"/>
+			<xs:enumeration value="OILED"/>
+			<xs:enumeration value="BLOODY"/>
+			<xs:enumeration value="SLIMY"/>
+			<xs:enumeration value="CRITICAL_HIT_BOOST"/>
+			<xs:enumeration value="CONFUSION"/>
+			<xs:enumeration value="MELEE_COUNTER"/>
+			<xs:enumeration value="WORM_ATTRACTOR"/>
+			<xs:enumeration value="WORM_DETRACTOR"/>
+			<xs:enumeration value="FOOD_POISONING"/>
+			<xs:enumeration value="FRIEND_THUNDERMAGE"/>
+			<xs:enumeration value="FRIEND_FIREMAGE"/>
+			<xs:enumeration value="INTERNAL_FIRE"/>
+			<xs:enumeration value="INTERNAL_ICE"/>
+			<xs:enumeration value="JARATE"/>
+			<xs:enumeration value="KNOCKBACK"/>
+			<xs:enumeration value="KNOCKBACK_IMMUNITY"/>
+			<xs:enumeration value="MOVEMENT_SLOWER_2X"/>
+			<xs:enumeration value="MOVEMENT_FASTER"/>
+			<xs:enumeration value="STAINS_DROP_FASTER"/>
+			<xs:enumeration value="SAVING_GRACE"/>
+			<xs:enumeration value="DAMAGE_MULTIPLIER"/>
+			<xs:enumeration value="HEALING_BLOOD"/>
+			<xs:enumeration value="RESPAWN"/>
+			<xs:enumeration value="PROTECTION_FIRE"/>
+			<xs:enumeration value="PROTECTION_RADIOACTIVITY"/>
+			<xs:enumeration value="PROTECTION_EXPLOSION"/>
+			<xs:enumeration value="PROTECTION_MELEE"/>
+			<xs:enumeration value="PROTECTION_ELECTRICITY"/>
+			<xs:enumeration value="TELEPORTITIS"/>
+			<xs:enumeration value="STAINLESS_ARMOUR"/>
+			<xs:enumeration value="GLOBAL_GORE"/>
+			<xs:enumeration value="EDIT_WANDS_EVERYWHERE"/>
+			<xs:enumeration value="EXPLODING_CORPSE_SHOTS"/>
+			<xs:enumeration value="EXPLODING_CORPSE"/>
+			<xs:enumeration value="EXTRA_MONEY"/>
+			<xs:enumeration value="EXTRA_MONEY_TRICK_KILL"/>
+			<xs:enumeration value="HOVER_BOOST"/>
+			<xs:enumeration value="PROJECTILE_HOMING"/>
+			<xs:enumeration value="ABILITY_ACTIONS_MATERIALIZED"/>
+			<xs:enumeration value="NO_DAMAGE_FLASH"/>
+			<xs:enumeration value="NO_SLIME_SLOWDOWN"/>
+			<xs:enumeration value="MOVEMENT_FASTER_2X"/>
+			<xs:enumeration value="NO_WAND_EDITING"/>
+			<xs:enumeration value="LOW_HP_DAMAGE_BOOST"/>
+			<xs:enumeration value="FASTER_LEVITATION"/>
+			<xs:enumeration value="STUN_PROTECTION_ELECTRICITY"/>
+			<xs:enumeration value="STUN_PROTECTION_FREEZE"/>
+			<xs:enumeration value="IRON_STOMACH"/>
+			<xs:enumeration value="PROTECTION_ALL"/>
+			<xs:enumeration value="INVISIBILITY"/>
+			<xs:enumeration value="REMOVE_FOG_OF_WAR"/>
+			<xs:enumeration value="MANA_REGENERATION"/>
+			<xs:enumeration value="PROTECTION_DURING_TELEPORT"/>
+			<xs:enumeration value="PROTECTION_POLYMORPH"/>
+			<xs:enumeration value="PROTECTION_FREEZE"/>
+			<xs:enumeration value="FROZEN_SPEED_UP"/>
+			<xs:enumeration value="UNSTABLE_TELEPORTATION"/>
+			<xs:enumeration value="POLYMORPH_UNSTABLE"/>
+			<xs:enumeration value="CUSTOM"/>
+			<xs:enumeration value="ALLERGY_RADIOACTIVE"/>
+			<xs:enumeration value="RAINBOW_FARTS"/>
+			<xs:enumeration value="WEAKNESS"/>
+			<xs:enumeration value="PROTECTION_FOOD_POISONING"/>
+			<xs:enumeration value="NO_HEAL"/>
+			<xs:enumeration value="PROTECTION_EDGES"/>
+			<xs:enumeration value="PROTECTION_PROJECTILE"/>
+			<xs:enumeration value="POLYMORPH_CESSATION"/>
+			<xs:enumeration value="_LAST"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PROJECTILE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PROJECTILE"/>
+			<xs:enumeration value="LIGHTNING"/>
+			<xs:enumeration value="VERLET"/>
+			<xs:enumeration value="MATERIAL_PARTICLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="JOINT_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REVOLUTE_JOINT"/>
+			<xs:enumeration value="WELD_JOINT"/>
+			<xs:enumeration value="REVOLUTE_JOINT_ATTACH_TO_NEARBY_SURFACE"/>
+			<xs:enumeration value="WELD_JOINT_ATTACH_TO_NEARBY_SURFACE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ARC_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MATERIAL"/>
+			<xs:enumeration value="LIGHTNING"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HIT_EFFECT">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="LOAD_ENTITY"/>
+			<xs:enumeration value="LOAD_CHILD_ENTITY"/>
+			<xs:enumeration value="LOAD_UNIQUE_CHILD_ENTITY"/>
+			<xs:enumeration value="LOAD_GAME_EFFECT"/>
+			<xs:enumeration value="LOAD_UNIQUE_GAME_EFFECT"/>
+			<xs:enumeration value="CONVERT_RAGDOLL_TO_MATERIAL"/>
+			<xs:enumeration value="CRITICAL_HIT_BOOST"/>
+			<xs:enumeration value="DAMAGE_BOOST"/>
+			<xs:enumeration value="SWAPPER"/>
+			<xs:enumeration value="LOAD_CHILD_ENTITY_LIMIT_TO_X"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MATERIALAUDIO_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="LAVA"/>
+			<xs:enumeration value="MAGICAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MATERIALBREAKAUDIO_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="WOOD"/>
+			<xs:enumeration value="CHAIN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDGE_STYLE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="COLOR_EDGE_PIXELS"/>
+			<xs:enumeration value="EVERYWHERE"/>
+			<xs:enumeration value="CARDINAL_DIRECTIONS"/>
+			<xs:enumeration value="NORMAL_BASED"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EXPLOSION_TRIGGER_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ON_CREATE"/>
+			<xs:enumeration value="ON_DEATH"/>
+			<xs:enumeration value="ON_TIMER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LUA_VM_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SHARED_BY_MANY_COMPONENTS"/>
+			<xs:enumeration value="CREATE_NEW_EVERY_EXECUTION"/>
+			<xs:enumeration value="ONE_PER_COMPONENT_INSTANCE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FOG_OF_WAR_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DEFAULT"/>
+			<xs:enumeration value="HEAVY_CLEAR_AT_PLAYER"/>
+			<xs:enumeration value="HEAVY_CLEAR_WITH_MAGIC"/>
+			<xs:enumeration value="HEAVY_NO_CLEAR"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NOISE_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IQ2_SIMPLEX1234"/>
+			<xs:enumeration value="IQ_SIMPLEX"/>
+			<xs:enumeration value="SIN_CAPPED_EVERYTHING"/>
+			<xs:enumeration value="SIN_CAPPED_SIMPLEX"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GENERAL_NOISE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IQNoise"/>
+			<xs:enumeration value="DirtyPeeNoise"/>
+			<xs:enumeration value="QemNoise"/>
+			<xs:enumeration value="WhiteNoise"/>
+			<xs:enumeration value="MixNoise"/>
+			<xs:enumeration value="SimplexNoise"/>
+			<xs:enumeration value="STB_Perlin"/>
+			<xs:enumeration value="FastBlockNoise"/>
+			<xs:enumeration value="SimplexNoise1234"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BIOME_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BIOME_PROCEDURAL"/>
+			<xs:enumeration value="BIOME_BITMAP"/>
+			<xs:enumeration value="BIOME_WANG_TILE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VERLET_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CHAIN"/>
+			<xs:enumeration value="CLOTH"/>
+			<xs:enumeration value="BLOB"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PARTICLE_EMITTER_CUSTOM_STYLE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="FIRE"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="EntityBase">
 		<xs:sequence minOccurs="0">
 			<xs:choice maxOccurs="unbounded" minOccurs="0">
@@ -1331,7 +1606,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	int lifetime = 60; //  remaining number of frames the arc exists<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: ARC_TYPE::Enum for type -->
+			<xs:attribute name="type" type="ARC_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ARC_TYPE::Enum type; //  which implementation the arc should use<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="material" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int material = 0; //  string name for the material the arc is made of<br>```]]></xs:documentation>
@@ -1375,7 +1654,11 @@
 			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0" />
 			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0" />
 			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0" />
-				<!-- Some Unknown Type: DAMAGE_TYPES::Enum for damage_type -->
+			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -3439,7 +3722,11 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigDamagesByType for damage_multipliers -->
-				<!-- Some Unknown Type: RAGDOLL_FX::Enum for ragdoll_fx_forced -->
+			<xs:attribute name="ragdoll_fx_forced" type="RAGDOLL_FX" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx_forced; //  if set, will force this ragdoll fx to happen everytime<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mIsOnFire" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mIsOnFire = 0; //  private variable to check when we're on fire and not<br>```]]></xs:documentation>
@@ -3634,8 +3921,12 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string target_tag = "mortal";<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: DAMAGE_TYPES::Enum for damage_type -->
-				<!-- Some Unknown Type: RAGDOLL_FX::Enum for ragdoll_fx -->
+			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ragdoll_fx" type="RAGDOLL_FX" default="0" />
 			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0" />
 			<xs:attribute name="mNextDamageFrame" type="xs:int" default="0">
@@ -4061,7 +4352,11 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
-				<!-- Some Unknown Type: EXPLOSION_TRIGGER_TYPE::Enum for trigger -->
+			<xs:attribute name="trigger" type="EXPLOSION_TRIGGER_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	EXPLOSION_TRIGGER_TYPE::Enum trigger; //  what triggers the explosion<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -4302,8 +4597,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mIsSpent = 0; //  NOTE( Petri ): 29.4.2024 - this is used internally to make RESPAWN perk disabled in the UI<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: GAME_EFFECT::Enum for effect -->
-				<!-- Some Unknown Type: RAGDOLL_FX::Enum for ragdoll_effect -->
+			<xs:attribute name="effect" type="GAME_EFFECT" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum effect; //  GAME_EFFECT<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ragdoll_effect" type="RAGDOLL_FX" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="ragdoll_material" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>```]]></xs:documentation>
@@ -4554,9 +4857,17 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string value_string; //  Usage depends on selected 'effect_hit'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: GAME_EFFECT::Enum for condition_effect -->
+			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Hit entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: StatusEffectType for condition_status -->
-				<!-- Some Unknown Type: HIT_EFFECT::Enum for effect_hit -->
+			<xs:attribute name="effect_hit" type="HIT_EFFECT" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	HIT_EFFECT::Enum effect_hit; //  What kind of 'HIT_EFFECT' is applied to hit entity if condition is true<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -5545,7 +5856,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 spawn_pos; //  the position where this item spawned<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: INVENTORY_KIND::Enum for preferred_inventory -->
+			<xs:attribute name="preferred_inventory" type="INVENTORY_KIND" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	INVENTORY_KIND::Enum preferred_inventory; //  Which inventory do we go to when we're picked up, if it's not full.<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="inventory_slot.x" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	ivec2 inventory_slot; //  our preferred slot (x,y) in the inventory<br>```]]></xs:documentation>
@@ -6278,7 +6593,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mModAppendsDone = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: LUA_VM_TYPE::Enum for vm_type -->
+			<xs:attribute name="vm_type" type="LUA_VM_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LUA_VM_TYPE::Enum vm_type; //  Do we share a single Lua virtual machine for everyone who runs 'script_source_file' ('SHARED_BY_MANY_COMPONENTS'), create one VM per one LuaComponent and reuse the VM in case the component runs the script multiple times ('ONE_PER_COMPONENT_INSTANCE'), or create a new VM every time the script is executed ('CREATE_NEW_EVERY_EXECUTION', deprecated)?<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNextExecutionTime" type="xs:int" default="-1">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mNextExecutionTime = -1;<br>```]]></xs:documentation>
@@ -6818,7 +7137,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	float verlet_min_joint_distance = 32; // [0, 128] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: MOVETOSURFACE_TYPE::Enum for type -->
+			<xs:attribute name="type" type="MOVETOSURFACE_TYPE" default="0" />
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -7201,7 +7520,11 @@
 			<xs:attribute name="gravity.y" type="xs:decimal" default="0" />
 			<xs:attribute name="count_min" type="xs:int" default="0" />
 			<xs:attribute name="count_max" type="xs:int" default="0" />
-				<!-- Some Unknown Type: PARTICLE_EMITTER_CUSTOM_STYLE::Enum for custom_style -->
+			<xs:attribute name="custom_style" type="PARTICLE_EMITTER_CUSTOM_STYLE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	PARTICLE_EMITTER_CUSTOM_STYLE::Enum custom_style; //  NONE or FIRE<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mExPosition.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mExPosition; //  is used with is_trail<br>```]]></xs:documentation>
@@ -7418,7 +7741,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mEnabled = 0; //  TODO: Comment<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: PathFindingComponentState::Enum for mState -->
+			<xs:attribute name="mState" type="PathFindingComponentState" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	PathFindingComponentState::Enum mState; //  TODO: Comment<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mTimesStuck" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mTimesStuck = 0; //  TODO: Comment<br>```]]></xs:documentation>
@@ -8088,7 +8415,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	float surface_attachment_offset_y = 2.5;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: JOINT_TYPE::Enum for type -->
+			<xs:attribute name="type" type="JOINT_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	JOINT_TYPE::Enum type; //  Enum - REVOLUTE_JOINT, WELD_JOINT, REVOLUTE_JOINT_ATTACH_TO_NEARBY_SURFACE or WELD_JOINT_ATTACH_TO_NEARBY_SURFACE<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -8198,7 +8529,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mMaxMotorTorque = 1; //  max torque for motor<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: JOINT_TYPE::Enum for type -->
+			<xs:attribute name="type" type="JOINT_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	JOINT_TYPE::Enum type; //  Enum - JOINT_TYPE<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: b2Joint* for mJoint -->
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
@@ -9228,7 +9563,7 @@
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
 				<!-- Some Unknown Type: ConfigDamagesByType for damage_by_type -->
 				<!-- Some Unknown Type: ConfigDamageCritical for damage_critical -->
-				<!-- Some Unknown Type: PROJECTILE_TYPE::Enum for projectile_type -->
+			<xs:attribute name="projectile_type" type="PROJECTILE_TYPE" default="0" />
 			<xs:attribute name="shell_casing_offset.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 shell_casing_offset; //  where the shell casing will be created relative to projectile, y is flipped if projectile direction is to the left.<br>```]]></xs:documentation>
@@ -9239,7 +9574,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 shell_casing_offset; //  where the shell casing will be created relative to projectile, y is flipped if projectile direction is to the left.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: RAGDOLL_FX::Enum for ragdoll_fx_on_collision -->
+			<xs:attribute name="ragdoll_fx_on_collision" type="RAGDOLL_FX" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx_on_collision; //  if not NORMAL, do a special ragdoll<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mWhoShot -->
 				<!-- Some Unknown Type: EntityTypeID for mWhoShotEntityTypeID -->
 			<xs:attribute name="mShooterHerdId" type="xs:int" default="0">
@@ -9335,7 +9674,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string extra_modifier; //  name of modifier function executed per projectile from 'gun_extra_modifiers.lua'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: GAME_EFFECT::Enum for condition_effect -->
+			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Shooting entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: StatusEffectType for condition_status -->
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
@@ -10104,7 +10447,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	int safety_counter = 0; //  used to keep track that we're not stuck in waiting for a pixel scene to load, that is not going to be loaded<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: TeleportComponentState::Enum for state -->
+			<xs:attribute name="state" type="TeleportComponentState" default="0" />
 				<!-- Some Unknown Type: ENTITY_VEC for teleported_entities -->
 			<xs:attribute name="source_location_camera_aabb.min_x" type="xs:decimal" default="0" />
 			<xs:attribute name="source_location_camera_aabb.min_y" type="xs:decimal" default="0" />
@@ -10470,7 +10813,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool m_is_culled_previous = 0; //  Developer note: this needs to be serialized in case we serialize SpriteComponent.is_visible<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-				<!-- Some Unknown Type: VERLET_TYPE::Enum for type -->
+			<xs:attribute name="type" type="VERLET_TYPE" default="0" />
 			<xs:attribute name="animation_target_offset.x" type="xs:decimal" default="0" />
 			<xs:attribute name="animation_target_offset.y" type="xs:decimal" default="0" />
 			<xs:attribute name="cloth_color_edge" type="xs:unsignedInt" default="4288376730">

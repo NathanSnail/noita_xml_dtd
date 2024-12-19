@@ -1,3 +1,4 @@
+from enum import EnumType
 import os
 import re
 import sys
@@ -21,6 +22,12 @@ class Component:
     fields: list[Field]
 
 
+@dataclass
+class Enum:
+    name: str
+    variants: list[str]
+
+
 def xml_encode(s: str) -> str:
     return s.replace(">", "&gt;").replace("<", "&lt;")
 
@@ -28,6 +35,9 @@ def xml_encode(s: str) -> str:
 def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
+    enum = "::Enum"
+    if ty[-len(enum) :] == enum:
+        return [("", ty[: -len(enum)])]
     if ty[: len(lens)] == lens:
         return get_xml_type(ty[len(lens) + 1 : -1])
     if ty == "float" or ty == "double":
@@ -179,8 +189,6 @@ def do_var_line(line: str) -> Field:
     ty = ""
     if line[27] == " ":
         ty = trim_end(line[4:28])
-        if "unsigned" in ty:
-            print(ty)
     else:
         ty_part = line[4:].split(" ")[0]
         if "::Enum" in ty_part:
@@ -210,7 +218,7 @@ def do_var_line(line: str) -> Field:
         line = line[len(example) :]
         shift += len(example)
     if example == "[0, 1]":
-        example = "" # these are almost always wrong
+        example = ""  # these are almost always wrong
     comment = '"'.join(line.split('"')[1:-1])
     return Field(field, ty, default, example, comment)
 
@@ -254,6 +262,27 @@ for l in docs.split("\n"):
             flush_cur()
         cur_type = l
 
+enums: list[Enum] = []
+enum_content = (
+    open("./enum_src", "r").read().split("\n")
+)  # this was generated from ghidra
+for i in range(len(enum_content) // 2):
+    name = enum_content[i * 2]
+    fields = enum_content[i * 2 + 1][3:-2].split("', u'")
+    enums.append(Enum(name, fields))
+
+
+def render_enum(enum: Enum) -> str:
+    return f"""
+\t<xs:simpleType name="{enum.name}">
+\t\t<xs:restriction base="xs:string">
+{"\n".join([f'\t\t\t<xs:enumeration value="{variant}"/>' for variant in enum.variants])}
+\t\t</xs:restriction>
+\t</xs:simpleType>"""[
+        1:
+    ]
+
+
 out = f"""
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 \t<xs:simpleType name="NoitaBool">
@@ -289,6 +318,7 @@ out = f"""
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t</xs:complexType>
+\t{"\n".join([render_enum(enum) for enum in enums])}
 \t<xs:complexType name="EntityBase">
 \t\t<xs:sequence minOccurs="0">
 \t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">

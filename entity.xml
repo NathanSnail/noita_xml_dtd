@@ -20,6 +20,7 @@
 	</Entity>
 	<AnimalAIComponent />
 
+	<ProjectileComponent projectile_type="PROJECTILE"></ProjectileComponent>
 	<!-- this is fucked -->
 	<SpriteComponent
 		image_file="whatever"
