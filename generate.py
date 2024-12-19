@@ -4,6 +4,7 @@ import sys
 from dataclasses import dataclass
 
 PRIMARY_FILE = True
+TAB = "&emsp;&emsp;&emsp;&emsp;"
 
 
 @dataclass
@@ -186,9 +187,7 @@ def render_component_cpp(comp: Component) -> str:
     out = f"```cpp\nclass {comp.name} {{\n"
     out += "\n".join([render_field_cpp(field) for field in comp.fields])
     out += "\n};\n```"
-    return out.replace("\n", "<br>").replace(
-        "\t", "&emsp;&emsp;&emsp;&emsp;"
-    )  # parser bug
+    return out.replace("\n", "<br>").replace("\t", TAB)  # parser bug
 
 
 def render_component(comp: Component) -> str:
@@ -315,6 +314,12 @@ def render_enum(enum: Enum) -> str:
     ]
 
 
+transform = {
+    "rotation": "float rotation = 0; // [0, 360] Measured in degrees",
+    "position": "vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent",
+    "scale": "vec2 scale = {{.x = 1, .y = 1}}; // A stretching factor, most components don't work with this",
+}
+
 out = f"""
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 \t<xs:simpleType name="NoitaBool">
@@ -324,29 +329,32 @@ out = f"""
 \t\t</xs:restriction>
 \t</xs:simpleType>
 \t<xs:complexType name="Transform">
+\t\t<xs:annotation>
+\t\t\t<xs:documentation><![CDATA[```cpp<br>class types::xform {{<br>{TAB}{transform["position"]}<br>{TAB}{transform["scale"]}<br>{TAB}{transform["rotation"]}<br>}};```]]></xs:documentation>
+\t\t</xs:annotation>
 \t\t<xs:attribute name="position.x" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["position"]}<br>```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="position.y" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["position"]}<br>```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="scale.x" type="xs:decimal" default="1" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["scale"]}<br>```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="scale.y" type="xs:decimal" default="1" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["scale"]}<br>```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="rotation" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation>Measured in degrees</xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["rotation"]}<br>```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t</xs:complexType>
