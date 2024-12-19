@@ -112,9 +112,8 @@ def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
     if docs != "" or field.comment != "":
         return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
-\t\t\t\t<xs:annotation>{
-            f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
-            f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
+\t\t\t\t<xs:annotation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{render_field_cpp(field)}<br>```]]></xs:documentation>
 \t\t\t\t</xs:annotation>
 \t\t\t</xs:attribute>"""[
             1:
