@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -29,7 +30,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
     if ty[: len(lens)] == lens:
-        return get_xml_type(ty[len(lens) + 1 : -1])
+        return get_xml_type(ty[len(lens) + 1: -1])
     if ty == "float" or ty == "double":
         return [("", "xs:decimal")]
     if ty[:3] == "int":
@@ -100,14 +101,21 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
 
 
 def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
+    if field.default != "-":
+        if ty == "xs:decimal":
+            value = float(field.default)
+            field.default = f"{value:.15f}".rstrip('0').rstrip('.')  # This ensures no scientific notation
+        default = field.default
+    else:
+        default = "" if ty == "xs:string" else "0"
     if docs != "" or field.comment != "":
         return f"""
-			<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}">
-				<xs:annotation>{
-					f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
-					f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
-				</xs:annotation>
-			</xs:attribute>"""[
+                        <xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
+                                <xs:annotation>{
+            f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
+            f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
+                                </xs:annotation>
+                        </xs:attribute>"""[
             1:
         ]
     return f"""\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}" />"""
@@ -135,12 +143,14 @@ def render_component(comp: Component) -> str:
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
-	<xs:element name="{comp.name}">
-		<xs:complexType>
+        <xs:element name="{comp.name}">
+                <xs:complexType mixed="true">
 {"\n".join(objects)}
 {"\n".join(attrs)}
-		</xs:complexType>
-	</xs:element>"""[
+                \t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
+                \t<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+                </xs:complexType>
+        </xs:element>"""[
         1:
     ]
 
@@ -168,29 +178,30 @@ def do_var_line(line: str) -> Field:
             type_match = re.match("[A-Z_]+", ty_part)
             assert type_match is not None
             ty = type_match.group()
-    line = line[4 + len(ty) :]
+    line = line[4 + len(ty):]
     shift += 4 + len(ty)
     while line[0] == " ":
         line = line[1:]
         shift += 1
     field = line.split(" ")[0]
-    line = line[len(field) :]
+    line = line[len(field):]
     shift += len(field)
     default_match = re.search("[^ ]+", line.split('"')[0])
     assert default_match is not None
     default = default_match.group()
-    line = line[len(default) + default_match.start() + 1 :]
+    line = line[len(default) + default_match.start() + 1:]
     shift += len(default)
     example = ""
     if default != "-":
         example = line.split("]")[0] + "]"
-        line = line[len(example) :]
+        line = line[len(example):]
         shift += len(example)
     comment = '"'.join(line.split('"')[1:-1])
     return Field(field, ty, default, example, comment)
 
 
 docs_path = (
+    sys.argv[1] if sys.argv[1] else
     os.path.expanduser(
         "~/.local/share/Steam/steamapps/common/Noita/component_documentation.txt"
     )
@@ -227,53 +238,73 @@ for l in docs.split("\n"):
 
 out = f"""
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:simpleType name="NoitaBool">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="0" />
-			<xs:enumeration value="1" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:complexType name="Transform">
-		<xs:attribute name="position.x" type="xs:decimal" default="0" >
-			<xs:annotation>
-					<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="position.y" type="xs:decimal" default="0" >
-			<xs:annotation>
-					<xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="scale.x" type="xs:decimal" default="1" >
-			<xs:annotation>
-					<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="scale.y" type="xs:decimal" default="1" >
-			<xs:annotation>
-					<xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="rotation" type="xs:decimal" default="0" >
-			<xs:annotation>
-					<xs:documentation>Measured in degrees</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
-	<xs:element name="Entity">
-		<xs:annotation>
-			<xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence minOccurs="0">
-				<xs:element name="Transform" type="Transform" />
-				<xs:choice maxOccurs="unbounded" minOccurs="0">
-					<xs:element ref="Entity" />
-					{"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
-				</xs:choice>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
+        <xs:simpleType name="NoitaBool">
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="0" />
+                        <xs:enumeration value="1" />
+                </xs:restriction>
+        </xs:simpleType>
+        <xs:complexType name="Transform">
+                <xs:attribute name="position.x" type="xs:decimal" default="0" >
+                        <xs:annotation>
+                                        <xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+                        </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="position.y" type="xs:decimal" default="0" >
+                        <xs:annotation>
+                                        <xs:documentation>`EntityLoad` doesn't respect this on entities, mostly used for relative offsets in `InheritTransformComponent`</xs:documentation>
+                        </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="scale.x" type="xs:decimal" default="1" >
+                        <xs:annotation>
+                                        <xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+                        </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="scale.y" type="xs:decimal" default="1" >
+                        <xs:annotation>
+                                        <xs:documentation>A stretching factor, most components don't work with this</xs:documentation>
+                        </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="rotation" type="xs:decimal" default="0" >
+                        <xs:annotation>
+                                        <xs:documentation>Measured in degrees</xs:documentation>
+                        </xs:annotation>
+                </xs:attribute>
+        </xs:complexType>
+        <xs:complexType name="EntityBase">
+            <xs:sequence minOccurs="0">
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="Entity" />
+                    <xs:element ref="Base" />
+                    <xs:element name="Transform" type="Transform" />
+                    {"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string"></xs:attribute>
+            <xs:attribute name="tags" type="xs:string"></xs:attribute>
+        </xs:complexType>
+        <xs:element name="Entity">
+                <xs:annotation>
+                        <xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="EntityBase" />
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        <xs:element name="Base">
+                <xs:annotation>
+                        <xs:documentation>Base file</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="EntityBase">
+                                    <xs:attribute name="file" type="xs:string" />
+                                </xs:extension>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
 """
 out += "\n".join([render_component(component) for component in components])
 out += "\n</xs:schema>"
