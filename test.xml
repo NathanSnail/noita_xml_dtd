@@ -1,4 +1,4 @@
-<?xml-model href="test.dtd" type="application/xml-dtd"?>
+<?xml-model href="test.xsd" type="application/xml-xsd"?>
 <Entity>
-	<ControlsComponent />
+	<DamageModelComponent hp="13" banaan="0" />
 </Entity>
