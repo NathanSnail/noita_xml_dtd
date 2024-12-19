@@ -1,12 +1,14 @@
 <?xml-model href="generated.xsd" type="application/xml-xsd"?>
 <Entity>
+	<Base>
+		<AIComponent TEMP_TEMP_TEMP="0.0"></AIComponent>
+	</Base>
 	<Transform rotation="0.0" position.x="0.0" />
 	<InheritTransformComponent>
 		<Transform position.x="0.0" />
 	</InheritTransformComponent>
 	<CameraBoundComponent max_count="10" />
 	<InheritTransformComponent>
-		<Transform position.x="0.0" />
 		<Transform position.x="0.0" />
 	</InheritTransformComponent>
 	<OrbComponent orb_id="0" />
@@ -22,6 +24,5 @@
 	<SpriteComponent
 		image_file="whatever"
 		offset_x="5"
-		offset_y="5">
-	</SpriteComponent>
+		offset_y="5"> </SpriteComponent>
 </Entity>
