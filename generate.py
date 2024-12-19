@@ -139,12 +139,26 @@ def render_field(field: Field) -> tuple[str, str]:
     )
 
 
+def render_field_cpp(comp: Field) -> str:
+    return f"\t{comp.ty} {comp.name}{f" = {comp.default}" if comp.default != "-" else ""};{f" // {comp.values} {comp.comment}" if comp.values != "" or comp.comment != "" else ""}"
+
+
+def render_component_cpp(comp: Component) -> str:
+    out = f"```cpp\nclass {comp.name} {{\n"
+    out += "\n".join([render_field_cpp(field) for field in comp.fields])
+    out += "\n};\n```"
+    return out.replace("\n", "<br>").replace(
+        "\t", "&emsp;&emsp;&emsp;&emsp;"
+    )  # parser bug
+
+
 def render_component(comp: Component) -> str:
     fields = [render_field(x) for x in comp.fields]
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
 \t<xs:element name="{comp.name}">
+\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>
 \t\t<xs:complexType mixed="true">{"\n" + "\n".join(objects) if len(objects) != 0 else ""}
 {"\n".join(attrs)}
 \t\t\t<xs:attribute name="_tags" type="xs:string" default="" />
