@@ -1646,7 +1646,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	int lifetime = 60; //  remaining number of frames the arc exists<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="ARC_TYPE" default="0">
+			<xs:attribute name="type" type="ARC_TYPE" default="MATERIAL">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	ARC_TYPE::Enum type; //  which implementation the arc should use<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -1710,7 +1710,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="0">
+			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="DAMAGE_PHYSICS_HIT">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -3796,7 +3796,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DamageModelComponent">
-		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class DamageModelComponent {<br>&emsp;&emsp;&emsp;&emsp;double hp = 1; // [0, 4] hit points at the moment<br>&emsp;&emsp;&emsp;&emsp;double max_hp = 0; // [0, 4] the maximum hp that this can have, we'll set this when loading<br>&emsp;&emsp;&emsp;&emsp;double max_hp_cap = 0; // [0, 12] the maximum 'max_hp' that this can have, <= 0 means no limits. Used by perks such as GLASS_CANNON<br>&emsp;&emsp;&emsp;&emsp;double max_hp_old = 0; //  used for UI rendering<br>&emsp;&emsp;&emsp;&emsp;float critical_damage_resistance = 0; //  0.0 = all critical damage multiplier is applied. 1.0 = no critical damage multiplier is applied<br>&emsp;&emsp;&emsp;&emsp;int invincibility_frames = 0; // [0, 1024] if positive, doesn't take damage<br>&emsp;&emsp;&emsp;&emsp;bool falling_damages = 1; //  do we take fall damage<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_height_min = 70; //  how far do we need to fall to take damage, we start with this height, the peasant takes min damage from this<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_height_max = 250; //  after this the peasant always takes the maximum fall damage<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_damage_min = 0.1; //  when we fall over height_min we take this much, lineary ramping to damage_max<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_damage_max = 1.2; //  when we fall over height_min we take this much, lineary ramping to damage_max<br>&emsp;&emsp;&emsp;&emsp;bool air_needed = 1; //  Do we breath, can we take damage from not breathing?<br>&emsp;&emsp;&emsp;&emsp;float air_in_lungs = 5; //  How much air do we have in our lungs? - after the air runs out we take damage<br>&emsp;&emsp;&emsp;&emsp;float air_in_lungs_max = 5; //  how much air can we have in our lungs, it's filled to this point if we're not in water<br>&emsp;&emsp;&emsp;&emsp;float air_lack_of_damage = 0.2; //  (* dt)... damage in a second if we're in the water<br>&emsp;&emsp;&emsp;&emsp;float minimum_knockback_force = 0; //  Minimum knockback force required to do the knockback<br>&emsp;&emsp;&emsp;&emsp;bool materials_damage = 1; //  should materials do damage or not?<br>&emsp;&emsp;&emsp;&emsp;int material_damage_min_cell_count = 4; //  if material damage is received from less than 'material_damage_min_cell_count' this frame, it is ignored<br>&emsp;&emsp;&emsp;&emsp;std::string materials_that_damage = "acid"; //  list of materials that do damage, separated by ',' e.g. 'acid, fire, smoke'<br>&emsp;&emsp;&emsp;&emsp;std::string materials_how_much_damage = "0.1"; //  list of damage amount per material in materials_that_damage, separated by ','<br>&emsp;&emsp;&emsp;&emsp;bool materials_damage_proportional_to_maxhp = 0; //  if damage from materials is proportional to max hp, instead of just damage<br>&emsp;&emsp;&emsp;&emsp;bool physics_objects_damage = 0; //  if true, will take damage from physics objects that hit it<br>&emsp;&emsp;&emsp;&emsp;bool materials_create_messages = 0; //  should collisions with certain materials create messages or not?<br>&emsp;&emsp;&emsp;&emsp;std::string materials_that_create_messages = "meat"; //  list of materials that generate CollisionWithCell messages, separated by ',' e.g. 'acid, fire, smoke'<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_filenames_file = "data/temp/ragdoll/filenames.txt"; //  the file from which to load a ragdoll on death'<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_material = "meat"; //  what material is the ragdoll made out of<br>&emsp;&emsp;&emsp;&emsp;float ragdoll_offset_x = 0; //  where should the ragdoll be created relative to our entity position'<br>&emsp;&emsp;&emsp;&emsp;float ragdoll_offset_y = 0; //  where should the ragdoll be created relative to our entity position'<br>&emsp;&emsp;&emsp;&emsp;std::string blood_material = "blood_fading"; //  this is the material that gets thrown as particles when this entity takes damage<br>&emsp;&emsp;&emsp;&emsp;std::string blood_spray_material; //  this is the material that gets thrown as particles when this entity sprays blood on death<br>&emsp;&emsp;&emsp;&emsp;bool blood_spray_create_some_cosmetic = 0; //  if true, we force some blood spray particles to be cosmetic (can be enabled to avoid making a huge mess of blood spray)<br>&emsp;&emsp;&emsp;&emsp;float blood_multiplier = 1; // [0, 10] how much blood, this is the multiplier used for sprouting lots or little blood<br>&emsp;&emsp;&emsp;&emsp;int ragdoll_blood_amount_absolute = -1; // [-1, 1000] if > -1, this is the absolute amount of blood we share between particle emitters in the ragdoll<br>&emsp;&emsp;&emsp;&emsp;std::string blood_sprite_directional; //  this sprite is loaded at damage position if we take damage that creates a blood effect<br>&emsp;&emsp;&emsp;&emsp;std::string blood_sprite_large; //  this sprite is loaded at damage position if we take explosion/heavy damage<br>&emsp;&emsp;&emsp;&emsp;std::string healing_particle_effect_entity; //  if this is set, will load this entity as a child of this entity, when this entity is healed<br>&emsp;&emsp;&emsp;&emsp;bool create_ragdoll = 1; //  if 0, we skip ragdoll creation on death<br>&emsp;&emsp;&emsp;&emsp;bool ragdollify_child_entity_sprites = 0; //  if 1, we ragdollify child entity sprites<br>&emsp;&emsp;&emsp;&emsp;float ragdollify_root_angular_damping = 0; //  If ragdoll_filenames_file= and > 0, the angular damping of the first ragdoll body is set to this value.<br>&emsp;&emsp;&emsp;&emsp;bool ragdollify_disintegrate_nonroot = 0; //  If ragdoll_filenames_file= and true, all but the first sprite on the root entity will be disintegrated instead of being turned into physics bodies.<br>&emsp;&emsp;&emsp;&emsp;bool wait_for_kill_flag_on_death = 0; //  if 1, we wont kill the entity along with kill fx and ragdoll until 'kill' is 1<br>&emsp;&emsp;&emsp;&emsp;bool kill_now = 0; //  if 1, we wont kill the entity along with kill fx and ragdoll until 'kill_now' is 1<br>&emsp;&emsp;&emsp;&emsp;bool drop_items_on_death = 1; //  drop the abilities as items on death?<br>&emsp;&emsp;&emsp;&emsp;bool ui_report_damage = 1; //  If 1, damage numbers are displayed when this entity is damaged<br>&emsp;&emsp;&emsp;&emsp;bool ui_force_report_damage = 0; //  If 1, damage numbers are displayed when this entity is damaged, even if the numbers are disabled in settings<br>&emsp;&emsp;&emsp;&emsp;int in_liquid_shooting_electrify_prob = 0; // [0, 100] when shooting underwater how likely are we to electrify the water<br>&emsp;&emsp;&emsp;&emsp;float wet_status_effect_damage = 0; // [0, 0.1] how much damage per 10 frames is done if entity has 'wet' status effect<br>&emsp;&emsp;&emsp;&emsp;bool is_on_fire = 0; //  Tells us we're on fire or not<br>&emsp;&emsp;&emsp;&emsp;float fire_probability_of_ignition = 0.5; //  what is the probability that we'll ignite, 0 means won't ever ignite<br>&emsp;&emsp;&emsp;&emsp;int fire_how_much_fire_generates = 4; // [0, 10] how many fire particles do we generate each frame<br>&emsp;&emsp;&emsp;&emsp;float fire_damage_ignited_amount = 0.0003; // [0, 2] how much damage does being ignited do?<br>&emsp;&emsp;&emsp;&emsp;float fire_damage_amount = 0.2; // [0, 2] how much damage does fire do?, 0.2 is pretty good<br>&emsp;&emsp;&emsp;&emsp;int mLastElectricityResistanceFrame = -2147483648; //  Last frame electricity has no effect. Should not be private!<br>&emsp;&emsp;&emsp;&emsp;int mLastFrameReportedBlock = -2147483648; //  Last frame a damage block message was displayed for this entity<br>&emsp;&emsp;&emsp;&emsp;int mLastMaxHpChangeFrame = -10000; //  used for UI rendering<br>&emsp;&emsp;&emsp;&emsp;ConfigDamagesByType damage_multipliers; //  the multipliers applied to different types of damage<br>&emsp;&emsp;&emsp;&emsp;RAGDOLL_FX::Enum ragdoll_fx_forced; //  if set, will force this ragdoll fx to happen everytime<br>&emsp;&emsp;&emsp;&emsp;bool mIsOnFire = 0; //  private variable to check when we're on fire and not<br>&emsp;&emsp;&emsp;&emsp;int mFireProbability = 100; //  this gets decreased if we can't ignite anything else<br>&emsp;&emsp;&emsp;&emsp;int mFireFramesLeft = 0; //  this is the remaining frames we're on fire<br>&emsp;&emsp;&emsp;&emsp;int mFireDurationFrames = 0; //  this is the total duration in frames we're on fire<br>&emsp;&emsp;&emsp;&emsp;bool mFireTriedIgniting = 0; //  private variable to check when we could have been ignited or not<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckX = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckY = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckTime = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastMaterialDamageFrame = 0; //  this is the last frame we took material damage<br>&emsp;&emsp;&emsp;&emsp;bool mFallIsOnGround = 0; //  for fall damage, keeps a private variable about if we're on ground or not<br>&emsp;&emsp;&emsp;&emsp;float mFallHighestY = 340282000000000014192072600942972764160; //  private var to keep track of how high have we flown to<br>&emsp;&emsp;&emsp;&emsp;int mFallCount = 0; //  how many times have we fallen? This is used to make sure we don't take damage from the first fall<br>&emsp;&emsp;&emsp;&emsp;bool mAirAreWeInWater = 0; //  a private variable to track our state in drowning<br>&emsp;&emsp;&emsp;&emsp;int mAirFramesNotInWater = 0; //  how many frames have been with air to breathe<br>&emsp;&emsp;&emsp;&emsp;bool mAirDoWeHave = 0; //  a private variable to track our state in drowning<br>&emsp;&emsp;&emsp;&emsp;int mTotalCells = 0; //  how many cells are there total<br>&emsp;&emsp;&emsp;&emsp;int mLiquidCount = 0; //  how many of the cells are liquid<br>&emsp;&emsp;&emsp;&emsp;int mLiquidMaterialWeAreIn = -1; //  stores the liquid material we're in... may not be the most accurate<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mDamageMaterials; //  NOTE! Sorted! a list of materials that do damage (materials_that_damage)<br>&emsp;&emsp;&emsp;&emsp;std::vector< float > mDamageMaterialsHowMuch; //  NOTE! Sorted! a list of materials that do damage (materials_that_damage)<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mCollisionMessageMaterials; //  NOTE! Sorted! a list of materials that create messages (materials_that_create_messages)<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mCollisionMessageMaterialCountsThisFrame; //  Number of cells per collided with this frame. Order matches mCollisionMessageMaterials<br>&emsp;&emsp;&emsp;&emsp;std::vector< float > mMaterialDamageThisFrame; //  A list of damage per material that damages us. In same order as materials<br>&emsp;&emsp;&emsp;&emsp;float mFallDamageThisFrame = 0; //  Amount of fall damage received this frame<br>&emsp;&emsp;&emsp;&emsp;float mElectricityDamageThisFrame = 0; //  Amount of electricity damage received this frame<br>&emsp;&emsp;&emsp;&emsp;float mPhysicsDamageThisFrame = 0; //  max physics damage we have taken this round<br>&emsp;&emsp;&emsp;&emsp;vec2 mPhysicsDamageVecThisFrame; //  direction of physics damage<br>&emsp;&emsp;&emsp;&emsp;int mPhysicsDamageLastFrame = 0; //  frame number when we took physics damage<br>&emsp;&emsp;&emsp;&emsp;EntityTypeID mPhysicsDamageEntity = 0; //  the physics entity that hit us<br>&emsp;&emsp;&emsp;&emsp;EntityTypeID mPhysicsDamageTelekinesisCasterEntity = 0; //  who moved an object that hit us via telekinesis<br>&emsp;&emsp;&emsp;&emsp;int mLastDamageFrame = -120; //  frame number when we took any damage<br>&emsp;&emsp;&emsp;&emsp;double mHpBeforeLastDamage = 0; //  how much hp did we have a while ago?<br>&emsp;&emsp;&emsp;&emsp;float mFireDamageBuffered = 0; //  used to optimized cases where lots of entities are taking fire damage<br>&emsp;&emsp;&emsp;&emsp;int32 mFireDamageBufferedNextDeliveryFrame = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class DamageModelComponent {<br>&emsp;&emsp;&emsp;&emsp;double hp = 1; // [0, 4] hit points at the moment<br>&emsp;&emsp;&emsp;&emsp;double max_hp = 0; // [0, 4] the maximum hp that this can have, we'll set this when loading<br>&emsp;&emsp;&emsp;&emsp;double max_hp_cap = 0; // [0, 12] the maximum 'max_hp' that this can have, <= 0 means no limits. Used by perks such as GLASS_CANNON<br>&emsp;&emsp;&emsp;&emsp;double max_hp_old = 0; //  used for UI rendering<br>&emsp;&emsp;&emsp;&emsp;float critical_damage_resistance = 0; //  0.0 = all critical damage multiplier is applied. 1.0 = no critical damage multiplier is applied<br>&emsp;&emsp;&emsp;&emsp;int invincibility_frames = 0; // [0, 1024] if positive, doesn't take damage<br>&emsp;&emsp;&emsp;&emsp;bool falling_damages = 1; //  do we take fall damage<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_height_min = 70; //  how far do we need to fall to take damage, we start with this height, the peasant takes min damage from this<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_height_max = 250; //  after this the peasant always takes the maximum fall damage<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_damage_min = 0.1; //  when we fall over height_min we take this much, lineary ramping to damage_max<br>&emsp;&emsp;&emsp;&emsp;float falling_damage_damage_max = 1.2; //  when we fall over height_min we take this much, lineary ramping to damage_max<br>&emsp;&emsp;&emsp;&emsp;bool air_needed = 1; //  Do we breath, can we take damage from not breathing?<br>&emsp;&emsp;&emsp;&emsp;float air_in_lungs = 5; //  How much air do we have in our lungs? - after the air runs out we take damage<br>&emsp;&emsp;&emsp;&emsp;float air_in_lungs_max = 5; //  how much air can we have in our lungs, it's filled to this point if we're not in water<br>&emsp;&emsp;&emsp;&emsp;float air_lack_of_damage = 0.2; //  (* dt)... damage in a second if we're in the water<br>&emsp;&emsp;&emsp;&emsp;float minimum_knockback_force = 0; //  Minimum knockback force required to do the knockback<br>&emsp;&emsp;&emsp;&emsp;bool materials_damage = 1; //  should materials do damage or not?<br>&emsp;&emsp;&emsp;&emsp;int material_damage_min_cell_count = 4; //  if material damage is received from less than 'material_damage_min_cell_count' this frame, it is ignored<br>&emsp;&emsp;&emsp;&emsp;std::string materials_that_damage = "acid"; //  list of materials that do damage, separated by ',' e.g. 'acid, fire, smoke'<br>&emsp;&emsp;&emsp;&emsp;std::string materials_how_much_damage = "0.1"; //  list of damage amount per material in materials_that_damage, separated by ','<br>&emsp;&emsp;&emsp;&emsp;bool materials_damage_proportional_to_maxhp = 0; //  if damage from materials is proportional to max hp, instead of just damage<br>&emsp;&emsp;&emsp;&emsp;bool physics_objects_damage = 0; //  if true, will take damage from physics objects that hit it<br>&emsp;&emsp;&emsp;&emsp;bool materials_create_messages = 0; //  should collisions with certain materials create messages or not?<br>&emsp;&emsp;&emsp;&emsp;std::string materials_that_create_messages = "meat"; //  list of materials that generate CollisionWithCell messages, separated by ',' e.g. 'acid, fire, smoke'<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_filenames_file = "data/temp/ragdoll/filenames.txt"; //  the file from which to load a ragdoll on death'<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_material = "meat"; //  what material is the ragdoll made out of<br>&emsp;&emsp;&emsp;&emsp;float ragdoll_offset_x = 0; //  where should the ragdoll be created relative to our entity position'<br>&emsp;&emsp;&emsp;&emsp;float ragdoll_offset_y = 0; //  where should the ragdoll be created relative to our entity position'<br>&emsp;&emsp;&emsp;&emsp;std::string blood_material = "blood_fading"; //  this is the material that gets thrown as particles when this entity takes damage<br>&emsp;&emsp;&emsp;&emsp;std::string blood_spray_material; //  this is the material that gets thrown as particles when this entity sprays blood on death<br>&emsp;&emsp;&emsp;&emsp;bool blood_spray_create_some_cosmetic = 0; //  if true, we force some blood spray particles to be cosmetic (can be enabled to avoid making a huge mess of blood spray)<br>&emsp;&emsp;&emsp;&emsp;float blood_multiplier = 1; // [0, 10] how much blood, this is the multiplier used for sprouting lots or little blood<br>&emsp;&emsp;&emsp;&emsp;int ragdoll_blood_amount_absolute = -1; // [-1, 1000] if > -1, this is the absolute amount of blood we share between particle emitters in the ragdoll<br>&emsp;&emsp;&emsp;&emsp;std::string blood_sprite_directional; //  this sprite is loaded at damage position if we take damage that creates a blood effect<br>&emsp;&emsp;&emsp;&emsp;std::string blood_sprite_large; //  this sprite is loaded at damage position if we take explosion/heavy damage<br>&emsp;&emsp;&emsp;&emsp;std::string healing_particle_effect_entity; //  if this is set, will load this entity as a child of this entity, when this entity is healed<br>&emsp;&emsp;&emsp;&emsp;bool create_ragdoll = 1; //  if 0, we skip ragdoll creation on death<br>&emsp;&emsp;&emsp;&emsp;bool ragdollify_child_entity_sprites = 0; //  if 1, we ragdollify child entity sprites<br>&emsp;&emsp;&emsp;&emsp;float ragdollify_root_angular_damping = 0; //  If ragdoll_filenames_file= and > 0, the angular damping of the first ragdoll body is set to this value.<br>&emsp;&emsp;&emsp;&emsp;bool ragdollify_disintegrate_nonroot = 0; //  If ragdoll_filenames_file= and true, all but the first sprite on the root entity will be disintegrated instead of being turned into physics bodies.<br>&emsp;&emsp;&emsp;&emsp;bool wait_for_kill_flag_on_death = 0; //  if 1, we wont kill the entity along with kill fx and ragdoll until 'kill' is 1<br>&emsp;&emsp;&emsp;&emsp;bool kill_now = 0; //  if 1, we wont kill the entity along with kill fx and ragdoll until 'kill_now' is 1<br>&emsp;&emsp;&emsp;&emsp;bool drop_items_on_death = 1; //  drop the abilities as items on death?<br>&emsp;&emsp;&emsp;&emsp;bool ui_report_damage = 1; //  If 1, damage numbers are displayed when this entity is damaged<br>&emsp;&emsp;&emsp;&emsp;bool ui_force_report_damage = 0; //  If 1, damage numbers are displayed when this entity is damaged, even if the numbers are disabled in settings<br>&emsp;&emsp;&emsp;&emsp;int in_liquid_shooting_electrify_prob = 0; // [0, 100] when shooting underwater how likely are we to electrify the water<br>&emsp;&emsp;&emsp;&emsp;float wet_status_effect_damage = 0; // [0, 0.1] how much damage per 10 frames is done if entity has 'wet' status effect<br>&emsp;&emsp;&emsp;&emsp;bool is_on_fire = 0; //  Tells us we're on fire or not<br>&emsp;&emsp;&emsp;&emsp;float fire_probability_of_ignition = 0.5; //  what is the probability that we'll ignite, 0 means won't ever ignite<br>&emsp;&emsp;&emsp;&emsp;int fire_how_much_fire_generates = 4; // [0, 10] how many fire particles do we generate each frame<br>&emsp;&emsp;&emsp;&emsp;float fire_damage_ignited_amount = 0.0003; // [0, 2] how much damage does being ignited do?<br>&emsp;&emsp;&emsp;&emsp;float fire_damage_amount = 0.2; // [0, 2] how much damage does fire do?, 0.2 is pretty good<br>&emsp;&emsp;&emsp;&emsp;int mLastElectricityResistanceFrame = -2147483648; //  Last frame electricity has no effect. Should not be private!<br>&emsp;&emsp;&emsp;&emsp;int mLastFrameReportedBlock = -2147483648; //  Last frame a damage block message was displayed for this entity<br>&emsp;&emsp;&emsp;&emsp;int mLastMaxHpChangeFrame = -10000; //  used for UI rendering<br>&emsp;&emsp;&emsp;&emsp;ConfigDamagesByType damage_multipliers; //  the multipliers applied to different types of damage<br>&emsp;&emsp;&emsp;&emsp;RAGDOLL_FX::Enum ragdoll_fx_forced; //  if set, will force this ragdoll fx to happen everytime<br>&emsp;&emsp;&emsp;&emsp;bool mIsOnFire = 0; //  private variable to check when we're on fire and not<br>&emsp;&emsp;&emsp;&emsp;int mFireProbability = 100; //  this gets decreased if we can't ignite anything else<br>&emsp;&emsp;&emsp;&emsp;int mFireFramesLeft = 0; //  this is the remaining frames we're on fire<br>&emsp;&emsp;&emsp;&emsp;int mFireDurationFrames = 0; //  this is the total duration in frames we're on fire<br>&emsp;&emsp;&emsp;&emsp;bool mFireTriedIgniting = 0; //  private variable to check when we could have been ignited or not<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckX = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckY = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastCheckTime = 0; //  an optimization, so we don't have to check everything every frame<br>&emsp;&emsp;&emsp;&emsp;int mLastMaterialDamageFrame = 0; //  this is the last frame we took material damage<br>&emsp;&emsp;&emsp;&emsp;bool mFallIsOnGround = 0; //  for fall damage, keeps a private variable about if we're on ground or not<br>&emsp;&emsp;&emsp;&emsp;float mFallHighestY = 3.40282e+038; //  private var to keep track of how high have we flown to<br>&emsp;&emsp;&emsp;&emsp;int mFallCount = 0; //  how many times have we fallen? This is used to make sure we don't take damage from the first fall<br>&emsp;&emsp;&emsp;&emsp;bool mAirAreWeInWater = 0; //  a private variable to track our state in drowning<br>&emsp;&emsp;&emsp;&emsp;int mAirFramesNotInWater = 0; //  how many frames have been with air to breathe<br>&emsp;&emsp;&emsp;&emsp;bool mAirDoWeHave = 0; //  a private variable to track our state in drowning<br>&emsp;&emsp;&emsp;&emsp;int mTotalCells = 0; //  how many cells are there total<br>&emsp;&emsp;&emsp;&emsp;int mLiquidCount = 0; //  how many of the cells are liquid<br>&emsp;&emsp;&emsp;&emsp;int mLiquidMaterialWeAreIn = -1; //  stores the liquid material we're in... may not be the most accurate<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mDamageMaterials; //  NOTE! Sorted! a list of materials that do damage (materials_that_damage)<br>&emsp;&emsp;&emsp;&emsp;std::vector< float > mDamageMaterialsHowMuch; //  NOTE! Sorted! a list of materials that do damage (materials_that_damage)<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mCollisionMessageMaterials; //  NOTE! Sorted! a list of materials that create messages (materials_that_create_messages)<br>&emsp;&emsp;&emsp;&emsp;std::vector< int > mCollisionMessageMaterialCountsThisFrame; //  Number of cells per collided with this frame. Order matches mCollisionMessageMaterials<br>&emsp;&emsp;&emsp;&emsp;std::vector< float > mMaterialDamageThisFrame; //  A list of damage per material that damages us. In same order as materials<br>&emsp;&emsp;&emsp;&emsp;float mFallDamageThisFrame = 0; //  Amount of fall damage received this frame<br>&emsp;&emsp;&emsp;&emsp;float mElectricityDamageThisFrame = 0; //  Amount of electricity damage received this frame<br>&emsp;&emsp;&emsp;&emsp;float mPhysicsDamageThisFrame = 0; //  max physics damage we have taken this round<br>&emsp;&emsp;&emsp;&emsp;vec2 mPhysicsDamageVecThisFrame; //  direction of physics damage<br>&emsp;&emsp;&emsp;&emsp;int mPhysicsDamageLastFrame = 0; //  frame number when we took physics damage<br>&emsp;&emsp;&emsp;&emsp;EntityTypeID mPhysicsDamageEntity = 0; //  the physics entity that hit us<br>&emsp;&emsp;&emsp;&emsp;EntityTypeID mPhysicsDamageTelekinesisCasterEntity = 0; //  who moved an object that hit us via telekinesis<br>&emsp;&emsp;&emsp;&emsp;int mLastDamageFrame = -120; //  frame number when we took any damage<br>&emsp;&emsp;&emsp;&emsp;double mHpBeforeLastDamage = 0; //  how much hp did we have a while ago?<br>&emsp;&emsp;&emsp;&emsp;float mFireDamageBuffered = 0; //  used to optimized cases where lots of entities are taking fire damage<br>&emsp;&emsp;&emsp;&emsp;int32 mFireDamageBufferedNextDeliveryFrame = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:attribute name="hp" type="xs:decimal" default="1">
 				<xs:annotation>
@@ -4074,7 +4074,7 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigDamagesByType for damage_multipliers -->
-			<xs:attribute name="ragdoll_fx_forced" type="RAGDOLL_FX" default="0">
+			<xs:attribute name="ragdoll_fx_forced" type="RAGDOLL_FX" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx_forced; //  if set, will force this ragdoll fx to happen everytime<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -4131,7 +4131,7 @@
 			</xs:attribute>
 			<xs:attribute name="mFallHighestY" type="xs:decimal" default="340282000000000014192072600942972764160">
 				<xs:annotation>
-					<xs:documentation><![CDATA[```cpp<br>	float mFallHighestY = 340282000000000014192072600942972764160; //  private var to keep track of how high have we flown to<br>```]]></xs:documentation>
+					<xs:documentation><![CDATA[```cpp<br>	float mFallHighestY = 3.40282e+038; //  private var to keep track of how high have we flown to<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="mFallCount" type="xs:int" default="0">
@@ -4273,12 +4273,12 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string target_tag = "mortal";<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="0">
+			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_fx" type="RAGDOLL_FX" default="0">
+			<xs:attribute name="ragdoll_fx" type="RAGDOLL_FX" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx;<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -4740,7 +4740,7 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
-			<xs:attribute name="trigger" type="EXPLOSION_TRIGGER_TYPE" default="0">
+			<xs:attribute name="trigger" type="EXPLOSION_TRIGGER_TYPE" default="ON_CREATE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	EXPLOSION_TRIGGER_TYPE::Enum trigger; //  what triggers the explosion<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -4893,7 +4893,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GameEffectComponent">
-		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class GameEffectComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string custom_effect_id; //  if 'effect' is set to 'CUSTOM', this will define effect uniqueness.<br>&emsp;&emsp;&emsp;&emsp;int frames = -1; //  how many frames does it affect -1 = forever<br>&emsp;&emsp;&emsp;&emsp;int exclusivity_group = 0; //  if > 0, previous game effects with the same exclusivity group as new one will be removed when calling LoadGameEffectEntityTo<br>&emsp;&emsp;&emsp;&emsp;bool report_block_msg = 1; //  to disable the block message that rises<br>&emsp;&emsp;&emsp;&emsp;bool disable_movement = 0; //  if set, will disable movement<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_effect_custom_entity_file; //  an entity that is loaded to each ragdoll part if 'ragdoll_effect' is set to 'CUSTOM_RAGDOLL_ENTITY'<br>&emsp;&emsp;&emsp;&emsp;bool ragdoll_fx_custom_entity_apply_only_to_largest_body = 0; //  if 1, 'ragdoll_effect_custom_entity_file' is loaded only to the largest piece in the ragdoll <br>&emsp;&emsp;&emsp;&emsp;std::string polymorph_target; //  when doing a polymorph, this is what we convert it to<br>&emsp;&emsp;&emsp;&emsp;USTRING mSerializedData; //  polymorph stores the serialized entity here...<br>&emsp;&emsp;&emsp;&emsp;EntityID mCaster = 0; //  Contains a handle to the caster of this GameEffect<br>&emsp;&emsp;&emsp;&emsp;int mCasterHerdId = 0; //  Contains the herd if of the caster of this GameEffect<br>&emsp;&emsp;&emsp;&emsp;int teleportation_probability = 600; //  How likely is it that we teleport, larger = less often<br>&emsp;&emsp;&emsp;&emsp;int teleportation_delay_min_frames = 30; //  Never teleports more often that this<br>&emsp;&emsp;&emsp;&emsp;float teleportation_radius_min = 128;<br>&emsp;&emsp;&emsp;&emsp;float teleportation_radius_max = 1024;<br>&emsp;&emsp;&emsp;&emsp;int teleportations_num = 0; //  How many times has this GameEffectComponent teleported the owner?<br>&emsp;&emsp;&emsp;&emsp;double no_heal_max_hp_cap = 340282000000000014192072600942972764160; //  If current hp is less than this, we store it here. Then we make sure the hp never exceeds this.<br>&emsp;&emsp;&emsp;&emsp;bool caused_by_ingestion_status_effect = 0; //  Did this effect occur because someone ate something?<br>&emsp;&emsp;&emsp;&emsp;bool caused_by_stains = 0; //  was this caused by stains<br>&emsp;&emsp;&emsp;&emsp;bool mCharmDisabledCameraBound = 0; //  When charmed, will try to disable CameraBound. This keeps track if we've done it, so we can enable it back<br>&emsp;&emsp;&emsp;&emsp;bool mCharmEnabledTeleporting = 0; //  When charmed, will try to enable teleporting (tag:teleportable_NOT). This keeps track if we've done it, so we can disable it again<br>&emsp;&emsp;&emsp;&emsp;bool mInvisible = 0; //  Are we invisible?<br>&emsp;&emsp;&emsp;&emsp;int mCounter = 0; //  Counts stuff<br>&emsp;&emsp;&emsp;&emsp;int mCooldown = 0; //  Counts cooldown<br>&emsp;&emsp;&emsp;&emsp;bool mIsExtension = 0; //  If 1, this is an effect extension and shouldn't create an extension when removed<br>&emsp;&emsp;&emsp;&emsp;bool mIsSpent = 0; //  NOTE( Petri ): 29.4.2024 - this is used internally to make RESPAWN perk disabled in the UI<br>&emsp;&emsp;&emsp;&emsp;GAME_EFFECT::Enum effect; //  GAME_EFFECT<br>&emsp;&emsp;&emsp;&emsp;RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>&emsp;&emsp;&emsp;&emsp;int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>&emsp;&emsp;&emsp;&emsp;StatusEffectType causing_status_effect = 0; //  Status effect that caused this game effect, if any<br>};<br>```]]> </xs:documentation> </xs:annotation>
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class GameEffectComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string custom_effect_id; //  if 'effect' is set to 'CUSTOM', this will define effect uniqueness.<br>&emsp;&emsp;&emsp;&emsp;int frames = -1; //  how many frames does it affect -1 = forever<br>&emsp;&emsp;&emsp;&emsp;int exclusivity_group = 0; //  if > 0, previous game effects with the same exclusivity group as new one will be removed when calling LoadGameEffectEntityTo<br>&emsp;&emsp;&emsp;&emsp;bool report_block_msg = 1; //  to disable the block message that rises<br>&emsp;&emsp;&emsp;&emsp;bool disable_movement = 0; //  if set, will disable movement<br>&emsp;&emsp;&emsp;&emsp;std::string ragdoll_effect_custom_entity_file; //  an entity that is loaded to each ragdoll part if 'ragdoll_effect' is set to 'CUSTOM_RAGDOLL_ENTITY'<br>&emsp;&emsp;&emsp;&emsp;bool ragdoll_fx_custom_entity_apply_only_to_largest_body = 0; //  if 1, 'ragdoll_effect_custom_entity_file' is loaded only to the largest piece in the ragdoll <br>&emsp;&emsp;&emsp;&emsp;std::string polymorph_target; //  when doing a polymorph, this is what we convert it to<br>&emsp;&emsp;&emsp;&emsp;USTRING mSerializedData; //  polymorph stores the serialized entity here...<br>&emsp;&emsp;&emsp;&emsp;EntityID mCaster = 0; //  Contains a handle to the caster of this GameEffect<br>&emsp;&emsp;&emsp;&emsp;int mCasterHerdId = 0; //  Contains the herd if of the caster of this GameEffect<br>&emsp;&emsp;&emsp;&emsp;int teleportation_probability = 600; //  How likely is it that we teleport, larger = less often<br>&emsp;&emsp;&emsp;&emsp;int teleportation_delay_min_frames = 30; //  Never teleports more often that this<br>&emsp;&emsp;&emsp;&emsp;float teleportation_radius_min = 128;<br>&emsp;&emsp;&emsp;&emsp;float teleportation_radius_max = 1024;<br>&emsp;&emsp;&emsp;&emsp;int teleportations_num = 0; //  How many times has this GameEffectComponent teleported the owner?<br>&emsp;&emsp;&emsp;&emsp;double no_heal_max_hp_cap = 3.40282e+038; //  If current hp is less than this, we store it here. Then we make sure the hp never exceeds this.<br>&emsp;&emsp;&emsp;&emsp;bool caused_by_ingestion_status_effect = 0; //  Did this effect occur because someone ate something?<br>&emsp;&emsp;&emsp;&emsp;bool caused_by_stains = 0; //  was this caused by stains<br>&emsp;&emsp;&emsp;&emsp;bool mCharmDisabledCameraBound = 0; //  When charmed, will try to disable CameraBound. This keeps track if we've done it, so we can enable it back<br>&emsp;&emsp;&emsp;&emsp;bool mCharmEnabledTeleporting = 0; //  When charmed, will try to enable teleporting (tag:teleportable_NOT). This keeps track if we've done it, so we can disable it again<br>&emsp;&emsp;&emsp;&emsp;bool mInvisible = 0; //  Are we invisible?<br>&emsp;&emsp;&emsp;&emsp;int mCounter = 0; //  Counts stuff<br>&emsp;&emsp;&emsp;&emsp;int mCooldown = 0; //  Counts cooldown<br>&emsp;&emsp;&emsp;&emsp;bool mIsExtension = 0; //  If 1, this is an effect extension and shouldn't create an extension when removed<br>&emsp;&emsp;&emsp;&emsp;bool mIsSpent = 0; //  NOTE( Petri ): 29.4.2024 - this is used internally to make RESPAWN perk disabled in the UI<br>&emsp;&emsp;&emsp;&emsp;GAME_EFFECT::Enum effect; //  GAME_EFFECT<br>&emsp;&emsp;&emsp;&emsp;RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>&emsp;&emsp;&emsp;&emsp;int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>&emsp;&emsp;&emsp;&emsp;StatusEffectType causing_status_effect = 0; //  Status effect that caused this game effect, if any<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:attribute name="custom_effect_id" type="xs:string" default="">
 				<xs:annotation>
@@ -4969,7 +4969,7 @@
 			</xs:attribute>
 			<xs:attribute name="no_heal_max_hp_cap" type="xs:decimal" default="340282000000000014192072600942972764160">
 				<xs:annotation>
-					<xs:documentation><![CDATA[```cpp<br>	double no_heal_max_hp_cap = 340282000000000014192072600942972764160; //  If current hp is less than this, we store it here. Then we make sure the hp never exceeds this.<br>```]]></xs:documentation>
+					<xs:documentation><![CDATA[```cpp<br>	double no_heal_max_hp_cap = 3.40282e+038; //  If current hp is less than this, we store it here. Then we make sure the hp never exceeds this.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="caused_by_ingestion_status_effect" type="NoitaBool" default="0">
@@ -5017,12 +5017,12 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mIsSpent = 0; //  NOTE( Petri ): 29.4.2024 - this is used internally to make RESPAWN perk disabled in the UI<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="effect" type="GAME_EFFECT" default="0">
+			<xs:attribute name="effect" type="GAME_EFFECT" default="ELECTROCUTION">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum effect; //  GAME_EFFECT<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_effect" type="RAGDOLL_FX" default="0">
+			<xs:attribute name="ragdoll_effect" type="RAGDOLL_FX" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -5301,13 +5301,13 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string value_string; //  Usage depends on selected 'effect_hit'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="0">
+			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Hit entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: StatusEffectType for condition_status -->
-			<xs:attribute name="effect_hit" type="HIT_EFFECT" default="0">
+			<xs:attribute name="effect_hit" type="HIT_EFFECT" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	HIT_EFFECT::Enum effect_hit; //  What kind of 'HIT_EFFECT' is applied to hit entity if condition is true<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -6412,7 +6412,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 spawn_pos; //  the position where this item spawned<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="preferred_inventory" type="INVENTORY_KIND" default="0">
+			<xs:attribute name="preferred_inventory" type="INVENTORY_KIND" default="QUICK">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	INVENTORY_KIND::Enum preferred_inventory; //  Which inventory do we go to when we're picked up, if it's not full.<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -7169,7 +7169,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mModAppendsDone = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="vm_type" type="LUA_VM_TYPE" default="0">
+			<xs:attribute name="vm_type" type="LUA_VM_TYPE" default="SHARED_BY_MANY_COMPONENTS">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	LUA_VM_TYPE::Enum vm_type; //  Do we share a single Lua virtual machine for everyone who runs 'script_source_file' ('SHARED_BY_MANY_COMPONENTS'), create one VM per one LuaComponent and reuse the VM in case the component runs the script multiple times ('ONE_PER_COMPONENT_INSTANCE'), or create a new VM every time the script is executed ('CREATE_NEW_EVERY_EXECUTION', deprecated)?<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -7721,7 +7721,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	float verlet_min_joint_distance = 32; // [0, 128] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="MOVETOSURFACE_TYPE" default="0">
+			<xs:attribute name="type" type="MOVETOSURFACE_TYPE" default="ENTITY">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	MOVETOSURFACE_TYPE::Enum type;<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -8132,7 +8132,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> count_max;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="custom_style" type="PARTICLE_EMITTER_CUSTOM_STYLE" default="0">
+			<xs:attribute name="custom_style" type="PARTICLE_EMITTER_CUSTOM_STYLE" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	PARTICLE_EMITTER_CUSTOM_STYLE::Enum custom_style; //  NONE or FIRE<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -9047,7 +9047,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	float surface_attachment_offset_y = 2.5;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="JOINT_TYPE" default="0">
+			<xs:attribute name="type" type="JOINT_TYPE" default="REVOLUTE_JOINT">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	JOINT_TYPE::Enum type; //  Enum - REVOLUTE_JOINT, WELD_JOINT, REVOLUTE_JOINT_ATTACH_TO_NEARBY_SURFACE or WELD_JOINT_ATTACH_TO_NEARBY_SURFACE<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -9161,7 +9161,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mMaxMotorTorque = 1; //  max torque for motor<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="JOINT_TYPE" default="0">
+			<xs:attribute name="type" type="JOINT_TYPE" default="REVOLUTE_JOINT">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	JOINT_TYPE::Enum type; //  Enum - JOINT_TYPE<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -10311,7 +10311,7 @@
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
 				<!-- Some Unknown Type: ConfigDamagesByType for damage_by_type -->
 				<!-- Some Unknown Type: ConfigDamageCritical for damage_critical -->
-			<xs:attribute name="projectile_type" type="PROJECTILE_TYPE" default="0">
+			<xs:attribute name="projectile_type" type="PROJECTILE_TYPE" default="PROJECTILE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	PROJECTILE_TYPE::Enum projectile_type;<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -10326,7 +10326,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 shell_casing_offset; //  where the shell casing will be created relative to projectile, y is flipped if projectile direction is to the left.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_fx_on_collision" type="RAGDOLL_FX" default="0">
+			<xs:attribute name="ragdoll_fx_on_collision" type="RAGDOLL_FX" default="NORMAL">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx_on_collision; //  if not NORMAL, do a special ragdoll<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -10434,7 +10434,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string extra_modifier; //  name of modifier function executed per projectile from 'gun_extra_modifiers.lua'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="0">
+			<xs:attribute name="condition_effect" type="GAME_EFFECT" default="NONE">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Shooting entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -11107,7 +11107,7 @@
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TelekinesisComponent">
-		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class TelekinesisComponent {<br>&emsp;&emsp;&emsp;&emsp;uint32 min_size = 7; //  Minimum size of physics body that can be grabbed, in cells/pixels<br>&emsp;&emsp;&emsp;&emsp;uint32 max_size = 1500; //  Maximum size of physics body that can be grabbed, in cells/pixels<br>&emsp;&emsp;&emsp;&emsp;float radius = 250; // [0, 300] Maximum object search distance<br>&emsp;&emsp;&emsp;&emsp;float throw_speed = 25; // [0, 300] Affects object speed when it is thrown<br>&emsp;&emsp;&emsp;&emsp;float target_distance = 6; // [0, 30] Affects how far objects float from owner when held. Object size will also affect the floating distance.<br>&emsp;&emsp;&emsp;&emsp;bool kick_to_use = 1; //  If 1, telekinesis interaction will occur when kick input is detected in root entity's ControlsComponent<br>&emsp;&emsp;&emsp;&emsp;int32 mState = 0;<br>&emsp;&emsp;&emsp;&emsp;uint64 mBodyID = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyMaxExtent = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartAimAngle = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyAngle = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyDistance = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartTime = 0;<br>&emsp;&emsp;&emsp;&emsp;float mMinBodyDistance = 340282000000000014192072600942972764160;<br>&emsp;&emsp;&emsp;&emsp;bool mInteract = 0; //  If set to true, telekinesis interaction will occur. Will automatically turn to false at the end of component update.<br>};<br>```]]> </xs:documentation> </xs:annotation>
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class TelekinesisComponent {<br>&emsp;&emsp;&emsp;&emsp;uint32 min_size = 7; //  Minimum size of physics body that can be grabbed, in cells/pixels<br>&emsp;&emsp;&emsp;&emsp;uint32 max_size = 1500; //  Maximum size of physics body that can be grabbed, in cells/pixels<br>&emsp;&emsp;&emsp;&emsp;float radius = 250; // [0, 300] Maximum object search distance<br>&emsp;&emsp;&emsp;&emsp;float throw_speed = 25; // [0, 300] Affects object speed when it is thrown<br>&emsp;&emsp;&emsp;&emsp;float target_distance = 6; // [0, 30] Affects how far objects float from owner when held. Object size will also affect the floating distance.<br>&emsp;&emsp;&emsp;&emsp;bool kick_to_use = 1; //  If 1, telekinesis interaction will occur when kick input is detected in root entity's ControlsComponent<br>&emsp;&emsp;&emsp;&emsp;int32 mState = 0;<br>&emsp;&emsp;&emsp;&emsp;uint64 mBodyID = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyMaxExtent = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartAimAngle = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyAngle = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartBodyDistance = 0;<br>&emsp;&emsp;&emsp;&emsp;float mStartTime = 0;<br>&emsp;&emsp;&emsp;&emsp;float mMinBodyDistance = 3.40282e+038;<br>&emsp;&emsp;&emsp;&emsp;bool mInteract = 0; //  If set to true, telekinesis interaction will occur. Will automatically turn to false at the end of component update.<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
 			<xs:attribute name="min_size" type="xs:unsignedInt" default="7">
 				<xs:annotation>
@@ -11176,7 +11176,7 @@
 			</xs:attribute>
 			<xs:attribute name="mMinBodyDistance" type="xs:decimal" default="340282000000000014192072600942972764160">
 				<xs:annotation>
-					<xs:documentation><![CDATA[```cpp<br>	float mMinBodyDistance = 340282000000000014192072600942972764160;<br>```]]></xs:documentation>
+					<xs:documentation><![CDATA[```cpp<br>	float mMinBodyDistance = 3.40282e+038;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="mInteract" type="NoitaBool" default="0">
@@ -11669,7 +11669,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool m_is_culled_previous = 0; //  Developer note: this needs to be serialized in case we serialize SpriteComponent.is_visible<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="VERLET_TYPE" default="0">
+			<xs:attribute name="type" type="VERLET_TYPE" default="CHAIN">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	VERLET_TYPE::Enum type;<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -12441,4 +12441,60 @@
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="Sprite">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:choice>
+							<xs:element name="Event" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType mixed="true">
+									<xs:attribute name="name" type="xs:string" use="required" />
+									<xs:attribute name="frame" type="xs:nonNegativeInteger" use="required" />
+									<xs:attribute name="max_distance" type="xs:positiveInteger" />
+									<xs:attribute name="probability" type="xs:decimal" />
+									<xs:attribute name="on_finished" type="NoitaBool" />
+									<xs:attribute name="check_physics_material" type="NoitaBool" />
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="frame_count" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="frames_per_row" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="frame_width" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="frame_height" type="xs:positiveInteger" use="required" />
+						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
+						<xs:attribute name="pos_x" type="xs:integer" default="0" />
+						<xs:attribute name="pos_y" type="xs:integer" default="0" />
+						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
+						<xs:attribute name="loop" type="NoitaBool" default="0" />
+						<xs:attribute name="next_animation" type="xs:string" default="" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="color" type="xs:hexBinary" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="filename" type="xs:string" use="required" />
+			<xs:attribute name="hotspots_filename" type="xs:string" />
+			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+			<xs:attribute name="default_animation" type="xs:string" default="default" />
+			<xs:attribute name="color_a" type="xs:decimal" default="1" />
+			<xs:attribute name="color_b" type="xs:decimal" default="1" />
+			<xs:attribute name="color_g" type="xs:decimal" default="1" />
+			<xs:attribute name="color_r" type="xs:decimal" default="1" />
+		</xs:complexType>
+		<xs:unique name="UniqueRectAnimationName">
+			<xs:selector xpath="RectAnimation" />
+			<xs:field xpath="@name" />
+		</xs:unique>
+	</xs:element>
+
 </xs:schema>

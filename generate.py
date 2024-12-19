@@ -107,28 +107,56 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     # print(f"fail: {ty}")
     return []
 
+TYPE_DEFAULTS = {
+    "ARC_TYPE": "MATERIAL",
+    "VERLET_TYPE": "CHAIN",
+    "PROJECTILE_TYPE": "PROJECTILE",
+    "EXPLOSION_TRIGGER_TYPE": "ON_CREATE",
+    "HIT_EFFECT": "NONE",
+    "INVENTORY_KIND": "QUICK",
+    "LUA_VM_TYPE": "SHARED_BY_MANY_COMPONENTS",
+    "MOVETOSURFACE_TYPE": "ENTITY",
+    "PARTICLE_EMITTER_CUSTOM_STYLE": "NONE",
+    "JOINT_TYPE": "REVOLUTE_JOINT",
+}
 
-def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
+def format_decimal(value: str) -> str:
+    """Format a decimal string to remove scientific notation and trailing zeroes."""
+    value_float = float(value)
+    return f"{value_float:.15f}".rstrip("0").rstrip(".")
+
+def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str:
+    default = TYPE_DEFAULTS.get(ty)
+    if default is not None:
+        return default
+
+    if ty == "GAME_EFFECT":
+        return "ELECTROCUTION" if component_name == "GameEffectComponent" else "NONE"
+    elif ty == "RAGDOLL_FX":
+        return "NORMAL" if component_name == "ProjectileComponent" else "NONE"
+    elif ty == "DAMAGE_TYPES":
+        return "DAMAGE_PHYSICS_HIT" if component_name == "AreaDamageComponent" else "NONE"
+
     if field.default != "-":
         if ty == "xs:decimal":
-            value = float(field.default)
-            field.default = f"{value:.15f}".rstrip("0").rstrip(
-                "."
-            )  # This ensures no scientific notation
-        default = field.default
-    else:
-        default = "" if ty == "xs:string" else "0"
+            return format_decimal(field.default)
+        return field.default
+
+    return "0" if ty != "xs:string" else ""
+
+def render_sub_field(field: Field, suffix: str, docs: str, ty: str, component_name:str) -> str:
+    default = get_default_for_sub_field(field, ty, component_name)
     return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
 \t\t\t\t<xs:annotation>
 \t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{render_field_cpp(field)}<br>```]]></xs:documentation>
 \t\t\t\t</xs:annotation>
 \t\t\t</xs:attribute>"""[
-            1:
-        ]
+        1:
+    ]
 
 
-def render_field(field: Field) -> tuple[str, str]:
+def render_field(field: Field, component_name: str) -> tuple[str, str]:
     tys = get_xml_type(field.ty)
     if type(tys) is str:
         return (
@@ -141,7 +169,7 @@ def render_field(field: Field) -> tuple[str, str]:
     if field.default != "-":
         docs = f"`{field.default}` - `{field.values}`"
     return "", "\n".join(
-        [render_sub_field(field, suffix, docs, ty) for suffix, ty in tys]
+        [render_sub_field(field, suffix, docs, ty, component_name) for suffix, ty in tys]
     )
 
 
@@ -159,7 +187,7 @@ def render_component_cpp(comp: Component) -> str:
 
 
 def render_component(comp: Component) -> str:
-    fields = [render_field(x) for x in comp.fields]
+    fields = [render_field(x, comp.name) for x in comp.fields]
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
@@ -349,6 +377,64 @@ out = f"""
     1:
 ]
 out += "\n".join([render_component(component) for component in components])
+# Sprite, might need some description on hover later, also some defaults are unknown
+out += f"""
+\t<xs:element name="Sprite">
+\t\t<xs:complexType mixed="true">
+\t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
+\t\t\t\t<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t<xs:choice>
+\t\t\t\t\t\t\t<xs:element name="Event" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="frame" type="xs:nonNegativeInteger" use="required" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="max_distance" type="xs:positiveInteger" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="probability" type="xs:decimal" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="on_finished" type="NoitaBool" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="check_physics_material" type="NoitaBool" />
+\t\t\t\t\t\t\t\t</xs:complexType>
+\t\t\t\t\t\t\t</xs:element>
+\t\t\t\t\t\t</xs:choice>
+\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_count" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frames_per_row" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_width" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_height" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
+\t\t\t\t\t\t<xs:attribute name="pos_x" type="xs:integer" default="0" />
+\t\t\t\t\t\t<xs:attribute name="pos_y" type="xs:integer" default="0" />
+\t\t\t\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+\t\t\t\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+\t\t\t\t\t\t<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+\t\t\t\t\t\t<xs:attribute name="has_offset" type="NoitaBool" default="1" />
+\t\t\t\t\t\t<xs:attribute name="loop" type="NoitaBool" default="0" />
+\t\t\t\t\t\t<xs:attribute name="next_animation" type="xs:string" default="" />
+\t\t\t\t\t</xs:complexType>
+\t\t\t\t</xs:element>
+\t\t\t\t<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t<xs:attribute name="color" type="xs:hexBinary" use="required" />
+\t\t\t\t\t</xs:complexType>
+\t\t\t\t</xs:element>
+\t\t\t</xs:choice>
+\t\t\t<xs:attribute name="filename" type="xs:string" use="required" />
+\t\t\t<xs:attribute name="hotspots_filename" type="xs:string" />
+\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+\t\t\t<xs:attribute name="default_animation" type="xs:string" default="default" />
+\t\t\t<xs:attribute name="color_a" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_b" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_g" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_r" type="xs:decimal" default="1" />
+\t\t</xs:complexType>
+\t\t<xs:unique name="UniqueRectAnimationName">
+\t\t\t<xs:selector xpath="RectAnimation" />
+\t\t\t<xs:field xpath="@name" />
+\t\t</xs:unique>
+\t</xs:element>
+"""
 out += "\n</xs:schema>"
 # out = out.replace("\t","").replace("\n","")
 open("generated.xsd", "w").write(out)
