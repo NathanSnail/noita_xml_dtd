@@ -147,8 +147,8 @@ def render_component(comp: Component) -> str:
 \t<xs:element name="{comp.name}">
 \t\t<xs:complexType mixed="true">{"\n" + "\n".join(objects) if len(objects) != 0 else ""}
 {"\n".join(attrs)}
-\t\t\t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-\t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+\t\t\t<xs:attribute name="_tags" type="xs:string" default="" />
+\t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 \t\t</xs:complexType>
 \t</xs:element>"""[
         1:

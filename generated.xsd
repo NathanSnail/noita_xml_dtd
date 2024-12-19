@@ -374,8 +374,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AIComponent">
@@ -386,8 +386,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: AIData* for data -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AbilityComponent">
@@ -642,8 +642,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AdvancedFishAIComponent">
@@ -711,8 +711,8 @@
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AltarComponent">
@@ -748,8 +748,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: EntityTags for m_current_entity_tags -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AnimalAIComponent">
@@ -1460,8 +1460,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: RtsUnitGoal for mCurrentJob -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ArcComponent">
@@ -1480,8 +1480,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mArcTarget -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AreaDamageComponent">
@@ -1519,8 +1519,8 @@
 			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0" />
 			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0" />
 				<!-- Some Unknown Type: DAMAGE_TYPES::Enum for damage_type -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AttachToEntityComponent">
@@ -1561,8 +1561,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AudioComponent">
@@ -1597,8 +1597,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: AudioSourceHandle for m_latest_source -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AudioListenerComponent">
@@ -1608,8 +1608,8 @@
 					<xs:documentation>`0` - `[-500, 500]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="AudioLoopComponent">
@@ -1677,8 +1677,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="BiomeTrackerComponent">
@@ -1695,8 +1695,8 @@
 					<xs:documentation>used to track in which biome we are at</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="BlackHoleComponent">
@@ -1726,8 +1726,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="BookComponent">
@@ -1742,8 +1742,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="BossDragonComponent">
@@ -1942,8 +1942,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="BossHealthBarComponent">
@@ -1973,8 +1973,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CameraBoundComponent">
@@ -2015,8 +2015,8 @@
 					<xs:documentation>If true and the entity was one too many of its kind - this entity will be stored so we can later respawn it where it was destroyed because it got too far from the camera?</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CardinalMovementComponent">
@@ -2041,8 +2041,8 @@
 			</xs:attribute>
 			<xs:attribute name="mPrevPos.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mPrevPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CellEaterComponent">
@@ -2085,8 +2085,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: VEC_OF_MATERIALS for materials -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CharacterCollisionComponent">
@@ -2118,8 +2118,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CharacterDataComponent">
@@ -2335,8 +2335,8 @@
 					<xs:documentation>moved this here from CharacterCollisionComponent - since that is multithreaded and we needed a non multithreaded version</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CharacterPlatformingComponent">
@@ -2564,15 +2564,15 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CharacterStatsComponent">
 		<xs:complexType mixed="true">
 				<!-- Some Unknown Type: CharacterStatsModifier for stats -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CollisionTriggerComponent">
@@ -2629,8 +2629,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ConsumableTeleportComponent">
@@ -2672,8 +2672,8 @@
 			</xs:attribute>
 			<xs:attribute name="target_location.x" type="xs:decimal" default="0" />
 			<xs:attribute name="target_location.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ControllerGoombaAIComponent">
@@ -2749,8 +2749,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ControlsComponent">
@@ -3202,8 +3202,8 @@
 					<xs:documentation>Adds latency to some inputs. Used by some game effects. Max 31.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CrawlerAnimalComponent">
@@ -3342,8 +3342,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="CutThroughWorldDoneHereComponent">
@@ -3353,8 +3353,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DamageModelComponent">
@@ -3859,8 +3859,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DamageNearbyEntitiesComponent">
@@ -3914,15 +3914,15 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DebugFollowMouseComponent">
 		<xs:complexType mixed="true">
 
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DebugLogMessagesComponent">
@@ -3937,8 +3937,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DebugSpatialVisualizerComponent">
@@ -3968,8 +3968,8 @@
 					<xs:documentation>`4294967295` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DieIfSpeedBelowComponent">
@@ -3985,8 +3985,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DroneLauncherComponent">
@@ -3996,24 +3996,24 @@
 					<xs:documentation>`data/entities/misc/player_drone.xml` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DrugEffectComponent">
 		<xs:complexType mixed="true">
 				<!-- Some Unknown Type: ConfigDrugFx for drug_fx_target -->
 				<!-- Some Unknown Type: ConfigDrugFx for m_drug_fx_current -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DrugEffectModifierComponent">
 		<xs:complexType mixed="true">
 				<!-- Some Unknown Type: ConfigDrugFx for fx_add -->
 				<!-- Some Unknown Type: ConfigDrugFx for fx_multiply -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ElectricChargeComponent">
@@ -4048,8 +4048,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ElectricityComponent">
@@ -4129,8 +4129,8 @@
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ElectricityReceiverComponent">
@@ -4180,8 +4180,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ElectricitySourceComponent">
@@ -4201,8 +4201,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="EndingMcGuffinComponent">
@@ -4217,8 +4217,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="EnergyShieldComponent">
@@ -4261,8 +4261,8 @@
 			</xs:attribute>
 			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ExplodeOnDamageComponent">
@@ -4297,8 +4297,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ExplosionComponent">
@@ -4328,8 +4328,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
 				<!-- Some Unknown Type: EXPLOSION_TRIGGER_TYPE::Enum for trigger -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="FishAIComponent">
@@ -4357,8 +4357,8 @@
 			</xs:attribute>
 			<xs:attribute name="mLastCheckPos.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mLastCheckPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="FlyingComponent">
@@ -4393,8 +4393,8 @@
 					<xs:documentation>wind velocity that gets added to the samples</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="FogOfWarRadiusComponent">
@@ -4405,8 +4405,8 @@
 					<xs:documentation>256 is the default player has</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="FogOfWarRemoverComponent">
@@ -4416,8 +4416,8 @@
 					<xs:documentation>`140` - `[0, 2000]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GameAreaEffectComponent">
@@ -4443,8 +4443,8 @@
 				<!-- Some Unknown Type: VECTOR_STR for game_effect_entitities -->
 				<!-- Some Unknown Type: VECTOR_ENTITYID for mEntitiesAppliedOutTo -->
 				<!-- Some Unknown Type: VECTOR_INT for mEntitiesAppliedFrame -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GameEffectComponent">
@@ -4599,8 +4599,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: StatusEffectType for causing_status_effect -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GameLogComponent">
@@ -4629,8 +4629,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GameStatsComponent">
@@ -4668,8 +4668,8 @@
 					<xs:documentation>skip loading of stats if this higher than 0 and decrament this by one</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GasBubbleComponent">
@@ -4689,8 +4689,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GenomeDataComponent">
@@ -4728,8 +4728,8 @@
 					<xs:documentation>if 1, fire mage doesn't attack this</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GhostComponent">
@@ -4797,8 +4797,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GodInfoComponent">
@@ -4822,22 +4822,22 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: Entity* for god_entity -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="GunComponent">
 		<xs:complexType mixed="true">
 				<!-- Some Unknown Type: LuaManager* for mLuaManager -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="HealthBarComponent">
 		<xs:complexType mixed="true">
 
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="HitEffectComponent">
@@ -4856,8 +4856,8 @@
 				<!-- Some Unknown Type: GAME_EFFECT::Enum for condition_effect -->
 				<!-- Some Unknown Type: StatusEffectType for condition_status -->
 				<!-- Some Unknown Type: HIT_EFFECT::Enum for effect_hit -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="HitboxComponent">
@@ -4910,8 +4910,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="HomingComponent">
@@ -4961,8 +4961,8 @@
 					<xs:documentation>if set, will only look for entities that are _not_ child entities.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="HotspotComponent">
@@ -4975,8 +4975,8 @@
 			<xs:attribute name="sprite_hotspot_name" type="xs:string" default="" />
 			<xs:attribute name="offset.x" type="xs:decimal" default="0" />
 			<xs:attribute name="offset.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="IKLimbAttackerComponent">
@@ -5015,8 +5015,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="IKLimbComponent">
@@ -5056,8 +5056,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="IKLimbWalkerComponent">
@@ -5111,8 +5111,8 @@
 			<xs:attribute name="mPrevTarget.y" type="xs:decimal" default="0" />
 			<xs:attribute name="mPrevCenterPosition.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mPrevCenterPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="IKLimbsAnimatorComponent">
@@ -5174,8 +5174,8 @@
 					<xs:documentation>Will be set to true if at least one leg is attached to ground.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="IngestionComponent">
@@ -5239,8 +5239,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="InheritTransformComponent">
@@ -5286,8 +5286,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="InteractableComponent">
@@ -5314,8 +5314,8 @@
 					<xs:documentation>If &gt; 0, only 1 instance of this interaction can be display at the same time</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="Inventory2Component">
@@ -5382,8 +5382,8 @@
 			</xs:attribute>
 			<xs:attribute name="mSmoothedItemAngleVec.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mSmoothedItemAngleVec.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="InventoryComponent">
@@ -5437,8 +5437,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: InvenentoryUpdateListener* for update_listener -->
 				<!-- Some Unknown Type: INVENTORYITEM_VECTOR for items -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="InventoryGuiComponent">
@@ -5510,8 +5510,8 @@
 					<xs:documentation>for animations of shaking them bars</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemAIKnowledgeComponent">
@@ -5581,8 +5581,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemActionComponent">
@@ -5592,8 +5592,8 @@
 					<xs:documentation>the name ID of the action</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemAlchemyComponent">
@@ -5628,8 +5628,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemChestComponent">
@@ -5676,8 +5676,8 @@
 					<xs:documentation>this is used to figure out what we spawn from this chest</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemComponent">
@@ -5912,8 +5912,8 @@
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemCostComponent">
@@ -5935,8 +5935,8 @@
 					<xs:documentation>used to change the text on the sprite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemPickUpperComponent">
@@ -5967,8 +5967,8 @@
 			</xs:attribute>
 			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemRechargeNearGroundComponent">
@@ -5983,8 +5983,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ItemStashComponent">
@@ -6009,8 +6009,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="KickComponent">
@@ -6049,8 +6049,8 @@
 					<xs:documentation>knockback force for entities</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LaserEmitterComponent">
@@ -6074,8 +6074,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: ConfigLaser for laser -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LevitationComponent">
@@ -6103,8 +6103,8 @@
 					<xs:documentation>`600` - `[1, 600]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LifetimeComponent">
@@ -6173,8 +6173,8 @@
 					<xs:documentation>frame that this is killed at</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LightComponent">
@@ -6239,8 +6239,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: as::Sprite* for mSprite -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LightningComponent">
@@ -6281,8 +6281,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mArcTarget -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LimbBossComponent">
@@ -6307,8 +6307,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LiquidDisplacerComponent">
@@ -6338,8 +6338,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LoadEntitiesComponent">
@@ -6376,8 +6376,8 @@
 					<xs:documentation>how many entities should be loaded (random range)</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LocationMarkerComponent">
@@ -6387,8 +6387,8 @@
 					<xs:documentation>`0` - `[0, 3]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LooseGroundComponent">
@@ -6465,8 +6465,8 @@
 					<xs:documentation>how many chunks are we allowed to do, -1 = infinite</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="LuaComponent">
@@ -6677,8 +6677,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: LuaManager* for mLuaManager -->
 				<!-- Some Unknown Type: ValueMap for mPersistentValues -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MagicConvertMaterialComponent">
@@ -6801,8 +6801,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: std::vector<int> for mFromMaterialArray -->
 				<!-- Some Unknown Type: std::vector<int> for mToMaterialArray -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MagicXRayComponent">
@@ -6827,15 +6827,15 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ManaReloaderComponent">
 		<xs:complexType mixed="true">
 
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MaterialAreaCheckerComponent">
@@ -6914,8 +6914,8 @@
 					<xs:documentation>keeps track of how often we've checked</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MaterialInventoryComponent">
@@ -7056,8 +7056,8 @@
 					<xs:documentation>used to figure out movement velocity</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MaterialSeaSpawnerComponent">
@@ -7129,8 +7129,8 @@
 					<xs:documentation>Offset of the center of the area to cover</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MaterialSuckerComponent">
@@ -7226,8 +7226,8 @@
 					<xs:documentation>last frame we picked gold</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MoveToSurfaceOnCreateComponent">
@@ -7253,8 +7253,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: MOVETOSURFACE_TYPE::Enum for type -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="MusicEnergyAffectorComponent">
@@ -7293,8 +7293,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="NinjaRopeComponent">
@@ -7310,8 +7310,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: NINJA_ROPE_SEGMENT_VECTOR for mSegments -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="NullDamageComponent">
@@ -7322,8 +7322,8 @@
 					<xs:documentation>if less than 1, then will roll the die to see if it will NULL all damage. Stick this into your projectile entity</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="OrbComponent">
@@ -7334,8 +7334,8 @@
 					<xs:documentation>must be unique for every orb in the world</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ParticleEmitterComponent">
@@ -7710,8 +7710,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PathFindingComponent">
@@ -7940,8 +7940,8 @@
 					<xs:documentation>TODO: Comment</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PathFindingGridMarkerComponent">
@@ -7967,8 +7967,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: PathFindingNodeHandle for mNode -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsAIComponent">
@@ -8122,8 +8122,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsBody2Component">
@@ -8293,8 +8293,8 @@
 					<xs:documentation>this is sure the bodies are only parsed once</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsBodyCollisionDamageComponent">
@@ -8309,8 +8309,8 @@
 					<xs:documentation>`0.016667` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsBodyComponent">
@@ -8492,8 +8492,8 @@
 					<xs:documentation>this is sure the bodies are only parsed once</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsImageShapeComponent">
@@ -8558,8 +8558,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: b2Body* for mBody -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsJoint2Component">
@@ -8635,8 +8635,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: JOINT_TYPE::Enum for type -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsJoint2MutatorComponent">
@@ -8681,8 +8681,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsJointComponent">
@@ -8756,8 +8756,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: JOINT_TYPE::Enum for type -->
 				<!-- Some Unknown Type: b2Joint* for mJoint -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsKeepInWorldComponent">
@@ -8787,8 +8787,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsPickUpComponent">
@@ -8814,8 +8814,8 @@
 			<xs:attribute name="rightJointPos.y" type="xs:decimal" default="0" />
 				<!-- Some Unknown Type: b2WeldJoint* for leftJoint -->
 				<!-- Some Unknown Type: b2WeldJoint* for rightJoint -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsRagdollComponent">
@@ -8843,8 +8843,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: std::vector<b2Body*>* for bodies -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsShapeComponent">
@@ -8926,8 +8926,8 @@
 					<xs:documentation>the material to use for collision audio</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PhysicsThrowableComponent">
@@ -8988,8 +8988,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PixelSceneComponent">
@@ -9038,8 +9038,8 @@
 					<xs:documentation>if on - won't do the edge textures for the pixel scene</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PixelSpriteComponent">
@@ -9092,8 +9092,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: PixelSprite* for mPixelSprite -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PlatformShooterPlayerComponent">
@@ -9254,8 +9254,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PlayerCollisionComponent">
@@ -9294,8 +9294,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: b2Body* for mPhysicsCollisionHax -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PlayerStatsComponent">
@@ -9315,8 +9315,8 @@
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PositionSeedComponent">
@@ -9331,8 +9331,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PotionComponent">
@@ -9386,8 +9386,8 @@
 					<xs:documentation>if set, will always use the color from this material</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="PressurePlateComponent">
@@ -9419,8 +9419,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ProjectileComponent">
@@ -9888,8 +9888,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="RotateTowardsComponent">
@@ -9900,8 +9900,8 @@
 					<xs:documentation>will rotate this entity towards the closest entity with tag</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SetLightAlphaFromVelocityComponent">
@@ -9913,8 +9913,8 @@
 			</xs:attribute>
 			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0" />
 			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SetStartVelocityComponent">
@@ -9949,8 +9949,8 @@
 					<xs:documentation>Random speed min max range</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="ShotEffectComponent">
@@ -9962,8 +9962,8 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: GAME_EFFECT::Enum for condition_effect -->
 				<!-- Some Unknown Type: StatusEffectType for condition_status -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SimplePhysicsComponent">
@@ -9984,8 +9984,8 @@
 					<xs:documentation>used for box2d simple physics</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SineWaveComponent">
@@ -10008,8 +10008,8 @@
 					<xs:documentation>-1 seems to fix some problems with this... sinewave_m * sinf( sinewave_freq * lifetime++)</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SpriteAnimatorComponent">
@@ -10027,8 +10027,8 @@
 				<!-- Some Unknown Type: STACK_ANIMATIONSTATE for mStates -->
 				<!-- Some Unknown Type: ComponentTags for mCachedTargetSpriteTag -->
 			<xs:attribute name="mSendOnFinishedMessageName" type="xs:string" default="" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SpriteComponent">
@@ -10157,8 +10157,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SpriteOffsetAnimatorComponent">
@@ -10198,8 +10198,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SpriteParticleEmitterComponent">
@@ -10563,8 +10563,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="SpriteStainsComponent">
@@ -10589,8 +10589,8 @@
 				<!-- Some Unknown Type: SpriteStains* for mData -->
 				<!-- Some Unknown Type: VirtualTextureHandle for mTextureHandle -->
 				<!-- Some Unknown Type: SpriteStainsState for mState -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="StatusEffectDataComponent">
@@ -10612,8 +10612,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="StreamingKeepAliveComponent">
@@ -10628,8 +10628,8 @@
 					<xs:documentation>`0` - `[0, 3.5]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TelekinesisComponent">
@@ -10716,8 +10716,8 @@
 					<xs:documentation>If set to true, telekinesis interaction will occur. Will automatically turn to false at the end of component update.</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TeleportComponent">
@@ -10774,8 +10774,8 @@
 			<xs:attribute name="source_location_camera_aabb.min_y" type="xs:decimal" default="0" />
 			<xs:attribute name="source_location_camera_aabb.max_x" type="xs:decimal" default="0" />
 			<xs:attribute name="source_location_camera_aabb.max_y" type="xs:decimal" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TeleportProjectileComponent">
@@ -10797,8 +10797,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mWhoShot -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TextLogComponent">
@@ -10806,8 +10806,8 @@
 			<xs:attribute name="key" type="xs:string" default="" />
 			<xs:attribute name="image_filename" type="xs:string" default="" />
 			<xs:attribute name="mCachedName" type="xs:string" default="" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="TorchComponent">
@@ -10862,8 +10862,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="UIIconComponent">
@@ -10886,15 +10886,15 @@
 					<xs:documentation>`1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="UIInfoComponent">
 		<xs:complexType mixed="true">
 			<xs:attribute name="name" type="xs:string" default="" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="VariableStorageComponent">
@@ -10916,8 +10916,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="VelocityComponent">
@@ -11010,8 +11010,8 @@
 			</xs:attribute>
 			<xs:attribute name="mPrevPosition.x" type="xs:int" default="0" />
 			<xs:attribute name="mPrevPosition.y" type="xs:int" default="0" />
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="VerletPhysicsComponent">
@@ -11164,8 +11164,8 @@
 				<!-- Some Unknown Type: FloatArrayInline for freedoms -->
 				<!-- Some Unknown Type: VerletLinkArrayInline for links -->
 				<!-- Some Unknown Type: VerletSprite* for sprite -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="VerletWeaponComponent">
@@ -11215,8 +11215,8 @@
 					<xs:documentation>`-1` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="VerletWorldJointComponent">
@@ -11243,8 +11243,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: grid::ICell* for mCell -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WalletComponent">
@@ -11272,8 +11272,8 @@
 					<xs:documentation>once it hits this value... keep it there</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WalletValuableComponent">
@@ -11283,8 +11283,8 @@
 					<xs:documentation>`10` - `[0, 100]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WorldStateComponent">
@@ -11576,8 +11576,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WormAIComponent">
@@ -11690,8 +11690,8 @@
 					<xs:documentation>`0` - `[0, 1]`</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WormAttractorComponent">
@@ -11708,8 +11708,8 @@
 					<xs:documentation>radius of detracting worms</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WormComponent">
@@ -11834,8 +11834,8 @@
 				</xs:annotation>
 			</xs:attribute>
 				<!-- Some Unknown Type: WormPartPositions for mPrevPositions -->
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="WormPlayerComponent">
@@ -11852,8 +11852,8 @@
 					<xs:documentation>if mDirection == 0,0 nothings works</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-			<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+			<xs:attribute name="_tags" type="xs:string" default="" />
+			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
