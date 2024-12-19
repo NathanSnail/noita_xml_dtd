@@ -107,6 +107,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     # print(f"fail: {ty}")
     return []
 
+
 TYPE_DEFAULTS = {
     "ARC_TYPE": "MATERIAL",
     "VERLET_TYPE": "CHAIN",
@@ -118,12 +119,16 @@ TYPE_DEFAULTS = {
     "MOVETOSURFACE_TYPE": "ENTITY",
     "PARTICLE_EMITTER_CUSTOM_STYLE": "NONE",
     "JOINT_TYPE": "REVOLUTE_JOINT",
+    "PathFindingComponentState": "",
+    "TeleportComponentState": "",
 }
+
 
 def format_decimal(value: str) -> str:
     """Format a decimal string to remove scientific notation and trailing zeroes."""
     value_float = float(value)
     return f"{value_float:.15f}".rstrip("0").rstrip(".")
+
 
 def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str:
     default = TYPE_DEFAULTS.get(ty)
@@ -135,7 +140,9 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
     elif ty == "RAGDOLL_FX":
         return "NORMAL" if component_name == "ProjectileComponent" else "NONE"
     elif ty == "DAMAGE_TYPES":
-        return "DAMAGE_PHYSICS_HIT" if component_name == "AreaDamageComponent" else "NONE"
+        return (
+            "DAMAGE_PHYSICS_HIT" if component_name == "AreaDamageComponent" else "NONE"
+        )
 
     if field.default != "-":
         if ty == "xs:decimal":
@@ -144,7 +151,8 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
 
     return "0" if ty != "xs:string" else ""
 
-def render_sub_field(field: Field, suffix: str, docs: str, ty: str, component_name:str) -> str:
+
+def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) -> str:
     default = get_default_for_sub_field(field, ty, component_name)
     return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
@@ -165,11 +173,8 @@ def render_field(field: Field, component_name: str) -> tuple[str, str]:
         )
     if len(tys) == 0:
         return "", f"\t\t\t\t<!-- Some Unknown Type: {field.ty} for {field.name} -->"
-    docs = ""
-    if field.default != "-":
-        docs = f"`{field.default}` - `{field.values}`"
     return "", "\n".join(
-        [render_sub_field(field, suffix, docs, ty, component_name) for suffix, ty in tys]
+        [render_sub_field(field, suffix, ty, component_name) for suffix, ty in tys]
     )
 
 
@@ -295,6 +300,8 @@ for i in range(len(enum_content) // 2):
     name = enum_content[i * 2]
     fields = enum_content[i * 2 + 1][3:-2].split("', u'")
     enums.append(Enum(name, fields))
+enums.append(Enum("PathFindingComponentState", [""]))
+enums.append(Enum("TeleportComponentState", [""]))
 
 
 def render_enum(enum: Enum) -> str:

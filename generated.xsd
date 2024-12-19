@@ -307,6 +307,16 @@
 			<xs:enumeration value="FIRE"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="PathFindingComponentState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TeleportComponentState">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="EntityBase">
 		<xs:sequence minOccurs="0">
 			<xs:choice maxOccurs="unbounded" minOccurs="0">
@@ -8365,7 +8375,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mEnabled = 0; //  TODO: Comment<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mState" type="PathFindingComponentState" default="0">
+			<xs:attribute name="mState" type="PathFindingComponentState" default="">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	PathFindingComponentState::Enum mState; //  TODO: Comment<br>```]]></xs:documentation>
 				</xs:annotation>
@@ -11231,7 +11241,7 @@
 					<xs:documentation><![CDATA[```cpp<br>	int safety_counter = 0; //  used to keep track that we're not stuck in waiting for a pixel scene to load, that is not going to be loaded<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="state" type="TeleportComponentState" default="0">
+			<xs:attribute name="state" type="TeleportComponentState" default="">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	TeleportComponentState::Enum state;<br>```]]></xs:documentation>
 				</xs:annotation>
