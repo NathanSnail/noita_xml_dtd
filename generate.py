@@ -313,7 +313,7 @@ out = f"""
 \t\t<xs:complexType>
 \t\t\t<xs:complexContent>
 \t\t\t\t<xs:extension base="EntityBase">
-\t\t\t\t\t<xs:attribute name="file" type="xs:string" />
+\t\t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
 \t\t\t\t</xs:extension>
 \t\t\t</xs:complexContent>
 \t\t</xs:complexType>
