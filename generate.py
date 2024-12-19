@@ -146,7 +146,6 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
 
 def render_sub_field(field: Field, suffix: str, docs: str, ty: str, component_name:str) -> str:
     default = get_default_for_sub_field(field, ty, component_name)
-    print(default)
     return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
 \t\t\t\t<xs:annotation>
