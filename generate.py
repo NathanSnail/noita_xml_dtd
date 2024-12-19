@@ -377,6 +377,64 @@ out = f"""
     1:
 ]
 out += "\n".join([render_component(component) for component in components])
+# Sprite, might need some description on hover later, also some defaults are unknown
+out += f"""
+\t<xs:element name="Sprite">
+\t\t<xs:complexType mixed="true">
+\t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
+\t\t\t\t<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t<xs:choice>
+\t\t\t\t\t\t\t<xs:element name="Event" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="frame" type="xs:nonNegativeInteger" use="required" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="max_distance" type="xs:positiveInteger" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="probability" type="xs:decimal" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="on_finished" type="NoitaBool" />
+\t\t\t\t\t\t\t\t\t<xs:attribute name="check_physics_material" type="NoitaBool" />
+\t\t\t\t\t\t\t\t</xs:complexType>
+\t\t\t\t\t\t\t</xs:element>
+\t\t\t\t\t\t</xs:choice>
+\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_count" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frames_per_row" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_width" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_height" type="xs:positiveInteger" use="required" />
+\t\t\t\t\t\t<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
+\t\t\t\t\t\t<xs:attribute name="pos_x" type="xs:integer" default="0" />
+\t\t\t\t\t\t<xs:attribute name="pos_y" type="xs:integer" default="0" />
+\t\t\t\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+\t\t\t\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+\t\t\t\t\t\t<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+\t\t\t\t\t\t<xs:attribute name="has_offset" type="NoitaBool" default="1" />
+\t\t\t\t\t\t<xs:attribute name="loop" type="NoitaBool" default="0" />
+\t\t\t\t\t\t<xs:attribute name="next_animation" type="xs:string" default="" />
+\t\t\t\t\t</xs:complexType>
+\t\t\t\t</xs:element>
+\t\t\t\t<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+\t\t\t\t\t<xs:complexType mixed="true">
+\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
+\t\t\t\t\t\t<xs:attribute name="color" type="xs:hexBinary" use="required" />
+\t\t\t\t\t</xs:complexType>
+\t\t\t\t</xs:element>
+\t\t\t</xs:choice>
+\t\t\t<xs:attribute name="filename" type="xs:string" use="required" />
+\t\t\t<xs:attribute name="hotspots_filename" type="xs:string" />
+\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+\t\t\t<xs:attribute name="default_animation" type="xs:string" default="default" />
+\t\t\t<xs:attribute name="color_a" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_b" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_g" type="xs:decimal" default="1" />
+\t\t\t<xs:attribute name="color_r" type="xs:decimal" default="1" />
+\t\t</xs:complexType>
+\t\t<xs:unique name="UniqueRectAnimationName">
+\t\t\t<xs:selector xpath="RectAnimation" />
+\t\t\t<xs:field xpath="@name" />
+\t\t</xs:unique>
+\t</xs:element>
+"""
 out += "\n</xs:schema>"
 # out = out.replace("\t","").replace("\n","")
 open("generated.xsd", "w").write(out)
