@@ -118,8 +118,7 @@ def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
         default = field.default
     else:
         default = "" if ty == "xs:string" else "0"
-    if docs != "" or field.comment != "":
-        return f"""
+    return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
 \t\t\t\t<xs:annotation>
 \t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{render_field_cpp(field)}<br>```]]></xs:documentation>
@@ -127,7 +126,6 @@ def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
 \t\t\t</xs:attribute>"""[
             1:
         ]
-    return f"""\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}" />"""
 
 
 def render_field(field: Field) -> tuple[str, str]:

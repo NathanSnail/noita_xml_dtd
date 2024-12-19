@@ -658,7 +658,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string entity_file; //  the projectile entity file<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="sprite_file" type="xs:string" default="" />
+			<xs:attribute name="sprite_file" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string sprite_file;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="entity_count" type="xs:int" default="1">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int entity_count = 1; // [0, 60000] <br>```]]></xs:documentation>
@@ -909,14 +913,46 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mHasTargetDirection = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTargetPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastFramesMovementAreaMin.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastFramesMovementAreaMin.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastFramesMovementAreaMax.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastFramesMovementAreaMax.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTargetPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastFramesMovementAreaMin;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMin.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastFramesMovementAreaMin;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastFramesMovementAreaMax;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastFramesMovementAreaMax.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastFramesMovementAreaMax;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNumFailedTargetSearches" type="xs:unsignedInt" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	uint32 mNumFailedTargetSearches = 0;<br>```]]></xs:documentation>
@@ -954,7 +990,11 @@
 	<xs:element name="AltarComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class AltarComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string recognized_entity_tags;<br>&emsp;&emsp;&emsp;&emsp;int uses_remaining = 3;<br>&emsp;&emsp;&emsp;&emsp;int good_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>&emsp;&emsp;&emsp;&emsp;int neutral_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>&emsp;&emsp;&emsp;&emsp;int evil_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>&emsp;&emsp;&emsp;&emsp;EntityTags m_recognized_entity_tags;<br>&emsp;&emsp;&emsp;&emsp;uint32 m_recognized_entity_tags_count = 0;<br>&emsp;&emsp;&emsp;&emsp;EntityTags m_current_entity_tags;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="recognized_entity_tags" type="xs:string" default="" />
+			<xs:attribute name="recognized_entity_tags" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string recognized_entity_tags;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="uses_remaining" type="xs:int" default="3">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int uses_remaining = 3;<br>```]]></xs:documentation>
@@ -1650,10 +1690,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string entities_with_tag = "mortal"; //  damage entities with this tag<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0" />
+			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="damage_type" type="DAMAGE_TYPES" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
@@ -1705,9 +1761,21 @@
 	<xs:element name="AudioComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class AudioComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string file;<br>&emsp;&emsp;&emsp;&emsp;std::string event_root;<br>&emsp;&emsp;&emsp;&emsp;std::string audio_physics_material;<br>&emsp;&emsp;&emsp;&emsp;bool set_latest_event_position = 0;<br>&emsp;&emsp;&emsp;&emsp;bool remove_latest_event_on_destroyed = 0;<br>&emsp;&emsp;&emsp;&emsp;bool send_message_on_event_dead = 0;<br>&emsp;&emsp;&emsp;&emsp;bool play_only_if_visible = 0; //  plays sounds only if entity position is on screen and not covered by fog of war<br>&emsp;&emsp;&emsp;&emsp;int m_audio_physics_material = 0;<br>&emsp;&emsp;&emsp;&emsp;AudioSourceHandle m_latest_source = -1;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="file" type="xs:string" default="" />
-			<xs:attribute name="event_root" type="xs:string" default="" />
-			<xs:attribute name="audio_physics_material" type="xs:string" default="" />
+			<xs:attribute name="file" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string file;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="event_root" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string event_root;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="audio_physics_material" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string audio_physics_material;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="set_latest_event_position" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool set_latest_event_position = 0;<br>```]]></xs:documentation>
@@ -1753,8 +1821,16 @@
 	<xs:element name="AudioLoopComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class AudioLoopComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string file;<br>&emsp;&emsp;&emsp;&emsp;std::string event_name;<br>&emsp;&emsp;&emsp;&emsp;bool auto_play = 0;<br>&emsp;&emsp;&emsp;&emsp;bool auto_play_if_enabled = 0;<br>&emsp;&emsp;&emsp;&emsp;bool play_on_component_enable = 0;<br>&emsp;&emsp;&emsp;&emsp;bool calculate_material_lowpass = 1;<br>&emsp;&emsp;&emsp;&emsp;bool set_speed_parameter = 0;<br>&emsp;&emsp;&emsp;&emsp;bool set_speed_parameter_only_based_on_x_movement = 0;<br>&emsp;&emsp;&emsp;&emsp;bool set_speed_parameter_only_based_on_y_movement = 0;<br>&emsp;&emsp;&emsp;&emsp;float volume_autofade_speed = 0;<br>&emsp;&emsp;&emsp;&emsp;float m_volume = 0;<br>&emsp;&emsp;&emsp;&emsp;float m_intensity = 1;<br>&emsp;&emsp;&emsp;&emsp;float m_intensity2 = 1;<br>&emsp;&emsp;&emsp;&emsp;AudioSourceHandle m_source = -1;<br>&emsp;&emsp;&emsp;&emsp;int m_frame_created = -1;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="file" type="xs:string" default="" />
-			<xs:attribute name="event_name" type="xs:string" default="" />
+			<xs:attribute name="file" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string file;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="event_name" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string event_name;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="auto_play" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool auto_play = 0;<br>```]]></xs:documentation>
@@ -2020,14 +2096,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	int projectile_2_count = 5; // [0, 10] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_filename" type="xs:string" default="" />
+			<xs:attribute name="ragdoll_filename" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string ragdoll_filename;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mTargetEntityId" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mTargetEntityId = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mGravVelocity" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mGravVelocity = 0;<br>```]]></xs:documentation>
@@ -2038,10 +2126,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mSpeed = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastLivingTargetPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastLivingTargetPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastLivingTargetPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastLivingTargetPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastLivingTargetPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastLivingTargetPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNextTargetCheckFrame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mNextTargetCheckFrame = 0;<br>```]]></xs:documentation>
@@ -2173,8 +2277,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool intercardinal_movement = 0; //  allow intercardinal movement<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPrevPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPrevPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -2427,10 +2539,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mFlyingTimeLeft = 1000; //  How much flying energy do we have left? - NOTE( Petri ): 1.3.2023 - This used to be a private variable. It was changed to fix the save/load infinite flying bug.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="collision_aabb_min_x" type="xs:decimal" default="0" />
-			<xs:attribute name="collision_aabb_max_x" type="xs:decimal" default="0" />
-			<xs:attribute name="collision_aabb_min_y" type="xs:decimal" default="0" />
-			<xs:attribute name="collision_aabb_max_y" type="xs:decimal" default="0" />
+			<xs:attribute name="collision_aabb_min_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> collision_aabb_min_x;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="collision_aabb_max_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> collision_aabb_max_x;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="collision_aabb_min_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> collision_aabb_min_y;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="collision_aabb_max_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> collision_aabb_max_y;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="fly_time_max" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> fly_time_max; //  how much flying energy + <br>```]]></xs:documentation>
@@ -2446,8 +2574,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mLastFrameOnGround = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mCollidedHorizontally" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mCollidedHorizontally = 0; //  moved this here from CharacterCollisionComponent - since that is multithreaded and we needed a non multithreaded version<br>```]]></xs:documentation>
@@ -2555,8 +2691,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float turning_buffer = 0.1; // [0, 2] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="animation_to_play" type="xs:string" default="" />
-			<xs:attribute name="animation_to_play_next" type="xs:string" default="" />
+			<xs:attribute name="animation_to_play" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string animation_to_play;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_to_play_next" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string animation_to_play_next;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="run_animation_velocity_switching_threshold" type="xs:decimal" default="45">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float run_animation_velocity_switching_threshold = 45; // [0, 1000] <br>```]]></xs:documentation>
@@ -2582,16 +2726,56 @@
 					<xs:documentation><![CDATA[```cpp<br>	float audio_liquid_splash_intensity = 1;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="velocity_min_x" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity_max_x" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity_min_y" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity_max_y" type="xs:decimal" default="0" />
-			<xs:attribute name="run_velocity" type="xs:decimal" default="0" />
-			<xs:attribute name="fly_velocity_x" type="xs:decimal" default="0" />
-			<xs:attribute name="fly_speed_max_up" type="xs:decimal" default="0" />
-			<xs:attribute name="fly_speed_max_down" type="xs:decimal" default="0" />
-			<xs:attribute name="mExAnimationPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mExAnimationPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="velocity_min_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> velocity_min_x;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity_max_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> velocity_max_x;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity_min_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> velocity_min_y;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity_max_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> velocity_max_y;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="run_velocity" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> run_velocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fly_velocity_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> fly_velocity_x;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fly_speed_max_up" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> fly_speed_max_up;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="fly_speed_max_down" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> fly_speed_max_down;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mExAnimationPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mExAnimationPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mExAnimationPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mExAnimationPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mFramesInAirCounter" type="xs:int" default="-1">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mFramesInAirCounter = -1;<br>```]]></xs:documentation>
@@ -2779,8 +2963,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool mHasOtherEnd = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="target_location.x" type="xs:decimal" default="0" />
-			<xs:attribute name="target_location.y" type="xs:decimal" default="0" />
+			<xs:attribute name="target_location.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 target_location;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="target_location.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 target_location;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -3185,8 +3377,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mFlyingTargetY = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mAimingVector.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mAimingVector.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mAimingVector.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVector;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mAimingVector.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVector;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mAimingVectorNormalized.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVectorNormalized; //  Aiming vector normalized to unit sphere.<br>```]]></xs:documentation>
@@ -3197,10 +3397,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVectorNormalized; //  Aiming vector normalized to unit sphere.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mAimingVectorNonZeroLatest.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mAimingVectorNonZeroLatest.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mGamepadAimingVectorRaw.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mGamepadAimingVectorRaw.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mAimingVectorNonZeroLatest.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVectorNonZeroLatest;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mAimingVectorNonZeroLatest.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAimingVectorNonZeroLatest;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mGamepadAimingVectorRaw.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mGamepadAimingVectorRaw;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mGamepadAimingVectorRaw.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mGamepadAimingVectorRaw;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mJumpVelocity.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mJumpVelocity; //  used mostly by AI only?<br>```]]></xs:documentation>
@@ -3211,16 +3427,56 @@
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mJumpVelocity; //  used mostly by AI only?<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mMousePosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMousePosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mMousePositionRaw.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMousePositionRaw.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mMousePositionRawPrev.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMousePositionRawPrev.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mMouseDelta.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMouseDelta.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mGamepadIndirectAiming.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mGamepadIndirectAiming.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mMousePosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMousePosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMousePositionRaw.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePositionRaw;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMousePositionRaw.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePositionRaw;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMousePositionRawPrev.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePositionRawPrev;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMousePositionRawPrev.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMousePositionRawPrev;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMouseDelta.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMouseDelta;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMouseDelta.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMouseDelta;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mGamepadIndirectAiming.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mGamepadIndirectAiming;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mGamepadIndirectAiming.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mGamepadIndirectAiming;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mGamePadCursorInWorld.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mGamePadCursorInWorld; //  where the aiming cursor is in the world, updated by platformshooterplayer_system <br>```]]></xs:documentation>
@@ -3378,30 +3634,126 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mFrameNextAttackFromCeilingCheck = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mMin.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMin.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mMax.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mMax.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevNonSnappedPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevNonSnappedPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevCellPosition.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition2.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition2.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition3.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition3.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition4.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition4.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition5.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition5.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition6.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition6.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition7.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition7.y" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition8.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevCellPosition8.y" type="xs:int" default="0" />
-			<xs:attribute name="mLatestPosition.x" type="xs:int" default="0" />
-			<xs:attribute name="mLatestPosition.y" type="xs:int" default="0" />
+			<xs:attribute name="mMin.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMin;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMin.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMin;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMax.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMax;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mMax.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mMax;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevNonSnappedPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevNonSnappedPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevNonSnappedPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevNonSnappedPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition2.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition2;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition2.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition2;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition3.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition3;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition3.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition3;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition4.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition4;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition4.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition4;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition5.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition5;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition5.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition5;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition6.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition6;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition6.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition6;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition7.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition7;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition7.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition7;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition8.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition8;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCellPosition8.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevCellPosition8;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLatestPosition.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mLatestPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLatestPosition.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mLatestPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mPrevFalling" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mPrevFalling = 0;<br>```]]></xs:documentation>
@@ -3926,9 +4278,21 @@
 					<xs:documentation><![CDATA[```cpp<br>	DAMAGE_TYPES::Enum damage_type; //  the damage type<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_fx" type="RAGDOLL_FX" default="0" />
-			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0" />
+			<xs:attribute name="ragdoll_fx" type="RAGDOLL_FX" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNextDamageFrame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mNextDamageFrame = 0;<br>```]]></xs:documentation>
@@ -4142,10 +4506,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mSplittingEnergy = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mAvgDir.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mAvgDir.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevPos.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevPos.y" type="xs:int" default="0" />
+			<xs:attribute name="mAvgDir.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAvgDir;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mAvgDir.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mAvgDir;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPos.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPos.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mPrevMaterial" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mPrevMaterial = 0;<br>```]]></xs:documentation>
@@ -4289,8 +4669,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float energy = 0; // [0, 3] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -4374,19 +4762,51 @@
 					<xs:documentation><![CDATA[```cpp<br>	float speed = 100; // [1, 1000] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity.y" type="xs:decimal" default="0" />
+			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 velocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 velocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="stuck_counter" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int stuck_counter = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mLastCheckPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastCheckPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mLastCheckPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastCheckPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastCheckPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastCheckPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -4779,23 +5199,47 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string target_tag = "player_unit"; //  if something else (like mortal), will attack the home<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="velocity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="velocity.y" type="xs:decimal" default="0" />
+			<xs:attribute name="velocity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 velocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="velocity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 velocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mEntityHome -->
 			<xs:attribute name="mFramesWithoutHome" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mFramesWithoutHome = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTargetPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTargetPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mTargetEntityId" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mTargetEntityId = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNextTargetCheckFrame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mNextTargetCheckFrame = 0;<br>```]]></xs:documentation>
@@ -4915,8 +5359,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float damage_multiplier = 1; //  All damage from hits to this hitbox is multiplied with this value before applying it.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="offset.x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset.y" type="xs:decimal" default="0" />
+			<xs:attribute name="offset.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="offset.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="dead" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool dead = 0;<br>```]]></xs:documentation>
@@ -4982,9 +5434,21 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool transform_with_scale = 1;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="sprite_hotspot_name" type="xs:string" default="" />
-			<xs:attribute name="offset.x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset.y" type="xs:decimal" default="0" />
+			<xs:attribute name="sprite_hotspot_name" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string sprite_hotspot_name;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="offset.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="offset.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -5017,8 +5481,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string target_entities_with_tag = "mortal";<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTarget.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: EntityID for mTargetEntity -->
 				<!-- Some Unknown Type: IKLimbAttackerState for mState -->
 			<xs:attribute name="mStateTimer" type="xs:decimal" default="0">
@@ -5048,21 +5520,61 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mJointSideInterpolation = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="end_position.x" type="xs:decimal" default="0" />
-			<xs:attribute name="end_position.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mJointWorldPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mJointWorldPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mEndPrevPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mEndPrevPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPart0PrevPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPart0PrevPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="end_position.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 end_position;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="end_position.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 end_position;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mJointWorldPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mJointWorldPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mJointWorldPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mJointWorldPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mEndPrevPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mEndPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mEndPrevPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mEndPrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPart0PrevPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPart0PrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPart0PrevPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPart0PrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mPart0PrevRotation" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mPart0PrevRotation = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPart1PrevPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPart1PrevPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPart1PrevPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPart1PrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPart1PrevPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPart1PrevPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mPart1PrevRotation" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mPart1PrevRotation = 0;<br>```]]></xs:documentation>
@@ -5115,12 +5627,36 @@
 					<xs:documentation><![CDATA[```cpp<br>	int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTarget.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevTarget.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevCenterPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevCenterPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCenterPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevCenterPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevCenterPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevCenterPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -5168,8 +5704,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPrevBodyPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevBodyPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPrevBodyPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevBodyPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevBodyPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevBodyPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: IKLimbStateVec for mLimbStates -->
 			<xs:attribute name="mHasGroundAttachmentOnAnyLeg" type="NoitaBool" default="0">
 				<xs:annotation>
@@ -5228,7 +5772,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	int32 m_next_overeating_msg_frame = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="m_ingestion_satiation_material_tag_cached" type="xs:string" default="" />
+			<xs:attribute name="m_ingestion_satiation_material_tag_cached" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string m_ingestion_satiation_material_tag_cached;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: std::set<int32> for m_ingestion_satiation_material_cache -->
 			<xs:attribute name="m_damage_effect_lifetime" type="xs:int" default="0">
 				<xs:annotation>
@@ -5371,8 +5919,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mIntroEquipItemLerp = 1;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mSmoothedItemAngleVec.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mSmoothedItemAngleVec.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mSmoothedItemAngleVec.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedItemAngleVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mSmoothedItemAngleVec.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedItemAngleVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -5931,8 +6487,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool drop_items_on_death = 1; //  if true, will drop all items. E.g. if true for player, player drops their wands<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLatestItemOverlapInfoBoxPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLatestItemOverlapInfoBoxPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLatestItemOverlapInfoBoxPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -6004,8 +6568,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	std::string kick_entities; //  comma separated list of entities that are loaded when player kicks<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="max_force" type="xs:decimal" default="0" />
-			<xs:attribute name="player_kickforce" type="xs:decimal" default="0" />
+			<xs:attribute name="max_force" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> max_force;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="player_kickforce" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> player_kickforce;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="kick_damage" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> kick_damage; //  ( 1.f / 25.f )<br>```]]></xs:documentation>
@@ -6407,7 +6979,11 @@
 	<xs:element name="LuaComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class LuaComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string script_source_file;<br>&emsp;&emsp;&emsp;&emsp;bool execute_on_added = 0;<br>&emsp;&emsp;&emsp;&emsp;bool execute_on_removed = 0;<br>&emsp;&emsp;&emsp;&emsp;int execute_every_n_frame = 1; // [1, 150] 1 = execute every frame. 2 = execute every second frame. 3 = execute every third frame and so on. -1 = execute only on add/remove/event<br>&emsp;&emsp;&emsp;&emsp;int execute_times = 0; //  How many times should the script be executed? < 1 means infinite<br>&emsp;&emsp;&emsp;&emsp;int limit_how_many_times_per_frame = -1; //  -1 = infinite. Use this to limit how many times this can be executed per frame. Currently only used to limit script_shot from being executed forever.<br>&emsp;&emsp;&emsp;&emsp;int limit_to_every_n_frame = -1; //  -1 = no limit. Currently only used to limit script_shot from being executed every frame.<br>&emsp;&emsp;&emsp;&emsp;bool limit_all_callbacks = 0; //  NOTE( Petri ): 19.8.2023 - by default limit_how_many_times_per_frame and limit_to_every_n_frame only works for script_shot. If this is set to true, will limit all callbacks. Also note that this limit is shared within this component. So if this is true and both script_shot and script_damage_received and both are called within limit_to_every_n_frame frames, only one of them will be called.<br>&emsp;&emsp;&emsp;&emsp;bool remove_after_executed = 0;<br>&emsp;&emsp;&emsp;&emsp;bool enable_coroutines = 0;<br>&emsp;&emsp;&emsp;&emsp;bool call_init_function = 0; //   if 1, calls function init( entity_id:int ) after running the code in the file scope of script_source_file along with all mod appends. Does nothing if execute_on_added is 0<br>&emsp;&emsp;&emsp;&emsp;std::string script_enabled_changed; //  if set, calls function 'enabled_changed( entity_id:int, is_enabled:bool )' when the IsEnabled status of this LuaComponent is changed<br>&emsp;&emsp;&emsp;&emsp;std::string script_damage_received; //  if set, calls function 'damage_received( damage:number, message:string, entity_thats_responsible:int, is_fatal:bool, projectile_thats_responsible:int )' when we receive a message about damage (Message_DamageReceived)<br>&emsp;&emsp;&emsp;&emsp;std::string script_damage_about_to_be_received; //  if set, calls function 'damage_about_to_be_received( damage:number, x:number, y:number, entity_thats_responsible:int, critical_hit_chance:int )' when we receive a message (Message_DamageAboutToBeReceived) -> new_damage:number,new_critical_hit_chance:int<br>&emsp;&emsp;&emsp;&emsp;std::string script_item_picked_up; //  if set, calls function 'item_pickup( int entity_item, int entity_pickupper, string item_name )' when message 'Message_ItemPickUp' is called<br>&emsp;&emsp;&emsp;&emsp;std::string script_shot; //  if set, calls function 'shot( projectile_entity_id )' when we receive Message_Shot<br>&emsp;&emsp;&emsp;&emsp;std::string script_collision_trigger_hit; //  if set, calls function 'collision_trigger( colliding_entity_id )' when we receive Message_CollisionTriggerHit<br>&emsp;&emsp;&emsp;&emsp;std::string script_collision_trigger_timer_finished; //  if set, calls function 'collision_trigger_timer_finished()' when we receive Message_CollisionTriggerTimerFinished<br>&emsp;&emsp;&emsp;&emsp;std::string script_physics_body_modified; //  if set, calls function 'physics_body_modified( is_destroyed )' when physics body has been modified<br>&emsp;&emsp;&emsp;&emsp;std::string script_pressure_plate_change; //  if set, calls function 'pressure_plate_change( new_state )' when PressurePlateComponent decides that things have change<br>&emsp;&emsp;&emsp;&emsp;std::string script_inhaled_material; //  if set, calls function 'inhaled_material( material_name, count )' once per second for each inhaled material<br>&emsp;&emsp;&emsp;&emsp;std::string script_death; //  if set, calls function 'death( int damage_type_bit_field, string damage_message, int entity_thats_responsible, bool drop_items )' when we receive message Message_Death<br>&emsp;&emsp;&emsp;&emsp;std::string script_throw_item; //  if set, calls function 'throw_item( from_x, from_y, to_x, to_y )' when we receive message Message_ThrowItem<br>&emsp;&emsp;&emsp;&emsp;std::string script_material_area_checker_failed; //  if set, calls function 'material_area_checker_failed( pos_x, pos_y, )' when we receive message Message_MaterialAreaCheckerFailed<br>&emsp;&emsp;&emsp;&emsp;std::string script_material_area_checker_success; //  if set, calls function 'material_area_checker_success( pos_x, pos_y, )' when we receive message Message_MaterialAreaCheckerSuccess<br>&emsp;&emsp;&emsp;&emsp;std::string script_electricity_receiver_switched; //  if set, calls function 'electricity_receiver_switched( bool is_electrified )' when we receive message Message_ElectricityReceiverSwitched<br>&emsp;&emsp;&emsp;&emsp;std::string script_electricity_receiver_electrified; //  if set, calls function 'electricity_receiver_electrified()' when we receive message Message_ElectricityReceiverElectrified<br>&emsp;&emsp;&emsp;&emsp;std::string script_kick; //  if set, calls function 'kick( entity_who_kicked )' when we receive message Message_Kick<br>&emsp;&emsp;&emsp;&emsp;std::string script_interacting; //  if set, calls function 'interacting( entity_who_interacted, entity_interacted, interactable_name )' when we receive message Message_Interaction<br>&emsp;&emsp;&emsp;&emsp;std::string script_audio_event_dead; //  if set, calls function 'audio_event_dead( bank_file, event_root )' when we receive message Message_AudioEventDead<br>&emsp;&emsp;&emsp;&emsp;std::string script_wand_fired; //  if set, calls function 'wand_fired( gun_entity_id )' when we receive Message_WandFired<br>&emsp;&emsp;&emsp;&emsp;std::string script_teleported; //  if set, calls function 'teleported( from_x, from_y, to_x, to_y, bool portal_teleport )' when we receive Message_Teleported<br>&emsp;&emsp;&emsp;&emsp;std::string script_portal_teleport_used; //  if set, calls function 'portal_teleport_used( entity_that_was_teleported, from_x, from_y, to_x, to_y )' when we receive Message_PortalTeleportUsed<br>&emsp;&emsp;&emsp;&emsp;std::string script_polymorphing_to; //  if set, calls function 'polymorphing_to( string_entity_we_are_about_to_polymorph_to )' when we receive Message_PolymorphingTo<br>&emsp;&emsp;&emsp;&emsp;std::string script_biome_entered; //  if set, calls function 'biome_entered( string_biome_name, string_biome_old_name )' when this entity changes biomes. Requires BiomeTrackerComponent<br>&emsp;&emsp;&emsp;&emsp;int mLastExecutionFrame = -1;<br>&emsp;&emsp;&emsp;&emsp;int mTimesExecutedThisFrame = 0; //  tracks how many times we've executed this frame. This will linger on and store the old value of the old frames. Used internally.<br>&emsp;&emsp;&emsp;&emsp;bool mModAppendsDone = 0;<br>&emsp;&emsp;&emsp;&emsp;LUA_VM_TYPE::Enum vm_type; //  Do we share a single Lua virtual machine for everyone who runs 'script_source_file' ('SHARED_BY_MANY_COMPONENTS'), create one VM per one LuaComponent and reuse the VM in case the component runs the script multiple times ('ONE_PER_COMPONENT_INSTANCE'), or create a new VM every time the script is executed ('CREATE_NEW_EVERY_EXECUTION', deprecated)?<br>&emsp;&emsp;&emsp;&emsp;int mNextExecutionTime = -1;<br>&emsp;&emsp;&emsp;&emsp;int mTimesExecuted = 0;<br>&emsp;&emsp;&emsp;&emsp;LuaManager* mLuaManager;<br>&emsp;&emsp;&emsp;&emsp;ValueMap mPersistentValues;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="script_source_file" type="xs:string" default="" />
+			<xs:attribute name="script_source_file" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string script_source_file;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="execute_on_added" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool execute_on_added = 0;<br>```]]></xs:documentation>
@@ -6702,8 +7278,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool convert_same_material = 1; //  9.10.2020 - added this because at the end this caused the 'white ring' to appear, set it to false if you don't want constant whiteout<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="from_material_array" type="xs:string" default="" />
-			<xs:attribute name="to_material_array" type="xs:string" default="" />
+			<xs:attribute name="from_material_array" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string from_material_array;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="to_material_array" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string to_material_array;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mRadius" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mRadius = 0; // [0, 512] <br>```]]></xs:documentation>
@@ -7137,7 +7721,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	float verlet_min_joint_distance = 32; // [0, 128] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="MOVETOSURFACE_TYPE" default="0" />
+			<xs:attribute name="type" type="MOVETOSURFACE_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	MOVETOSURFACE_TYPE::Enum type;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -7504,8 +8092,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	uint32 color = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="offset.x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset.y" type="xs:decimal" default="0" />
+			<xs:attribute name="offset.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="offset.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="area_circle_radius.min" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	ValueRange area_circle_radius; //  If > 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.<br>```]]></xs:documentation>
@@ -7516,10 +8112,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	ValueRange area_circle_radius; //  If > 0, the particles will be emitted inside a circular area defined by the min and max bounds of 'area_circle_radius'.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="gravity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="gravity.y" type="xs:decimal" default="0" />
-			<xs:attribute name="count_min" type="xs:int" default="0" />
-			<xs:attribute name="count_max" type="xs:int" default="0" />
+			<xs:attribute name="gravity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 gravity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="gravity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 gravity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="count_min" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> count_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="count_max" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> count_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="custom_style" type="PARTICLE_EMITTER_CUSTOM_STYLE" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	PARTICLE_EMITTER_CUSTOM_STYLE::Enum custom_style; //  NONE or FIRE<br>```]]></xs:documentation>
@@ -7540,7 +8152,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mMaterialInventoryMax = 1024; //  this is how we figure out the pressure, when using material_inventory<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="m_material_id" type="xs:int" default="0" />
+			<xs:attribute name="m_material_id" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> m_material_id;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="m_next_emit_frame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int m_next_emit_frame = 0;<br>```]]></xs:documentation>
@@ -7551,8 +8167,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool m_has_emitted = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="m_last_emit_position.x" type="xs:int" default="0" />
-			<xs:attribute name="m_last_emit_position.y" type="xs:int" default="0" />
+			<xs:attribute name="m_last_emit_position.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 m_last_emit_position;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="m_last_emit_position.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 m_last_emit_position;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: ParticleEmitter_Animation* for m_cached_image_animation -->
 			<xs:attribute name="m_image_based_animation_time" type="xs:decimal" default="0">
 				<xs:annotation>
@@ -7942,8 +8566,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mRotationTarget = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mLastPositionWhenHadPath.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mLastPositionWhenHadPath.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mLastPositionWhenHadPath.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastPositionWhenHadPath;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mLastPositionWhenHadPath.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mLastPositionWhenHadPath;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mHasLastPosition" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mHasLastPosition = 0;<br>```]]></xs:documentation>
@@ -8557,8 +9189,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool keep_at_last_valid_pos = 0; //  Will try to keep the object at the latest valid position<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mExPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mExPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mExPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mExPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mExPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mExPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mExRotation" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mExRotation = 0;<br>```]]></xs:documentation>
@@ -8577,19 +9217,51 @@
 					<xs:documentation><![CDATA[```cpp<br>	float pick_up_strength = 200;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="original_left_joint_pos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="original_left_joint_pos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="original_right_joint_pos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="original_right_joint_pos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="original_left_joint_pos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 original_left_joint_pos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="original_left_joint_pos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 original_left_joint_pos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="original_right_joint_pos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 original_right_joint_pos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="original_right_joint_pos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 original_right_joint_pos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="isBroken" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool isBroken = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="leftJointPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="leftJointPos.y" type="xs:decimal" default="0" />
-			<xs:attribute name="rightJointPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="rightJointPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="leftJointPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 leftJointPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="leftJointPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 leftJointPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rightJointPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 rightJointPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="rightJointPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 rightJointPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: b2WeldJoint* for leftJoint -->
 				<!-- Some Unknown Type: b2WeldJoint* for rightJoint -->
 			<xs:attribute name="_tags" type="xs:string" default="" />
@@ -8921,14 +9593,46 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool move_camera_with_aim = 1; //  if true, moves camera with the aim.<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="eating_area_min.x" type="xs:int" default="0" />
-			<xs:attribute name="eating_area_min.y" type="xs:int" default="0" />
-			<xs:attribute name="eating_area_max.x" type="xs:int" default="0" />
-			<xs:attribute name="eating_area_max.y" type="xs:int" default="0" />
-			<xs:attribute name="mSmoothedCameraPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mSmoothedCameraPosition.y" type="xs:decimal" default="0" />
-			<xs:attribute name="mSmoothedAimingVector.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mSmoothedAimingVector.y" type="xs:decimal" default="0" />
+			<xs:attribute name="eating_area_min.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 eating_area_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="eating_area_min.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 eating_area_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="eating_area_max.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 eating_area_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="eating_area_max.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 eating_area_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mSmoothedCameraPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedCameraPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mSmoothedCameraPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedCameraPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mSmoothedAimingVector.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedAimingVector;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mSmoothedAimingVector.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mSmoothedAimingVector;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mCameraRecoil" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mCameraRecoil = 0;<br>```]]></xs:documentation>
@@ -8964,8 +9668,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mItemTemporarilyHidden = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mDesiredCameraPos.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mDesiredCameraPos.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mDesiredCameraPos.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mDesiredCameraPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mDesiredCameraPos.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mDesiredCameraPos;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mHasGamepadControlsPrev" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mHasGamepadControlsPrev = 0;<br>```]]></xs:documentation>
@@ -8991,11 +9703,27 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mCamCorrectionTeleSmoothed = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mCamCorrectionGainSmoothed.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mCamCorrectionGainSmoothed.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mCamCorrectionGainSmoothed.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mCamCorrectionGainSmoothed;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCamCorrectionGainSmoothed.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mCamCorrectionGainSmoothed;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: Vec2ArrayInline for mCameraErrorPrev -->
-			<xs:attribute name="mCamErrorAveraged.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mCamErrorAveraged.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mCamErrorAveraged.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mCamErrorAveraged;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCamErrorAveraged.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mCamErrorAveraged;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mCamMovingFastPrev" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool mCamMovingFastPrev = 0;<br>```]]></xs:documentation>
@@ -9172,10 +9900,26 @@
 					<xs:documentation><![CDATA[```cpp<br>	float material_percent = 0.75; //  how much material should there be in the aabbs that we go down <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0" />
-			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0" />
+			<xs:attribute name="aabb_min.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_min.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_min;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="aabb_max.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 aabb_max;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mNextFrame" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mNextFrame = 0;<br>```]]></xs:documentation>
@@ -9403,7 +10147,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	float die_on_low_velocity_limit = 50; //  please see die_on_low_velocity<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="on_death_emit_particle_type" type="xs:string" default="" />
+			<xs:attribute name="on_death_emit_particle_type" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string on_death_emit_particle_type;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="on_death_particle_check_concrete" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool on_death_particle_check_concrete = 0; //  if you want it to stick as concrete, you should enable this<br>```]]></xs:documentation>
@@ -9563,7 +10311,11 @@
 				<!-- Some Unknown Type: ConfigExplosion for config_explosion -->
 				<!-- Some Unknown Type: ConfigDamagesByType for damage_by_type -->
 				<!-- Some Unknown Type: ConfigDamageCritical for damage_critical -->
-			<xs:attribute name="projectile_type" type="PROJECTILE_TYPE" default="0" />
+			<xs:attribute name="projectile_type" type="PROJECTILE_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	PROJECTILE_TYPE::Enum projectile_type;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="shell_casing_offset.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 shell_casing_offset; //  where the shell casing will be created relative to projectile, y is flipped if projectile direction is to the left.<br>```]]></xs:documentation>
@@ -9623,8 +10375,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float max_velocity = 50; // [1, 150] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -9743,7 +10503,11 @@
 			</xs:attribute>
 				<!-- Some Unknown Type: STACK_ANIMATIONSTATE for mStates -->
 				<!-- Some Unknown Type: ComponentTags for mCachedTargetSpriteTag -->
-			<xs:attribute name="mSendOnFinishedMessageName" type="xs:string" default="" />
+			<xs:attribute name="mSendOnFinishedMessageName" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string mSendOnFinishedMessageName;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -9806,9 +10570,21 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool smooth_filtering = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="rect_animation" type="xs:string" default="" />
-			<xs:attribute name="next_rect_animation" type="xs:string" default="" />
-			<xs:attribute name="text" type="xs:string" default="" />
+			<xs:attribute name="rect_animation" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string rect_animation;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="next_rect_animation" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string next_rect_animation;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="text" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string text;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="z_index" type="xs:decimal" default="1">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float z_index = 1; // [-256, 256] 0 = world grid, -1 = enemies, -1.5 = items in world, player = 0.6<br>```]]></xs:documentation>
@@ -9849,8 +10625,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool never_ragdollify_on_death = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="transform_offset.x" type="xs:decimal" default="0" />
-			<xs:attribute name="transform_offset.y" type="xs:decimal" default="0" />
+			<xs:attribute name="transform_offset.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 transform_offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="transform_offset.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 transform_offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="offset_animator_offset.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 offset_animator_offset; //  used by SpriteOffsetAnimator<br>```]]></xs:documentation>
@@ -10447,12 +11231,32 @@
 					<xs:documentation><![CDATA[```cpp<br>	int safety_counter = 0; //  used to keep track that we're not stuck in waiting for a pixel scene to load, that is not going to be loaded<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="state" type="TeleportComponentState" default="0" />
+			<xs:attribute name="state" type="TeleportComponentState" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	TeleportComponentState::Enum state;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: ENTITY_VEC for teleported_entities -->
-			<xs:attribute name="source_location_camera_aabb.min_x" type="xs:decimal" default="0" />
-			<xs:attribute name="source_location_camera_aabb.min_y" type="xs:decimal" default="0" />
-			<xs:attribute name="source_location_camera_aabb.max_x" type="xs:decimal" default="0" />
-			<xs:attribute name="source_location_camera_aabb.max_y" type="xs:decimal" default="0" />
+			<xs:attribute name="source_location_camera_aabb.min_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	types::aabb source_location_camera_aabb;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source_location_camera_aabb.min_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	types::aabb source_location_camera_aabb;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source_location_camera_aabb.max_x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	types::aabb source_location_camera_aabb;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source_location_camera_aabb.max_y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	types::aabb source_location_camera_aabb;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -10483,9 +11287,21 @@
 	<xs:element name="TextLogComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class TextLogComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string key;<br>&emsp;&emsp;&emsp;&emsp;std::string image_filename;<br>&emsp;&emsp;&emsp;&emsp;std::string mCachedName;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="key" type="xs:string" default="" />
-			<xs:attribute name="image_filename" type="xs:string" default="" />
-			<xs:attribute name="mCachedName" type="xs:string" default="" />
+			<xs:attribute name="key" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string key;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="image_filename" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string image_filename;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mCachedName" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string mCachedName;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -10545,9 +11361,21 @@
 	<xs:element name="UIIconComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class UIIconComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string icon_sprite_file;<br>&emsp;&emsp;&emsp;&emsp;std::string name;<br>&emsp;&emsp;&emsp;&emsp;std::string description;<br>&emsp;&emsp;&emsp;&emsp;bool display_above_head = 0;<br>&emsp;&emsp;&emsp;&emsp;bool display_in_hud = 1;<br>&emsp;&emsp;&emsp;&emsp;bool is_perk = 1;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="icon_sprite_file" type="xs:string" default="" />
-			<xs:attribute name="name" type="xs:string" default="" />
-			<xs:attribute name="description" type="xs:string" default="" />
+			<xs:attribute name="icon_sprite_file" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string icon_sprite_file;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string name;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="description" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string description;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="display_above_head" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool display_above_head = 0;<br>```]]></xs:documentation>
@@ -10570,7 +11398,11 @@
 	<xs:element name="UIInfoComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class UIInfoComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string name;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="name" type="xs:string" default="" />
+			<xs:attribute name="name" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string name;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -10578,8 +11410,16 @@
 	<xs:element name="VariableStorageComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class VariableStorageComponent {<br>&emsp;&emsp;&emsp;&emsp;std::string name;<br>&emsp;&emsp;&emsp;&emsp;std::string value_string;<br>&emsp;&emsp;&emsp;&emsp;int value_int = 0;<br>&emsp;&emsp;&emsp;&emsp;bool value_bool = 0;<br>&emsp;&emsp;&emsp;&emsp;float value_float = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="name" type="xs:string" default="" />
-			<xs:attribute name="value_string" type="xs:string" default="" />
+			<xs:attribute name="name" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string name;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="value_string" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string value_string;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="value_int" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int value_int = 0;<br>```]]></xs:documentation>
@@ -10662,8 +11502,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float liquid_drag = 1; //  1 = slows down in liquid, 0 = doesn't slow down at all<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mVelocity.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mVelocity.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mVelocity;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mPrevVelocity.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevVelocity; //  used to update physics bodies<br>```]]></xs:documentation>
@@ -10684,8 +11532,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	int mAverageLiquidHitCount = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mPrevPosition.x" type="xs:int" default="0" />
-			<xs:attribute name="mPrevPosition.y" type="xs:int" default="0" />
+			<xs:attribute name="mPrevPosition.x" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPosition.y" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	ivec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="_tags" type="xs:string" default="" />
 			<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 		</xs:complexType>
@@ -10813,9 +11669,21 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool m_is_culled_previous = 0; //  Developer note: this needs to be serialized in case we serialize SpriteComponent.is_visible<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="type" type="VERLET_TYPE" default="0" />
-			<xs:attribute name="animation_target_offset.x" type="xs:decimal" default="0" />
-			<xs:attribute name="animation_target_offset.y" type="xs:decimal" default="0" />
+			<xs:attribute name="type" type="VERLET_TYPE" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	VERLET_TYPE::Enum type;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_target_offset.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 animation_target_offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="animation_target_offset.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 animation_target_offset;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="cloth_color_edge" type="xs:unsignedInt" default="4288376730">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	uint32 cloth_color_edge = 4288376730;<br>```]]></xs:documentation>
@@ -10826,8 +11694,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	uint32 cloth_color = 4286534774;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="m_position_previous.x" type="xs:decimal" default="0" />
-			<xs:attribute name="m_position_previous.y" type="xs:decimal" default="0" />
+			<xs:attribute name="m_position_previous.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 m_position_previous;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="m_position_previous.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 m_position_previous;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: UintArrayInline for colors -->
 				<!-- Some Unknown Type: UintArrayInline for materials -->
 				<!-- Some Unknown Type: FloatArrayInline for masses -->
@@ -11189,8 +12065,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	int DEBUG_LOADED_FROM_OLD_VERSION = 0; //  how many times have we loaded from an old version of the game<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="player_spawn_location.x" type="xs:decimal" default="0" />
-			<xs:attribute name="player_spawn_location.y" type="xs:decimal" default="0" />
+			<xs:attribute name="player_spawn_location.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 player_spawn_location;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="player_spawn_location.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 player_spawn_location;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 				<!-- Some Unknown Type: MAP_STRING_STRING for lua_globals -->
 				<!-- Some Unknown Type: VEC_PENDINGPORTAL for pending_portals -->
 				<!-- Some Unknown Type: VECTOR_INT32 for apparitions_per_level -->
@@ -11199,9 +12083,21 @@
 				<!-- Some Unknown Type: VECTOR_STRING for flags -->
 				<!-- Some Unknown Type: VECTOR_STRING for changed_materials -->
 				<!-- Some Unknown Type: VEC_CUTTHROUGHWORLD for cuts_through_world -->
-			<xs:attribute name="gore_multiplier" type="xs:int" default="0" />
-			<xs:attribute name="trick_kill_gold_multiplier" type="xs:int" default="0" />
-			<xs:attribute name="damage_flash_multiplier" type="xs:decimal" default="0" />
+			<xs:attribute name="gore_multiplier" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> gore_multiplier;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="trick_kill_gold_multiplier" type="xs:int" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<int> trick_kill_gold_multiplier;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="damage_flash_multiplier" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> damage_flash_multiplier;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="open_fog_of_war_everywhere" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	LensValue<bool> open_fog_of_war_everywhere; //  same as the trailer mode, open fog of war everywhere<br>```]]></xs:documentation>
@@ -11299,8 +12195,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	bool debug_follow_mouse = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mRandomTarget.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mRandomTarget.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mRandomTarget;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mTargetEntityId" type="xs:int" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	int mTargetEntityId = 0;<br>```]]></xs:documentation>
@@ -11430,7 +12334,11 @@
 					<xs:documentation><![CDATA[```cpp<br>	float eat_anim_wait_mult = 0.05; // [0, 10000] <br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ragdoll_filename" type="xs:string" default="" />
+			<xs:attribute name="ragdoll_filename" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	std::string ragdoll_filename;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="is_water_worm" type="NoitaBool" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	bool is_water_worm = 0; //  if true, tries to stay in liquids<br>```]]></xs:documentation>
@@ -11441,9 +12349,21 @@
 					<xs:documentation><![CDATA[```cpp<br>	float max_speed = 25; //  max speed, used when attracted to a point<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="ground_decceleration" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0" />
+			<xs:attribute name="ground_decceleration" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	LensValue<float> ground_decceleration;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetVec.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetVec;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mGravVelocity" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mGravVelocity = 0;<br>```]]></xs:documentation>
@@ -11454,8 +12374,16 @@
 					<xs:documentation><![CDATA[```cpp<br>	float mSpeed = 0;<br>```]]></xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="mTargetPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mTargetPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mTargetPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mTargetPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mTargetPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mTargetSpeed" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	float mTargetSpeed = 0;<br>```]]></xs:documentation>
@@ -11489,8 +12417,16 @@
 	<xs:element name="WormPlayerComponent">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class WormPlayerComponent {<br>&emsp;&emsp;&emsp;&emsp;vec2 mPrevPosition;<br>&emsp;&emsp;&emsp;&emsp;vec2 mDirection; //  if mDirection == 0,0 nothings works<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:complexType mixed="true">
-			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0" />
-			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0" />
+			<xs:attribute name="mPrevPosition.x" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="mPrevPosition.y" type="xs:decimal" default="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevPosition;<br>```]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="mDirection.x" type="xs:decimal" default="0">
 				<xs:annotation>
 					<xs:documentation><![CDATA[```cpp<br>	vec2 mDirection; //  if mDirection == 0,0 nothings works<br>```]]></xs:documentation>
