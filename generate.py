@@ -111,15 +111,15 @@ def render_sub_field(field: Field, suffix: str, docs: str, ty: str) -> str:
         default = "" if ty == "xs:string" else "0"
     if docs != "" or field.comment != "":
         return f"""
-\t\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
-\t\t\t\t\t<xs:annotation>{
-            f"\n\t\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
-            f"\n\t\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
-\t\t\t\t\t</xs:annotation>
-\t\t\t\t</xs:attribute>"""[
+\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
+\t\t\t\t<xs:annotation>{
+            f"\n\t\t\t\t\t<xs:documentation>{docs}</xs:documentation>" if docs != "" else ""}{
+            f"\n\t\t\t\t\t<xs:documentation>{xml_encode(field.comment)}</xs:documentation>" if field.comment != "" else ""}
+\t\t\t\t</xs:annotation>
+\t\t\t</xs:attribute>"""[
             1:
         ]
-    return f"""\t\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}" />"""
+    return f"""\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{field.default if field.default != "-" else ("" if ty == "xs:string" else "0")}" />"""
 
 
 def render_field(field: Field) -> tuple[str, str]:
@@ -144,13 +144,13 @@ def render_component(comp: Component) -> str:
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
-\t\t<xs:element name="{comp.name}">
-\t\t\t<xs:complexType mixed="true">{"\n" + "\n".join(objects) if len(objects) != 0 else ""}
+\t<xs:element name="{comp.name}">
+\t\t<xs:complexType mixed="true">{"\n" + "\n".join(objects) if len(objects) != 0 else ""}
 {"\n".join(attrs)}
-\t\t\t\t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
-\t\t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
-\t\t\t\t</xs:complexType>
-\t\t\t</xs:element>"""[
+\t\t\t<xs:attribute name="_tags" type="xs:string" default=""></xs:attribute>
+\t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1"></xs:attribute>
+\t\t</xs:complexType>
+\t</xs:element>"""[
         1:
     ]
 
