@@ -140,7 +140,7 @@ def render_field(field: Field) -> tuple[str, str]:
 
 
 def render_field_cpp(comp: Field) -> str:
-    return f"\t{comp.ty} {comp.name}{f" = {comp.default}" if comp.default != "-" else ""};{f" // {comp.values} {comp.comment}" if comp.values != "" or comp.comment != "" else ""}"
+    return f"\t{comp.ty} {comp.name}{f" = {comp.default if comp.ty != "std::string" else f'"{comp.default}"'}" if comp.default != "-" else ""};{f" // {comp.values} {comp.comment}" if comp.values != "" or comp.comment != "" else ""}"
 
 
 def render_component_cpp(comp: Component) -> str:
