@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 PRIMARY_FILE = True
 TAB = "&emsp;&emsp;&emsp;&emsp;"
+NL = "<br>"
 
 
 @dataclass
@@ -158,7 +159,7 @@ def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) ->
     return f"""
 \t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
 \t\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{render_field_cpp(field)}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field)}{NL}```]]></xs:documentation>
 \t\t\t\t</xs:annotation>
 \t\t\t</xs:attribute>"""[
         1:
@@ -187,7 +188,7 @@ def render_component_cpp(comp: Component) -> str:
     out = f"```cpp\nclass {comp.name} {{\n"
     out += "\n".join([render_field_cpp(field) for field in comp.fields])
     out += "\n};\n```"
-    return out.replace("\n", "<br>").replace("\t", TAB)  # parser bug
+    return out.replace("\n", NL).replace("\t", TAB)  # parser bug
 
 
 def render_component(comp: Component) -> str:
@@ -330,31 +331,31 @@ out = f"""
 \t</xs:simpleType>
 \t<xs:complexType name="Transform">
 \t\t<xs:annotation>
-\t\t\t<xs:documentation><![CDATA[```cpp<br>class types::xform {{<br>{TAB}{transform["position"]}<br>{TAB}{transform["scale"]}<br>{TAB}{transform["rotation"]}<br>}};```]]></xs:documentation>
+\t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
 \t\t</xs:annotation>
 \t\t<xs:attribute name="position.x" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["position"]}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="position.y" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["position"]}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="scale.x" type="xs:decimal" default="1" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["scale"]}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="scale.y" type="xs:decimal" default="1" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["scale"]}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t\t<xs:attribute name="rotation" type="xs:decimal" default="0" >
 \t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp<br>{transform["rotation"]}<br>```]]></xs:documentation>
+\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["rotation"]}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 \t</xs:complexType>
