@@ -209,6 +209,8 @@ def do_var_line(line: str) -> Field:
         example = line.split("]")[0] + "]"
         line = line[len(example) :]
         shift += len(example)
+    if example == "[0, 1]":
+        example = "" # these are almost always wrong
     comment = '"'.join(line.split('"')[1:-1])
     return Field(field, ty, default, example, comment)
 
