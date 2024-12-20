@@ -449,4 +449,4 @@ def prune_builtin(src: str) -> str:
 
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
 sprite = prune_builtin(open("./sprite.xsd", "r").read())
-open("generated.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
+open("merged.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
