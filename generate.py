@@ -40,6 +40,8 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
     enum = "::Enum"
+    if ty == "StatusEffectType":
+        return [("", "GAME_EFFECT")]
     if ty[-len(enum) :] == enum:
         return [("", ty[: -len(enum)])]
     if ty[: len(lens)] == lens:
@@ -50,7 +52,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
         return [("", "xs:int")]
     if ty[: len(unsigned)] == unsigned or ty[:4] == "uint":
         return [("", "xs:unsignedInt")]
-    if ty == "std::string":
+    if ty == "std::string" or ty == "std_string" or ty == "VEC_OF_MATERIALS":
         return [("", "xs:string")]
     if ty == "bool":
         return [("", "NoitaBool")]

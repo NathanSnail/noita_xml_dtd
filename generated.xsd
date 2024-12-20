@@ -3133,7 +3133,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	int current_slot_durability = -1; //  After this many slots the last slot of the gun is removed. -1 means not initialized/infinite.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- Some Unknown Type: std_string for slot_consumption_function -->
+		<xs:attribute name="slot_consumption_function" type="xs:string" default="_get_gun_slot_durability_default">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	std_string slot_consumption_function = _get_gun_slot_durability_default; //  Name of the lua function in 'gun.lua' that is called to calculate durability of the last slot in the gun<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mNextFrameUsable = 0; //  hax, don't touch!<br>```]]></xs:documentation>
@@ -4597,7 +4601,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	int ignored_material = 0; //  String name of a material that shouldn't be eaten by the component<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- Some Unknown Type: VEC_OF_MATERIALS for materials -->
+		<xs:attribute name="materials" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	VEC_OF_MATERIALS materials; //  is a list of accepted materials sorted<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7243,7 +7251,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- Some Unknown Type: StatusEffectType for causing_status_effect -->
+		<xs:attribute name="causing_status_effect" type="GAME_EFFECT" default="ELECTROCUTION">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	StatusEffectType causing_status_effect = 0; //  Status effect that caused this game effect, if any<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7498,7 +7510,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Hit entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- Some Unknown Type: StatusEffectType for condition_status -->
+		<xs:attribute name="condition_status" type="GAME_EFFECT" default="NONE">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	StatusEffectType condition_status = 0; //  Hit entity needs to have this 'STATUS_EFFECT' for effects to apply<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="effect_hit" type="HIT_EFFECT" default="NONE">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	HIT_EFFECT::Enum effect_hit; //  What kind of 'HIT_EFFECT' is applied to hit entity if condition is true<br>```]]></xs:documentation>
@@ -12490,7 +12506,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Shooting entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- Some Unknown Type: StatusEffectType for condition_status -->
+		<xs:attribute name="condition_status" type="GAME_EFFECT" default="NONE">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	StatusEffectType condition_status = 0; //  Shooting entity needs to have this 'STATUS_EFFECT' for effects to apply<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -13107,7 +13127,11 @@
 		<!-- Some Unknown Type: VECTOR_INT32 for stain_effect_cooldowns -->
 		<!-- Some Unknown Type: VECTOR_FLOAT for effects_previous -->
 		<!-- Some Unknown Type: VECTOR_FLOAT for ingestion_effects -->
-		<!-- Some Unknown Type: VEC_OF_MATERIALS for ingestion_effect_causes -->
+		<xs:attribute name="ingestion_effect_causes" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>	VEC_OF_MATERIALS ingestion_effect_causes;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<!-- Some Unknown Type: VECTOR_INT32 for ingestion_effect_causes_many -->
 		<xs:attribute name="mLastAttackingPlayerFrame" type="xs:int" default="-99999">
 			<xs:annotation>
