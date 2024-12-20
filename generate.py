@@ -214,8 +214,7 @@ def render_component(comp: Component) -> str:
 {"\n".join(objects)}
 \t\t\t</xs:all>""" if len(objects) != 0 else ""}{
 "\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
-\t\t<xs:attribute name="_tags" type="xs:string" default="" />
-\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
+\t\t<xs:attributeGroup ref="CommonComponentAttributes"/>
 \t</xs:complexType>"""[
         1:
     ]
@@ -383,6 +382,10 @@ out = f"""
 \t\t\t<xs:enumeration value="1" />
 \t\t</xs:restriction>
 \t</xs:simpleType>
+\t<xs:attributeGroup name="CommonComponentAttributes">
+\t\t<xs:attribute name="_tags" type="xs:string" default="" />
+\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
+\t</xs:attributeGroup>
 \t<xs:complexType name="Transform">
 \t\t<xs:annotation>
 \t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
