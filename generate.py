@@ -222,7 +222,7 @@ def render_config(config: Component) -> str:
     objects = [x[0] for x in fields if x[0] != ""]
     assert len(objects) == 0, "Config can't have config inside it"
     return f"""
-\t<xs:complexType name="{config.name}">
+\t<xs:complexType name="{config.name}" mixed="true">
 \t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(config)}]]> </xs:documentation> </xs:annotation>
 {"\n".join(attrs)}
 \t</xs:complexType>"""[

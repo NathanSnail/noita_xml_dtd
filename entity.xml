@@ -20,7 +20,8 @@
 	</Entity>
 	<AnimalAIComponent />
 
-	<ProjectileComponent projectile_type="PROJECTILE"></ProjectileComponent>
+	<ProjectileComponent projectile_type="PROJECTILE">
+		<damage_by_type> </damage_by_type></ProjectileComponent>
 	<SpriteComponent
 		image_file="whatever"
 		offset_x="5"
