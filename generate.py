@@ -179,7 +179,7 @@ def render_field(field: Field, component_name: str) -> tuple[str, str]:
             "",
         )
     if len(tys) == 0:
-        return "", f"\t\t\t\t<!-- Some Unknown Type: {field.ty} for {field.name} -->"
+        return "", f"\t\t<!-- Some Unknown Type: {field.ty} for {field.name} -->"
     return "", "\n".join(
         [render_sub_field(field, suffix, ty, component_name) for suffix, ty in tys]
     )
@@ -205,8 +205,8 @@ def render_component(comp: Component) -> str:
 \t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>{f"""
 \t\t\t<xs:all>
 {"\n".join(objects)}
-\t\t\t</xs:all>""" if len(objects) != 0 else ""}
-{"\n".join(attrs)}
+\t\t\t</xs:all>""" if len(objects) != 0 else ""}{
+"\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
 \t\t<xs:attribute name="_tags" type="xs:string" default="" />
 \t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 \t</xs:complexType>"""[

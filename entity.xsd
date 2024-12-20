@@ -2938,7 +2938,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float TEMP_TEMP_TEMP = 0; // [0, 3.5] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: AIData* for data -->
+		<!-- Some Unknown Type: AIData* for data -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -3133,7 +3133,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int current_slot_durability = -1; //  After this many slots the last slot of the gun is removed. -1 means not initialized/infinite.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: std_string for slot_consumption_function -->
+		<!-- Some Unknown Type: std_string for slot_consumption_function -->
 		<xs:attribute name="mNextFrameUsable" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mNextFrameUsable = 0; //  hax, don't touch!<br>```]]></xs:documentation>
@@ -3309,13 +3309,13 @@
 				<xs:documentation><![CDATA[```cpp<br>	int evil_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityTags for m_recognized_entity_tags -->
+		<!-- Some Unknown Type: EntityTags for m_recognized_entity_tags -->
 		<xs:attribute name="m_recognized_entity_tags_count" type="xs:unsignedInt" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	uint32 m_recognized_entity_tags_count = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityTags for m_current_entity_tags -->
+		<!-- Some Unknown Type: EntityTags for m_current_entity_tags -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -3744,7 +3744,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	LensValue<float> mAggression; //  the greater this value the more likely we're to attack creatures from other herds<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: AI_STATE_STACK for mAiStateStack -->
+		<!-- Some Unknown Type: AI_STATE_STACK for mAiStateStack -->
 		<xs:attribute name="mAiStateLastSwitchFrame" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mAiStateLastSwitchFrame = 0; //  when was the last time we switched a state<br>```]]></xs:documentation>
@@ -3760,8 +3760,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mCreatureDetectionNextCheck = 0; //  threat/prey check, next time we check for threat/prey<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mGreatestThreat -->
-				<!-- Some Unknown Type: EntityID for mGreatestPrey -->
+		<!-- Some Unknown Type: EntityID for mGreatestThreat -->
+		<!-- Some Unknown Type: EntityID for mGreatestPrey -->
 		<xs:attribute name="mSelectedMultiAttack" type="xs:int" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mSelectedMultiAttack = -1; //  which AIAttackComponent attack are we using?<br>```]]></xs:documentation>
@@ -3927,7 +3927,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mMeleeAttackDashNextFrame = 0; //  the next frame we can perform a melee attack<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: RtsUnitGoal for mCurrentJob -->
+		<!-- Some Unknown Type: RtsUnitGoal for mCurrentJob -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -3948,7 +3948,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int material = 0; //  string name for the material the arc is made of<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mArcTarget -->
+		<!-- Some Unknown Type: EntityID for mArcTarget -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -3969,7 +3969,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int update_every_n_frame = 1; // [0, 60] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for entity_responsible -->
+		<!-- Some Unknown Type: EntityID for entity_responsible -->
 		<xs:attribute name="death_cause" type="xs:string" default="$damage_curse">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	std::string death_cause = "$damage_curse"; // [0, 60] <br>```]]></xs:documentation>
@@ -4038,7 +4038,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool destroy_component_when_target_is_gone = 1; //  should probably be on by default<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for target -->
+		<!-- Some Unknown Type: EntityID for target -->
 		<xs:attribute name="mUpdateFrame" type="xs:int" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mUpdateFrame = -1;<br>```]]></xs:documentation>
@@ -4089,7 +4089,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int m_audio_physics_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: AudioSourceHandle for m_latest_source -->
+		<!-- Some Unknown Type: AudioSourceHandle for m_latest_source -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -4170,7 +4170,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float m_intensity2 = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: AudioSourceHandle for m_source -->
+		<!-- Some Unknown Type: AudioSourceHandle for m_source -->
 		<xs:attribute name="m_frame_created" type="xs:int" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int m_frame_created = -1;<br>```]]></xs:documentation>
@@ -4186,7 +4186,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int limit_to_every_n_frame = 0; //  if > 1, we will only check the biome every n frames<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: Biome* for unsafe_current_biome -->
+		<!-- Some Unknown Type: Biome* for unsafe_current_biome -->
 		<xs:attribute name="current_biome_name" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	std::string current_biome_name; //  used to track in which biome we are at<br>```]]></xs:documentation>
@@ -4597,7 +4597,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int ignored_material = 0; //  String name of a material that shouldn't be eaten by the component<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VEC_OF_MATERIALS for materials -->
+		<!-- Some Unknown Type: VEC_OF_MATERIALS for materials -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -5123,7 +5123,7 @@
 	</xs:complexType>
 	<xs:complexType name="CharacterStatsComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class CharacterStatsComponent {<br>&emsp;&emsp;&emsp;&emsp;CharacterStatsModifier stats;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-				<!-- Some Unknown Type: CharacterStatsModifier for stats -->
+		<!-- Some Unknown Type: CharacterStatsModifier for stats -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -6417,11 +6417,11 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mLiquidMaterialWeAreIn = -1; //  stores the liquid material we're in... may not be the most accurate<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: std::vector< int > for mDamageMaterials -->
-				<!-- Some Unknown Type: std::vector< float > for mDamageMaterialsHowMuch -->
-				<!-- Some Unknown Type: std::vector< int > for mCollisionMessageMaterials -->
-				<!-- Some Unknown Type: std::vector< int > for mCollisionMessageMaterialCountsThisFrame -->
-				<!-- Some Unknown Type: std::vector< float > for mMaterialDamageThisFrame -->
+		<!-- Some Unknown Type: std::vector< int > for mDamageMaterials -->
+		<!-- Some Unknown Type: std::vector< float > for mDamageMaterialsHowMuch -->
+		<!-- Some Unknown Type: std::vector< int > for mCollisionMessageMaterials -->
+		<!-- Some Unknown Type: std::vector< int > for mCollisionMessageMaterialCountsThisFrame -->
+		<!-- Some Unknown Type: std::vector< float > for mMaterialDamageThisFrame -->
 		<xs:attribute name="mFallDamageThisFrame" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	float mFallDamageThisFrame = 0; //  Amount of fall damage received this frame<br>```]]></xs:documentation>
@@ -6452,8 +6452,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mPhysicsDamageLastFrame = 0; //  frame number when we took physics damage<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityTypeID for mPhysicsDamageEntity -->
-				<!-- Some Unknown Type: EntityTypeID for mPhysicsDamageTelekinesisCasterEntity -->
+		<!-- Some Unknown Type: EntityTypeID for mPhysicsDamageEntity -->
+		<!-- Some Unknown Type: EntityTypeID for mPhysicsDamageTelekinesisCasterEntity -->
 		<xs:attribute name="mLastDamageFrame" type="xs:int" default="-120">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mLastDamageFrame = -120; //  frame number when we took any damage<br>```]]></xs:documentation>
@@ -6549,7 +6549,6 @@
 	</xs:complexType>
 	<xs:complexType name="DebugFollowMouseComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class DebugFollowMouseComponent {<br><br>};<br>```]]> </xs:documentation> </xs:annotation>
-
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -6629,7 +6628,6 @@
 				<xs:element name="drug_fx_target" type="ConfigDrugFx" minOccurs="0"/>
 				<xs:element name="m_drug_fx_current" type="ConfigDrugFx" minOccurs="0"/>
 			</xs:all>
-
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -6639,7 +6637,6 @@
 				<xs:element name="fx_add" type="ConfigDrugFx" minOccurs="0"/>
 				<xs:element name="fx_multiply" type="ConfigDrugFx" minOccurs="0"/>
 			</xs:all>
-
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7101,9 +7098,9 @@
 				<xs:documentation><![CDATA[```cpp<br>	int frame_length = -1; //  if not 0 will reapply this effect after this many frames have gone by<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VECTOR_STR for game_effect_entitities -->
-				<!-- Some Unknown Type: VECTOR_ENTITYID for mEntitiesAppliedOutTo -->
-				<!-- Some Unknown Type: VECTOR_INT for mEntitiesAppliedFrame -->
+		<!-- Some Unknown Type: VECTOR_STR for game_effect_entitities -->
+		<!-- Some Unknown Type: VECTOR_ENTITYID for mEntitiesAppliedOutTo -->
+		<!-- Some Unknown Type: VECTOR_INT for mEntitiesAppliedFrame -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7149,8 +7146,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	std::string polymorph_target; //  when doing a polymorph, this is what we convert it to<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: USTRING for mSerializedData -->
-				<!-- Some Unknown Type: EntityID for mCaster -->
+		<!-- Some Unknown Type: USTRING for mSerializedData -->
+		<!-- Some Unknown Type: EntityID for mCaster -->
 		<xs:attribute name="mCasterHerdId" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mCasterHerdId = 0; //  Contains the herd if of the caster of this GameEffect<br>```]]></xs:documentation>
@@ -7246,7 +7243,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: StatusEffectType for causing_status_effect -->
+		<!-- Some Unknown Type: StatusEffectType for causing_status_effect -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7267,7 +7264,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool report_new_biomes = 1; //  if false, won't report when player enters new biomes<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VISITED_VEC for mVisitiedBiomes -->
+		<!-- Some Unknown Type: VISITED_VEC for mVisitiedBiomes -->
 		<xs:attribute name="mNewBiomeCheckFrame" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mNewBiomeCheckFrame = 0;<br>```]]></xs:documentation>
@@ -7413,7 +7410,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 velocity;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mEntityHome -->
+		<!-- Some Unknown Type: EntityID for mEntityHome -->
 		<xs:attribute name="mFramesWithoutHome" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mFramesWithoutHome = 0;<br>```]]></xs:documentation>
@@ -7469,19 +7466,18 @@
 				<xs:documentation><![CDATA[```cpp<br>	float gold = 0; // [0, 1000] How much gold the player has<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: Entity* for god_entity -->
+		<!-- Some Unknown Type: Entity* for god_entity -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
 	<xs:complexType name="GunComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class GunComponent {<br>&emsp;&emsp;&emsp;&emsp;LuaManager* mLuaManager;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-				<!-- Some Unknown Type: LuaManager* for mLuaManager -->
+		<!-- Some Unknown Type: LuaManager* for mLuaManager -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
 	<xs:complexType name="HealthBarComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class HealthBarComponent {<br><br>};<br>```]]> </xs:documentation> </xs:annotation>
-
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -7502,7 +7498,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Hit entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: StatusEffectType for condition_status -->
+		<!-- Some Unknown Type: StatusEffectType for condition_status -->
 		<xs:attribute name="effect_hit" type="HIT_EFFECT" default="NONE">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	HIT_EFFECT::Enum effect_hit; //  What kind of 'HIT_EFFECT' is applied to hit entity if condition is true<br>```]]></xs:documentation>
@@ -7608,7 +7604,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float max_turn_rate = 0.05; // [0, 6.283] radians. If just_rotate_towards_target then this is the maximum radians it can turn per frame<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for predefined_target -->
+		<!-- Some Unknown Type: EntityID for predefined_target -->
 		<xs:attribute name="look_for_root_entities_only" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool look_for_root_entities_only = 0; //  if set, will only look for entities that are _not_ child entities.<br>```]]></xs:documentation>
@@ -7679,8 +7675,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mTarget;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mTargetEntity -->
-				<!-- Some Unknown Type: IKLimbAttackerState for mState -->
+		<!-- Some Unknown Type: EntityID for mTargetEntity -->
+		<!-- Some Unknown Type: IKLimbAttackerState for mState -->
 		<xs:attribute name="mStateTimer" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	float mStateTimer = 0;<br>```]]></xs:documentation>
@@ -7896,7 +7892,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mPrevBodyPosition;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: IKLimbStateVec for mLimbStates -->
+		<!-- Some Unknown Type: IKLimbStateVec for mLimbStates -->
 		<xs:attribute name="mHasGroundAttachmentOnAnyLeg" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mHasGroundAttachmentOnAnyLeg = 0; //  Will be set to true if at least one leg is attached to ground.<br>```]]></xs:documentation>
@@ -7957,7 +7953,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	std::string m_ingestion_satiation_material_tag_cached;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: std::set<int32> for m_ingestion_satiation_material_cache -->
+		<!-- Some Unknown Type: std::set<int32> for m_ingestion_satiation_material_cache -->
 		<xs:attribute name="m_damage_effect_lifetime" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int32 m_damage_effect_lifetime = 0;<br>```]]></xs:documentation>
@@ -8056,10 +8052,10 @@
 				<xs:documentation><![CDATA[```cpp<br>	uint32 mSavedActiveItemIndex = 0; //  Used to retain active item across save/load. Don't touch this unless you know what you're doing!<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mActiveItem -->
-				<!-- Some Unknown Type: EntityID for mActualActiveItem -->
-				<!-- Some Unknown Type: EntityID for mActiveStash -->
-				<!-- Some Unknown Type: EntityID for mThrowItem -->
+		<!-- Some Unknown Type: EntityID for mActiveItem -->
+		<!-- Some Unknown Type: EntityID for mActualActiveItem -->
+		<!-- Some Unknown Type: EntityID for mActiveStash -->
+		<!-- Some Unknown Type: EntityID for mThrowItem -->
 		<xs:attribute name="mItemHolstered" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mItemHolstered = 0;<br>```]]></xs:documentation>
@@ -8155,8 +8151,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	ivec2 ui_position_on_screen; //  where do we load this on screen<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: InvenentoryUpdateListener* for update_listener -->
-				<!-- Some Unknown Type: INVENTORYITEM_VECTOR for items -->
+		<!-- Some Unknown Type: InvenentoryUpdateListener* for update_listener -->
+		<!-- Some Unknown Type: INVENTORYITEM_VECTOR for items -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -8177,7 +8173,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool mDisplayFireRateWaitBar = 0; //  hax, don't touch!<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: ImGuiContext* for imgui -->
+		<!-- Some Unknown Type: ImGuiContext* for imgui -->
 		<xs:attribute name="mLastFrameInteracted" type="xs:int" default="-100">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mLastFrameInteracted = -100;<br>```]]></xs:documentation>
@@ -8188,7 +8184,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mLastFrameActionsVisible = -1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: Entity* for mLastPurchasedAction -->
+		<!-- Some Unknown Type: Entity* for mLastPurchasedAction -->
 		<xs:attribute name="mActive" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mActive = 0;<br>```]]></xs:documentation>
@@ -8639,7 +8635,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool is_immune_to_kicks = 0; //  if set, won't drop the wand if kicked. Mainly used by wand ghosts.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for only_pick_this_entity -->
+		<!-- Some Unknown Type: EntityID for only_pick_this_entity -->
 		<xs:attribute name="drop_items_on_death" type="NoitaBool" default="1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool drop_items_on_death = 1; //  if true, will drop all items. E.g. if true for player, player drops their wands<br>```]]></xs:documentation>
@@ -8903,7 +8899,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float mAlpha = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: as::Sprite* for mSprite -->
+		<!-- Some Unknown Type: as::Sprite* for mSprite -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -8942,7 +8938,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mExPosition; //  stores the ex position of this entity<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mArcTarget -->
+		<!-- Some Unknown Type: EntityID for mArcTarget -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -9318,8 +9314,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mTimesExecuted = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: LuaManager* for mLuaManager -->
-				<!-- Some Unknown Type: ValueMap for mPersistentValues -->
+		<!-- Some Unknown Type: LuaManager* for mLuaManager -->
+		<!-- Some Unknown Type: ValueMap for mPersistentValues -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -9440,8 +9436,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool mUseArrays = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: std::vector<int> for mFromMaterialArray -->
-				<!-- Some Unknown Type: std::vector<int> for mToMaterialArray -->
+		<!-- Some Unknown Type: std::vector<int> for mFromMaterialArray -->
+		<!-- Some Unknown Type: std::vector<int> for mToMaterialArray -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -9472,7 +9468,6 @@
 	</xs:complexType>
 	<xs:complexType name="ManaReloaderComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ManaReloaderComponent {<br><br>};<br>```]]> </xs:documentation> </xs:annotation>
-
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -9643,7 +9638,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int32 last_frame_drank = -100; //  last frame someone ingested from this via IngestionSystem<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: MATERIAL_VEC_DOUBLES for count_per_material_type -->
+		<!-- Some Unknown Type: MATERIAL_VEC_DOUBLES for count_per_material_type -->
 		<xs:attribute name="is_death_handled" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool is_death_handled = 0;<br>```]]></xs:documentation>
@@ -9894,7 +9889,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float mLength = 0; // [0, 2000] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: NINJA_ROPE_SEGMENT_VECTOR for mSegments -->
+		<!-- Some Unknown Type: NINJA_ROPE_SEGMENT_VECTOR for mSegments -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -10285,13 +10280,13 @@
 				<xs:documentation><![CDATA[```cpp<br>	ivec2 m_last_emit_position;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: ParticleEmitter_Animation* for m_cached_image_animation -->
+		<!-- Some Unknown Type: ParticleEmitter_Animation* for m_cached_image_animation -->
 		<xs:attribute name="m_image_based_animation_time" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	float m_image_based_animation_time = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: float* for m_collision_angles -->
+		<!-- Some Unknown Type: float* for m_collision_angles -->
 		<xs:attribute name="m_particle_attractor_id" type="xs:int" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int16 m_particle_attractor_id = -1;<br>```]]></xs:documentation>
@@ -10417,9 +10412,9 @@
 				<xs:documentation><![CDATA[```cpp<br>	int read_state = 0; //  Read only value to get mState as an integer. Used to detect when the worst cheesers are trying to cheese our beloved squidward.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VECTOR_JUMPPARAMS for jump_trajectories -->
-				<!-- Some Unknown Type: PathFindingInput for input -->
-				<!-- Some Unknown Type: MSG_QUEUE_PATH_FINDING_RESULT for job_result_receiver -->
+		<!-- Some Unknown Type: VECTOR_JUMPPARAMS for jump_trajectories -->
+		<!-- Some Unknown Type: PathFindingInput for input -->
+		<!-- Some Unknown Type: MSG_QUEUE_PATH_FINDING_RESULT for job_result_receiver -->
 		<xs:attribute name="waiting_for" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool waiting_for = 0; //  TODO: Comment<br>```]]></xs:documentation>
@@ -10430,8 +10425,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	int next_search_frame = 0; //  TODO: Comment<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VECTOR_PATHNODE for path -->
-				<!-- Some Unknown Type: PathFindingResultNode for path_next_node -->
+		<!-- Some Unknown Type: VECTOR_PATHNODE for path -->
+		<!-- Some Unknown Type: PathFindingResultNode for path_next_node -->
 		<xs:attribute name="path_next_node_vector_to.x" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	vec2 path_next_node_vector_to; //  TODO: Comment<br>```]]></xs:documentation>
@@ -10447,7 +10442,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float path_next_node_distance_to = 0; //  TODO: Comment<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: PathFindingNodeHandle for path_previous_node -->
+		<!-- Some Unknown Type: PathFindingNodeHandle for path_previous_node -->
 		<xs:attribute name="path_frames_stuck" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int path_frames_stuck = 0; //  TODO: Comment<br>```]]></xs:documentation>
@@ -10463,9 +10458,9 @@
 				<xs:documentation><![CDATA[```cpp<br>	int path_last_frame_with_job = 0; //  TODO: Comment<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: PathFindingLogic* for mLogic -->
-				<!-- Some Unknown Type: PathFindingLogic* for mFallbackLogic -->
-				<!-- Some Unknown Type: PathFindingLogic* for mSelectedLogic -->
+		<!-- Some Unknown Type: PathFindingLogic* for mLogic -->
+		<!-- Some Unknown Type: PathFindingLogic* for mFallbackLogic -->
+		<!-- Some Unknown Type: PathFindingLogic* for mSelectedLogic -->
 		<xs:attribute name="mEnabled" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mEnabled = 0; //  TODO: Comment<br>```]]></xs:documentation>
@@ -10491,7 +10486,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float mNodeProximityCheckCorrectionY = 0; //  TODO: Comment<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VECTOR_PATHNODE for debug_path -->
+		<!-- Some Unknown Type: VECTOR_PATHNODE for debug_path -->
 		<xs:attribute name="jump_velocity_multiplier" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	LensValue<float> jump_velocity_multiplier; //  TODO: Comment<br>```]]></xs:documentation>
@@ -10522,7 +10517,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float player_marker_radius = 0; // [0, 128] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: PathFindingNodeHandle for mNode -->
+		<!-- Some Unknown Type: PathFindingNodeHandle for mNode -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -10688,7 +10683,7 @@
 	</xs:complexType>
 	<xs:complexType name="PhysicsBody2Component" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class PhysicsBody2Component {<br>&emsp;&emsp;&emsp;&emsp;b2ObjectID mBodyId = 0; //  this is mBody->GetBodyId() - not to be confused with uid, has to be tracked separately, since the mBody pointer is not unique<br>&emsp;&emsp;&emsp;&emsp;float linear_damping = 0;<br>&emsp;&emsp;&emsp;&emsp;float angular_damping = 0;<br>&emsp;&emsp;&emsp;&emsp;bool allow_sleep = 1;<br>&emsp;&emsp;&emsp;&emsp;bool fixed_rotation = 0;<br>&emsp;&emsp;&emsp;&emsp;bool is_bullet = 0;<br>&emsp;&emsp;&emsp;&emsp;bool is_static = 0;<br>&emsp;&emsp;&emsp;&emsp;float buoyancy = 0.7;<br>&emsp;&emsp;&emsp;&emsp;bool hax_fix_going_through_ground = 0; //  if 1, will lift the body upwards if it is inside ground<br>&emsp;&emsp;&emsp;&emsp;bool hax_fix_going_through_sand = 0; //  hax_fix_going_through_ground has to be set, if set will lift the body upwards if it is inside sand<br>&emsp;&emsp;&emsp;&emsp;bool hax_wait_till_pixel_scenes_loaded = 0;<br>&emsp;&emsp;&emsp;&emsp;bool go_through_sand = 0; //  if 1, will go through sand PhysicsBridge::mGoThroughSand = 1<br>&emsp;&emsp;&emsp;&emsp;bool auto_clean = 1; //  if 1, the simulation might destroy this body if it's hidden under sand. Problematic if you have a small piece with joint attached to something like the wheels of minecart. Set to 0 in cases like that<br>&emsp;&emsp;&emsp;&emsp;bool force_add_update_areas = 1; //  if 1, we will mark our predicted aabb as a box2d update area.<br>&emsp;&emsp;&emsp;&emsp;bool update_entity_transform = 1;<br>&emsp;&emsp;&emsp;&emsp;bool kill_entity_if_body_destroyed = 1; //  if 1, will kill the entity when physics body is destroyed<br>&emsp;&emsp;&emsp;&emsp;bool kill_entity_after_initialized = 0; //  if 1, will destroy the entity after initialization has been done based the entity's PhysicsBodyComponents and JointComponents<br>&emsp;&emsp;&emsp;&emsp;bool manual_init = 0; //  if 1, initialization occurs only when done via for example lua component and Physic2InitFromComponents()<br>&emsp;&emsp;&emsp;&emsp;bool destroy_body_if_entity_destroyed = 0; //  if 1, root body is destroyed if the entity is destroyed<br>&emsp;&emsp;&emsp;&emsp;float root_offset_x = 0; //  TODO<br>&emsp;&emsp;&emsp;&emsp;float root_offset_y = 0; //  TODO<br>&emsp;&emsp;&emsp;&emsp;float init_offset_x = 0; //  TODO<br>&emsp;&emsp;&emsp;&emsp;float init_offset_y = 0; //  TODO<br>&emsp;&emsp;&emsp;&emsp;bool mActiveState = 0; //  private variable, please don't mess around with this<br>&emsp;&emsp;&emsp;&emsp;uint32 mPixelCountOrig = 0; //  the number of pixels the body had when it was originally created<br>&emsp;&emsp;&emsp;&emsp;vec2 mLocalPosition; //  private variable, please don't mess around with this<br>&emsp;&emsp;&emsp;&emsp;b2Body* mBody;<br>&emsp;&emsp;&emsp;&emsp;bool mInitialized = 0; //  private variable, please don't mess around with this<br>&emsp;&emsp;&emsp;&emsp;uint32 mPixelCount = 0; //  if set, tracks the number of csolidcells the body has<br>&emsp;&emsp;&emsp;&emsp;bool mRefreshed = 0; //  this is sure the bodies are only parsed once<br>};<br>```]]> </xs:documentation> </xs:annotation>
-				<!-- Some Unknown Type: b2ObjectID for mBodyId -->
+		<!-- Some Unknown Type: b2ObjectID for mBodyId -->
 		<xs:attribute name="linear_damping" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	float linear_damping = 0;<br>```]]></xs:documentation>
@@ -10819,7 +10814,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mLocalPosition; //  private variable, please don't mess around with this<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Body* for mBody -->
+		<!-- Some Unknown Type: b2Body* for mBody -->
 		<xs:attribute name="mInitialized" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mInitialized = 0; //  private variable, please don't mess around with this<br>```]]></xs:documentation>
@@ -11000,14 +10995,14 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 initial_velocity; //  if you want a velocity at the start, set it here<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Body* for mBody -->
-				<!-- Some Unknown Type: b2ObjectID for mBodyId -->
+		<!-- Some Unknown Type: b2Body* for mBody -->
+		<!-- Some Unknown Type: b2ObjectID for mBodyId -->
 		<xs:attribute name="mPixelCount" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mPixelCount = 0; //  if set, tracks the number of csolidcells the body has<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Vec2 for mLocalPosition -->
+		<!-- Some Unknown Type: b2Vec2 for mLocalPosition -->
 		<xs:attribute name="mRefreshed" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mRefreshed = 0; //  this is sure the bodies are only parsed once<br>```]]></xs:documentation>
@@ -11068,7 +11063,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	int material = 0; //  the material from which the body is created<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Body* for mBody -->
+		<!-- Some Unknown Type: b2Body* for mBody -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -11254,7 +11249,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	JOINT_TYPE::Enum type; //  Enum - JOINT_TYPE<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Joint* for mJoint -->
+		<!-- Some Unknown Type: b2Joint* for mJoint -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -11348,8 +11343,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 rightJointPos;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2WeldJoint* for leftJoint -->
-				<!-- Some Unknown Type: b2WeldJoint* for rightJoint -->
+		<!-- Some Unknown Type: b2WeldJoint* for leftJoint -->
+		<!-- Some Unknown Type: b2WeldJoint* for rightJoint -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -11375,7 +11370,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float offset_y = 0; // [0, 20] offset of where the ragdoll will be created<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: std::vector<b2Body*>* for bodies -->
+		<!-- Some Unknown Type: std::vector<b2Body*>* for bodies -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -11606,7 +11601,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool create_box2d_bodies = 0; //  if true, will create new pixel sprites with box2d bodies, instead of gridworld cells<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: PixelSprite* for mPixelSprite -->
+		<!-- Some Unknown Type: PixelSprite* for mPixelSprite -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -11787,7 +11782,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mCamCorrectionGainSmoothed;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: Vec2ArrayInline for mCameraErrorPrev -->
+		<!-- Some Unknown Type: Vec2ArrayInline for mCameraErrorPrev -->
 		<xs:attribute name="mCamErrorAveraged.x" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	vec2 mCamErrorAveraged;<br>```]]></xs:documentation>
@@ -11858,7 +11853,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool mCollidedHorizontally = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: b2Body* for mPhysicsCollisionHax -->
+		<!-- Some Unknown Type: b2Body* for mPhysicsCollisionHax -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -12395,8 +12390,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	RAGDOLL_FX::Enum ragdoll_fx_on_collision; //  if not NORMAL, do a special ragdoll<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mWhoShot -->
-				<!-- Some Unknown Type: EntityTypeID for mWhoShotEntityTypeID -->
+		<!-- Some Unknown Type: EntityID for mWhoShot -->
+		<!-- Some Unknown Type: EntityTypeID for mWhoShotEntityTypeID -->
 		<xs:attribute name="mShooterHerdId" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mShooterHerdId = 0; //  the herdid of mWhoShot, unless friendly fire<br>```]]></xs:documentation>
@@ -12407,9 +12402,9 @@
 				<xs:documentation><![CDATA[```cpp<br>	int mStartingLifetime = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mEntityThatShot -->
-				<!-- Some Unknown Type: ProjectileTriggers for mTriggers -->
-				<!-- Some Unknown Type: VEC_ENTITY for mDamagedEntities -->
+		<!-- Some Unknown Type: EntityID for mEntityThatShot -->
+		<!-- Some Unknown Type: ProjectileTriggers for mTriggers -->
+		<!-- Some Unknown Type: VEC_ENTITY for mDamagedEntities -->
 		<xs:attribute name="mInitialSpeed" type="xs:decimal" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	float mInitialSpeed = -1;<br>```]]></xs:documentation>
@@ -12495,7 +12490,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	GAME_EFFECT::Enum condition_effect; //  Shooting entity needs to have this 'GAME_EFFECT' for effects to apply. If both 'condition_effect' and 'condition_status' are set, they are combined with AND logic<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: StatusEffectType for condition_status -->
+		<!-- Some Unknown Type: StatusEffectType for condition_status -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -12551,8 +12546,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool rotate_to_surface_normal = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: STACK_ANIMATIONSTATE for mStates -->
-				<!-- Some Unknown Type: ComponentTags for mCachedTargetSpriteTag -->
+		<!-- Some Unknown Type: STACK_ANIMATIONSTATE for mStates -->
+		<!-- Some Unknown Type: ComponentTags for mCachedTargetSpriteTag -->
 		<xs:attribute name="mSendOnFinishedMessageName" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	std::string mSendOnFinishedMessageName;<br>```]]></xs:documentation>
@@ -12693,8 +12688,8 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 offset_animator_offset; //  used by SpriteOffsetAnimator<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: as::Sprite* for mSprite -->
-				<!-- Some Unknown Type: SpriteRenderList* for mRenderList -->
+		<!-- Some Unknown Type: as::Sprite* for mSprite -->
+		<!-- Some Unknown Type: SpriteRenderList* for mRenderList -->
 		<xs:attribute name="mRenderListHandle" type="xs:int" default="-1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int32 mRenderListHandle = -1;<br>```]]></xs:documentation>
@@ -13100,26 +13095,26 @@
 				<xs:documentation><![CDATA[```cpp<br>	LensValue<int> stain_shaken_drop_chance_multiplier; //  how quickly stains are dropped relative to normal drop speed<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: SpriteStains* for mData -->
-				<!-- Some Unknown Type: VirtualTextureHandle for mTextureHandle -->
-				<!-- Some Unknown Type: SpriteStainsState for mState -->
+		<!-- Some Unknown Type: SpriteStains* for mData -->
+		<!-- Some Unknown Type: VirtualTextureHandle for mTextureHandle -->
+		<!-- Some Unknown Type: SpriteStainsState for mState -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
 	<xs:complexType name="StatusEffectDataComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class StatusEffectDataComponent {<br>&emsp;&emsp;&emsp;&emsp;VECTOR_FLOAT stain_effects;<br>&emsp;&emsp;&emsp;&emsp;VECTOR_INT32 stain_effect_cooldowns;<br>&emsp;&emsp;&emsp;&emsp;VECTOR_FLOAT effects_previous;<br>&emsp;&emsp;&emsp;&emsp;VECTOR_FLOAT ingestion_effects;<br>&emsp;&emsp;&emsp;&emsp;VEC_OF_MATERIALS ingestion_effect_causes;<br>&emsp;&emsp;&emsp;&emsp;VECTOR_INT32 ingestion_effect_causes_many;<br>&emsp;&emsp;&emsp;&emsp;int mLastAttackingPlayerFrame = -99999;<br>&emsp;&emsp;&emsp;&emsp;VECTOR_FLOAT mStainEffectsSmoothedForUI;<br>&emsp;&emsp;&emsp;&emsp;bool mHasChildIconsCached = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-				<!-- Some Unknown Type: VECTOR_FLOAT for stain_effects -->
-				<!-- Some Unknown Type: VECTOR_INT32 for stain_effect_cooldowns -->
-				<!-- Some Unknown Type: VECTOR_FLOAT for effects_previous -->
-				<!-- Some Unknown Type: VECTOR_FLOAT for ingestion_effects -->
-				<!-- Some Unknown Type: VEC_OF_MATERIALS for ingestion_effect_causes -->
-				<!-- Some Unknown Type: VECTOR_INT32 for ingestion_effect_causes_many -->
+		<!-- Some Unknown Type: VECTOR_FLOAT for stain_effects -->
+		<!-- Some Unknown Type: VECTOR_INT32 for stain_effect_cooldowns -->
+		<!-- Some Unknown Type: VECTOR_FLOAT for effects_previous -->
+		<!-- Some Unknown Type: VECTOR_FLOAT for ingestion_effects -->
+		<!-- Some Unknown Type: VEC_OF_MATERIALS for ingestion_effect_causes -->
+		<!-- Some Unknown Type: VECTOR_INT32 for ingestion_effect_causes_many -->
 		<xs:attribute name="mLastAttackingPlayerFrame" type="xs:int" default="-99999">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	int mLastAttackingPlayerFrame = -99999;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: VECTOR_FLOAT for mStainEffectsSmoothedForUI -->
+		<!-- Some Unknown Type: VECTOR_FLOAT for mStainEffectsSmoothedForUI -->
 		<xs:attribute name="mHasChildIconsCached" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	bool mHasChildIconsCached = 0;<br>```]]></xs:documentation>
@@ -13270,7 +13265,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	TeleportComponentState::Enum state;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: ENTITY_VEC for teleported_entities -->
+		<!-- Some Unknown Type: ENTITY_VEC for teleported_entities -->
 		<xs:attribute name="source_location_camera_aabb.min_x" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	types::aabb source_location_camera_aabb;<br>```]]></xs:documentation>
@@ -13311,7 +13306,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool reset_shooter_y_vel = 1; //  If 1, will set shooter y velocity to 0 on teleport<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: EntityID for mWhoShot -->
+		<!-- Some Unknown Type: EntityID for mWhoShot -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -13722,16 +13717,16 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 m_position_previous;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: UintArrayInline for colors -->
-				<!-- Some Unknown Type: UintArrayInline for materials -->
-				<!-- Some Unknown Type: FloatArrayInline for masses -->
-				<!-- Some Unknown Type: Vec2ArrayInline for positions -->
-				<!-- Some Unknown Type: Vec2ArrayInline for positions_prev -->
-				<!-- Some Unknown Type: Vec2ArrayInline for velocities -->
-				<!-- Some Unknown Type: FloatArrayInline for dampenings -->
-				<!-- Some Unknown Type: FloatArrayInline for freedoms -->
-				<!-- Some Unknown Type: VerletLinkArrayInline for links -->
-				<!-- Some Unknown Type: VerletSprite* for sprite -->
+		<!-- Some Unknown Type: UintArrayInline for colors -->
+		<!-- Some Unknown Type: UintArrayInline for materials -->
+		<!-- Some Unknown Type: FloatArrayInline for masses -->
+		<!-- Some Unknown Type: Vec2ArrayInline for positions -->
+		<!-- Some Unknown Type: Vec2ArrayInline for positions_prev -->
+		<!-- Some Unknown Type: Vec2ArrayInline for velocities -->
+		<!-- Some Unknown Type: FloatArrayInline for dampenings -->
+		<!-- Some Unknown Type: FloatArrayInline for freedoms -->
+		<!-- Some Unknown Type: VerletLinkArrayInline for links -->
+		<!-- Some Unknown Type: VerletSprite* for sprite -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -13807,7 +13802,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	bool mUpdated = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: grid::ICell* for mCell -->
+		<!-- Some Unknown Type: grid::ICell* for mCell -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
@@ -14083,14 +14078,14 @@
 				<xs:documentation><![CDATA[```cpp<br>	vec2 player_spawn_location;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: MAP_STRING_STRING for lua_globals -->
-				<!-- Some Unknown Type: VEC_PENDINGPORTAL for pending_portals -->
-				<!-- Some Unknown Type: VECTOR_INT32 for apparitions_per_level -->
-				<!-- Some Unknown Type: VEC_NPCPARTY for npc_parties -->
-				<!-- Some Unknown Type: VECTOR_INT32 for orbs_found_thisrun -->
-				<!-- Some Unknown Type: VECTOR_STRING for flags -->
-				<!-- Some Unknown Type: VECTOR_STRING for changed_materials -->
-				<!-- Some Unknown Type: VEC_CUTTHROUGHWORLD for cuts_through_world -->
+		<!-- Some Unknown Type: MAP_STRING_STRING for lua_globals -->
+		<!-- Some Unknown Type: VEC_PENDINGPORTAL for pending_portals -->
+		<!-- Some Unknown Type: VECTOR_INT32 for apparitions_per_level -->
+		<!-- Some Unknown Type: VEC_NPCPARTY for npc_parties -->
+		<!-- Some Unknown Type: VECTOR_INT32 for orbs_found_thisrun -->
+		<!-- Some Unknown Type: VECTOR_STRING for flags -->
+		<!-- Some Unknown Type: VECTOR_STRING for changed_materials -->
+		<!-- Some Unknown Type: VEC_CUTTHROUGHWORLD for cuts_through_world -->
 		<xs:attribute name="gore_multiplier" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	LensValue<int> gore_multiplier;<br>```]]></xs:documentation>
@@ -14411,7 +14406,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float mDirectionAdjustSpeed = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-				<!-- Some Unknown Type: WormPartPositions for mPrevPositions -->
+		<!-- Some Unknown Type: WormPartPositions for mPrevPositions -->
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:complexType>
