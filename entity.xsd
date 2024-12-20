@@ -493,8 +493,8 @@
 				<xs:element name="WormPlayerComponent" type="WormPlayerComponent" />
 			</xs:choice>
 		</xs:sequence>
-		<xs:attribute name="name" type="xs:string"></xs:attribute>
-		<xs:attribute name="tags" type="xs:string"></xs:attribute>
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="tags" type="xs:string" />
 	</xs:complexType>
 	<xs:element name="Entity" type="EntityBase">
 		<xs:annotation>

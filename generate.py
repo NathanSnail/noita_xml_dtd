@@ -410,8 +410,8 @@ out = f"""
 \t\t\t\t{"\n\t\t\t\t".join([f"<xs:element name=\"{comp.name}\" type=\"{comp.name}\" />" for comp in components])}
 \t\t\t</xs:choice>
 \t\t</xs:sequence>
-\t\t<xs:attribute name="name" type="xs:string"></xs:attribute>
-\t\t<xs:attribute name="tags" type="xs:string"></xs:attribute>
+\t\t<xs:attribute name="name" type="xs:string" />
+\t\t<xs:attribute name="tags" type="xs:string" />
 \t</xs:complexType>
 \t<xs:element name="Entity" type="EntityBase">
 \t\t<xs:annotation>
