@@ -220,11 +220,14 @@ def render_config(config: Component) -> str:
     fields = [render_field(x, config.name) for x in config.fields]
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
-    assert len(objects) == 0, "Config can't have config inside it"
     return f"""
 \t<xs:complexType name="{config.name}" mixed="true">
-\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(config)}]]> </xs:documentation> </xs:annotation>
-{"\n".join(attrs)}
+\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(config)}]]> </xs:documentation> </xs:annotation>{f"""
+\t\t\t<xs:all>
+{"\n".join(objects)}
+\t\t\t</xs:all>""" if len(objects) != 0 else ""}{
+"\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
+
 \t</xs:complexType>"""[
         1:
     ]
@@ -250,7 +253,10 @@ for config in configs_json:
                 Field(
                     field["name"], field["type"], "-", "", field.get("description", "")
                 )
-                for field in config["members"]
+                for field in config.get("members", [])
+                + config.get("privates", [])
+                + config.get("custom_data_types", [])
+                + config.get("objects", [])
             ],
         )
     )

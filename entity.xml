@@ -21,7 +21,8 @@
 	<AnimalAIComponent />
 
 	<ProjectileComponent projectile_type="PROJECTILE">
-		<damage_by_type> </damage_by_type></ProjectileComponent>
+		<config_explosion physics_explosion_power.min="0.0">
+			<damage_critical chance="100"></damage_critical></config_explosion></ProjectileComponent>
 	<SpriteComponent
 		image_file="whatever"
 		offset_x="5"
