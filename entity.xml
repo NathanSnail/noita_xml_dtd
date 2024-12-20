@@ -1,4 +1,4 @@
-<?xml-model href="generated.xsd" type="application/xml-xsd"?>
+<?xml-model href="entity.xsd" type="application/xml-xsd"?>
 <Entity>
 	<Base file="data/etities/animals/longleg.xml">
 		<AIComponent TEMP_TEMP_TEMP="0.0"></AIComponent>
@@ -21,11 +21,11 @@
 	<AnimalAIComponent />
 
 	<ProjectileComponent projectile_type="PROJECTILE"></ProjectileComponent>
-	<!-- this is fucked -->
 	<SpriteComponent
 		image_file="whatever"
 		offset_x="5"
 		offset_y="5"> </SpriteComponent>
 	<AnimalAIComponent>
-		<attack_melee_finish_config_explosion audio_event_name="cheese" /></AnimalAIComponent>
+		<attack_melee_finish_config_explosion audio_event_name="cheese" />
+	</AnimalAIComponent>
 </Entity>

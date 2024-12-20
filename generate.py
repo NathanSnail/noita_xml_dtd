@@ -201,19 +201,19 @@ def render_component(comp: Component) -> str:
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
-\t<xs:element name="{comp.name}">
+\t<xs:complexType name="{comp.name}" mixed="true">
 \t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>
-\t\t<xs:complexType mixed="true">{f"""
+{f"""
 \t\t\t<xs:all>
 {"\n".join(objects)}
 \t\t\t</xs:all>""" if len(objects) != 0 else ""}
 {"\n".join(attrs)}
 \t\t\t<xs:attribute name="_tags" type="xs:string" default="" />
 \t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
-\t\t</xs:complexType>
-\t</xs:element>"""[
+\t</xs:complexType>"""[
         1:
     ]
+
 
 def render_config(config: Component) -> str:
     fields = [render_field(x, config.name) for x in config.fields]
@@ -236,11 +236,23 @@ def trim_end(s: str):
 
 
 # configs are identical to components really, so we can just reuse component code
-configs_json = json.load(open("./config_betas.json", "r")) # credits to dexter for getting these, from https://github.com/dextercd/Noita-Component-Explorer/blob/main/data/configs_beta.json
+configs_json = json.load(
+    open("./config_betas.json", "r")
+)  # credits to dexter for getting these, from https://github.com/dextercd/Noita-Component-Explorer/blob/main/data/configs_beta.json
 configs: list[Component] = []
 config_types = set()
 for config in configs_json:
-    configs.append(Component(config["name"].split("::")[-1], [Field(field["name"], field["type"], "-", "", field.get("description", "")) for field in config["members"]]))
+    configs.append(
+        Component(
+            config["name"].split("::")[-1],
+            [
+                Field(
+                    field["name"], field["type"], "-", "", field.get("description", "")
+                )
+                for field in config["members"]
+            ],
+        )
+    )
     config_types.add(config["name"])
 
 
@@ -344,6 +356,7 @@ def render_enum(enum: Enum) -> str:
         1:
     ]
 
+
 transform = {
     "rotation": "float rotation = 0; // [0, 360] Measured in degrees",
     "position": "vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent",
@@ -393,9 +406,9 @@ out = f"""
 \t\t<xs:sequence minOccurs="0">
 \t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
 \t\t\t\t<xs:element ref="Entity" />
-\t\t\t\t<xs:element ref="Base" />
+\t\t\t\t<xs:element name="Base" type="Base" />
 \t\t\t\t<xs:element name="Transform" type="Transform" />
-\t\t\t\t{"\n\t\t\t\t\t".join([f"<xs:element ref=\"{comp.name}\" />" for comp in components])}
+\t\t\t\t{"\n\t\t\t\t".join([f"<xs:element name=\"{comp.name}\" type=\"{comp.name}\" />" for comp in components])}
 \t\t\t</xs:choice>
 \t\t</xs:sequence>
 \t\t<xs:attribute name="name" type="xs:string"></xs:attribute>
@@ -406,81 +419,32 @@ out = f"""
 \t\t\t<xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
 \t\t</xs:annotation>
 \t</xs:element>
-\t<xs:element name="Base">
+\t<xs:complexType name="Base">
 \t\t<xs:annotation>
 \t\t\t<xs:documentation>Base file</xs:documentation>
 \t\t</xs:annotation>
-\t\t<xs:complexType>
-\t\t\t<xs:complexContent>
-\t\t\t\t<xs:extension base="EntityBase">
-\t\t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
-\t\t\t\t</xs:extension>
-\t\t\t</xs:complexContent>
-\t\t</xs:complexType>
-\t</xs:element>
+\t\t<xs:complexContent>
+\t\t\t<xs:extension base="EntityBase">
+\t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
+\t\t\t</xs:extension>
+\t\t</xs:complexContent>
+\t</xs:complexType>
 """[
     1:
 ]
 out += "\n".join([render_config(config) for config in configs])
 out += "\n".join([render_component(component) for component in components])
-# Sprite, might need some description on hover later, also some defaults are unknown
-out += f"""
-\t<xs:element name="Sprite">
-\t\t<xs:complexType mixed="true">
-\t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
-\t\t\t\t<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
-\t\t\t\t\t<xs:complexType mixed="true">
-\t\t\t\t\t\t<xs:choice>
-\t\t\t\t\t\t\t<xs:element name="Event" minOccurs="0" maxOccurs="unbounded">
-\t\t\t\t\t\t\t\t<xs:complexType mixed="true">
-\t\t\t\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
-\t\t\t\t\t\t\t\t\t<xs:attribute name="frame" type="xs:nonNegativeInteger" use="required" />
-\t\t\t\t\t\t\t\t\t<xs:attribute name="max_distance" type="xs:positiveInteger" />
-\t\t\t\t\t\t\t\t\t<xs:attribute name="probability" type="xs:decimal" />
-\t\t\t\t\t\t\t\t\t<xs:attribute name="on_finished" type="NoitaBool" />
-\t\t\t\t\t\t\t\t\t<xs:attribute name="check_physics_material" type="NoitaBool" />
-\t\t\t\t\t\t\t\t</xs:complexType>
-\t\t\t\t\t\t\t</xs:element>
-\t\t\t\t\t\t</xs:choice>
-\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
-\t\t\t\t\t\t<xs:attribute name="frame_count" type="xs:positiveInteger" use="required" />
-\t\t\t\t\t\t<xs:attribute name="frames_per_row" type="xs:positiveInteger" use="required" />
-\t\t\t\t\t\t<xs:attribute name="frame_width" type="xs:positiveInteger" use="required" />
-\t\t\t\t\t\t<xs:attribute name="frame_height" type="xs:positiveInteger" use="required" />
-\t\t\t\t\t\t<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
-\t\t\t\t\t\t<xs:attribute name="pos_x" type="xs:integer" default="0" />
-\t\t\t\t\t\t<xs:attribute name="pos_y" type="xs:integer" default="0" />
-\t\t\t\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-\t\t\t\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-\t\t\t\t\t\t<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
-\t\t\t\t\t\t<xs:attribute name="has_offset" type="NoitaBool" default="1" />
-\t\t\t\t\t\t<xs:attribute name="loop" type="NoitaBool" default="0" />
-\t\t\t\t\t\t<xs:attribute name="next_animation" type="xs:string" default="" />
-\t\t\t\t\t</xs:complexType>
-\t\t\t\t</xs:element>
-\t\t\t\t<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
-\t\t\t\t\t<xs:complexType mixed="true">
-\t\t\t\t\t\t<xs:attribute name="name" type="xs:string" use="required" />
-\t\t\t\t\t\t<xs:attribute name="color" type="xs:hexBinary" use="required" />
-\t\t\t\t\t</xs:complexType>
-\t\t\t\t</xs:element>
-\t\t\t</xs:choice>
-\t\t\t<xs:attribute name="filename" type="xs:string" use="required" />
-\t\t\t<xs:attribute name="hotspots_filename" type="xs:string" />
-\t\t\t<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-\t\t\t<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-\t\t\t<xs:attribute name="default_animation" type="xs:string" default="default" />
-\t\t\t<xs:attribute name="color_a" type="xs:decimal" default="1" />
-\t\t\t<xs:attribute name="color_b" type="xs:decimal" default="1" />
-\t\t\t<xs:attribute name="color_g" type="xs:decimal" default="1" />
-\t\t\t<xs:attribute name="color_r" type="xs:decimal" default="1" />
-\t\t</xs:complexType>
-\t\t<xs:unique name="UniqueRectAnimationName">
-\t\t\t<xs:selector xpath="RectAnimation" />
-\t\t\t<xs:field xpath="@name" />
-\t\t</xs:unique>
-\t</xs:element>
-"""
-out += "\n</xs:schema>"
 # out = out.replace("\t","").replace("\n","")
-open("generated.xsd", "w").write(out)
+
+
+def prune_builtin(src: str) -> str:
+    return "\n".join(
+        "\n".join([x for x in src.split("\n") if x != ""][1:-1]).split(
+            "<!--Builtin-->"
+        )[0::2]
+    )
+
+
+open("entity.xsd", "w").write(out + "\n</xs:schema>")
+sprite = prune_builtin(open("./sprite.xsd", "r").read())
+open("generated.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
