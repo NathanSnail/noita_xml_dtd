@@ -864,24 +864,24 @@
 				<xs:documentation><![CDATA[```cpp<br>	std::string mDebugFilename; //  the file this was loaded from<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="type" type="BIOME_TYPE" default="0">
+		<xs:attribute name="type" type="BIOME_TYPE" default="BIOME_PROCEDURAL">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	BIOME_TYPE::Enum type; //  0 = standard, 1 = bitmap level loading, loads the bitmap file<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<!-- Some Unknown Type: CavesSetup* for BitmapCaves -->
-		<xs:attribute name="fog_of_war_type" type="FOG_OF_WAR_TYPE" default="0">
+		<xs:attribute name="fog_of_war_type" type="FOG_OF_WAR_TYPE" default="DEFAULT">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	FOG_OF_WAR_TYPE::Enum fog_of_war_type; //  the way removing fog of war works in this biome<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<!-- Some Unknown Type: RandomizeMaterials* for RandomMaterials -->
-		<xs:attribute name="noise_type" type="NOISE_TYPE" default="0">
+		<xs:attribute name="noise_type" type="NOISE_TYPE" default="IQ2_SIMPLEX1234">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	NOISE_TYPE::Enum noise_type; //  the style of the cave noise<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="mInsideNoiseType" type="GENERAL_NOISE" default="0">
+		<xs:attribute name="mInsideNoiseType" type="GENERAL_NOISE" default="SimplexNoise">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	GENERAL_NOISE::Enum mInsideNoiseType; //  the style of the inside noise<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -2265,7 +2265,7 @@
 				<xs:documentation><![CDATA[```cpp<br>	float max_distance;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="layer" type="AUDIO_LAYER" default="0">
+		<xs:attribute name="layer" type="AUDIO_LAYER" default="EFFECT_GAME">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>	AUDIO_LAYER::Enum layer;<br>```]]></xs:documentation>
 			</xs:annotation>

@@ -130,6 +130,11 @@ TYPE_DEFAULTS = {
     "JOINT_TYPE": "REVOLUTE_JOINT",
     "PathFindingComponentState": "",
     "TeleportComponentState": "",
+    "BIOME_TYPE": "BIOME_PROCEDURAL",
+    "FOG_OF_WAR_TYPE": "DEFAULT",
+    "NOISE_TYPE": "IQ2_SIMPLEX1234",
+    "GENERAL_NOISE": "SimplexNoise",
+    "AUDIO_LAYER": "EFFECT_GAME",
 }
 
 
