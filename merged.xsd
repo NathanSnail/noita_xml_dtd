@@ -14515,75 +14515,818 @@
 		</xs:attribute>
 		<xs:attributeGroup ref="CommonComponentAttributes"/>
 	</xs:complexType>
-	<!--Sprite, might need some
-	description on hover later, also some defaults are unknown-->
 	
 
-	<xs:element name="Sprite">
+	<!-- Material Graphics Edge Images Type -->
+	<xs:complexType name="MaterialGraphicsEdgeImages">
+		<xs:choice>
+			<xs:element name="Image" maxOccurs="unbounded">
+				<xs:complexType mixed="true">
+					<xs:attribute name="do_only_horizontal_stripe" type="NoitaBool" />
+					<xs:attribute name="do_only_vertical_stripe" type="NoitaBool" />
+					<xs:attribute name="allow_random_rotation" type="NoitaBool" />
+					<xs:attribute name="filename" type="xs:string" />
+					<xs:attribute name="min_angle" type="xs:integer" />
+					<xs:attribute name="max_angle" type="xs:integer" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Material Graphics Edge Type -->
+	<xs:complexType name="MaterialGraphicsEdge" mixed="true">
+		<xs:sequence>
+			<xs:element name="EdgeGraphics">
+				<xs:complexType mixed="true">
+					<xs:sequence>
+						<xs:element name="Images" type="MaterialGraphicsEdgeImages" />
+					</xs:sequence>
+					<!-- wang -->
+					<xs:attribute name="color" type="xs:string" />
+					<xs:attribute name="overwrite" type="NoitaBool" />
+					<xs:attribute name="percent" type="xs:decimal" />
+					<xs:attribute name="require_same_material" type="NoitaBool" />
+					<xs:attribute name="require_same_material_type" type="NoitaBool" />
+					<!-- enum? -->
+					<xs:attribute name="type" type="xs:string" />
+					<xs:attribute name="z" type="xs:integer" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Material Graphics Type -->
+	<xs:complexType name="MaterialGraphics" mixed="true">
+		<xs:choice>
+			<xs:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
+		</xs:choice>
+		<!-- wang? -->
+		<xs:attribute name="color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="fire_colors_index" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_grass" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_grass_hashed" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="normal_mapped" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- argb enum? -->
+		<xs:attribute name="pixel_all_around" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_lonely" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- huh> -->
+		<xs:attribute name="randomize_colors" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="texture_file" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>path</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- Material Status Effect Type -->
+	<xs:complexType name="MaterialStatusEffects">
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="Ingestion">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="StatusEffect" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="type" type="xs:string" />
+								<xs:attribute name="amount" type="xs:decimal" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Stains">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="StatusEffect" minOccurs="1" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="type" type="xs:string" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Material Particle Effect Type -->
+	<xs:complexType name="MaterialParticleEffect" mixed="true">
+		<xs:attribute name="vel.y" type="xs:decimal" />
+		<xs:attribute name="vel_random.min_x" type="xs:decimal" />
+		<xs:attribute name="vel_random.max_x" type="xs:decimal" />
+		<xs:attribute name="vel_random.min_y" type="xs:decimal" />
+		<xs:attribute name="vel_random.max_y" type="xs:decimal" />
+		<xs:attribute name="lifetime.min" type="xs:decimal" />
+		<xs:attribute name="lifetime.max" type="xs:decimal" />
+		<xs:attribute name="gravity.x" type="xs:decimal" />
+		<xs:attribute name="gravity.y" type="xs:decimal" />
+		<xs:attribute name="render_on_grid" type="NoitaBool" />
+		<xs:attribute name="particle_single_width" type="NoitaBool" />
+		<xs:attribute name="draw_as_long" type="NoitaBool" />
+		<xs:attribute name="airflow_force" type="xs:decimal" />
+		<xs:attribute name="airflow_scale" type="xs:decimal" />
+		<xs:attribute name="friction" type="xs:decimal" />
+		<xs:attribute name="probability" type="xs:decimal" />
+		<xs:attribute name="count.min" type="xs:nonNegativeInteger" />
+		<xs:attribute name="count.max" type="xs:nonNegativeInteger" />
+		<!-- ? -->
+		<xs:attribute name="m_material_id" type="xs:integer" />
+	</xs:complexType>
+	<!-- Material Type -->
+	<xs:complexType name="Material" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
+			<xs:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ParticleEffect" type="MaterialParticleEffect" minOccurs="0" maxOccurs="1" />
+			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" maxOccurs="1" />
+		</xs:choice>
+		<xs:attribute name="always_ignites_damagemodel" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_is_soft" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- default unknown -->
+		<xs:attribute name="supports_collapsible_structures" type="NoitaBool">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- default unknown -->
+		<xs:attribute name="collapsible" type="NoitaBool">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="status_effects" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- needs enums -->
+		<xs:attribute name="audio_materialaudio_type" type="xs:string" default="NONE">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- needs enums -->
+		<xs:attribute name="audio_materialbreakaudio_type" type="xs:string" default="NONE">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it enum or string? -->
+		<xs:attribute name="audio_physics_material_event" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it enum or string? -->
+		<xs:attribute name="audio_physics_material_solid" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it enum or string? -->
+		<xs:attribute name="audio_physics_material_wall" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_size_multiplier" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="autoignition_temperature" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="burnable" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_holes_in_texture" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- needs enums -->
+		<xs:attribute name="cell_type" type="xs:string" default="liquid">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it even a thing? -->
+		<xs:attribute name="cold_freezes_chance_rev" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cold_freezes_to_dont_do_reverse_reaction" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cold_freezes_to_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="convert_to_box2d_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="crackability" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_fire" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_poison" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_radioactive" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_water" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- maybe enum? -->
+		<xs:attribute name="density" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- maybe enum? -->
+		<xs:attribute name="durability" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="electrical_conductivity" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fire_hp" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it even a thing? -->
+		<xs:attribute name="gas_downwards_speed" type="xs:nonNegativeInteger" default="90">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it even a thing? -->
+		<xs:attribute name="gas_horizontal_speed" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it even a thing? -->
+		<xs:attribute name="gas_speed" type="xs:nonNegativeInteger" default="50">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- is it even a thing? -->
+		<xs:attribute name="gas_upwards_speed" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generates_flames" type="xs:nonNegativeInteger" default="30">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generates_smoke" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gfx_glow" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ARGB type? -->
+		<xs:attribute name="gfx_glow_color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hp" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ignore_self_reaction_warning" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_just_particle_fx" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lifetime" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_damping" type="xs:decimal" default="0.8">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_flow_speed" type="xs:decimal" default="0.9">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_gravity" type="xs:decimal" default="0.5">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sand" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- default unknown -->
+		<xs:attribute name="liquid_solid" type="NoitaBool">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sand_never_box2d" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_slime" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stain_ignited_drop_chance" type="xs:nonNegativeInteger" default="10">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stain_shaken_drop_chance" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stains_check_offset" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stains_status_threshold" type="xs:decimal" default="0.01">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- wtf is this -->
+		<xs:attribute name="liquid_stains" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- wang? -->
+		<xs:attribute name="liquid_stains_custom_color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_stains_self" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_static" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sticks_to_ceiling" type="xs:nonNegativeInteger" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_viscosity" type="xs:decimal" default="50">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire_convert_to_material" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire_flame_material" type="xs:string" default="fire">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire_smoke_material" type="xs:string" default="smoke">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="platform_type" type="xs:integer" default="-1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="requires_oxygen" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="show_in_creative_mode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="slippery" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_break_to_type" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_collide_with_self" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_friction" type="xs:decimal" default="0.3">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_go_through_sand" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_gravity_scale" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_break_explode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_convert" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_explode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ? -->
+		<xs:attribute name="solid_on_collision_splash_power" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_sleep_convert" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_restitution" type="xs:decimal" default="0.2">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="solid_static_type" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stainable" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stickyness" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="tags" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temperature_of_fire" type="xs:nonNegativeInteger" default="10">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_name" type="xs:string" default="[material name field]">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vegetation_full_lifetime_growth" type="xs:nonNegativeInteger" default="10000">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- idk -->
+		<xs:attribute name="vegetation_random_flip_x_scale" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vegetation_sprite" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>path</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- wang enum? -->
+		<xs:attribute name="wang_color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="wang_curvature" type="xs:decimal" default="0.5">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="wang_noise_percent" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="wang_noise_type" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="warmth_melts_chance_rev" type="xs:nonNegativeInteger" default="100">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="warmth_melts_to_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- Material Reactions -->
+	<xs:complexType name="MaterialReactions">
+		<xs:choice>
+			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
+		</xs:choice>
+		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_radius1" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_radius2" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ? -->
+		<xs:attribute name="convert_all" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="direction" type="xs:string" default="none">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="entity" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>path</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fast_reaction" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell1" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell2" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell3" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell1" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell2" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell3" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="probability" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="req_lifetime" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation> ""</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- Materials -->
+	<xs:element name="Materials">
 		<xs:complexType mixed="true">
 			<xs:choice maxOccurs="unbounded" minOccurs="0">
-				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="CellData" type="Material" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="CellDataChild" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType mixed="true">
-						<xs:choice>
-							<xs:element name="Event" minOccurs="0"
-								maxOccurs="unbounded">
-								<xs:complexType mixed="true">
-									<xs:attribute name="name" type="xs:string"
-										use="required" />
-									<xs:attribute name="frame"
-										type="xs:nonNegativeInteger"
-										use="required" />
-									<xs:attribute name="max_distance"
-										type="xs:positiveInteger" />
-									<xs:attribute name="probability"
-										type="xs:decimal" />
-									<xs:attribute name="on_finished"
-										type="NoitaBool" />
-									<xs:attribute name="check_physics_material"
-										type="NoitaBool" />
-								</xs:complexType>
-							</xs:element>
-						</xs:choice>
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="frame_count" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_width" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_height" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
-						<xs:attribute name="pos_x" type="xs:integer" default="0" />
-						<xs:attribute name="pos_y" type="xs:integer" default="0" />
-						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
-						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
-						<xs:attribute name="loop" type="NoitaBool" default="0" />
-						<xs:attribute name="next_animation" type="xs:string" default="" />
+						<xs:complexContent>
+							<xs:extension base="Material">
+								<xs:attribute name="_parent" type="xs:string" use="required" />
+								<xs:attribute name="_inherit_reactions" type="NoitaBool" />
+							</xs:extension>
+						</xs:complexContent>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="color" type="xs:hexBinary" use="required" />
-					</xs:complexType>
-				</xs:element>
+				<xs:element name="Reaction" type="MaterialReactions" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element name="ReqReaction" type="MaterialReactions" minOccurs="0" maxOccurs="unbounded" />
 			</xs:choice>
-			<xs:attribute name="filename" type="xs:string" use="required" />
-			<xs:attribute name="hotspots_filename" type="xs:string" />
-			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-			<xs:attribute name="default_animation" type="xs:string" default="default" />
-			<xs:attribute name="color_a" type="xs:decimal" default="1" />
-			<xs:attribute name="color_b" type="xs:decimal" default="1" />
-			<xs:attribute name="color_g" type="xs:decimal" default="1" />
-			<xs:attribute name="color_r" type="xs:decimal" default="1" />
 		</xs:complexType>
-		<xs:unique name="UniqueRectAnimationName">
-			<xs:selector xpath="RectAnimation" />
+		<xs:unique name="UniqueMaterialName">
+			<xs:selector xpath="CellData | CellDataChild" />
 			<xs:field xpath="@name" />
+		</xs:unique>
+		<xs:unique name="UniqueMaterialWang">
+			<xs:selector xpath="CellData | CellDataChild" />
+			<xs:field xpath="@wang_color" />
 		</xs:unique>
 	</xs:element>
 </xs:schema>
