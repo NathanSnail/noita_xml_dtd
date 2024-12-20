@@ -11,7 +11,7 @@
 	</xs:attributeGroup>
 	<xs:complexType name="Transform">
 		<xs:annotation>
-			<xs:documentation><![CDATA[```cpp<br>class types::xform {<br>&emsp;&emsp;&emsp;&emsp;vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent<br>&emsp;&emsp;&emsp;&emsp;vec2 scale = {{.x = 1, .y = 1}}; // A stretching factor, most components don't work with this<br>&emsp;&emsp;&emsp;&emsp;float rotation = 0; // [0, 360] Measured in degrees<br>};```]]></xs:documentation>
+			<xs:documentation><![CDATA[```cpp<br>class types::xform {<br>&emsp;&emsp;&emsp;&emsp;vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent<br>&emsp;&emsp;&emsp;&emsp;vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this<br>&emsp;&emsp;&emsp;&emsp;float rotation = 0; // [0, 360] Measured in degrees<br>};```]]></xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="position.x" type="xs:decimal" default="0" >
 			<xs:annotation>
@@ -25,12 +25,12 @@
 		</xs:attribute>
 		<xs:attribute name="scale.x" type="xs:decimal" default="1" >
 			<xs:annotation>
-					<xs:documentation><![CDATA[```cpp<br>vec2 scale = {{.x = 1, .y = 1}}; // A stretching factor, most components don't work with this<br>```]]></xs:documentation>
+					<xs:documentation><![CDATA[```cpp<br>vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="scale.y" type="xs:decimal" default="1" >
 			<xs:annotation>
-					<xs:documentation><![CDATA[```cpp<br>vec2 scale = {{.x = 1, .y = 1}}; // A stretching factor, most components don't work with this<br>```]]></xs:documentation>
+					<xs:documentation><![CDATA[```cpp<br>vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="rotation" type="xs:decimal" default="0" >

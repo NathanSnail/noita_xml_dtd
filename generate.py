@@ -371,7 +371,7 @@ def render_enum(enum: Enum) -> str:
 transform = {
     "rotation": "float rotation = 0; // [0, 360] Measured in degrees",
     "position": "vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent",
-    "scale": "vec2 scale = {{.x = 1, .y = 1}}; // A stretching factor, most components don't work with this",
+    "scale": "vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this",
 }
 
 out = f"""
@@ -466,3 +466,4 @@ sprite = prune_builtin(open("./sprite.xsd", "r").read())
 open("merged.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
 materials = prune_builtin(open("./materials.xsd", "r").read())
 open("merged.xsd", "w").write(out + "\n" + materials + "\n</xs:schema>")
+
