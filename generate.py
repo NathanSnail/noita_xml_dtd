@@ -171,7 +171,7 @@ def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) ->
     return f"""
 \t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
 \t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field)}{NL}```]]></xs:documentation>
+\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field).replace("\t","")}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>"""[
         1:
