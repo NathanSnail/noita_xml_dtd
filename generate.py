@@ -2,8 +2,11 @@ import os
 import re
 import sys
 from dataclasses import dataclass
+import json
 
 PRIMARY_FILE = True
+
+# these constants might need to be changed if your editor works differently to lemminx when generating hover docs, they are only used for hover info
 TAB = "&emsp;&emsp;&emsp;&emsp;"
 NL = "<br>"
 
@@ -95,6 +98,8 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     # objects
     if ty == "types::xform":
         return "Transform"
+    if ty in config_types:
+        return ty
     # defined to be invalid
     if ty in ["EntityID", "WormPartPositions"]:
         return []
@@ -170,7 +175,7 @@ def render_field(field: Field, component_name: str) -> tuple[str, str]:
     tys = get_xml_type(field.ty)
     if type(tys) is str:
         return (
-            f"""\t\t\t<xs:sequence minOccurs="0"> <xs:element name="{field.name}" type="{tys}" /></xs:sequence>""",
+            f'\t\t\t\t<xs:element name="{field.name}" type="{tys}" minOccurs="0"/>',
             "",
         )
     if len(tys) == 0:
@@ -198,7 +203,10 @@ def render_component(comp: Component) -> str:
     return f"""
 \t<xs:element name="{comp.name}">
 \t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>
-\t\t<xs:complexType mixed="true">{"\n" + "\n".join(objects) if len(objects) != 0 else ""}
+\t\t<xs:complexType mixed="true">{f"""
+\t\t\t<xs:all>
+{"\n".join(objects)}
+\t\t\t</xs:all>""" if len(objects) != 0 else ""}
 {"\n".join(attrs)}
 \t\t\t<xs:attribute name="_tags" type="xs:string" default="" />
 \t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
@@ -207,11 +215,33 @@ def render_component(comp: Component) -> str:
         1:
     ]
 
+def render_config(config: Component) -> str:
+    fields = [render_field(x, config.name) for x in config.fields]
+    attrs = [x[1] for x in fields if x[1] != ""]
+    objects = [x[0] for x in fields if x[0] != ""]
+    assert len(objects) == 0, "Config can't have config inside it"
+    return f"""
+\t<xs:complexType name="{config.name}">
+\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(config)}]]> </xs:documentation> </xs:annotation>
+{"\n".join(attrs)}
+\t</xs:complexType>"""[
+        1:
+    ]
+
 
 def trim_end(s: str):
     while s[-1] == " ":
         s = s[:-1]
     return s
+
+
+# configs are identical to components really, so we can just reuse component code
+configs_json = json.load(open("./config_betas.json", "r")) # credits to dexter for getting these, from https://github.com/dextercd/Noita-Component-Explorer/blob/main/data/configs_beta.json
+configs: list[Component] = []
+config_types = set()
+for config in configs_json:
+    configs.append(Component(config["name"].split("::")[-1], [Field(field["name"], field["type"], "-", "", field.get("description", "")) for field in config["members"]]))
+    config_types.add(config["name"])
 
 
 def do_var_line(line: str) -> Field:
@@ -314,7 +344,6 @@ def render_enum(enum: Enum) -> str:
         1:
     ]
 
-
 transform = {
     "rotation": "float rotation = 0; // [0, 360] Measured in degrees",
     "position": "vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent",
@@ -392,6 +421,7 @@ out = f"""
 """[
     1:
 ]
+out += "\n".join([render_config(config) for config in configs])
 out += "\n".join([render_component(component) for component in components])
 # Sprite, might need some description on hover later, also some defaults are unknown
 out += f"""
