@@ -130,6 +130,11 @@ TYPE_DEFAULTS = {
     "JOINT_TYPE": "REVOLUTE_JOINT",
     "PathFindingComponentState": "",
     "TeleportComponentState": "",
+    "BIOME_TYPE": "BIOME_PROCEDURAL",
+    "FOG_OF_WAR_TYPE": "DEFAULT",
+    "NOISE_TYPE": "IQ2_SIMPLEX1234",
+    "GENERAL_NOISE": "SimplexNoise",
+    "AUDIO_LAYER": "EFFECT_GAME",
 }
 
 
@@ -209,8 +214,7 @@ def render_component(comp: Component) -> str:
 {"\n".join(objects)}
 \t\t\t</xs:all>""" if len(objects) != 0 else ""}{
 "\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
-\t\t<xs:attribute name="_tags" type="xs:string" default="" />
-\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
+\t\t<xs:attributeGroup ref="CommonComponentAttributes"/>
 \t</xs:complexType>"""[
         1:
     ]
@@ -378,6 +382,10 @@ out = f"""
 \t\t\t<xs:enumeration value="1" />
 \t\t</xs:restriction>
 \t</xs:simpleType>
+\t<xs:attributeGroup name="CommonComponentAttributes">
+\t\t<xs:attribute name="_tags" type="xs:string" default="" />
+\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
+\t</xs:attributeGroup>
 \t<xs:complexType name="Transform">
 \t\t<xs:annotation>
 \t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
@@ -456,3 +464,5 @@ def prune_builtin(src: str) -> str:
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
 sprite = prune_builtin(open("./sprite.xsd", "r").read())
 open("merged.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
+materials = prune_builtin(open("./materials.xsd", "r").read())
+open("merged.xsd", "w").write(out + "\n" + materials + "\n</xs:schema>")
