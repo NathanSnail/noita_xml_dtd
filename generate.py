@@ -162,11 +162,11 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
 def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) -> str:
     default = get_default_for_sub_field(field, ty, component_name)
     return f"""
-\t\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
-\t\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field)}{NL}```]]></xs:documentation>
-\t\t\t\t</xs:annotation>
-\t\t\t</xs:attribute>"""[
+\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field)}{NL}```]]></xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>"""[
         1:
     ]
 
@@ -202,14 +202,13 @@ def render_component(comp: Component) -> str:
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
 \t<xs:complexType name="{comp.name}" mixed="true">
-\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>
-{f"""
+\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>{f"""
 \t\t\t<xs:all>
 {"\n".join(objects)}
 \t\t\t</xs:all>""" if len(objects) != 0 else ""}
 {"\n".join(attrs)}
-\t\t\t<xs:attribute name="_tags" type="xs:string" default="" />
-\t\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
+\t\t<xs:attribute name="_tags" type="xs:string" default="" />
+\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 \t</xs:complexType>"""[
         1:
     ]
@@ -433,6 +432,7 @@ out = f"""
     1:
 ]
 out += "\n".join([render_config(config) for config in configs])
+out += "\n"
 out += "\n".join([render_component(component) for component in components])
 # out = out.replace("\t","").replace("\n","")
 
