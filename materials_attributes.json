@@ -2,7 +2,8 @@
     {
         "name": "always_ignites_damagemodel",
         "type": "bool",
-        "default": "0"
+        "default": "0",
+        "doc": "Ignites anyone who touches it"
     },
     {
         "name": "audio_is_soft",
@@ -42,7 +43,8 @@
     {
         "name": "tags",
         "type": "std::string",
-        "default": ""
+        "default": "",
+        "doc": "A list of tags."
     },
     {
         "name": "audio_physics_material_event",
@@ -66,8 +68,9 @@
     },
     {
         "name": "cell_type",
-        "type": "std::string",
-        "default": "liquid"
+        "type": "CELL_TYPE::Enum",
+        "default": "liquid",
+        "doc": "Type of the material."
     },
     {
         "name": "cold_freezes_chance_rev",
@@ -122,12 +125,14 @@
     {
         "name": "durability",
         "type": "uint",
-        "default": "0"
+        "default": "0",
+        "doc": "[0-14]"
     },
     {
         "name": "electrical_conductivity",
         "type": "bool",
-        "default": "1"
+        "default": "1",
+        "doc": "Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0."
     },
     {
         "name": "fire_hp",
@@ -393,7 +398,7 @@
         "name": "ui_name",
         "type": "std::string",
         "default": "",
-        "doc": "copies the 'name' value by default"
+        "doc": "Can be translation string, copies the 'name' value by default"
     },
     {
         "name": "vegetation_full_lifetime_growth",

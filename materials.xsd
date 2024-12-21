@@ -12,6 +12,15 @@
 	</xs:complexType>
 	<!--Builtin-->
 
+	<xs:simpleType name="CELL_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="solid" />
+			<xs:enumeration value="liquid" />
+			<xs:enumeration value="fire" />
+			<xs:enumeration value="gas" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- Material Graphics Edge Images Type -->
 	<xs:complexType name="MaterialGraphicsEdgeImages">
 		<xs:choice>
@@ -216,7 +225,7 @@
 		</xs:attribute>
 		<xs:attribute name="always_ignites_damagemodel" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool always_ignites_damagemodel = "0"; <br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool always_ignites_damagemodel = "0"; //  Ignites anyone who touches it<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="audio_is_soft" type="NoitaBool" default="0">
@@ -256,7 +265,7 @@
 		</xs:attribute>
 		<xs:attribute name="tags" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string tags = ""; <br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string tags = ""; //  A list of tags.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="audio_physics_material_event" type="xs:string" default="">
@@ -279,9 +288,9 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string vegetation_sprite = ""; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="cell_type" type="xs:string" default="liquid">
+		<xs:attribute name="cell_type" type="CELL_TYPE" default="liquid">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string cell_type = "liquid"; <br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>CELL_TYPE::Enum cell_type = "liquid"; //  Type of the material.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="cold_freezes_chance_rev" type="xs:unsignedInt" default="100">
