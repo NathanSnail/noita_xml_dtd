@@ -463,8 +463,10 @@ def prune_builtin(src: str) -> str:
 
 
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
-sprite = prune_builtin(open("./sprite.xsd", "r").read())
-open("merged.xsd", "w").write(out + "\n" + sprite + "\n</xs:schema>")
-materials = prune_builtin(open("./materials.xsd", "r").read())
-open("merged.xsd", "w").write(out + "\n" + materials + "\n</xs:schema>")
 
+merge_list = {"./sprite.xsd", "./materials.xsd"}
+for file in merge_list:
+    xsd = prune_builtin(open(file, "r").read())
+    out += "\n" + xsd
+
+open("merged.xsd", "w").write(out + "\n</xs:schema>")
