@@ -453,6 +453,13 @@ out += "\n"
 out += "\n".join([render_component(component) for component in components])
 # out = out.replace("\t","").replace("\n","")
 
+def replace_metatag(src: str, replacement: str, tag: str) -> str:
+    parts = src.split(tag)
+    # Replace content between markers
+    for i in range(1, len(parts), 2):  # Only replace in "odd" indexed parts (between markers)
+        parts[i] = replacement
+    # Rejoin the parts
+    return tag.join(parts)
 
 def prune_builtin(src: str) -> str:
     return "\n".join(
@@ -464,7 +471,31 @@ def prune_builtin(src: str) -> str:
 
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
 
-merge_list = {"./sprite.xsd", "./materials.xsd"}
+# Update materials.xsd
+material_attributes_json = json.load(
+    open("./materials_attributes.json", "r")
+)
+material_attributes="""\n\t\t<xs:attribute name="name" type="xs:string" use="required">
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation>Internal name, should be unique, otherwise will overwrite materials.</xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>
+"""
+for attribute in material_attributes_json:
+    ty = get_xml_type(attribute["type"])[0][1]
+    doc = f"""<![CDATA[```cpp<br>{attribute["type"]} {attribute["name"]} = "{attribute["default"]}"; {"//  " + attribute["doc"] if "doc" in attribute else ""}<br>```]]>"""
+    material_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" default="{attribute["default"]}">
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation>{doc}</xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>
+"""
+material_file = "./materials.xsd"
+material_xsd = replace_metatag(open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->")
+open(material_file, "w").write(material_xsd)
+
+# Merge files
+merge_list = {"./sprite.xsd", material_file}
 for file in merge_list:
     xsd = prune_builtin(open(file, "r").read())
     out += "\n" + xsd
