@@ -1,0 +1,443 @@
+[
+    {
+        "name": "always_ignites_damagemodel",
+        "type": "bool",
+        "default": "0",
+        "doc": "Ignites anyone who touches it"
+    },
+    {
+        "name": "audio_is_soft",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "audio_materialaudio_type",
+        "type": "std::string",
+        "default": "NONE"
+    },
+    {
+        "name": "audio_materialbreakaudio_type",
+        "type": "std::string",
+        "default": "NONE"
+    },
+    {
+        "name": "audio_size_multiplier",
+        "type": "float",
+        "default": "1"
+    },
+    {
+        "name": "autoignition_temperature",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "burnable",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "cell_holes_in_texture",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "tags",
+        "type": "std::string",
+        "default": "",
+        "doc": "A list of tags."
+    },
+    {
+        "name": "audio_physics_material_event",
+        "type": "std::string",
+        "default": ""
+    },
+    {
+        "name": "audio_physics_material_wall",
+        "type": "std::string",
+        "default": ""
+    },
+    {
+        "name": "audio_physics_material_solid",
+        "type": "std::string",
+        "default": ""
+    },
+    {
+        "name": "vegetation_sprite",
+        "type": "std::string",
+        "default": ""
+    },
+    {
+        "name": "cell_type",
+        "type": "CELL_TYPE::Enum",
+        "default": "liquid",
+        "doc": "Type of the material."
+    },
+    {
+        "name": "cold_freezes_chance_rev",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "cold_freezes_to_dont_do_reverse_reaction",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "cold_freezes_to_material",
+        "type": "std::string",
+        "default": "air"
+    },
+    {
+        "name": "convert_to_box2d_material",
+        "type": "std::string",
+        "default": "air"
+    },
+    {
+        "name": "crackability",
+        "type": "uint",
+        "default": "0"
+    },
+    {
+        "name": "danger_fire",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "danger_poison",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "danger_radioactive",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "danger_water",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "density",
+        "type": "float",
+        "default": "1"
+    },
+    {
+        "name": "durability",
+        "type": "uint",
+        "default": "0",
+        "doc": "[0-14]"
+    },
+    {
+        "name": "electrical_conductivity",
+        "type": "bool",
+        "default": "1",
+        "doc": "Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0."
+    },
+    {
+        "name": "fire_hp",
+        "type": "uint",
+        "default": "0"
+    },
+    {
+        "name": "gas_downwards_speed",
+        "type": "uint",
+        "default": "90"
+    },
+    {
+        "name": "gas_horizontal_speed",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "gas_speed",
+        "type": "uint",
+        "default": "50"
+    },
+    {
+        "name": "gas_upwards_speed",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "generates_flames",
+        "type": "uint",
+        "default": "30"
+    },
+    {
+        "name": "generates_smoke",
+        "type": "uint",
+        "default": "0"
+    },
+    {
+        "name": "gfx_glow",
+        "type": "uint",
+        "default": "0"
+    },
+    {
+        "name": "gfx_glow_color",
+        "type": "std::string",
+        "default": "0"
+    },
+    {
+        "name": "hp",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "ignore_self_reaction_warning",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "is_just_particle_fx",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "lifetime",
+        "type": "float",
+        "default": "0"
+    },
+    {
+        "name": "liquid_damping",
+        "type": "float",
+        "default": "0.8"
+    },
+    {
+        "name": "liquid_flow_speed",
+        "type": "float",
+        "default": "0.9"
+    },
+    {
+        "name": "liquid_gravity",
+        "type": "float",
+        "default": "0.5"
+    },
+    {
+        "name": "liquid_sand",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "liquid_sand_never_box2d",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "liquid_slime",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "liquid_sprite_stain_ignited_drop_chance",
+        "type": "uint",
+        "default": "10"
+    },
+    {
+        "name": "liquid_sprite_stain_shaken_drop_chance",
+        "type": "float",
+        "default": "1"
+    },
+    {
+        "name": "liquid_sprite_stains_check_offset",
+        "type": "int",
+        "default": "0"
+    },
+    {
+        "name": "liquid_sprite_stains_status_threshold",
+        "type": "float",
+        "default": "0.01"
+    },
+    {
+        "name": "liquid_stains",
+        "type": "int",
+        "default": "0"
+    },
+    {
+        "name": "liquid_stains_custom_color",
+        "type": "std::string",
+        "default": "0"
+    },
+    {
+        "name": "liquid_stains_self",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "liquid_static",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "liquid_sticks_to_ceiling",
+        "type": "uint",
+        "default": "0"
+    },
+    {
+        "name": "liquid_viscosity",
+        "type": "float",
+        "default": "50"
+    },
+    {
+        "name": "on_fire",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "on_fire_flame_material",
+        "type": "std::string",
+        "default": "fire"
+    },
+    {
+        "name": "on_fire_smoke_material",
+        "type": "std::string",
+        "default": "smoke"
+    },
+    {
+        "name": "platform_type",
+        "type": "int",
+        "default": "-1"
+    },
+    {
+        "name": "requires_oxygen",
+        "type": "bool",
+        "default": "1"
+    },
+    {
+        "name": "show_in_creative_mode",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "slippery",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_break_to_type",
+        "type": "std::string",
+        "default": "air"
+    },
+    {
+        "name": "solid_collide_with_self",
+        "type": "bool",
+        "default": "1"
+    },
+    {
+        "name": "solid_friction",
+        "type": "float",
+        "default": "0.3"
+    },
+    {
+        "name": "solid_go_through_sand",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_gravity_scale",
+        "type": "float",
+        "default": "1"
+    },
+    {
+        "name": "solid_on_break_explode",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_on_collision_convert",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_on_collision_explode",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_on_collision_material",
+        "type": "std::string",
+        "default": "air"
+    },
+    {
+        "name": "solid_on_collision_splash_power",
+        "type": "bool",
+        "default": "1"
+    },
+    {
+        "name": "solid_on_sleep_convert",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "solid_restitution",
+        "type": "float",
+        "default": "0.2"
+    },
+    {
+        "name": "solid_static_type",
+        "type": "int",
+        "default": "0"
+    },
+    {
+        "name": "stainable",
+        "type": "bool",
+        "default": "1"
+    },
+    {
+        "name": "stickyness",
+        "type": "float",
+        "default": "0"
+    },
+    {
+        "name": "temperature_of_fire",
+        "type": "uint",
+        "default": "10"
+    },
+    {
+        "name": "ui_name",
+        "type": "std::string",
+        "default": "",
+        "doc": "Can be translation string, copies the 'name' value by default"
+    },
+    {
+        "name": "vegetation_full_lifetime_growth",
+        "type": "uint",
+        "default": "10000"
+    },
+    {
+        "name": "vegetation_random_flip_x_scale",
+        "type": "bool",
+        "default": "0"
+    },
+    {
+        "name": "wang_color",
+        "type": "std::string",
+        "default": "0"
+    },
+    {
+        "name": "wang_curvature",
+        "type": "float",
+        "default": "0.5"
+    },
+    {
+        "name": "wang_noise_percent",
+        "type": "float",
+        "default": "1"
+    },
+    {
+        "name": "wang_noise_type",
+        "type": "int",
+        "default": "0"
+    },
+    {
+        "name": "warmth_melts_chance_rev",
+        "type": "uint",
+        "default": "100"
+    },
+    {
+        "name": "warmth_melts_to_material",
+        "type": "std::string",
+        "default": "air"
+    }
+]
