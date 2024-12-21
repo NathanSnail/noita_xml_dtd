@@ -19,6 +19,7 @@
 		<CameraBoundComponent> </CameraBoundComponent>
 	</Entity>
 	<AnimalAIComponent />
+	<ControlsComponent polymorph_next_attack_frame="0"></ControlsComponent>
 
 	<ProjectileComponent projectile_type="PROJECTILE">
 		<config_explosion physics_explosion_power.min="0.0">

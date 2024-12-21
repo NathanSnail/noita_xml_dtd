@@ -412,8 +412,8 @@
     },
     {
         "name": "wang_color",
-        "type": "std::string",
-        "default": "0"
+        "type": "Hex8",
+        "default": "00000000"
     },
     {
         "name": "wang_curvature",

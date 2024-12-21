@@ -1,4 +1,5 @@
 <?xml-model href="test.xsd" type="application/xml-xsd"?>
 <Entity>
-	<DamageModelComponent hp="13" banaan="0" />
+	<DamageModelComponent hp="13" banaan="0" hexness="0x123456AB"/>
+	<DamageModelComponent hp="13" banaan="0" hexness="0x123456AG"/>
 </Entity>

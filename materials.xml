@@ -75,7 +75,8 @@
 	SOLID_STATIC_ICE_BREAK = 5
 -->
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- FIRE -->
   
   <CellData
@@ -330,7 +331,8 @@
 		temperature_of_fire="60" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- STATIC -->
 
   <CellData
@@ -4752,7 +4754,8 @@
 			count.max="1" />
 	</CellDataChild>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- GAS  -->
 
   <CellData
@@ -5409,7 +5412,8 @@
 			count.max="1" />
 	</CellData>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- LIQUID  -->
   
   <CellData
@@ -8031,7 +8035,8 @@
 		requires_oxygen="0"
 		temperature_of_fire="60" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- SAND - GROUND -->
   <CellData
 		name="cement"
@@ -9496,7 +9501,8 @@
 		</StatusEffects>
 	</CellData>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- SAND - METAL -->
 
   <CellData
@@ -9686,7 +9692,8 @@
 	</CellData>
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- SAND - OTHER -->
 
   <CellData
@@ -10362,7 +10369,8 @@
 			pixel_bottom="ff25333b" />
 	</CellDataChild>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- PLANT  -->
 
   <CellData
@@ -11058,7 +11066,8 @@
 		show_in_creative_mode="1" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- SPECIAL -->
 
   <CellData
@@ -11149,7 +11158,8 @@
 	</CellData>
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- BOX2D (SIMULATED AS A DYNAMIC PHYSICS BODY) -->
 
   <CellData
@@ -13663,7 +13673,8 @@
 		</StatusEffects>
 	</CellData>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- BAD JOKES -->
 
   <CellData
@@ -13750,7 +13761,8 @@
 		</StatusEffects>
 	</CellData>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- HAX MATERIALS -->
   <CellData
 		name="physics_throw_material_part2"
@@ -14057,7 +14069,8 @@
 			color="ffF4F4F3" />
 	</CellData>
 
-	<!-- this is not an actual material that is used anywhere. only the particle effect is used for materials converted by fungal_shift -->
+	<!-- this is not an actual material that is used anywhere. only the particle effect is used
+	for materials converted by fungal_shift -->
   <CellData
 		name="fungal_shift_particle_fx"
 		wang_color="80c1dba5"
@@ -14080,7 +14093,8 @@
 			probability="0.0118" />
 	</CellData>
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- REACTIONS -->
 
 
@@ -14124,7 +14138,8 @@
 		input_cell1="water" input_cell2="cement"
 		output_cell1="concrete_static" output_cell2="air"
 		destroy_horizontally_lonely_pixels="1" />
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- water reactions -->
 
 	<!-- steam condenses -->
@@ -14188,7 +14203,8 @@
 
 
 	<!-- air melts ice -->
-  <Reaction probability="1"
+  <Reaction
+		probability="1"
 		input_cell1="ice" input_cell2="air"
 		output_cell1="water" output_cell2="air" />
 
@@ -14253,7 +14269,8 @@
 		blob_radius1="4" blob_radius2="4"
 		blob_restrict_to_input_material1="1" blob_restrict_to_input_material2="1" />
   
-  <Reaction probability="35"
+  <Reaction
+		probability="35"
 		input_cell1="water_ice" input_cell2="snowrock_static" input_cell3="air"
 		output_cell1="ice_static" output_cell2="snowrock_static"
 		blob_radius1="4" blob_radius2="4"
@@ -14261,7 +14278,8 @@
 
 	<!-- radioactive liquids -->
 
-  <Reaction probability="13"
+  <Reaction
+		probability="13"
 		input_cell1="water" input_cell2="radioactive_liquid"
 		output_cell1="water" output_cell2="water" />
 
@@ -14307,7 +14325,8 @@
 		input_cell1="[fire]" input_cell2="water_salt" input_cell3="water_salt"
 		output_cell1="[fire]" output_cell2="salt" output_cell3="steam" />
   
-  <Reaction probability="50"
+  <Reaction
+		probability="50"
 		input_cell1="sodium" input_cell2="[water]"
 		output_cell1="sodium" output_cell2="steam">
 		<ExplosionConfig
@@ -14359,7 +14378,8 @@
 		output_cell1="water" output_cell2="air" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- acid reactions -->
 
 	<!-- [acid] corrodes [corrodible] -->
@@ -14385,7 +14405,8 @@
 		audio_fx_volume_1="1.0" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- meltable, molten reactions-->
 
 	<!-- [meltable] melts when colliding with [fire] -->
@@ -14412,12 +14433,15 @@
 		output_cell1="[meltable_metal]_molten" output_cell2="[lava]" />
 
 	<!-- [meltable_platic] reactions -->
-  <Reaction probability="20"
+  <Reaction
+		probability="20"
 		input_cell1="[fire]" input_cell2="[meltable_plastic]"
 		output_cell1="smoke" output_cell2="[meltable_plastic]_molten" />
 
-	<!-- molten plastic resolidifies into plastic_grey (to avoid performance issues of 1x1 physics bodies) -->
-  <Reaction probability="10"
+	<!-- molten plastic resolidifies into plastic_grey (to avoid performance issues of 1x1 physics
+	bodies) -->
+  <Reaction
+		probability="10"
 		input_cell1="[meltable_plastic]_molten" input_cell2="air"
 		output_cell1="plastic_grey" output_cell2="air" />
 
@@ -14430,11 +14454,13 @@
 		input_cell1="[meltable_plastic]" input_cell2="[lava]"
 		output_cell1="[meltable_plastic]_molten" output_cell2="[lava]" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!---
 	lava reactions -->
 
-  <Reaction probability="0"
+  <Reaction
+		probability="0"
 		input_cell1="[lava]" input_cell2="air"
 		output_cell1="smoke" output_cell2="air" />
 
@@ -14700,7 +14726,8 @@
 		blob_restrict_to_input_material1="1" blob_restrict_to_input_material2="1"
 		audio_fx_volume_1="100.0" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- [evaporable] reactions -->
 
   <Reaction probability="15"
@@ -14723,11 +14750,13 @@
 		input_cell1="[evaporable_custom]" input_cell2="[lava]"
 		output_cell1="[evaporable_custom]_vapour" output_cell2="[lava]" />
   
-  <Reaction probability="80"
+  <Reaction
+		probability="80"
 		input_cell1="[fire]" input_cell2="[evaporable_custom]"
 		output_cell1="[fire]" output_cell2="[evaporable_custom]_vapour" />
   
-  <Reaction probability="20"
+  <Reaction
+		probability="20"
 		input_cell1="cactus" input_cell2="[lava]"
 		output_cell1="sand_herb_vapour" output_cell2="[lava]" />
   
@@ -14739,14 +14768,16 @@
 		input_cell1="[fire]" input_cell2="wood_static_gas"
 		output_cell1="[fire]" output_cell2="steam_trailer" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- [grows_grass] reactions -->
   
   <Reaction probability="2"
 		input_cell1="[grows_grass]" input_cell2="air"
 		output_cell1="grass" output_cell2="air" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- fungus reactions -->
 
 <Reaction probability="2"
@@ -14807,7 +14838,8 @@
 		output_cell1="root" output_cell2="root"
 		direction="left" />
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- vegetation reactions -->
 
 	<!-- shroom seeds -->
@@ -14892,7 +14924,8 @@
 		direction="top" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- other reactions -->
   
   <Reaction probability="90"
@@ -14931,7 +14964,8 @@
 		blob_radius1="3" blob_radius2="3"
 		blob_restrict_to_input_material1="1" blob_restrict_to_input_material2="1" />
   
-  <Reaction probability="20"
+  <Reaction
+		probability="20"
 		input_cell1="blood_cold" input_cell2="air"
 		output_cell1="blood_cold_vapour" output_cell2="air" />
   
@@ -14994,7 +15028,8 @@
 		output_cell1="[fire]" output_cell2="poison_gas" />
 
 
-	<!-- =================================================================================================================  -->
+	<!--
+	=================================================================================================================  -->
 	<!-- [slime] reactions -->
 
 	<!-- burning slime produces quickly expanding slime -->
@@ -15155,7 +15190,8 @@
 	<!--
   <Reaction probability="100"
 	input_cell1="magic_liquid_charm" 				input_cell2="[blood]" 	input_cell3="[magic_polymorph]"
-	output_cell1="magic_liquid_hp_regeneration" 	output_cell2="magic_liquid_hp_regeneration"		output_cell3="magic_liquid_hp_regeneration" 
+	output_cell1="magic_liquid_hp_regeneration" 	output_cell2="magic_liquid_hp_regeneration"
+	output_cell3="magic_liquid_hp_regeneration" 
 	blob_radius2="20"
 	>
   </Reaction>
@@ -15165,7 +15201,8 @@
 		input_cell1="corruption_static" input_cell2="[alchemy]"
 		output_cell1="corruption_static" output_cell2="corruption_static" />
   
-  <Reaction probability="100"
+  <Reaction
+		probability="100"
 		input_cell1="radioactive_liquid" input_cell2="blood_worm" input_cell3="fungi"
 		output_cell1="void_liquid" output_cell2="void_liquid"
 		blob_radius1="40" blob_radius2="40" />
@@ -15213,89 +15250,111 @@
 	<!-- magic material reactions -->
   <Reaction probability="15"
 		input_cell1="magic_liquid_faster_levitation" input_cell2="magic_liquid_movement_faster"
-		output_cell1="magic_liquid_faster_levitation_and_movement" output_cell2="magic_liquid_faster_levitation_and_movement" />
+		output_cell1="magic_liquid_faster_levitation_and_movement"
+		output_cell2="magic_liquid_faster_levitation_and_movement" />
 
  <Reaction
 		probability="25"
 		input_cell1="magic_liquid_mana_regeneration" input_cell2="water"
-		output_cell1="magic_liquid_mana_regeneration" output_cell2="magic_liquid_mana_regeneration" />
+		output_cell1="magic_liquid_mana_regeneration"
+		output_cell2="magic_liquid_mana_regeneration" />
 
  <Reaction probability="25"
 		input_cell1="magic_liquid_mana_regeneration" input_cell2="[meltable_metal]"
 		output_cell1="magic_liquid_mana_regeneration" output_cell2="steam" />
 
- <Reaction probability="25"
+ <Reaction
+		probability="25"
 		input_cell1="magic_liquid_mana_regeneration" input_cell2="gold_box2d"
 		output_cell1="magic_liquid_mana_regeneration" output_cell2="steam" />
-  <Reaction probability="25"
+  <Reaction
+		probability="25"
 		input_cell1="magic_liquid_mana_regeneration" input_cell2="bloodgold_box2d"
 		output_cell1="magic_liquid_mana_regeneration" output_cell2="steam" />
   
-  <Reaction probability="25"
+  <Reaction
+		probability="25"
 		input_cell1="magic_liquid_mana_regeneration" input_cell2="[meltable_metal_generic]"
 		output_cell1="magic_liquid_mana_regeneration" output_cell2="steam" />
 
 
 
- <Reaction probability="25"
+ <Reaction
+		probability="25"
 		input_cell1="material_confusion" input_cell2="magic_liquid_berserk"
 		output_cell1="magic_liquid_charm" output_cell2="magic_liquid_charm" />
   
-   <Reaction probability="15"
+   <Reaction
+		probability="15"
 		input_cell1="magic_liquid_worm_attractor" input_cell2="blood_worm"
 		output_cell1="material_confusion" output_cell2="material_confusion" />
 
-  <Reaction probability="21"
+  <Reaction
+		probability="21"
 		input_cell1="magic_liquid_invisibility" input_cell2="water"
 		output_cell1="water" output_cell2="water" />
 
   <Reaction probability="35"
 		input_cell1="material_confusion" input_cell2="blood" input_cell3="oil"
-		output_cell1="magic_liquid_unstable_polymorph" output_cell2="magic_liquid_unstable_polymorph" output_cell3="magic_liquid_unstable_polymorph"
+		output_cell1="magic_liquid_unstable_polymorph"
+		output_cell2="magic_liquid_unstable_polymorph"
+		output_cell3="magic_liquid_unstable_polymorph"
 		blob_radius2="15" />
 		
   <Reaction probability="5"
-		input_cell1="magic_liquid_unstable_teleportation" input_cell2="magic_liquid_teleportation" input_cell3="water"
-		output_cell1="magic_liquid_unstable_teleportation" output_cell2="magic_liquid_unstable_teleportation"
+		input_cell1="magic_liquid_unstable_teleportation"
+		input_cell2="magic_liquid_teleportation" input_cell3="water"
+		output_cell1="magic_liquid_unstable_teleportation"
+		output_cell2="magic_liquid_unstable_teleportation"
 		output_cell3="magic_liquid_unstable_teleportation" />
 
   <Reaction probability="21"
 		input_cell1="magic_liquid_teleportation" input_cell2="alcohol"
 		output_cell1="magic_liquid_unstable_teleportation" output_cell2="alcohol" />
 
-  <Reaction probability="20"
+  <Reaction
+		probability="20"
 		input_cell1="magic_liquid_unstable_teleportation" input_cell2="[slime]"
 		output_cell1="magic_liquid_teleportation" output_cell2="magic_liquid_teleportation" />
 
-  <Reaction probability="20"
+  <Reaction
+		probability="20"
 		input_cell1="magic_liquid_unstable_teleportation" input_cell2="endslime"
 		output_cell1="magic_liquid_teleportation" output_cell2="magic_liquid_teleportation" />
 
-  <Reaction probability="10"
+  <Reaction
+		probability="10"
 		input_cell1="magic_liquid_teleportation" input_cell2="magic_liquid_mana_regeneration"
 		output_cell1="fire" output_cell2="magic_liquid_mana_regeneration" />
   
-  <Reaction probability="10"
-		input_cell1="magic_liquid_unstable_teleportation" input_cell2="magic_liquid_mana_regeneration"
+  <Reaction
+		probability="10"
+		input_cell1="magic_liquid_unstable_teleportation"
+		input_cell2="magic_liquid_mana_regeneration"
 		output_cell1="fire" output_cell2="magic_liquid_mana_regeneration" />
 
-  <Reaction probability="15"
+  <Reaction
+		probability="15"
 		input_cell1="magic_liquid_polymorph" input_cell2="radioactive_liquid"
 		output_cell1="magic_liquid_random_polymorph" output_cell2="radioactive_liquid" />
 
-  <Reaction probability="45"
+  <Reaction
+		probability="45"
 		input_cell1="material_confusion" input_cell2="[sand_metal]"
-		output_cell1="magic_liquid_faster_levitation" output_cell2="magic_liquid_faster_levitation" />  	
+		output_cell1="magic_liquid_faster_levitation"
+		output_cell2="magic_liquid_faster_levitation" />  	
 
   <Reaction probability="10"
 		input_cell1="alcohol" input_cell2="meat_frog"
 		output_cell1="magic_liquid_berserk" output_cell2="meat_frog" />
   
-  <Reaction probability="50"
+  <Reaction
+		probability="50"
 		input_cell1="honey" input_cell2="diamond"
 		output_cell1="magic_liquid_protection_all" output_cell2="poison" />
   
-  <Reaction probability="100"
+  <Reaction
+		probability="100"
 		input_cell1="material_confusion" input_cell2="magic_liquid_unstable_teleportation"
 		output_cell1="orb_powder" output_cell2="fire"
 		blob_radius1="15" blob_radius2="15" />
@@ -15304,7 +15363,8 @@
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_teleportation"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_unstable_teleportation" />
   
-  <Reaction probability="60"
+  <Reaction
+		probability="60"
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_berserk"
 		output_cell1="magic_liquid_weakness" output_cell2="water" />
   
@@ -15312,11 +15372,13 @@
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_polymorph"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_random_polymorph" />
   
-  <Reaction probability="60"
+  <Reaction
+		probability="60"
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_faster_levitation"
 		output_cell1="radioactive_liquid" output_cell2="radioactive_liquid" />
   
-  <Reaction probability="60"
+  <Reaction
+		probability="60"
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_mana_regeneration"
 		output_cell1="steam" output_cell2="steam" />
   
@@ -15336,7 +15398,8 @@
 		input_cell1="magic_liquid_weakness" input_cell2="gold_molten"
 		output_cell1="magic_liquid_weakness" output_cell2="silver_molten" />
   
-  <Reaction probability="100"
+  <Reaction
+		probability="100"
 		input_cell1="magic_liquid_weakness" input_cell2="diamond"
 		output_cell1="steam" output_cell2="radioactive_liquid" />
   
@@ -15348,11 +15411,13 @@
 		input_cell1="magic_liquid_weakness" input_cell2="acid_gas"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_weakness" />
   
-  <Reaction probability="100"
+  <Reaction
+		probability="100"
 		input_cell1="magic_liquid_weakness" input_cell2="acid_gas_static"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_weakness" />
   
-  <Reaction probability="80"
+  <Reaction
+		probability="80"
 		input_cell1="magic_liquid_weakness" input_cell2="magic_liquid_protection_all"
 		output_cell1="smoke" output_cell2="acid" />
   
@@ -15368,23 +15433,28 @@
 		input_cell1="vomit" input_cell2="bone"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_weakness" />
   
-  <Reaction probability="40"
+  <Reaction
+		probability="40"
 		input_cell1="vomit" input_cell2="bone_box2d"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_weakness" />
   
-  <Reaction probability="40"
+  <Reaction
+		probability="40"
 		input_cell1="vomit" input_cell2="bone_static"
 		output_cell1="magic_liquid_weakness" output_cell2="magic_liquid_weakness" />
   
-  <Reaction probability="10"
+  <Reaction
+		probability="10"
 		input_cell1="magic_liquid_polymorph" input_cell2="copper"
 		output_cell1="magic_gas_polymorph" output_cell2="magic_gas_polymorph" />
   
-  <Reaction probability="10"
+  <Reaction
+		probability="10"
 		input_cell1="magic_liquid_teleportation" input_cell2="silver"
 		output_cell1="magic_gas_teleport" output_cell2="magic_gas_teleport" />
   
-  <Reaction probability="10"
+  <Reaction
+		probability="10"
 		input_cell1="[fungus]" input_cell2="brass"
 		output_cell1="magic_gas_fungus" output_cell2="magic_gas_fungus" />
 
@@ -15401,7 +15471,8 @@
 
 	<!-- wizardstone -->
 	
-	<Reaction probability="50"
+	<Reaction
+		probability="50"
 		input_cell1="wizardstone" input_cell2="[fire]"
 		output_cell1="steam" output_cell2="lava" />
 	
@@ -15409,7 +15480,8 @@
 		input_cell1="wizardstone" input_cell2="[water]"
 		output_cell1="smoke" output_cell2="magic_liquid_teleportation" />
 	
-	<Reaction probability="50"
+	<Reaction
+		probability="50"
 		input_cell1="wizardstone" input_cell2="magic_liquid_protection_all"
 		output_cell1="steam" output_cell2="steam" />
 	
@@ -15507,7 +15579,8 @@
 		input_cell1="[meltable_metal_generic]" input_cell2="[fire_strong]"
 		output_cell1="metal_sand_molten" output_cell2="[fire_strong]" />
 	
-	<Reaction probability="30"
+	<Reaction
+		probability="30"
 		input_cell1="[meltable_metal_generic]" input_cell2="[lava]"
 		output_cell1="metal_sand_molten" output_cell2="[lava]" />
 
@@ -15572,19 +15645,24 @@
 		input_cell1="copper" input_cell2="brass" input_cell3="water"
 		output_cell1="silver" output_cell2="smoke" output_cell3="smoke" />
 	
-	<Reaction probability="100"
+	<Reaction
+		probability="100"
 		input_cell1="silver" input_cell2="copper" input_cell3="blood"
 		output_cell1="diamond" output_cell2="smoke" output_cell3="smoke" />
 	
-	<Reaction probability="100"
+	<Reaction
+		probability="100"
 		input_cell1="diamond" input_cell2="silver" input_cell3="blood_worm"
 		output_cell1="purifying_powder" output_cell2="smoke" output_cell3="smoke" />
 	
-	<Reaction probability="100"
-		input_cell1="diamond" input_cell2="magic_liquid_random_polymorph" input_cell3="radioactive_liquid"
+	<Reaction
+		probability="100"
+		input_cell1="diamond" input_cell2="magic_liquid_random_polymorph"
+		input_cell3="radioactive_liquid"
 		output_cell1="void_liquid" output_cell2="void_liquid" output_cell3="void_liquid" />
 	
-	<Reaction probability="100"
+	<Reaction
+		probability="100"
 		input_cell1="void_liquid" input_cell2="radioactive_liquid"
 		output_cell1="void_liquid" output_cell2="void_liquid" />
 	
@@ -15615,7 +15693,8 @@
 
 	<!-- Cooking -->
 	
-	<Reaction probability="10"
+	<Reaction
+		probability="10"
 		input_cell1="meat" input_cell2="[fire]" input_cell3="oil"
 		output_cell1="meat_warm" output_cell2="[fire]" output_cell3="smoke"
 		blob_radius1="5"

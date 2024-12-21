@@ -5,6 +5,11 @@
 			<xs:enumeration value="1" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="Hex8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="0x[0-9A-F]{8}"></xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Root element -->
 	<xs:element name="Entity">
 		<xs:annotation>
@@ -27,6 +32,11 @@
 			<xs:documentation>hi</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:attribute name="hexness" type="Hex8" use="required">
+				<xs:annotation>
+					<xs:documentation> Makes games </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="hp" type="xs:float" use="required">
 				<xs:annotation>
 					<xs:documentation> The 'hp' attribute specifies the hit points of the

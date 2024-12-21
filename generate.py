@@ -40,6 +40,8 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
     enum = "::Enum"
+    if ty == "Hex8":
+        return [("", "Hex8")]
     if ty == "StatusEffectType":
         return [("", "GAME_EFFECT")]
     if ty[-len(enum) :] == enum:
@@ -453,13 +455,17 @@ out += "\n"
 out += "\n".join([render_component(component) for component in components])
 # out = out.replace("\t","").replace("\n","")
 
+
 def replace_metatag(src: str, replacement: str, tag: str) -> str:
     parts = src.split(tag)
     # Replace content between markers
-    for i in range(1, len(parts), 2):  # Only replace in "odd" indexed parts (between markers)
+    for i in range(
+        1, len(parts), 2
+    ):  # Only replace in "odd" indexed parts (between markers)
         parts[i] = replacement
     # Rejoin the parts
     return tag.join(parts)
+
 
 def prune_builtin(src: str) -> str:
     return "\n".join(
@@ -472,10 +478,8 @@ def prune_builtin(src: str) -> str:
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
 
 # Update materials.xsd
-material_attributes_json = json.load(
-    open("./materials_attributes.json", "r")
-)
-material_attributes="""\n\t\t<xs:attribute name="name" type="xs:string" use="required">
+material_attributes_json = json.load(open("./materials_attributes.json", "r"))
+material_attributes = """\n\t\t<xs:attribute name="name" type="xs:string" use="required">
 \t\t\t<xs:annotation>
 \t\t\t\t<xs:documentation>Internal name, should be unique, otherwise will overwrite materials.</xs:documentation>
 \t\t\t</xs:annotation>
@@ -483,7 +487,7 @@ material_attributes="""\n\t\t<xs:attribute name="name" type="xs:string" use="req
 """
 for attribute in material_attributes_json:
     ty = get_xml_type(attribute["type"])[0][1]
-    doc = f"""<![CDATA[```cpp<br>{attribute["type"]} {attribute["name"]} = "{attribute["default"]}"; {"//  " + attribute["doc"] if "doc" in attribute else ""}<br>```]]>"""
+    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(Field(attribute["name"], attribute["type"], attribute["default"], "", attribute.get("doc", ""))).replace("\t", "") + NL + "```"}]]>"""
     material_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" default="{attribute["default"]}">
 \t\t\t<xs:annotation>
 \t\t\t\t<xs:documentation>{doc}</xs:documentation>
@@ -491,14 +495,24 @@ for attribute in material_attributes_json:
 \t\t</xs:attribute>
 """
 material_file = "./materials.xsd"
-material_xsd = replace_metatag(open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->")
+material_xsd = replace_metatag(
+    open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->"
+)
 
-config_explosion = next(render_config(config) for config in configs if config.name == "ConfigExplosion")
-config_damage_critical = next(render_config(config) for config in configs if config.name == "ConfigDamageCritical")
-material_xsd = replace_metatag(material_xsd, f"""
+config_explosion = next(
+    render_config(config) for config in configs if config.name == "ConfigExplosion"
+)
+config_damage_critical = next(
+    render_config(config) for config in configs if config.name == "ConfigDamageCritical"
+)
+material_xsd = replace_metatag(
+    material_xsd,
+    f"""
 {config_damage_critical}
 {config_explosion}
-""", "<!-- ConfigExplosion -->")
+""",
+    "<!-- ConfigExplosion -->",
+)
 
 open(material_file, "w").write(material_xsd)
 
