@@ -7,10 +7,388 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="ConfigExplosion" mixed="true">
-		<xs:anyAttribute processContents="skip" />
+	<!-- ConfigExplosion -->
+	<xs:complexType name="ConfigDamageCritical" mixed="true">
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ConfigDamageCritical {<br>&emsp;&emsp;&emsp;&emsp;int chance; //  the chance of a critical hit. ]0-100[ - can be higher than 100% - then will multiply the multiplier by the extra<br>&emsp;&emsp;&emsp;&emsp;float damage_multiplier; //  multiplier that is applied to all damage types on a critical hit<br>&emsp;&emsp;&emsp;&emsp;bool mSucceeded;<br>};<br>```]]> </xs:documentation> </xs:annotation>
+		<xs:attribute name="chance" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int chance; //  the chance of a critical hit. ]0-100[ - can be higher than 100% - then will multiply the multiplier by the extra<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="damage_multiplier" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float damage_multiplier; //  multiplier that is applied to all damage types on a critical hit<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="mSucceeded" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool mSucceeded;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
 	</xs:complexType>
+	<xs:complexType name="ConfigExplosion" mixed="true">
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ConfigExplosion {<br>&emsp;&emsp;&emsp;&emsp;bool never_cache; //  if set, won't ever cache and the explosion happens that frame. Used for projectiles<br>&emsp;&emsp;&emsp;&emsp;float explosion_radius; //  Explosion radius, used to find the peasants and physics bodies that are thrown into the air<br>&emsp;&emsp;&emsp;&emsp;std::string explosion_sprite; //  sprite animation of the explosion that we play<br>&emsp;&emsp;&emsp;&emsp;bool explosion_sprite_emissive; //  if 1, sprite is emissive<br>&emsp;&emsp;&emsp;&emsp;bool explosion_sprite_additive; //  if 1, sprite is additive<br>&emsp;&emsp;&emsp;&emsp;bool explosion_sprite_random_rotation; //  if true, rotates the sprite to random 90 degrees<br>&emsp;&emsp;&emsp;&emsp;float explosion_sprite_lifetime; //  if 0, finds the lifetime based on the rect animation currently playing. If not 0 it is seconds how long does the explosion sprite stay in the world<br>&emsp;&emsp;&emsp;&emsp;float damage; //  how much damage does this do to living entities<br>&emsp;&emsp;&emsp;&emsp;float camera_shake; //  camera shake - how much we shake the camera<br>&emsp;&emsp;&emsp;&emsp;bool particle_effect; //  Should we use the ParticleEffect::DoExplosion()<br>&emsp;&emsp;&emsp;&emsp;std::string load_this_entity; //  if set, this entity is loaded when the explosion is queued<br>&emsp;&emsp;&emsp;&emsp;bool light_enabled; //  Should the explosion emit light to its surroundings?<br>&emsp;&emsp;&emsp;&emsp;float light_fade_time; //  The time it takes for the light flash to fade out<br>&emsp;&emsp;&emsp;&emsp;unsignedint light_r; //  Color red 0-255<br>&emsp;&emsp;&emsp;&emsp;unsignedint light_g; //  Color green 0-255<br>&emsp;&emsp;&emsp;&emsp;unsignedint light_b; //  Color blue 0-255<br>&emsp;&emsp;&emsp;&emsp;float light_radius_coeff; //  The radius of the light will be explosion_radius * light_radius_coeff<br>&emsp;&emsp;&emsp;&emsp;bool hole_enabled; //  Do we remove ground, creata a crater<br>&emsp;&emsp;&emsp;&emsp;bool destroy_non_platform_solid_enabled; //  Do we remove solid cells that aren't platforms?<br>&emsp;&emsp;&emsp;&emsp;int electricity_count; //  How many electricity entitities should we create?<br>&emsp;&emsp;&emsp;&emsp;int min_radius_for_cracks; //  Cracks are created if explosion_radius is larger than this<br>&emsp;&emsp;&emsp;&emsp;int crack_count; //  How many crack entitities should we create?<br>&emsp;&emsp;&emsp;&emsp;float knockback_force; //  How far do entities get thrown if a knockback occurs? final_knocback = explosion_radius * knockback_force * target.inv_normalized_distance_from_explosion / target.mass<br>&emsp;&emsp;&emsp;&emsp;bool hole_destroy_liquid; //  Do we destroy the liquid cells we ran into, or do we just throw them into to the air?<br>&emsp;&emsp;&emsp;&emsp;bool hole_destroy_physics_dynamic; //  Do we destroy the dynamic physics cells we encountered?<br>&emsp;&emsp;&emsp;&emsp;std::string create_cell_material; //  The material destroyed cells might turn into.<br>&emsp;&emsp;&emsp;&emsp;int create_cell_probability; //  The probability a destroyed cell is turned into 'create_cell_material'<br>&emsp;&emsp;&emsp;&emsp;int background_lightning_count; //  Parallax background lightning count is set to this on explosion<br>&emsp;&emsp;&emsp;&emsp;std::string spark_material; //  spark material, TODO moved these to use a special Serializer<br>&emsp;&emsp;&emsp;&emsp;int material_sparks_min_hp; //  How many sparks are we creating (rand max)<br>&emsp;&emsp;&emsp;&emsp;int material_sparks_probability; //  How many sparks are we creating (rand max)<br>&emsp;&emsp;&emsp;&emsp;int material_sparks_count_min; //  How many sparks are we creating (rand min)<br>&emsp;&emsp;&emsp;&emsp;int material_sparks_count_max; //  How many sparks are we creating (rand max)<br>&emsp;&emsp;&emsp;&emsp;bool material_sparks_enabled; //  Should we create few fire particles around the explosion<br>&emsp;&emsp;&emsp;&emsp;bool material_sparks_real; //  if the spark particles created are real or fake<br>&emsp;&emsp;&emsp;&emsp;bool material_sparks_scale_with_hp; //  if true, will create more sparks the harder the material<br>&emsp;&emsp;&emsp;&emsp;bool sparks_enabled; //  Should we create few fire particles around the explosion<br>&emsp;&emsp;&emsp;&emsp;int sparks_count_min; //  How many sparks are we creating (rand min)<br>&emsp;&emsp;&emsp;&emsp;int sparks_count_max; //  How many sparks are we creating (rand max)<br>&emsp;&emsp;&emsp;&emsp;float sparks_inner_radius_coeff; //  If 'sparks_enabled', Sparks are created in the area between circles defined by 'explosion_radius'*'sparks_inner_radius_coeff' and 'explosion_radius'<br>&emsp;&emsp;&emsp;&emsp;bool stains_enabled; //  Should we stain the ground and other particles<br>&emsp;&emsp;&emsp;&emsp;float stains_radius; //  The distance from the edge of the hole to the edge of the stained area, 0.0f for default which is 0.3 * explosion_radius<br>&emsp;&emsp;&emsp;&emsp;int ray_energy; //  This is the energy we have per ray. Could be called 'penetration power' or something like that. If cells have a hp of 20 rays with 100 energy can penetrate 5 cells<br>&emsp;&emsp;&emsp;&emsp;int max_durability_to_destroy; //  When destroying cells only cells with a durability <= max_durability_to_destroy will be affected<br>&emsp;&emsp;&emsp;&emsp;int gore_particle_count; //  How many particles to create in case we do gore stuff?<br>&emsp;&emsp;&emsp;&emsp;bool shake_vegetation; //  Should we shake vegetation around the explosion (uses the area of stain_image to find vegetation)<br>&emsp;&emsp;&emsp;&emsp;bool damage_mortals; //  Look for peasants and throw them into the air? Remember to enabled physics_throw as well if you want them to actually fly<br>&emsp;&emsp;&emsp;&emsp;bool physics_throw_enabled; //  Should we throw physics objects into the air, also peasants<br>&emsp;&emsp;&emsp;&emsp;float physics_multiplier_ragdoll_force; //  treat the ragdolls a bit differently from other physics objects, to get them to fly nicely<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_power; //  used when a solid cell explodes as the multiplier to how big the radius is going to be<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_radius_min; //  when cell explodes, this is the minimum radius that explosion is made of<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_radius_max; //  when cell explodes, this is the minimum radius that explosion is made of<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_velocity_min; //  cell explodes only when body velocity is greater than this<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_damage_required; //  how much fire damage is required before this explodes<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_probability; //  this is used when there's a tiny contact that doesn't cause an explosion, in those cases this is used as a random to check if we should explode or not<br>&emsp;&emsp;&emsp;&emsp;float cell_explosion_power_ragdoll_coeff; //  ragdoll cells destruction power is multiplied with this<br>&emsp;&emsp;&emsp;&emsp;bool pixel_sprites_enabled; //  if enabled will carve out the pixel sprites<br>&emsp;&emsp;&emsp;&emsp;bool is_digger; //  if 1, we apply some special digger logic to this explosion<br>&emsp;&emsp;&emsp;&emsp;bool audio_enabled; //  Do we play an explosion sound?<br>&emsp;&emsp;&emsp;&emsp;std::string audio_event_name; //  Name of audio event in 'explosion' audio bank. If not set, will default to 'explosion' or 'explosion_small' based on explosion radius.<br>&emsp;&emsp;&emsp;&emsp;float audio_liquid_amount_normalized; //  value of the 'liquid_amount' parameter passed to the explosion's audio event<br>&emsp;&emsp;&emsp;&emsp;int explosion_delay_id; //  for delayed barrel explosions... this has to be set and has to be the same for the explosions for there to be a delay<br>&emsp;&emsp;&emsp;&emsp;EntityID who_is_responsible; //  the entity that caused the explosion<br>&emsp;&emsp;&emsp;&emsp;bool null_damage; //  if set, will not call DamageModelSystem::TakeDamage()<br>&emsp;&emsp;&emsp;&emsp;EntityID dont_damage_this; //  if set, this entity doesn't receive damage from the explosion<br>&emsp;&emsp;&emsp;&emsp;EntityID impl_send_message_to_this;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 impl_position;<br>&emsp;&emsp;&emsp;&emsp;int32 impl_delay_frame;<br>&emsp;&emsp;&emsp;&emsp;ValueRange physics_explosion_power; //  how hard do we throw physics objects<br>&emsp;&emsp;&emsp;&emsp;ValueRangeInt delay; //  if > 0, the explosion occurs with a delay chosen randomly from this range and is never buffered<br>&emsp;&emsp;&emsp;&emsp;ConfigDamageCritical damage_critical; //  critical damage config. NOTE: must be already calculated ('chance' does nothing).<br>};<br>```]]> </xs:documentation> </xs:annotation>
+			<xs:all>
+				<xs:element name="damage_critical" type="ConfigDamageCritical" minOccurs="0"/>
+			</xs:all>
+		<xs:attribute name="never_cache" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool never_cache; //  if set, won't ever cache and the explosion happens that frame. Used for projectiles<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_radius" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float explosion_radius; //  Explosion radius, used to find the peasants and physics bodies that are thrown into the air<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_sprite" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string explosion_sprite; //  sprite animation of the explosion that we play<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_sprite_emissive" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool explosion_sprite_emissive; //  if 1, sprite is emissive<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_sprite_additive" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool explosion_sprite_additive; //  if 1, sprite is additive<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_sprite_random_rotation" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool explosion_sprite_random_rotation; //  if true, rotates the sprite to random 90 degrees<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_sprite_lifetime" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float explosion_sprite_lifetime; //  if 0, finds the lifetime based on the rect animation currently playing. If not 0 it is seconds how long does the explosion sprite stay in the world<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="damage" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float damage; //  how much damage does this do to living entities<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="camera_shake" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float camera_shake; //  camera shake - how much we shake the camera<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="particle_effect" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool particle_effect; //  Should we use the ParticleEffect::DoExplosion()<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="load_this_entity" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string load_this_entity; //  if set, this entity is loaded when the explosion is queued<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool light_enabled; //  Should the explosion emit light to its surroundings?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_fade_time" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float light_fade_time; //  The time it takes for the light flash to fade out<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_r" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>unsignedint light_r; //  Color red 0-255<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_g" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>unsignedint light_g; //  Color green 0-255<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_b" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>unsignedint light_b; //  Color blue 0-255<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="light_radius_coeff" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float light_radius_coeff; //  The radius of the light will be explosion_radius * light_radius_coeff<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hole_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool hole_enabled; //  Do we remove ground, creata a crater<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="destroy_non_platform_solid_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool destroy_non_platform_solid_enabled; //  Do we remove solid cells that aren't platforms?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="electricity_count" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int electricity_count; //  How many electricity entitities should we create?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="min_radius_for_cracks" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int min_radius_for_cracks; //  Cracks are created if explosion_radius is larger than this<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="crack_count" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int crack_count; //  How many crack entitities should we create?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="knockback_force" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float knockback_force; //  How far do entities get thrown if a knockback occurs? final_knocback = explosion_radius * knockback_force * target.inv_normalized_distance_from_explosion / target.mass<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hole_destroy_liquid" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool hole_destroy_liquid; //  Do we destroy the liquid cells we ran into, or do we just throw them into to the air?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hole_destroy_physics_dynamic" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool hole_destroy_physics_dynamic; //  Do we destroy the dynamic physics cells we encountered?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="create_cell_material" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string create_cell_material; //  The material destroyed cells might turn into.<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="create_cell_probability" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int create_cell_probability; //  The probability a destroyed cell is turned into 'create_cell_material'<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="background_lightning_count" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int background_lightning_count; //  Parallax background lightning count is set to this on explosion<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="spark_material" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string spark_material; //  spark material, TODO moved these to use a special Serializer<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_min_hp" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int material_sparks_min_hp; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_probability" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int material_sparks_probability; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_count_min" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_min; //  How many sparks are we creating (rand min)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_count_max" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_max; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_enabled; //  Should we create few fire particles around the explosion<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_real" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_real; //  if the spark particles created are real or fake<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="material_sparks_scale_with_hp" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_scale_with_hp; //  if true, will create more sparks the harder the material<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sparks_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool sparks_enabled; //  Should we create few fire particles around the explosion<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sparks_count_min" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int sparks_count_min; //  How many sparks are we creating (rand min)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sparks_count_max" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int sparks_count_max; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sparks_inner_radius_coeff" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float sparks_inner_radius_coeff; //  If 'sparks_enabled', Sparks are created in the area between circles defined by 'explosion_radius'*'sparks_inner_radius_coeff' and 'explosion_radius'<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stains_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool stains_enabled; //  Should we stain the ground and other particles<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stains_radius" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float stains_radius; //  The distance from the edge of the hole to the edge of the stained area, 0.0f for default which is 0.3 * explosion_radius<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ray_energy" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int ray_energy; //  This is the energy we have per ray. Could be called 'penetration power' or something like that. If cells have a hp of 20 rays with 100 energy can penetrate 5 cells<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="max_durability_to_destroy" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int max_durability_to_destroy; //  When destroying cells only cells with a durability <= max_durability_to_destroy will be affected<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gore_particle_count" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int gore_particle_count; //  How many particles to create in case we do gore stuff?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="shake_vegetation" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool shake_vegetation; //  Should we shake vegetation around the explosion (uses the area of stain_image to find vegetation)<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="damage_mortals" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool damage_mortals; //  Look for peasants and throw them into the air? Remember to enabled physics_throw as well if you want them to actually fly<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="physics_throw_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool physics_throw_enabled; //  Should we throw physics objects into the air, also peasants<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="physics_multiplier_ragdoll_force" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float physics_multiplier_ragdoll_force; //  treat the ragdolls a bit differently from other physics objects, to get them to fly nicely<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_power" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_power; //  used when a solid cell explodes as the multiplier to how big the radius is going to be<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_radius_min" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_radius_min; //  when cell explodes, this is the minimum radius that explosion is made of<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_radius_max" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_radius_max; //  when cell explodes, this is the minimum radius that explosion is made of<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_velocity_min" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_velocity_min; //  cell explodes only when body velocity is greater than this<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_damage_required" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_damage_required; //  how much fire damage is required before this explodes<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_probability" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_probability; //  this is used when there's a tiny contact that doesn't cause an explosion, in those cases this is used as a random to check if we should explode or not<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cell_explosion_power_ragdoll_coeff" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float cell_explosion_power_ragdoll_coeff; //  ragdoll cells destruction power is multiplied with this<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_sprites_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool pixel_sprites_enabled; //  if enabled will carve out the pixel sprites<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_digger" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool is_digger; //  if 1, we apply some special digger logic to this explosion<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_enabled" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool audio_enabled; //  Do we play an explosion sound?<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_event_name" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_event_name; //  Name of audio event in 'explosion' audio bank. If not set, will default to 'explosion' or 'explosion_small' based on explosion radius.<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_liquid_amount_normalized" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float audio_liquid_amount_normalized; //  value of the 'liquid_amount' parameter passed to the explosion's audio event<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="explosion_delay_id" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int explosion_delay_id; //  for delayed barrel explosions... this has to be set and has to be the same for the explosions for there to be a delay<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- Some Unknown Type: EntityID for who_is_responsible -->
+		<xs:attribute name="null_damage" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool null_damage; //  if set, will not call DamageModelSystem::TakeDamage()<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<!-- Some Unknown Type: EntityID for dont_damage_this -->
+		<!-- Some Unknown Type: EntityID for impl_send_message_to_this -->
+		<!-- Some Unknown Type: types_vector2 for impl_position -->
+		<xs:attribute name="impl_delay_frame" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int32 impl_delay_frame;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="physics_explosion_power.min" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>ValueRange physics_explosion_power; //  how hard do we throw physics objects<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="physics_explosion_power.max" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>ValueRange physics_explosion_power; //  how hard do we throw physics objects<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="delay.min" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>ValueRangeInt delay; //  if > 0, the explosion occurs with a delay chosen randomly from this range and is never buffered<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="delay.max" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>ValueRangeInt delay; //  if > 0, the explosion occurs with a delay chosen randomly from this range and is never buffered<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+
+	</xs:complexType>
+<!-- ConfigExplosion -->
 	<!--Builtin-->
+
+	<xs:simpleType name="CELL_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="solid" />
+			<xs:enumeration value="liquid" />
+			<xs:enumeration value="fire" />
+			<xs:enumeration value="gas" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!-- Material Graphics Edge Images Type -->
 	<xs:complexType name="MaterialGraphicsEdgeImages">
@@ -58,86 +436,86 @@
 		<!-- wang? -->
 		<xs:attribute name="color" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<!-- enum? -->
 		<xs:attribute name="fire_colors_index" type="xs:integer" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="is_grass" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="is_grass_hashed" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="normal_mapped" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 
 		<!-- argb enum? -->
 		<xs:attribute name="pixel_all_around" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_bottom" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_bottom_left" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_bottom_right" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_left" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_lonely" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_right" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_top" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_top_left" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="pixel_top_right" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<!-- huh> -->
 		<xs:attribute name="randomize_colors" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="texture_file" type="xs:string" default="">
@@ -208,496 +586,448 @@
 			<xs:element name="ParticleEffect" type="MaterialParticleEffect" minOccurs="0" maxOccurs="1" />
 			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" maxOccurs="1" />
 		</xs:choice>
+		<!-- Material Attributes -->
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Internal name, should be unique, otherwise will overwrite materials.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="always_ignites_damagemodel" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool always_ignites_damagemodel = "0"; //  Ignites anyone who touches it<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="audio_is_soft" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool audio_is_soft = "0"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="supports_collapsible_structures" type="NoitaBool">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="collapsible" type="NoitaBool">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="status_effects" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- needs enums -->
 		<xs:attribute name="audio_materialaudio_type" type="xs:string" default="NONE">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_materialaudio_type = "NONE"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- needs enums -->
 		<xs:attribute name="audio_materialbreakaudio_type" type="xs:string" default="NONE">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it enum or string? -->
-		<xs:attribute name="audio_physics_material_event" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it enum or string? -->
-		<xs:attribute name="audio_physics_material_solid" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it enum or string? -->
-		<xs:attribute name="audio_physics_material_wall" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_materialbreakaudio_type = "NONE"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="audio_size_multiplier" type="xs:decimal" default="1">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>float audio_size_multiplier = "1"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="autoignition_temperature" type="xs:nonNegativeInteger" default="100">
+		<xs:attribute name="autoignition_temperature" type="xs:unsignedInt" default="100">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>uint autoignition_temperature = "100"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="burnable" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool burnable = "0"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="cell_holes_in_texture" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- needs enums -->
-		<xs:attribute name="cell_type" type="xs:string" default="liquid">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it even a thing? -->
-		<xs:attribute name="cold_freezes_chance_rev" type="xs:nonNegativeInteger" default="100">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cold_freezes_to_dont_do_reverse_reaction" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cold_freezes_to_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="convert_to_box2d_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="crackability" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_fire" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_poison" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_radioactive" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_water" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- maybe enum? -->
-		<xs:attribute name="density" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- maybe enum? -->
-		<xs:attribute name="durability" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="electrical_conductivity" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="fire_hp" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it even a thing? -->
-		<xs:attribute name="gas_downwards_speed" type="xs:nonNegativeInteger" default="90">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it even a thing? -->
-		<xs:attribute name="gas_horizontal_speed" type="xs:nonNegativeInteger" default="100">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it even a thing? -->
-		<xs:attribute name="gas_speed" type="xs:nonNegativeInteger" default="50">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- is it even a thing? -->
-		<xs:attribute name="gas_upwards_speed" type="xs:nonNegativeInteger" default="100">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="generates_flames" type="xs:nonNegativeInteger" default="30">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="generates_smoke" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gfx_glow" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- ARGB type? -->
-		<xs:attribute name="gfx_glow_color" type="xs:string" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="hp" type="xs:nonNegativeInteger" default="100">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="ignore_self_reaction_warning" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="is_just_particle_fx" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="lifetime" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_damping" type="xs:decimal" default="0.8">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_flow_speed" type="xs:decimal" default="0.9">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_gravity" type="xs:decimal" default="0.5">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sand" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="liquid_solid" type="NoitaBool">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sand_never_box2d" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_slime" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stain_ignited_drop_chance" type="xs:nonNegativeInteger" default="10">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stain_shaken_drop_chance" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stains_check_offset" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stains_status_threshold" type="xs:decimal" default="0.01">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- wtf is this -->
-		<xs:attribute name="liquid_stains" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- wang? -->
-		<xs:attribute name="liquid_stains_custom_color" type="xs:string" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_stains_self" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_static" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sticks_to_ceiling" type="xs:nonNegativeInteger" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_viscosity" type="xs:decimal" default="50">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="name" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire_convert_to_material" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire_flame_material" type="xs:string" default="fire">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire_smoke_material" type="xs:string" default="smoke">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- enum? -->
-		<xs:attribute name="platform_type" type="xs:integer" default="-1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="requires_oxygen" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="show_in_creative_mode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="slippery" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_break_to_type" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_collide_with_self" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_friction" type="xs:decimal" default="0.3">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_go_through_sand" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_gravity_scale" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_break_explode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_convert" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_explode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- ? -->
-		<xs:attribute name="solid_on_collision_splash_power" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_sleep_convert" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_restitution" type="xs:decimal" default="0.2">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- enum? -->
-		<xs:attribute name="solid_static_type" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="stainable" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="stickyness" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool cell_holes_in_texture = "0"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="tags" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string tags = ""; //  A list of tags.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="temperature_of_fire" type="xs:nonNegativeInteger" default="10">
+		<xs:attribute name="audio_physics_material_event" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_event = ""; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ui_name" type="xs:string" default="[material name field]">
+		<xs:attribute name="audio_physics_material_wall" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_wall = ""; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="vegetation_full_lifetime_growth" type="xs:nonNegativeInteger" default="10000">
+		<xs:attribute name="audio_physics_material_solid" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- idk -->
-		<xs:attribute name="vegetation_random_flip_x_scale" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_solid = ""; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="vegetation_sprite" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation>path</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string vegetation_sprite = ""; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- wang enum? -->
+		<xs:attribute name="cell_type" type="CELL_TYPE" default="liquid">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>CELL_TYPE::Enum cell_type = "liquid"; //  Type of the material.<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cold_freezes_chance_rev" type="xs:unsignedInt" default="100">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint cold_freezes_chance_rev = "100"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cold_freezes_to_dont_do_reverse_reaction" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool cold_freezes_to_dont_do_reverse_reaction = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cold_freezes_to_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string cold_freezes_to_material = "air"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="convert_to_box2d_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string convert_to_box2d_material = "air"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="crackability" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint crackability = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_fire" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool danger_fire = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_poison" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool danger_poison = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_radioactive" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool danger_radioactive = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="danger_water" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool danger_water = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="density" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float density = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="durability" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint durability = "0"; //  [0-14]<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="electrical_conductivity" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool electrical_conductivity = "1"; //  Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0.<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fire_hp" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint fire_hp = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gas_downwards_speed" type="xs:unsignedInt" default="90">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint gas_downwards_speed = "90"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gas_horizontal_speed" type="xs:unsignedInt" default="100">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint gas_horizontal_speed = "100"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gas_speed" type="xs:unsignedInt" default="50">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint gas_speed = "50"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gas_upwards_speed" type="xs:unsignedInt" default="100">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint gas_upwards_speed = "100"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generates_flames" type="xs:unsignedInt" default="30">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint generates_flames = "30"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="generates_smoke" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint generates_smoke = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gfx_glow" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint gfx_glow = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="gfx_glow_color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string gfx_glow_color = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hp" type="xs:unsignedInt" default="100">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint hp = "100"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ignore_self_reaction_warning" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool ignore_self_reaction_warning = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_just_particle_fx" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool is_just_particle_fx = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lifetime" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float lifetime = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_damping" type="xs:decimal" default="0.8">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_damping = "0.8"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_flow_speed" type="xs:decimal" default="0.9">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_flow_speed = "0.9"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_gravity" type="xs:decimal" default="0.5">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_gravity = "0.5"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sand" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool liquid_sand = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sand_never_box2d" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool liquid_sand_never_box2d = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_slime" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool liquid_slime = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stain_ignited_drop_chance" type="xs:unsignedInt" default="10">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint liquid_sprite_stain_ignited_drop_chance = "10"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stain_shaken_drop_chance" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_sprite_stain_shaken_drop_chance = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stains_check_offset" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int liquid_sprite_stains_check_offset = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sprite_stains_status_threshold" type="xs:decimal" default="0.01">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_sprite_stains_status_threshold = "0.01"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_stains" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int liquid_stains = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_stains_custom_color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string liquid_stains_custom_color = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_stains_self" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool liquid_stains_self = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_static" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool liquid_static = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_sticks_to_ceiling" type="xs:unsignedInt" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint liquid_sticks_to_ceiling = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="liquid_viscosity" type="xs:decimal" default="50">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float liquid_viscosity = "50"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool on_fire = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire_flame_material" type="xs:string" default="fire">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string on_fire_flame_material = "fire"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="on_fire_smoke_material" type="xs:string" default="smoke">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string on_fire_smoke_material = "smoke"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="platform_type" type="xs:int" default="-1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int platform_type = "-1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="requires_oxygen" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool requires_oxygen = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="show_in_creative_mode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool show_in_creative_mode = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="slippery" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool slippery = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_break_to_type" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string solid_break_to_type = "air"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_collide_with_self" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_collide_with_self = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_friction" type="xs:decimal" default="0.3">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float solid_friction = "0.3"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_go_through_sand" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_go_through_sand = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_gravity_scale" type="xs:decimal" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float solid_gravity_scale = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_break_explode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_on_break_explode = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_convert" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_convert = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_explode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_explode = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_material" type="xs:string" default="air">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string solid_on_collision_material = "air"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_collision_splash_power" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_splash_power = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_on_sleep_convert" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool solid_on_sleep_convert = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_restitution" type="xs:decimal" default="0.2">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float solid_restitution = "0.2"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="solid_static_type" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int solid_static_type = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stainable" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool stainable = "1"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="stickyness" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float stickyness = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="temperature_of_fire" type="xs:unsignedInt" default="10">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint temperature_of_fire = "10"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_name" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_name = ""; //  Can be translation string, copies the 'name' value by default<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vegetation_full_lifetime_growth" type="xs:unsignedInt" default="10000">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>uint vegetation_full_lifetime_growth = "10000"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="vegetation_random_flip_x_scale" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool vegetation_random_flip_x_scale = "0"; <br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="wang_color" type="xs:string" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string wang_color = "0"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="wang_curvature" type="xs:decimal" default="0.5">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>float wang_curvature = "0.5"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="wang_noise_percent" type="xs:decimal" default="1">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>float wang_noise_percent = "1"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- enum? -->
-		<xs:attribute name="wang_noise_type" type="xs:integer" default="0">
+		<xs:attribute name="wang_noise_type" type="xs:int" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>int wang_noise_type = "0"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="warmth_melts_chance_rev" type="xs:nonNegativeInteger" default="100">
+		<xs:attribute name="warmth_melts_chance_rev" type="xs:unsignedInt" default="100">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>uint warmth_melts_chance_rev = "100"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="warmth_melts_to_material" type="xs:string" default="air">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string warmth_melts_to_material = "air"; <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+<!-- Material Attributes -->
 	</xs:complexType>
 
 	<!-- Material Reactions -->
@@ -707,49 +1037,49 @@
 		</xs:choice>
 		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="blob_radius1" type="xs:integer" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="blob_radius2" type="xs:integer" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<!-- ? -->
 		<xs:attribute name="convert_all" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<!-- enum? -->
 		<xs:attribute name="direction" type="xs:string" default="none">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="entity" type="xs:string" default="">
@@ -759,47 +1089,47 @@
 		</xs:attribute>
 		<xs:attribute name="fast_reaction" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="input_cell1" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="input_cell2" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="input_cell3" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell1" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell2" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell3" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="probability" type="xs:decimal" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="req_lifetime" type="xs:integer" default="0">
 			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
+				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
