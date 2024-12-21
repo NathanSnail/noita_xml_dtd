@@ -428,6 +428,7 @@ out = f"""
 \t\t</xs:sequence>
 \t\t<xs:attribute name="name" type="xs:string" />
 \t\t<xs:attribute name="tags" type="xs:string" />
+\t\t<xs:attribute name="serialize" type="NoitaBool" default="1" />
 \t</xs:complexType>
 \t<xs:element name="Entity" type="EntityBase">
 \t\t<xs:annotation>

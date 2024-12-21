@@ -1,5 +1,5 @@
 <?xml-model href="entity.xsd" type="application/xml-xsd"?>
-<Entity>
+<Entity serialize="1">
 	<Base file="data/etities/animals/longleg.xml">
 		<AIComponent TEMP_TEMP_TEMP="0.0"></AIComponent>
 	</Base>

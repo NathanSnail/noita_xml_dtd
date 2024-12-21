@@ -499,6 +499,7 @@
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" />
 		<xs:attribute name="tags" type="xs:string" />
+		<xs:attribute name="serialize" type="NoitaBool" default="1" />
 	</xs:complexType>
 	<xs:element name="Entity" type="EntityBase">
 		<xs:annotation>
