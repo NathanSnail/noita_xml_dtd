@@ -14915,12 +14915,12 @@
 		</xs:attribute>
 		<xs:attribute name="durability" type="xs:unsignedInt" default="0">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint durability = "0"; <br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>uint durability = "0"; //  [0-14]<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="electrical_conductivity" type="NoitaBool" default="1">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool electrical_conductivity = "1"; <br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>bool electrical_conductivity = "1"; //  Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="fire_hp" type="xs:unsignedInt" default="0">
@@ -15185,7 +15185,7 @@
 		</xs:attribute>
 		<xs:attribute name="ui_name" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string ui_name = ""; //  copies the 'name' value by default<br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_name = ""; //  Can be translation string, copies the 'name' value by default<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="vegetation_full_lifetime_growth" type="xs:unsignedInt" default="10000">

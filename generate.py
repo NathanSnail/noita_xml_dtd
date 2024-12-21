@@ -492,6 +492,14 @@ for attribute in material_attributes_json:
 """
 material_file = "./materials.xsd"
 material_xsd = replace_metatag(open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->")
+
+config_explosion = next(render_config(config) for config in configs if config.name == "ConfigExplosion")
+config_damage_critical = next(render_config(config) for config in configs if config.name == "ConfigDamageCritical")
+material_xsd = replace_metatag(material_xsd, f"""
+{config_damage_critical}
+{config_explosion}
+""", "<!-- ConfigExplosion -->")
+
 open(material_file, "w").write(material_xsd)
 
 # Merge files
