@@ -983,6 +983,11 @@
 				<xs:documentation><![CDATA[```cpp<br>bool stainable = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="status_effects" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string status_effects = "";<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="stickyness" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>float stickyness = 0;<br>```]]></xs:documentation>

@@ -385,6 +385,11 @@
         "default": "1"
     },
     {
+        "name": "status_effects",
+        "type": "std::string",
+        "default": ""
+    },
+    {
         "name": "stickyness",
         "type": "float",
         "default": "0"

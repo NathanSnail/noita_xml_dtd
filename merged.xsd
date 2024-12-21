@@ -14516,6 +14516,77 @@
 		</xs:attribute>
 		<xs:attributeGroup ref="CommonComponentAttributes"/>
 	</xs:complexType>
+	<!--Sprite, might need some
+	description on hover later, also some defaults are unknown-->
+	
+
+	<xs:element name="Sprite">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:choice>
+							<xs:element name="Event" minOccurs="0"
+								maxOccurs="unbounded">
+								<xs:complexType mixed="true">
+									<xs:attribute name="name" type="xs:string"
+										use="required" />
+									<xs:attribute name="frame"
+										type="xs:nonNegativeInteger"
+										use="required" />
+									<xs:attribute name="max_distance"
+										type="xs:positiveInteger" />
+									<xs:attribute name="probability"
+										type="xs:decimal" />
+									<xs:attribute name="on_finished"
+										type="NoitaBool" />
+									<xs:attribute name="check_physics_material"
+										type="NoitaBool" />
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="frame_count" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_width" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_height" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
+						<xs:attribute name="pos_x" type="xs:integer" default="0" />
+						<xs:attribute name="pos_y" type="xs:integer" default="0" />
+						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
+						<xs:attribute name="loop" type="NoitaBool" default="0" />
+						<xs:attribute name="next_animation" type="xs:string" default="" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="color" type="xs:hexBinary" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="filename" type="xs:string" use="required" />
+			<xs:attribute name="hotspots_filename" type="xs:string" />
+			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+			<xs:attribute name="default_animation" type="xs:string" default="default" />
+			<xs:attribute name="color_a" type="xs:decimal" default="1" />
+			<xs:attribute name="color_b" type="xs:decimal" default="1" />
+			<xs:attribute name="color_g" type="xs:decimal" default="1" />
+			<xs:attribute name="color_r" type="xs:decimal" default="1" />
+		</xs:complexType>
+		<xs:unique name="UniqueRectAnimationName">
+			<xs:selector xpath="RectAnimation" />
+			<xs:field xpath="@name" />
+		</xs:unique>
+	</xs:element>
 	
 
 	<xs:simpleType name="Hex8">
@@ -15112,6 +15183,11 @@
 				<xs:documentation><![CDATA[```cpp<br>bool stainable = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="status_effects" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string status_effects = "";<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="stickyness" type="xs:decimal" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>float stickyness = 0;<br>```]]></xs:documentation>
@@ -15303,77 +15379,6 @@
 		<xs:unique name="UniqueMaterialWang">
 			<xs:selector xpath="CellData | CellDataChild" />
 			<xs:field xpath="@wang_color" />
-		</xs:unique>
-	</xs:element>
-	<!--Sprite, might need some
-	description on hover later, also some defaults are unknown-->
-	
-
-	<xs:element name="Sprite">
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded" minOccurs="0">
-				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:choice>
-							<xs:element name="Event" minOccurs="0"
-								maxOccurs="unbounded">
-								<xs:complexType mixed="true">
-									<xs:attribute name="name" type="xs:string"
-										use="required" />
-									<xs:attribute name="frame"
-										type="xs:nonNegativeInteger"
-										use="required" />
-									<xs:attribute name="max_distance"
-										type="xs:positiveInteger" />
-									<xs:attribute name="probability"
-										type="xs:decimal" />
-									<xs:attribute name="on_finished"
-										type="NoitaBool" />
-									<xs:attribute name="check_physics_material"
-										type="NoitaBool" />
-								</xs:complexType>
-							</xs:element>
-						</xs:choice>
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="frame_count" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_width" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_height" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
-						<xs:attribute name="pos_x" type="xs:integer" default="0" />
-						<xs:attribute name="pos_y" type="xs:integer" default="0" />
-						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
-						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
-						<xs:attribute name="loop" type="NoitaBool" default="0" />
-						<xs:attribute name="next_animation" type="xs:string" default="" />
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="color" type="xs:hexBinary" use="required" />
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-			<xs:attribute name="filename" type="xs:string" use="required" />
-			<xs:attribute name="hotspots_filename" type="xs:string" />
-			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-			<xs:attribute name="default_animation" type="xs:string" default="default" />
-			<xs:attribute name="color_a" type="xs:decimal" default="1" />
-			<xs:attribute name="color_b" type="xs:decimal" default="1" />
-			<xs:attribute name="color_g" type="xs:decimal" default="1" />
-			<xs:attribute name="color_r" type="xs:decimal" default="1" />
-		</xs:complexType>
-		<xs:unique name="UniqueRectAnimationName">
-			<xs:selector xpath="RectAnimation" />
-			<xs:field xpath="@name" />
 		</xs:unique>
 	</xs:element>
 </xs:schema>
