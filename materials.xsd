@@ -218,23 +218,6 @@
 				<xs:documentation> ""</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="supports_collapsible_structures" type="NoitaBool">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="collapsible" type="NoitaBool">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="status_effects" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
 		<!-- needs enums -->
 		<xs:attribute name="audio_materialaudio_type" type="xs:string" default="NONE">
 			<xs:annotation>
@@ -440,12 +423,6 @@
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="liquid_sand" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation> ""</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<!-- default unknown -->
-		<xs:attribute name="liquid_solid" type="NoitaBool">
 			<xs:annotation>
 				<xs:documentation> ""</xs:documentation>
 			</xs:annotation>
