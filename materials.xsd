@@ -387,7 +387,6 @@
 <!-- ConfigExplosion -->
 	<!--Builtin-->
 
-
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="solid" />

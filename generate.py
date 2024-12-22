@@ -514,9 +514,11 @@ for attribute in material_attributes_json:
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 """
-material_file = "./materials.xsd"
+
 material_xsd = replace_metatag(
-    open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->"
+    open("materials_source.xsd", "r").read(),
+    material_attributes,
+    "<!-- Material Attributes -->",
 )
 
 config_explosion = next(
@@ -534,6 +536,7 @@ material_xsd = replace_metatag(
     "<!-- ConfigExplosion -->",
 )
 
+material_file = "./materials.xsd"
 open(material_file, "w").write(material_xsd)
 
 # Merge files

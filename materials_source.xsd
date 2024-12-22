@@ -1,0 +1,373 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!--Builtin-->
+	<xs:simpleType name="NoitaBool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Hex8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Fa-f]{8}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ConfigExplosion -->
+	<xs:complexType name="ConfigExplosion" />
+	<!-- ConfigExplosion -->
+	<!--Builtin-->
+
+	<xs:simpleType name="CELL_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="solid" />
+			<xs:enumeration value="liquid" />
+			<xs:enumeration value="fire" />
+			<xs:enumeration value="gas" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Material Graphics Edge Images Type -->
+	<xs:complexType name="MaterialGraphicsEdgeImages">
+		<xs:choice>
+			<xs:element name="Image" maxOccurs="unbounded">
+				<xs:complexType mixed="true">
+					<xs:attribute name="do_only_horizontal_stripe" type="NoitaBool" />
+					<xs:attribute name="do_only_vertical_stripe" type="NoitaBool" />
+					<xs:attribute name="allow_random_rotation" type="NoitaBool" />
+					<xs:attribute name="filename" type="xs:string" />
+					<xs:attribute name="min_angle" type="xs:integer" />
+					<xs:attribute name="max_angle" type="xs:integer" />
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+	<!-- Material Graphics Edge Type -->
+	<xs:complexType name="MaterialGraphicsEdge" mixed="true">
+		<xs:sequence>
+			<xs:element name="EdgeGraphics">
+				<xs:complexType mixed="true">
+					<xs:sequence>
+						<xs:element name="Images" type="MaterialGraphicsEdgeImages" />
+					</xs:sequence>
+					<!-- wang -->
+					<xs:attribute name="color" type="xs:string" />
+					<xs:attribute name="overwrite" type="NoitaBool" />
+					<xs:attribute name="percent" type="xs:decimal" />
+					<xs:attribute name="require_same_material" type="NoitaBool" />
+					<xs:attribute name="require_same_material_type" type="NoitaBool" />
+					<!-- enum? -->
+					<xs:attribute name="type" type="xs:string" />
+					<xs:attribute name="z" type="xs:integer" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Material Graphics Type -->
+	<xs:complexType name="MaterialGraphics" mixed="true">
+		<xs:choice>
+			<xs:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
+		</xs:choice>
+		<!-- wang? -->
+		<xs:attribute name="color" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="fire_colors_index" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_grass" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_grass_hashed" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="normal_mapped" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+
+		<!-- argb enum? -->
+		<xs:attribute name="pixel_all_around" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_bottom_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_lonely" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top_left" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pixel_top_right" type="xs:string" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<!-- huh> -->
+		<xs:attribute name="randomize_colors" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="texture_file" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>path</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Material Status Effect Type -->
+	<xs:complexType name="MaterialStatusEffects">
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="Ingestion">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="StatusEffect" minOccurs="1"
+							maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="type" type="xs:string" />
+								<xs:attribute name="amount" type="xs:decimal" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Stains">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="StatusEffect" minOccurs="1"
+							maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="type" type="xs:string" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+	<!-- Material Particle Effect Type -->
+	<xs:complexType name="MaterialParticleEffect" mixed="true">
+		<xs:attribute name="vel.y" type="xs:decimal" />
+		<xs:attribute name="vel_random.min_x" type="xs:decimal" />
+		<xs:attribute name="vel_random.max_x" type="xs:decimal" />
+		<xs:attribute name="vel_random.min_y" type="xs:decimal" />
+		<xs:attribute name="vel_random.max_y" type="xs:decimal" />
+		<xs:attribute name="lifetime.min" type="xs:decimal" />
+		<xs:attribute name="lifetime.max" type="xs:decimal" />
+		<xs:attribute name="gravity.x" type="xs:decimal" />
+		<xs:attribute name="gravity.y" type="xs:decimal" />
+		<xs:attribute name="render_on_grid" type="NoitaBool" />
+		<xs:attribute name="particle_single_width" type="NoitaBool" />
+		<xs:attribute name="draw_as_long" type="NoitaBool" />
+		<xs:attribute name="airflow_force" type="xs:decimal" />
+		<xs:attribute name="airflow_scale" type="xs:decimal" />
+		<xs:attribute name="friction" type="xs:decimal" />
+		<xs:attribute name="probability" type="xs:decimal" />
+		<xs:attribute name="count.min" type="xs:nonNegativeInteger" />
+		<xs:attribute name="count.max" type="xs:nonNegativeInteger" />
+		<!-- ? -->
+		<xs:attribute name="m_material_id" type="xs:integer" />
+	</xs:complexType>
+
+	<!-- Material Type -->
+	<xs:complexType name="Material" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
+			<xs:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ParticleEffect" type="MaterialParticleEffect" minOccurs="0"
+				maxOccurs="1" />
+			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0"
+				maxOccurs="1" />
+		</xs:choice>
+		<!-- Material Attributes -->
+
+		<!-- Material Attributes -->
+	</xs:complexType>
+
+	<!-- Material Reactions -->
+	<xs:complexType name="MaterialReactions">
+		<xs:choice>
+			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
+		</xs:choice>
+		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_radius1" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_radius2" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<!-- ? -->
+		<xs:attribute name="convert_all" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<!-- enum? -->
+		<xs:attribute name="direction" type="xs:string" default="none">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="entity" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>path</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="fast_reaction" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell1" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell2" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell3" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell1" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell2" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="output_cell3" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="probability" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="req_lifetime" type="xs:integer" default="0">
+			<xs:annotation>
+				<xs:documentation />
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<!-- Materials -->
+	<xs:element name="Materials">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="CellData" type="Material" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element name="CellDataChild" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:complexContent>
+							<xs:extension base="Material">
+								<xs:attribute name="_parent" type="xs:string"
+									use="required" />
+								<xs:attribute name="_inherit_reactions"
+									type="NoitaBool" />
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Reaction" type="MaterialReactions" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element name="ReqReaction" type="MaterialReactions" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="UniqueMaterialName">
+			<xs:selector xpath="CellData | CellDataChild" />
+			<xs:field xpath="@name" />
+		</xs:unique>
+		<xs:unique name="UniqueMaterialWang">
+			<xs:selector xpath="CellData | CellDataChild" />
+			<xs:field xpath="@wang_color" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>
