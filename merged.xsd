@@ -5,11 +5,16 @@
 			<xs:enumeration value="1" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="Hex8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Fa-f]{8}" />
+			</xs:restriction>
+	</xs:simpleType>
 	<xs:attributeGroup name="CommonComponentAttributes">
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:attributeGroup>
-	<xs:complexType name="Transform">
+	<xs:complexType name="Transform" mixed="true">
 		<xs:annotation>
 			<xs:documentation><![CDATA[```cpp<br>class types::xform {<br>&emsp;&emsp;&emsp;&emsp;vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent<br>&emsp;&emsp;&emsp;&emsp;vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this<br>&emsp;&emsp;&emsp;&emsp;float rotation = 0; // [0, 360] Measured in degrees<br>};```]]></xs:documentation>
 		</xs:annotation>
@@ -513,6 +518,7 @@
 		<xs:complexContent>
 			<xs:extension base="EntityBase">
 				<xs:attribute name="file" type="xs:string" use="required"/>
+				<xs:attribute name="include_children" type="NoitaBool"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1457,37 +1463,37 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string spark_material; //  spark material, TODO moved these to use a special Serializer<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_min_hp" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_min_hp" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_min_hp; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_probability" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_probability" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_probability; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_count_min" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_count_min" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_min; //  How many sparks are we creating (rand min)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_count_max" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_count_max" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_max; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_enabled" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_enabled" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_enabled; //  Should we create few fire particles around the explosion<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_real" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_real" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_real; //  if the spark particles created are real or fake<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_scale_with_hp" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_scale_with_hp" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_scale_with_hp; //  if true, will create more sparks the harder the material<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -1875,7 +1881,7 @@
 				<xs:documentation><![CDATA[```cpp<br>float damage_critical_multiplier; //  multiplier that is applied to all damage types on a critical hit<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="explosion_damage_to_materials" type="xs:decimal" default="0">
+		<xs:attribute name="explosion_damage_to_materials" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>float explosion_damage_to_materials;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -1900,7 +1906,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string material;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_amount" type="xs:int" default="0">
+		<xs:attribute name="material_amount" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_amount;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -1910,7 +1916,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string trail_material;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="trail_material_amount" type="xs:int" default="0">
+		<xs:attribute name="trail_material_amount" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int trail_material_amount;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -2863,7 +2869,7 @@
 	</xs:complexType>
 	<xs:complexType name="CosmeticParticleConfig" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class CosmeticParticleConfig {<br>&emsp;&emsp;&emsp;&emsp;int m_material_id;<br>&emsp;&emsp;&emsp;&emsp;bool cosmetic_force_create;<br>&emsp;&emsp;&emsp;&emsp;bool render_back;<br>&emsp;&emsp;&emsp;&emsp;bool render_on_grid;<br>&emsp;&emsp;&emsp;&emsp;bool draw_as_long;<br>&emsp;&emsp;&emsp;&emsp;float airflow_force;<br>&emsp;&emsp;&emsp;&emsp;float airflow_scale;<br>&emsp;&emsp;&emsp;&emsp;float friction;<br>&emsp;&emsp;&emsp;&emsp;float probability;<br>&emsp;&emsp;&emsp;&emsp;bool particle_single_width;<br>&emsp;&emsp;&emsp;&emsp;bool fade_based_on_lifetime;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 vel;<br>&emsp;&emsp;&emsp;&emsp;types::aabb vel_random;<br>&emsp;&emsp;&emsp;&emsp;uint32 color; //  if something else than 0 will use this color<br>&emsp;&emsp;&emsp;&emsp;ValueRange lifetime;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 gravity;<br>&emsp;&emsp;&emsp;&emsp;ValueRangeInt count;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-		<xs:attribute name="m_material_id" type="xs:int" default="0">
+		<xs:attribute name="m_material_id" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int m_material_id;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -3516,17 +3522,17 @@
 				<xs:documentation><![CDATA[```cpp<br>int uses_remaining = 3;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="good_fx_material" type="xs:int" default="0">
+		<xs:attribute name="good_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int good_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="neutral_fx_material" type="xs:int" default="0">
+		<xs:attribute name="neutral_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int neutral_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="evil_fx_material" type="xs:int" default="0">
+		<xs:attribute name="evil_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int evil_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -3950,12 +3956,12 @@
 				<xs:documentation><![CDATA[```cpp<br>LensValue<int> attack_ranged_frames_between; //  The minimum number of frames we wait between ranged attacks<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="food_material" type="xs:int" default="0">
+		<xs:attribute name="food_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int food_material = 0; //  The cell material we eat if encountering said material and 'needs_food' is 1<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="food_particle_effect_material" type="xs:int" default="0">
+		<xs:attribute name="food_particle_effect_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int food_particle_effect_material = 0; //  We create particles made of this material when eating if 'food_eating_create_particles' is 1<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4163,7 +4169,7 @@
 				<xs:documentation><![CDATA[```cpp<br>ARC_TYPE::Enum type; //  which implementation the arc should use<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  string name for the material the arc is made of<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4301,7 +4307,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool play_only_if_visible = 0; //  plays sounds only if entity position is on screen and not covered by fog of war<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="m_audio_physics_material" type="xs:int" default="0">
+		<xs:attribute name="m_audio_physics_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int m_audio_physics_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4345,7 +4351,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool play_on_component_enable = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="calculate_material_lowpass" type="NoitaBool" default="1">
+		<xs:attribute name="calculate_material_lowpass" type="xs:string" default="1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool calculate_material_lowpass = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4789,7 +4795,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool eat_dynamic_physics_bodies = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="limited_materials" type="NoitaBool" default="0">
+		<xs:attribute name="limited_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool limited_materials = 0; //  if true, will only eat the materials defined in material_list<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4799,7 +4805,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string ignored_material_tag; //  if set, will not eat any materials with this tag. please note that this lowers the performance of cell eating by some amount.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ignored_material" type="xs:int" default="0">
+		<xs:attribute name="ignored_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ignored_material = 0; //  String name of a material that shouldn't be eaten by the component<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -6327,12 +6333,12 @@
 				<xs:documentation><![CDATA[```cpp<br>float minimum_knockback_force = 0; //  Minimum knockback force required to do the knockback<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="materials_damage" type="NoitaBool" default="1">
+		<xs:attribute name="materials_damage" type="xs:string" default="1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool materials_damage = 1; //  should materials do damage or not?<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_damage_min_cell_count" type="xs:int" default="4">
+		<xs:attribute name="material_damage_min_cell_count" type="xs:string" default="4">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_damage_min_cell_count = 4; //  if material damage is received from less than 'material_damage_min_cell_count' this frame, it is ignored<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -6347,7 +6353,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string materials_how_much_damage = "0.1"; //  list of damage amount per material in materials_that_damage, separated by ','<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="materials_damage_proportional_to_maxhp" type="NoitaBool" default="0">
+		<xs:attribute name="materials_damage_proportional_to_maxhp" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool materials_damage_proportional_to_maxhp = 0; //  if damage from materials is proportional to max hp, instead of just damage<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -6357,7 +6363,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool physics_objects_damage = 0; //  if true, will take damage from physics objects that hit it<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="materials_create_messages" type="NoitaBool" default="0">
+		<xs:attribute name="materials_create_messages" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool materials_create_messages = 0; //  should collisions with certain materials create messages or not?<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -6902,7 +6908,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int splitting_energy_max = 0; // [0, 10000] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="hack_is_material_crack" type="NoitaBool" default="0">
+		<xs:attribute name="hack_is_material_crack" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool hack_is_material_crack = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7416,7 +7422,7 @@
 				<xs:documentation><![CDATA[```cpp<br>RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ragdoll_material" type="xs:int" default="0">
+		<xs:attribute name="ragdoll_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7523,7 +7529,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool berserk_dont_attack_friends = 0; //  if 1, this animal will not try to attack player who would normally be its friend<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="herd_id" type="xs:int" default="0">
+		<xs:attribute name="herd_id" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>LensValue<int> herd_id; //  This is used for example to separate people in different tribes.<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7973,7 +7979,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int mState = 0; //  0 = detached, 1 = attached<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ray_skip_material" type="xs:int" default="0">
+		<xs:attribute name="ray_skip_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -8047,7 +8053,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool is_limp = 0; //  If 1, will apply verlet animation to simulate ragdoll-like limbs<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ray_skip_material" type="xs:int" default="0">
+		<xs:attribute name="ray_skip_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -8466,32 +8472,32 @@
 	</xs:complexType>
 	<xs:complexType name="ItemAlchemyComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ItemAlchemyComponent {<br>&emsp;&emsp;&emsp;&emsp;int material_make_always_cast = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_remove_shuffle = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_animate_wand = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_animate_wand_alt = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_increase_uses_remaining = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_sacrifice = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-		<xs:attribute name="material_make_always_cast" type="xs:int" default="0">
+		<xs:attribute name="material_make_always_cast" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_make_always_cast = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_remove_shuffle" type="xs:int" default="0">
+		<xs:attribute name="material_remove_shuffle" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_remove_shuffle = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_animate_wand" type="xs:int" default="0">
+		<xs:attribute name="material_animate_wand" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_animate_wand = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_animate_wand_alt" type="xs:int" default="0">
+		<xs:attribute name="material_animate_wand_alt" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_animate_wand_alt = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_increase_uses_remaining" type="xs:int" default="0">
+		<xs:attribute name="material_increase_uses_remaining" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_increase_uses_remaining = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sacrifice" type="xs:int" default="0">
+		<xs:attribute name="material_sacrifice" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sacrifice = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9238,7 +9244,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string collapse_images = "data/procedural_gfx/collapse_big/$[0-14].png"; //  loads these files randomly to do the collapse shapes<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="chunk_material" type="xs:int" default="0">
+		<xs:attribute name="chunk_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int chunk_material = 0; //  String name of chunk material<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9488,7 +9494,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string from_material_tag; //  the tag of material, e.g. [liquid]<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="from_any_material" type="NoitaBool" default="0">
+		<xs:attribute name="from_any_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool from_any_material = 0; //  if 1, converts any cells of any material to 'to_materia'<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9513,7 +9519,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int32 temperature_reaction_temp = 0; //  if != 0, will use the 'cold_freezes_to_materials' and 'warmth_melts_to_materials' in CellData to convert cells different materials<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ignite_materials" type="xs:int" default="0">
+		<xs:attribute name="ignite_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ignite_materials = 0; //  if > 0, will call Ignite() with ingite_materials as probability_of_fire<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9543,7 +9549,7 @@
 				<xs:documentation><![CDATA[```cpp<br>float reaction_audio_amount = 0; //  if > 0, will generate chemical reaction audio at converted cells<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="convert_same_material" type="NoitaBool" default="1">
+		<xs:attribute name="convert_same_material" type="xs:string" default="1">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool convert_same_material = 1; //  9.10.2020 - added this because at the end this caused the 'white ring' to appear, set it to false if you don't want constant whiteout<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9563,12 +9569,12 @@
 				<xs:documentation><![CDATA[```cpp<br>int mRadius = 0; // [0, 512] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="from_material" type="xs:int" default="0">
+		<xs:attribute name="from_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int from_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="to_material" type="xs:int" default="0">
+		<xs:attribute name="to_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int to_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9657,12 +9663,12 @@
 				<xs:documentation><![CDATA[```cpp<br>types::aabb area_aabb; //  aabb offset, we check that this aabb contains only material<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  String name of material that we check that the aabb contains<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material2" type="xs:int" default="0">
+		<xs:attribute name="material2" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material2 = 0; //  String name of material2 that we check that the aabb contains<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9731,7 +9737,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool kill_when_empty = 0; //  if set, will send MessageDeath when materials are drained<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="halftime_materials" type="NoitaBool" default="0">
+		<xs:attribute name="halftime_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool halftime_materials = 0; //  if true, will multiply the materials with the given halftimes<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9836,7 +9842,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int frames_run = 0; //  to help keep the effect<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  String name of material this creates<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9865,7 +9871,7 @@
 	</xs:complexType>
 	<xs:complexType name="MaterialSuckerComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class MaterialSuckerComponent {<br>&emsp;&emsp;&emsp;&emsp;int material_type = 0; // [0, 3] 0 = liquid, 1 = sand, 2 = gas (arbitary order)<br>&emsp;&emsp;&emsp;&emsp;int barrel_size = 50; // [0, 1024] how many pixels can we suck up<br>&emsp;&emsp;&emsp;&emsp;int num_cells_sucked_per_frame = 1; // [0, 5] How many cells at max can we suck per frame?<br>&emsp;&emsp;&emsp;&emsp;bool set_projectile_to_liquid = 0; //  if set, will set the projectile what ever we're sucking...?<br>&emsp;&emsp;&emsp;&emsp;int last_material_id = 0; //  hax... this is set if we use set_projectile_to_liquid<br>&emsp;&emsp;&emsp;&emsp;bool suck_gold = 0; //  if set will just suck gold and update wallet<br>&emsp;&emsp;&emsp;&emsp;bool suck_health = 0; //  if set will just suck healthium material and add 1 hp every sucked healthium<br>&emsp;&emsp;&emsp;&emsp;bool suck_static_materials = 0; //  will suck static materials from the world<br>&emsp;&emsp;&emsp;&emsp;std::string suck_tag; //  if set, will only suck materials with this tag. NOTE, will also require the correct material_type to be set<br>&emsp;&emsp;&emsp;&emsp;int mAmountUsed = 0; //  how full are we<br>&emsp;&emsp;&emsp;&emsp;types::iaabb randomized_position; //  random offset for pos, where we look for pixels<br>&emsp;&emsp;&emsp;&emsp;int mGoldAccumulator = 0; //  accumulates amount of gold picked during consecutive frames<br>&emsp;&emsp;&emsp;&emsp;int mLastFramePickedGold = -2; //  last frame we picked gold<br>};<br>```]]> </xs:documentation> </xs:annotation>
-		<xs:attribute name="material_type" type="xs:int" default="0">
+		<xs:attribute name="material_type" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_type = 0; // [0, 3] 0 = liquid, 1 = sand, 2 = gas (arbitary order)<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9885,7 +9891,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool set_projectile_to_liquid = 0; //  if set, will set the projectile what ever we're sucking...?<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="last_material_id" type="xs:int" default="0">
+		<xs:attribute name="last_material_id" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int last_material_id = 0; //  hax... this is set if we use set_projectile_to_liquid<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9900,7 +9906,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool suck_health = 0; //  if set will just suck healthium material and add 1 hp every sucked healthium<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="suck_static_materials" type="NoitaBool" default="0">
+		<xs:attribute name="suck_static_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool suck_static_materials = 0; //  will suck static materials from the world<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -10235,7 +10241,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool is_emitting = 1;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="use_material_inventory" type="NoitaBool" default="0">
+		<xs:attribute name="use_material_inventory" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool use_material_inventory = 0; //  if set, it'll use MaterialInventoryComponent as the source of the particles emitted<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -10320,7 +10326,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool ignore_transform_updated_msg = 0; //  if 1, mExPosition and m_last_emit_position will not be updated when receiving Message_TransformUpdated<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="color" type="xs:unsignedInt" default="0">
+		<xs:attribute name="color" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>uint32 color = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -10385,7 +10391,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int mMaterialInventoryMax = 1024; //  this is how we figure out the pressure, when using material_inventory<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="m_material_id" type="xs:int" default="0">
+		<xs:attribute name="m_material_id" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>LensValue<int> m_material_id;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -11181,7 +11187,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string image_file; //  the png file from which the body is created from<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  the material from which the body is created<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -11562,7 +11568,7 @@
 				<xs:documentation><![CDATA[```cpp<br>float capsule_y_percent = 0.3;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  the material to use for collision audio<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -12027,12 +12033,12 @@
 				<xs:documentation><![CDATA[```cpp<br>int throw_how_many = 5;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="dont_spray_static_materials" type="NoitaBool" default="0">
+		<xs:attribute name="dont_spray_static_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool dont_spray_static_materials = 0; //  NOTE( Petri ): 15.8.2023 - if this is set to true, will only spray dynamic materials, that dont cause bugs (i.e. will not spray hard rock, box2d materials)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="dont_spray_just_leak_gas_materials" type="NoitaBool" default="0">
+		<xs:attribute name="dont_spray_just_leak_gas_materials" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool dont_spray_just_leak_gas_materials = 0; //  NOTE( Petri ): 15.8.2023 - if this is set to true, will only leak gas materials instead of 'spraying' them.<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -12042,7 +12048,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool never_color = 0; //  Petri: body_colored didn't seem to work, so I added never_color. It can be set to true if you never want the potion to be colored<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="custom_color_material" type="xs:int" default="0">
+		<xs:attribute name="custom_color_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int custom_color_material = 0; //  if set, will always use the color from this material<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -12061,7 +12067,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int state = 0; //  0 is up, 1 is down<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_percent" type="xs:decimal" default="0.75">
+		<xs:attribute name="material_percent" type="xs:string" default="0.75">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>float material_percent = 0.75; //  how much material should there be in the aabbs that we go down <br>```]]></xs:documentation>
 			</xs:annotation>
@@ -12461,7 +12467,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool never_hit_player = 0; //  If 1, does not hit player no matter what herds this and player belong to<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="collect_materials_to_shooter" type="NoitaBool" default="0">
+		<xs:attribute name="collect_materials_to_shooter" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool collect_materials_to_shooter = 0; //  if 1, looks up the 'who_shot' entity and its MaterialInventoryComponent on destruction and updates it based on the cells destroyed on our explosion.<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -14589,11 +14595,6 @@
 	</xs:element>
 	
 
-	<xs:simpleType name="Hex8">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}"></xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="solid" />

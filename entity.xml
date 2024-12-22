@@ -1,7 +1,7 @@
 <?xml-model href="entity.xsd" type="application/xml-xsd"?>
 <Entity serialize="1">
 	<Base file="data/etities/animals/longleg.xml">
-		<AIComponent TEMP_TEMP_TEMP="0.0"></AIComponent>
+		<AIComponent TEMP_TEMP_TEMP="0.0" />
 	</Base>
 	<Transform scale.x="1.0" rotation="0.0" position.x="0.0" scale.y="1.0" />
 	<InheritTransformComponent>
@@ -16,19 +16,26 @@
 		<InheritTransformComponent>
 			<Transform position.x="0.0" />
 		</InheritTransformComponent>
-		<CameraBoundComponent> </CameraBoundComponent>
+		<CameraBoundComponent />
 	</Entity>
 	<AnimalAIComponent />
-	<ControlsComponent polymorph_next_attack_frame="0"></ControlsComponent>
+	<ControlsComponent polymorph_next_attack_frame="0" />
 
 	<ProjectileComponent projectile_type="PROJECTILE">
 		<config_explosion physics_explosion_power.min="0.0">
-			<damage_critical chance="100"></damage_critical></config_explosion></ProjectileComponent>
+			<damage_critical chance="100" /></config_explosion></ProjectileComponent>
 	<SpriteComponent
 		image_file="whatever"
 		offset_x="5"
-		offset_y="5"> </SpriteComponent>
+		offset_y="5" />
 	<AnimalAIComponent>
 		<attack_melee_finish_config_explosion audio_event_name="cheese" />
 	</AnimalAIComponent>
+	<ParticleEmitterComponent
+		color="ff50e7f0"
+		emitted_material_name="spark_blue"
+		x_pos_offset_min="-3"
+		x_pos_offset_max="2"
+		y_pos_offset_min="0"
+		y_pos_offset_max="2" />
 </Entity>

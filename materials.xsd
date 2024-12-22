@@ -7,6 +7,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="Hex8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Fa-f]{8}" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- ConfigExplosion -->
 	<xs:complexType name="ConfigDamageCritical" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ConfigDamageCritical {<br>&emsp;&emsp;&emsp;&emsp;int chance; //  the chance of a critical hit. ]0-100[ - can be higher than 100% - then will multiply the multiplier by the extra<br>&emsp;&emsp;&emsp;&emsp;float damage_multiplier; //  multiplier that is applied to all damage types on a critical hit<br>&emsp;&emsp;&emsp;&emsp;bool mSucceeded;<br>};<br>```]]> </xs:documentation> </xs:annotation>
@@ -177,37 +183,37 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string spark_material; //  spark material, TODO moved these to use a special Serializer<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_min_hp" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_min_hp" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_min_hp; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_probability" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_probability" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_probability; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_count_min" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_count_min" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_min; //  How many sparks are we creating (rand min)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_count_max" type="xs:int" default="0">
+		<xs:attribute name="material_sparks_count_max" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sparks_count_max; //  How many sparks are we creating (rand max)<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_enabled" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_enabled" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_enabled; //  Should we create few fire particles around the explosion<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_real" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_real" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_real; //  if the spark particles created are real or fake<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sparks_scale_with_hp" type="NoitaBool" default="0">
+		<xs:attribute name="material_sparks_scale_with_hp" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool material_sparks_scale_with_hp; //  if true, will create more sparks the harder the material<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -381,11 +387,6 @@
 <!-- ConfigExplosion -->
 	<!--Builtin-->
 
-	<xs:simpleType name="Hex8">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}"></xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
 
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">

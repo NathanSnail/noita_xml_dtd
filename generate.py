@@ -159,6 +159,8 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
         return (
             "DAMAGE_PHYSICS_HIT" if component_name == "AreaDamageComponent" else "NONE"
         )
+    elif ty == "Hex8":
+        return "00000000"
 
     if field.default != "-":
         if ty == "xs:decimal":
@@ -168,10 +170,22 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
     return "0" if ty != "xs:string" else ""
 
 
+def get_type_for_sub_field(field_name: str, ty: str, component_name: str) -> str:
+    if component_name == "ParticleEmitterComponent":
+        if field_name == "color":
+            return "Hex8"
+    if "material" in field_name:
+        return "xs:string"
+    if "herd_id" in field_name:
+        return "xs:string"
+    return ty
+
+
 def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) -> str:
-    default = get_default_for_sub_field(field, ty, component_name)
+    true_type = get_type_for_sub_field(field.name, ty, component_name)
+    default = get_default_for_sub_field(field, true_type, component_name)
     return f"""
-\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
+\t\t<xs:attribute name="{field.name}{suffix}" type="{true_type}" default="{default}">
 \t\t\t<xs:annotation>
 \t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field).replace("\t","")}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
@@ -384,11 +398,16 @@ out = f"""
 \t\t\t<xs:enumeration value="1" />
 \t\t</xs:restriction>
 \t</xs:simpleType>
+\t<xs:simpleType name="Hex8">
+\t\t<xs:restriction base="xs:string">
+\t\t\t<xs:pattern value="[0-9A-Fa-f]{{8}}" />
+\t\t\t</xs:restriction>
+\t</xs:simpleType>
 \t<xs:attributeGroup name="CommonComponentAttributes">
 \t\t<xs:attribute name="_tags" type="xs:string" default="" />
 \t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 \t</xs:attributeGroup>
-\t<xs:complexType name="Transform">
+\t<xs:complexType name="Transform" mixed="true">
 \t\t<xs:annotation>
 \t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
 \t\t</xs:annotation>
@@ -444,6 +463,7 @@ out = f"""
 \t\t<xs:complexContent>
 \t\t\t<xs:extension base="EntityBase">
 \t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
+\t\t\t\t<xs:attribute name="include_children" type="NoitaBool"/>
 \t\t\t</xs:extension>
 \t\t</xs:complexContent>
 \t</xs:complexType>
