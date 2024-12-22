@@ -6,7 +6,6 @@
 			<xs:enumeration value="1" />
 		</xs:restriction>
 	</xs:simpleType>
-
 	<xs:simpleType name="Hex8">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9A-Fa-f]{8}" />
@@ -395,6 +394,15 @@
 			<xs:enumeration value="gas" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="REACTION_DIRECTIONS">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none" />
+			<xs:enumeration value="top" />
+			<xs:enumeration value="bottom" />
+			<xs:enumeration value="left" />
+			<xs:enumeration value="right" />
+		</xs:restriction>
+	</xs:simpleType>
 
 	<!-- Material Graphics Edge Images Type -->
 	<xs:complexType name="MaterialGraphicsEdgeImages">
@@ -420,8 +428,7 @@
 					<xs:sequence>
 						<xs:element name="Images" type="MaterialGraphicsEdgeImages" />
 					</xs:sequence>
-					<!-- wang -->
-					<xs:attribute name="color" type="xs:string" />
+					<xs:attribute name="color" type="Hex8" />
 					<xs:attribute name="overwrite" type="NoitaBool" />
 					<xs:attribute name="percent" type="xs:decimal" />
 					<xs:attribute name="require_same_material" type="NoitaBool" />
@@ -439,8 +446,7 @@
 		<xs:choice>
 			<xs:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
 		</xs:choice>
-		<!-- wang? -->
-		<xs:attribute name="color" type="xs:string" default="0">
+		<xs:attribute name="color" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
@@ -466,54 +472,52 @@
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-
-		<!-- argb enum? -->
-		<xs:attribute name="pixel_all_around" type="xs:string" default="0">
+		<xs:attribute name="pixel_all_around" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_lonely" type="xs:string" default="0">
+		<xs:attribute name="pixel_lonely" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top" type="xs:string" default="0">
+		<xs:attribute name="pixel_top" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_top_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_top_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
@@ -1092,8 +1096,7 @@
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<!-- enum? -->
-		<xs:attribute name="direction" type="xs:string" default="none">
+		<xs:attribute name="direction" type="REACTION_DIRECTIONS" default="none">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
