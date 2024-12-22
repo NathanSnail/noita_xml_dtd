@@ -168,10 +168,33 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
     return "0" if ty != "xs:string" else ""
 
 
+COMPONENTS_WITH_MATERIALS = {
+    "MaterialAreaCheckerComponent",
+    "PhysicsImageShapeComponent",
+    "MaterialSeaSpawnerComponent",
+    "ItemAlchemyComponent",
+    "AnimalAIComponent",
+}
+
+
+def get_type_for_sub_field(field_name: str, ty: str, component_name: str) -> str:
+    if component_name == "ParticleEmitterComponent":
+        if field_name == "color":
+            return "Hex8"
+    elif component_name == "GenomeDataComponent":
+        if field_name == "herd_id":
+            return "xs:string"
+    elif component_name in COMPONENTS_WITH_MATERIALS:
+        if "material" in field_name:
+            return "xs:string"
+    return ty
+
+
 def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) -> str:
-    default = get_default_for_sub_field(field, ty, component_name)
+    true_type = get_type_for_sub_field(field.name, ty, component_name)
+    default = get_default_for_sub_field(field, true_type, component_name)
     return f"""
-\t\t<xs:attribute name="{field.name}{suffix}" type="{ty}" default="{default}">
+\t\t<xs:attribute name="{field.name}{suffix}" type="{true_type}" default="{default}">
 \t\t\t<xs:annotation>
 \t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field).replace("\t","")}{NL}```]]></xs:documentation>
 \t\t\t</xs:annotation>
@@ -384,11 +407,16 @@ out = f"""
 \t\t\t<xs:enumeration value="1" />
 \t\t</xs:restriction>
 \t</xs:simpleType>
+\t<xs:simpleType name="Hex8">
+\t\t<xs:restriction base="xs:string">
+\t\t\t<xs:pattern value="[0-9A-Fa-f]{{8}}|0" />
+\t\t\t</xs:restriction>
+\t</xs:simpleType>
 \t<xs:attributeGroup name="CommonComponentAttributes">
 \t\t<xs:attribute name="_tags" type="xs:string" default="" />
 \t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 \t</xs:attributeGroup>
-\t<xs:complexType name="Transform">
+\t<xs:complexType name="Transform" mixed="true">
 \t\t<xs:annotation>
 \t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
 \t\t</xs:annotation>
@@ -444,6 +472,7 @@ out = f"""
 \t\t<xs:complexContent>
 \t\t\t<xs:extension base="EntityBase">
 \t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
+\t\t\t\t<xs:attribute name="include_children" type="NoitaBool"/>
 \t\t\t</xs:extension>
 \t\t</xs:complexContent>
 \t</xs:complexType>
@@ -494,9 +523,11 @@ for attribute in material_attributes_json:
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 """
-material_file = "./materials.xsd"
+
 material_xsd = replace_metatag(
-    open(material_file, "r").read(), material_attributes, "<!-- Material Attributes -->"
+    open("materials_source.xsd", "r").read(),
+    material_attributes,
+    "<!-- Material Attributes -->",
 )
 
 config_explosion = next(
@@ -514,12 +545,11 @@ material_xsd = replace_metatag(
     "<!-- ConfigExplosion -->",
 )
 
-open(material_file, "w").write(material_xsd)
+open("./materials.xsd", "w").write(material_xsd)
 
 # Merge files
-merge_list = {"./sprite.xsd", material_file}
-for file in merge_list:
-    xsd = prune_builtin(open(file, "r").read())
-    out += "\n" + xsd
+out += prune_builtin(material_xsd)
+with open("./sprite.xsd", "r") as sprite_file:
+    out += prune_builtin(sprite_file.read())
 
 open("merged.xsd", "w").write(out + "\n</xs:schema>")

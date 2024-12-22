@@ -5,11 +5,16 @@
 			<xs:enumeration value="1" />
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="Hex8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Fa-f]{8}|0" />
+			</xs:restriction>
+	</xs:simpleType>
 	<xs:attributeGroup name="CommonComponentAttributes">
 		<xs:attribute name="_tags" type="xs:string" default="" />
 		<xs:attribute name="_enabled" type="NoitaBool" default="1" />
 	</xs:attributeGroup>
-	<xs:complexType name="Transform">
+	<xs:complexType name="Transform" mixed="true">
 		<xs:annotation>
 			<xs:documentation><![CDATA[```cpp<br>class types::xform {<br>&emsp;&emsp;&emsp;&emsp;vec2 position; // EntityLoad doesn't respect this on entities, mostly used for relative offsets in InheritTransformComponent<br>&emsp;&emsp;&emsp;&emsp;vec2 scale = {.x = 1, .y = 1}; // A stretching factor, most components don't work with this<br>&emsp;&emsp;&emsp;&emsp;float rotation = 0; // [0, 360] Measured in degrees<br>};```]]></xs:documentation>
 		</xs:annotation>
@@ -513,6 +518,7 @@
 		<xs:complexContent>
 			<xs:extension base="EntityBase">
 				<xs:attribute name="file" type="xs:string" use="required"/>
+				<xs:attribute name="include_children" type="NoitaBool"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -3950,12 +3956,12 @@
 				<xs:documentation><![CDATA[```cpp<br>LensValue<int> attack_ranged_frames_between; //  The minimum number of frames we wait between ranged attacks<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="food_material" type="xs:int" default="0">
+		<xs:attribute name="food_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int food_material = 0; //  The cell material we eat if encountering said material and 'needs_food' is 1<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="food_particle_effect_material" type="xs:int" default="0">
+		<xs:attribute name="food_particle_effect_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int food_particle_effect_material = 0; //  We create particles made of this material when eating if 'food_eating_create_particles' is 1<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7523,7 +7529,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool berserk_dont_attack_friends = 0; //  if 1, this animal will not try to attack player who would normally be its friend<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="herd_id" type="xs:int" default="0">
+		<xs:attribute name="herd_id" type="xs:string" default="">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>LensValue<int> herd_id; //  This is used for example to separate people in different tribes.<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -8466,32 +8472,32 @@
 	</xs:complexType>
 	<xs:complexType name="ItemAlchemyComponent" mixed="true">
 		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class ItemAlchemyComponent {<br>&emsp;&emsp;&emsp;&emsp;int material_make_always_cast = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_remove_shuffle = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_animate_wand = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_animate_wand_alt = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_increase_uses_remaining = 0;<br>&emsp;&emsp;&emsp;&emsp;int material_sacrifice = 0;<br>};<br>```]]> </xs:documentation> </xs:annotation>
-		<xs:attribute name="material_make_always_cast" type="xs:int" default="0">
+		<xs:attribute name="material_make_always_cast" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_make_always_cast = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_remove_shuffle" type="xs:int" default="0">
+		<xs:attribute name="material_remove_shuffle" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_remove_shuffle = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_animate_wand" type="xs:int" default="0">
+		<xs:attribute name="material_animate_wand" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_animate_wand = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_animate_wand_alt" type="xs:int" default="0">
+		<xs:attribute name="material_animate_wand_alt" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_animate_wand_alt = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_increase_uses_remaining" type="xs:int" default="0">
+		<xs:attribute name="material_increase_uses_remaining" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_increase_uses_remaining = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material_sacrifice" type="xs:int" default="0">
+		<xs:attribute name="material_sacrifice" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material_sacrifice = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9657,12 +9663,12 @@
 				<xs:documentation><![CDATA[```cpp<br>types::aabb area_aabb; //  aabb offset, we check that this aabb contains only material<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  String name of material that we check that the aabb contains<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material2" type="xs:int" default="0">
+		<xs:attribute name="material2" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material2 = 0; //  String name of material2 that we check that the aabb contains<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9836,7 +9842,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int frames_run = 0; //  to help keep the effect<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  String name of material this creates<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -10320,7 +10326,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool ignore_transform_updated_msg = 0; //  if 1, mExPosition and m_last_emit_position will not be updated when receiving Message_TransformUpdated<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="color" type="xs:unsignedInt" default="0">
+		<xs:attribute name="color" type="Hex8" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>uint32 color = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -11181,7 +11187,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string image_file; //  the png file from which the body is created from<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  the material from which the body is created<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -14515,91 +14521,23 @@
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attributeGroup ref="CommonComponentAttributes"/>
-	</xs:complexType>
-	<!--Sprite, might need some
-	description on hover later, also some defaults are unknown-->
-	
+	</xs:complexType>	
 
-	<xs:element name="Sprite">
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded" minOccurs="0">
-				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:choice>
-							<xs:element name="Event" minOccurs="0"
-								maxOccurs="unbounded">
-								<xs:complexType mixed="true">
-									<xs:attribute name="name" type="xs:string"
-										use="required" />
-									<xs:attribute name="frame"
-										type="xs:nonNegativeInteger"
-										use="required" />
-									<xs:attribute name="max_distance"
-										type="xs:positiveInteger" />
-									<xs:attribute name="probability"
-										type="xs:decimal" />
-									<xs:attribute name="on_finished"
-										type="NoitaBool" />
-									<xs:attribute name="check_physics_material"
-										type="NoitaBool" />
-								</xs:complexType>
-							</xs:element>
-						</xs:choice>
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="frame_count" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_width" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_height" type="xs:positiveInteger"
-							use="required" />
-						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
-						<xs:attribute name="pos_x" type="xs:integer" default="0" />
-						<xs:attribute name="pos_y" type="xs:integer" default="0" />
-						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
-						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
-						<xs:attribute name="loop" type="NoitaBool" default="0" />
-						<xs:attribute name="next_animation" type="xs:string" default="" />
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="color" type="xs:hexBinary" use="required" />
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-			<xs:attribute name="filename" type="xs:string" use="required" />
-			<xs:attribute name="hotspots_filename" type="xs:string" />
-			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-			<xs:attribute name="default_animation" type="xs:string" default="default" />
-			<xs:attribute name="color_a" type="xs:decimal" default="1" />
-			<xs:attribute name="color_b" type="xs:decimal" default="1" />
-			<xs:attribute name="color_g" type="xs:decimal" default="1" />
-			<xs:attribute name="color_r" type="xs:decimal" default="1" />
-		</xs:complexType>
-		<xs:unique name="UniqueRectAnimationName">
-			<xs:selector xpath="RectAnimation" />
-			<xs:field xpath="@name" />
-		</xs:unique>
-	</xs:element>
-	
-
-	<xs:simpleType name="Hex8">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}"></xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="solid" />
 			<xs:enumeration value="liquid" />
 			<xs:enumeration value="fire" />
 			<xs:enumeration value="gas" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="REACTION_DIRECTIONS">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none" />
+			<xs:enumeration value="top" />
+			<xs:enumeration value="bottom" />
+			<xs:enumeration value="left" />
+			<xs:enumeration value="right" />
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Material Graphics Edge Images Type -->
@@ -14625,8 +14563,7 @@
 					<xs:sequence>
 						<xs:element name="Images" type="MaterialGraphicsEdgeImages" />
 					</xs:sequence>
-					<!-- wang -->
-					<xs:attribute name="color" type="xs:string" />
+					<xs:attribute name="color" type="Hex8" />
 					<xs:attribute name="overwrite" type="NoitaBool" />
 					<xs:attribute name="percent" type="xs:decimal" />
 					<xs:attribute name="require_same_material" type="NoitaBool" />
@@ -14643,8 +14580,7 @@
 		<xs:choice>
 			<xs:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
 		</xs:choice>
-		<!-- wang? -->
-		<xs:attribute name="color" type="xs:string" default="0">
+		<xs:attribute name="color" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
@@ -14670,53 +14606,52 @@
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<!-- argb enum? -->
-		<xs:attribute name="pixel_all_around" type="xs:string" default="0">
+		<xs:attribute name="pixel_all_around" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_bottom_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_bottom_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_lonely" type="xs:string" default="0">
+		<xs:attribute name="pixel_lonely" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top" type="xs:string" default="0">
+		<xs:attribute name="pixel_top" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top_left" type="xs:string" default="0">
+		<xs:attribute name="pixel_top_left" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="pixel_top_right" type="xs:string" default="0">
+		<xs:attribute name="pixel_top_right" type="Hex8" default="00000000">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
@@ -15213,9 +15148,9 @@
 				<xs:documentation><![CDATA[```cpp<br>bool vegetation_random_flip_x_scale = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="wang_color" type="Hex8" default="00000000">
+		<xs:attribute name="wang_color" type="Hex8" default="0">
 			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>Hex8 wang_color = 00000000;<br>```]]></xs:documentation>
+				<xs:documentation><![CDATA[```cpp<br>Hex8 wang_color = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="wang_curvature" type="xs:decimal" default="0.5">
@@ -15291,8 +15226,7 @@
 				<xs:documentation />
 			</xs:annotation>
 		</xs:attribute>
-		<!-- enum? -->
-		<xs:attribute name="direction" type="xs:string" default="none">
+		<xs:attribute name="direction" type="REACTION_DIRECTIONS" default="none">
 			<xs:annotation>
 				<xs:documentation />
 			</xs:annotation>
@@ -15379,6 +15313,76 @@
 		<xs:unique name="UniqueMaterialWang">
 			<xs:selector xpath="CellData | CellDataChild" />
 			<xs:field xpath="@wang_color" />
+		</xs:unique>
+	</xs:element>	<!--Sprite, might need some
+	description on hover later, also some defaults are unknown-->
+	
+
+	<xs:element name="Sprite">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:choice>
+							<xs:element name="Event" minOccurs="0"
+								maxOccurs="unbounded">
+								<xs:complexType mixed="true">
+									<xs:attribute name="name" type="xs:string"
+										use="required" />
+									<xs:attribute name="frame"
+										type="xs:nonNegativeInteger"
+										use="required" />
+									<xs:attribute name="max_distance"
+										type="xs:positiveInteger" />
+									<xs:attribute name="probability"
+										type="xs:decimal" />
+									<xs:attribute name="on_finished"
+										type="NoitaBool" />
+									<xs:attribute name="check_physics_material"
+										type="NoitaBool" />
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="frame_count" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_width" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_height" type="xs:positiveInteger"
+							use="required" />
+						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
+						<xs:attribute name="pos_x" type="xs:integer" default="0" />
+						<xs:attribute name="pos_y" type="xs:integer" default="0" />
+						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
+						<xs:attribute name="loop" type="NoitaBool" default="0" />
+						<xs:attribute name="next_animation" type="xs:string" default="" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="color" type="xs:hexBinary" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="filename" type="xs:string" use="required" />
+			<xs:attribute name="hotspots_filename" type="xs:string" />
+			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
+			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
+			<xs:attribute name="default_animation" type="xs:string" default="default" />
+			<xs:attribute name="color_a" type="xs:decimal" default="1" />
+			<xs:attribute name="color_b" type="xs:decimal" default="1" />
+			<xs:attribute name="color_g" type="xs:decimal" default="1" />
+			<xs:attribute name="color_r" type="xs:decimal" default="1" />
+		</xs:complexType>
+		<xs:unique name="UniqueRectAnimationName">
+			<xs:selector xpath="RectAnimation" />
+			<xs:field xpath="@name" />
 		</xs:unique>
 	</xs:element>
 </xs:schema>
