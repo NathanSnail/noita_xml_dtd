@@ -8,15 +8,13 @@
 	</xs:simpleType>
 	<xs:simpleType name="Hex8">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}" />
+			<xs:pattern value="[0-9A-Fa-f]{8}|0" />
 		</xs:restriction>
 	</xs:simpleType>
-
 	<!-- ConfigExplosion -->
 	<xs:complexType name="ConfigExplosion" />
 	<!-- ConfigExplosion -->
 	<!--Builtin-->
-
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="solid" />

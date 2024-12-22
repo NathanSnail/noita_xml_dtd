@@ -418,7 +418,7 @@
     {
         "name": "wang_color",
         "type": "Hex8",
-        "default": "00000000"
+        "default": "0"
     },
     {
         "name": "wang_curvature",

@@ -159,8 +159,6 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
         return (
             "DAMAGE_PHYSICS_HIT" if component_name == "AreaDamageComponent" else "NONE"
         )
-    elif ty == "Hex8":
-        return "00000000"
 
     if field.default != "-":
         if ty == "xs:decimal":
@@ -170,14 +168,25 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
     return "0" if ty != "xs:string" else ""
 
 
+COMPONENTS_WITH_MATERIALS = {
+    "MaterialAreaCheckerComponent",
+    "PhysicsImageShapeComponent",
+    "MaterialSeaSpawnerComponent",
+    "ItemAlchemyComponent",
+    "AnimalAIComponent",
+}
+
+
 def get_type_for_sub_field(field_name: str, ty: str, component_name: str) -> str:
     if component_name == "ParticleEmitterComponent":
         if field_name == "color":
             return "Hex8"
-    if "material" in field_name:
-        return "xs:string"
-    if "herd_id" in field_name:
-        return "xs:string"
+    elif component_name == "GenomeDataComponent":
+        if field_name == "herd_id":
+            return "xs:string"
+    elif component_name in COMPONENTS_WITH_MATERIALS:
+        if "material" in field_name:
+            return "xs:string"
     return ty
 
 
@@ -400,7 +409,7 @@ out = f"""
 \t</xs:simpleType>
 \t<xs:simpleType name="Hex8">
 \t\t<xs:restriction base="xs:string">
-\t\t\t<xs:pattern value="[0-9A-Fa-f]{{8}}" />
+\t\t\t<xs:pattern value="[0-9A-Fa-f]{{8}}|0" />
 \t\t\t</xs:restriction>
 \t</xs:simpleType>
 \t<xs:attributeGroup name="CommonComponentAttributes">
@@ -536,13 +545,11 @@ material_xsd = replace_metatag(
     "<!-- ConfigExplosion -->",
 )
 
-material_file = "./materials.xsd"
-open(material_file, "w").write(material_xsd)
+open("./materials.xsd", "w").write(material_xsd)
 
 # Merge files
-merge_list = {"./sprite.xsd", material_file}
-for file in merge_list:
-    xsd = prune_builtin(open(file, "r").read())
-    out += "\n" + xsd
+out += prune_builtin(material_xsd)
+with open("./sprite.xsd", "r") as sprite_file:
+    out += prune_builtin(sprite_file.read())
 
 open("merged.xsd", "w").write(out + "\n</xs:schema>")
