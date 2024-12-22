@@ -508,15 +508,31 @@ open("entity.xsd", "w").write(out + "\n</xs:schema>")
 
 # Update materials.xsd
 material_attributes_json = json.load(open("./materials_attributes.json", "r"))
-material_attributes = """\n\t\t<xs:attribute name="name" type="xs:string" use="required">
+name_field = Field(
+    "name",
+    "std::string",
+    "-",
+    "",
+    "Internal name, should be unique, otherwise will overwrite materials.",
+)
+material_fields = [name_field]
+material_attributes = f"""\n\t\t<xs:attribute name="name" type="xs:string" use="required">
 \t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation>Internal name, should be unique, otherwise will overwrite materials.</xs:documentation>
+\t\t\t\t<xs:documentation><![CDATA[{"```cpp" + NL + render_field_cpp(name_field).replace("\t","") + NL + "```"}]]></xs:documentation>
 \t\t\t</xs:annotation>
 \t\t</xs:attribute>
 """
 for attribute in material_attributes_json:
     ty = get_xml_type(attribute["type"])[0][1]
-    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(Field(attribute["name"], attribute["type"], attribute["default"], "", attribute.get("doc", ""))).replace("\t", "") + NL + "```"}]]>"""
+    this_field = Field(
+        attribute["name"],
+        attribute["type"],
+        attribute["default"],
+        "",
+        attribute.get("doc", ""),
+    )
+    material_fields.append(this_field)
+    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
     material_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" default="{attribute["default"]}">
 \t\t\t<xs:annotation>
 \t\t\t\t<xs:documentation>{doc}</xs:documentation>
@@ -528,6 +544,17 @@ material_xsd = replace_metatag(
     open("materials_source.xsd", "r").read(),
     material_attributes,
     "<!-- Material Attributes -->",
+)
+material_xsd = replace_metatag(
+    material_xsd,
+    "<xs:annotation><xs:documentation><![CDATA["
+    + NL
+    + render_component_cpp(Component("CellData", material_fields))
+    .replace("\n", NL)
+    .replace("\t", TAB)
+    + NL
+    + "]]></xs:documentation></xs:annotation>",
+    "<!-- Material Docs -->",
 )
 
 config_explosion = next(

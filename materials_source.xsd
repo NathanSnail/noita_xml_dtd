@@ -221,6 +221,9 @@
 
 	<!-- Material Type -->
 	<xs:complexType name="Material" mixed="true">
+		<!-- Material Docs -->
+
+		<!-- Material Docs -->
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
 			<xs:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
 			<xs:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0"
