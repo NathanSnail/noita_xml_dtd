@@ -256,7 +256,6 @@ def render_config(config: Component) -> str:
 {"\n".join(objects)}
 \t\t\t</xs:all>""" if len(objects) != 0 else ""}{
 "\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
-
 \t</xs:complexType>"""[
         1:
     ]
