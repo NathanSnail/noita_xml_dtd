@@ -581,7 +581,7 @@ for attribute in reaction_attributes_json:
 """
 
 material_xsd = replace_metatag(
-    open("materials_source.xsd", "r").read(),
+    material_xsd,
     reaction_attributes,
     "<!-- Reaction Attributes -->",
 )
