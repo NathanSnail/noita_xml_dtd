@@ -23,7 +23,7 @@
 			<xs:enumeration value="gas" />
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="REACTION_DIRECTIONS">
+	<xs:simpleType name="REACTION_DIRECTION">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="none" />
 			<xs:enumeration value="top" />
@@ -240,105 +240,15 @@
 
 	<!-- Material Reactions -->
 	<xs:complexType name="MaterialReactions">
+		<!-- Reaction Docs -->
+
+		<!-- Reaction Docs -->
 		<xs:choice>
 			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
 		</xs:choice>
-		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_radius1" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_radius2" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<!-- ? -->
-		<xs:attribute name="convert_all" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="direction" type="REACTION_DIRECTIONS" default="none">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="entity" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation>path</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="fast_reaction" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="input_cell1" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="input_cell2" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="input_cell3" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="output_cell1" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="output_cell2" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="output_cell3" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="probability" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="req_lifetime" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
+		<!-- Reaction Attributes -->
+
+		<!-- Reaction Attributes -->
 	</xs:complexType>
 
 	<!-- Materials -->

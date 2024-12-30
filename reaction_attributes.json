@@ -1,0 +1,111 @@
+[
+	{
+		"name": "fast_reaction",
+		"type": "bool",
+		"default": "0",
+		"doc": "Makes the reaction go faster"
+	},
+	{
+		"name": "probability",
+		"type": "int",
+		"default": "0",
+		"doc": "If the cells are selected this is the percentage chance the reaction occurs"
+	},
+	{
+		"name": "input_cell1",
+		"type": "std::string",
+		"required": true,
+		"doc": "The first cell in the reaction"
+	},
+	{
+		"name": "output_cell1",
+		"type": "std::string",
+		"required": true,
+		"doc": "The material input_cell1 is converted to"
+	},
+	{
+		"name": "input_cell2",
+		"type": "std::string",
+		"required": true,
+		"doc": "The second cell in the reaction"
+	},
+	{
+		"name": "output_cell2",
+		"type": "std::string",
+		"required": true,
+		"doc": "The material input_cell2 is converted to"
+	},
+	{
+		"name": "input_cell3",
+		"type": "std::string",
+		"default": "",
+		"doc": "If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and output_cell3 must be set"
+	},
+	{
+		"name": "output_cell3",
+		"type": "std::string",
+		"default": "",
+		"doc": "If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and input_cell3 must be set"
+	},
+	{
+		"name": "cosmetic_particle",
+		"type": "std::string",
+		"default": ""
+	},
+	{
+		"name": "req_lifetime",
+		"type": "int",
+		"default": "0",
+		"doc": "Only do the reaction if input_cell1 has lived longer than this"
+	},
+	{
+		"name": "blob_radius1",
+		"type": "int",
+		"default": "0",
+		"doc": "Radius of pixels of input_cell1 to react"
+	},
+	{
+		"name": "blob_radius2",
+		"type": "int",
+		"default": "0",
+		"doc": "Radius of pixels of input_cell1 to react"
+	},
+	{
+		"name": "blob_restrict_to_input_material1",
+		"type": "bool",
+		"default": "1"
+	},
+	{
+		"name": "blob_restrict_to_input_material2",
+		"type": "bool",
+		"default": "1"
+	},
+	{
+		"name": "destroy_horizontally_lonely_pixels",
+		"type": "bool",
+		"default": "0"
+	},
+	{
+		"name": "direction",
+		"type": "REACTION_DIRECTION",
+		"default": "none",
+		"doc": "Only do the reaction if input_cell2 is in this direction from input_cell2"
+	},
+	{
+		"name": "convert_all",
+		"type": "bool",
+		"default": "0",
+		"doc": "If true floodfills the connected region of each input cell type and converts them to their respective output"
+	},
+	{
+		"name": "entity",
+		"type": "std::string",
+		"default": "",
+		"doc": "Loads this entity at the reaction coords when it happens"
+	},
+	{
+		"name": "audio_fx_volume_1",
+		"type": "float",
+		"default": "0"
+	}
+]

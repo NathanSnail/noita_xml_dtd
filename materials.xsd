@@ -390,7 +390,7 @@
 			<xs:enumeration value="gas" />
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="REACTION_DIRECTIONS">
+	<xs:simpleType name="REACTION_DIRECTION">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="none" />
 			<xs:enumeration value="top" />
@@ -588,7 +588,9 @@
 
 	<!-- Material Type -->
 	<xs:complexType name="Material" mixed="true">
-		<!-- Material Docs --><xs:annotation><xs:documentation><![CDATA[<br>```cpp<br>class CellData {<br>&emsp;&emsp;&emsp;&emsp;std::string name; //  Internal name, should be unique, otherwise will overwrite materials.<br>&emsp;&emsp;&emsp;&emsp;bool always_ignites_damagemodel = 0; //  Ignites anyone who touches it<br>&emsp;&emsp;&emsp;&emsp;bool audio_is_soft = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string audio_materialaudio_type = "NONE";<br>&emsp;&emsp;&emsp;&emsp;std::string audio_materialbreakaudio_type = "NONE";<br>&emsp;&emsp;&emsp;&emsp;float audio_size_multiplier = 1;<br>&emsp;&emsp;&emsp;&emsp;uint autoignition_temperature = 100;<br>&emsp;&emsp;&emsp;&emsp;bool burnable = 0;<br>&emsp;&emsp;&emsp;&emsp;bool cell_holes_in_texture = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string tags = ""; //  A list of tags.<br>&emsp;&emsp;&emsp;&emsp;std::string audio_physics_material_event = "";<br>&emsp;&emsp;&emsp;&emsp;std::string audio_physics_material_wall = "";<br>&emsp;&emsp;&emsp;&emsp;std::string audio_physics_material_solid = "";<br>&emsp;&emsp;&emsp;&emsp;std::string vegetation_sprite = "";<br>&emsp;&emsp;&emsp;&emsp;CELL_TYPE::Enum cell_type = liquid; //  Type of the material.<br>&emsp;&emsp;&emsp;&emsp;uint cold_freezes_chance_rev = 100;<br>&emsp;&emsp;&emsp;&emsp;bool cold_freezes_to_dont_do_reverse_reaction = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string cold_freezes_to_material = "air";<br>&emsp;&emsp;&emsp;&emsp;std::string convert_to_box2d_material = "air";<br>&emsp;&emsp;&emsp;&emsp;uint crackability = 0;<br>&emsp;&emsp;&emsp;&emsp;bool danger_fire = 0;<br>&emsp;&emsp;&emsp;&emsp;bool danger_poison = 0;<br>&emsp;&emsp;&emsp;&emsp;bool danger_radioactive = 0;<br>&emsp;&emsp;&emsp;&emsp;bool danger_water = 0;<br>&emsp;&emsp;&emsp;&emsp;float density = 1;<br>&emsp;&emsp;&emsp;&emsp;uint durability = 0; //  [0-14]<br>&emsp;&emsp;&emsp;&emsp;bool electrical_conductivity = 1; //  Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0.<br>&emsp;&emsp;&emsp;&emsp;uint fire_hp = 0;<br>&emsp;&emsp;&emsp;&emsp;uint gas_downwards_speed = 90;<br>&emsp;&emsp;&emsp;&emsp;uint gas_horizontal_speed = 100;<br>&emsp;&emsp;&emsp;&emsp;uint gas_speed = 50;<br>&emsp;&emsp;&emsp;&emsp;uint gas_upwards_speed = 100;<br>&emsp;&emsp;&emsp;&emsp;uint generates_flames = 30;<br>&emsp;&emsp;&emsp;&emsp;uint generates_smoke = 0;<br>&emsp;&emsp;&emsp;&emsp;uint gfx_glow = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string gfx_glow_color = "0";<br>&emsp;&emsp;&emsp;&emsp;uint hp = 100;<br>&emsp;&emsp;&emsp;&emsp;bool ignore_self_reaction_warning = 0;<br>&emsp;&emsp;&emsp;&emsp;bool is_just_particle_fx = 0;<br>&emsp;&emsp;&emsp;&emsp;float lifetime = 0;<br>&emsp;&emsp;&emsp;&emsp;float liquid_damping = 0.8;<br>&emsp;&emsp;&emsp;&emsp;float liquid_flow_speed = 0.9;<br>&emsp;&emsp;&emsp;&emsp;float liquid_gravity = 0.5;<br>&emsp;&emsp;&emsp;&emsp;bool liquid_sand = 0;<br>&emsp;&emsp;&emsp;&emsp;bool liquid_sand_never_box2d = 0;<br>&emsp;&emsp;&emsp;&emsp;bool liquid_slime = 0;<br>&emsp;&emsp;&emsp;&emsp;uint liquid_sprite_stain_ignited_drop_chance = 10;<br>&emsp;&emsp;&emsp;&emsp;float liquid_sprite_stain_shaken_drop_chance = 1;<br>&emsp;&emsp;&emsp;&emsp;int liquid_sprite_stains_check_offset = 0;<br>&emsp;&emsp;&emsp;&emsp;float liquid_sprite_stains_status_threshold = 0.01;<br>&emsp;&emsp;&emsp;&emsp;int liquid_stains = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string liquid_stains_custom_color = "0";<br>&emsp;&emsp;&emsp;&emsp;bool liquid_stains_self = 0;<br>&emsp;&emsp;&emsp;&emsp;bool liquid_static = 0;<br>&emsp;&emsp;&emsp;&emsp;uint liquid_sticks_to_ceiling = 0;<br>&emsp;&emsp;&emsp;&emsp;float liquid_viscosity = 50;<br>&emsp;&emsp;&emsp;&emsp;bool on_fire = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string on_fire_flame_material = "fire";<br>&emsp;&emsp;&emsp;&emsp;std::string on_fire_smoke_material = "smoke";<br>&emsp;&emsp;&emsp;&emsp;int platform_type = -1;<br>&emsp;&emsp;&emsp;&emsp;bool requires_oxygen = 1;<br>&emsp;&emsp;&emsp;&emsp;bool show_in_creative_mode = 0;<br>&emsp;&emsp;&emsp;&emsp;bool slippery = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string solid_break_to_type = "air";<br>&emsp;&emsp;&emsp;&emsp;bool solid_collide_with_self = 1;<br>&emsp;&emsp;&emsp;&emsp;float solid_friction = 0.3;<br>&emsp;&emsp;&emsp;&emsp;bool solid_go_through_sand = 0;<br>&emsp;&emsp;&emsp;&emsp;float solid_gravity_scale = 1;<br>&emsp;&emsp;&emsp;&emsp;bool solid_on_break_explode = 0;<br>&emsp;&emsp;&emsp;&emsp;bool solid_on_collision_convert = 0;<br>&emsp;&emsp;&emsp;&emsp;bool solid_on_collision_explode = 0;<br>&emsp;&emsp;&emsp;&emsp;std::string solid_on_collision_material = "air";<br>&emsp;&emsp;&emsp;&emsp;bool solid_on_collision_splash_power = 1;<br>&emsp;&emsp;&emsp;&emsp;bool solid_on_sleep_convert = 0;<br>&emsp;&emsp;&emsp;&emsp;float solid_restitution = 0.2;<br>&emsp;&emsp;&emsp;&emsp;int solid_static_type = 0;<br>&emsp;&emsp;&emsp;&emsp;bool stainable = 1;<br>&emsp;&emsp;&emsp;&emsp;std::string status_effects = "";<br>&emsp;&emsp;&emsp;&emsp;float stickyness = 0;<br>&emsp;&emsp;&emsp;&emsp;uint temperature_of_fire = 10;<br>&emsp;&emsp;&emsp;&emsp;std::string ui_name = ""; //  Can be translation string, copies the 'name' value by default<br>&emsp;&emsp;&emsp;&emsp;uint vegetation_full_lifetime_growth = 10000;<br>&emsp;&emsp;&emsp;&emsp;bool vegetation_random_flip_x_scale = 0;<br>&emsp;&emsp;&emsp;&emsp;Hex8 wang_color = 0;<br>&emsp;&emsp;&emsp;&emsp;float wang_curvature = 0.5;<br>&emsp;&emsp;&emsp;&emsp;float wang_noise_percent = 1;<br>&emsp;&emsp;&emsp;&emsp;int wang_noise_type = 0;<br>&emsp;&emsp;&emsp;&emsp;uint warmth_melts_chance_rev = 100;<br>&emsp;&emsp;&emsp;&emsp;std::string warmth_melts_to_material = "air";<br>};<br>```<br>]]></xs:documentation></xs:annotation><!-- Material Docs -->
+		<!-- Material Docs -->
+
+		<!-- Material Docs -->
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
 			<xs:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
 			<xs:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0"
@@ -599,555 +601,113 @@
 				maxOccurs="1" />
 		</xs:choice>
 		<!-- Material Attributes -->
-		<xs:attribute name="name" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string name; //  Internal name, should be unique, otherwise will overwrite materials.<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="always_ignites_damagemodel" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool always_ignites_damagemodel = 0; //  Ignites anyone who touches it<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_is_soft" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool audio_is_soft = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_materialaudio_type" type="xs:string" default="NONE">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string audio_materialaudio_type = "NONE";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_materialbreakaudio_type" type="xs:string" default="NONE">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string audio_materialbreakaudio_type = "NONE";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_size_multiplier" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float audio_size_multiplier = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="autoignition_temperature" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint autoignition_temperature = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="burnable" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool burnable = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cell_holes_in_texture" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool cell_holes_in_texture = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="tags" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string tags = ""; //  A list of tags.<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_physics_material_event" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_event = "";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_physics_material_wall" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_wall = "";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="audio_physics_material_solid" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string audio_physics_material_solid = "";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="vegetation_sprite" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string vegetation_sprite = "";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cell_type" type="CELL_TYPE" default="liquid">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>CELL_TYPE::Enum cell_type = liquid; //  Type of the material.<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cold_freezes_chance_rev" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint cold_freezes_chance_rev = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cold_freezes_to_dont_do_reverse_reaction" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool cold_freezes_to_dont_do_reverse_reaction = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cold_freezes_to_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string cold_freezes_to_material = "air";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="convert_to_box2d_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string convert_to_box2d_material = "air";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="crackability" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint crackability = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_fire" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool danger_fire = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_poison" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool danger_poison = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_radioactive" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool danger_radioactive = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="danger_water" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool danger_water = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="density" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float density = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="durability" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint durability = 0; //  [0-14]<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="electrical_conductivity" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool electrical_conductivity = 1; //  Makes the material conduct electricity. Defaults to 1 when cell_type=liquid and liquid_sand=0, otherwise it defaults to 0.<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="fire_hp" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint fire_hp = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gas_downwards_speed" type="xs:unsignedInt" default="90">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint gas_downwards_speed = 90;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gas_horizontal_speed" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint gas_horizontal_speed = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gas_speed" type="xs:unsignedInt" default="50">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint gas_speed = 50;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gas_upwards_speed" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint gas_upwards_speed = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="generates_flames" type="xs:unsignedInt" default="30">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint generates_flames = 30;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="generates_smoke" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint generates_smoke = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gfx_glow" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint gfx_glow = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="gfx_glow_color" type="xs:string" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string gfx_glow_color = "0";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="hp" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint hp = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="ignore_self_reaction_warning" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool ignore_self_reaction_warning = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="is_just_particle_fx" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool is_just_particle_fx = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="lifetime" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float lifetime = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_damping" type="xs:decimal" default="0.8">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_damping = 0.8;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_flow_speed" type="xs:decimal" default="0.9">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_flow_speed = 0.9;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_gravity" type="xs:decimal" default="0.5">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_gravity = 0.5;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sand" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool liquid_sand = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sand_never_box2d" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool liquid_sand_never_box2d = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_slime" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool liquid_slime = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stain_ignited_drop_chance" type="xs:unsignedInt" default="10">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint liquid_sprite_stain_ignited_drop_chance = 10;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stain_shaken_drop_chance" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_sprite_stain_shaken_drop_chance = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stains_check_offset" type="xs:int" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>int liquid_sprite_stains_check_offset = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sprite_stains_status_threshold" type="xs:decimal" default="0.01">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_sprite_stains_status_threshold = 0.01;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_stains" type="xs:int" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>int liquid_stains = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_stains_custom_color" type="xs:string" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string liquid_stains_custom_color = "0";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_stains_self" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool liquid_stains_self = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_static" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool liquid_static = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_sticks_to_ceiling" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint liquid_sticks_to_ceiling = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="liquid_viscosity" type="xs:decimal" default="50">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float liquid_viscosity = 50;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool on_fire = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire_flame_material" type="xs:string" default="fire">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string on_fire_flame_material = "fire";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="on_fire_smoke_material" type="xs:string" default="smoke">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string on_fire_smoke_material = "smoke";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="platform_type" type="xs:int" default="-1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>int platform_type = -1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="requires_oxygen" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool requires_oxygen = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="show_in_creative_mode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool show_in_creative_mode = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="slippery" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool slippery = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_break_to_type" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string solid_break_to_type = "air";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_collide_with_self" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_collide_with_self = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_friction" type="xs:decimal" default="0.3">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float solid_friction = 0.3;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_go_through_sand" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_go_through_sand = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_gravity_scale" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float solid_gravity_scale = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_break_explode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_on_break_explode = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_convert" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_convert = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_explode" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_explode = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string solid_on_collision_material = "air";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_collision_splash_power" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_on_collision_splash_power = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_on_sleep_convert" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool solid_on_sleep_convert = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_restitution" type="xs:decimal" default="0.2">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float solid_restitution = 0.2;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="solid_static_type" type="xs:int" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>int solid_static_type = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="stainable" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool stainable = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="status_effects" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string status_effects = "";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="stickyness" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float stickyness = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="temperature_of_fire" type="xs:unsignedInt" default="10">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint temperature_of_fire = 10;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="ui_name" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string ui_name = ""; //  Can be translation string, copies the 'name' value by default<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="vegetation_full_lifetime_growth" type="xs:unsignedInt" default="10000">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint vegetation_full_lifetime_growth = 10000;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="vegetation_random_flip_x_scale" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>bool vegetation_random_flip_x_scale = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="wang_color" type="Hex8" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>Hex8 wang_color = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="wang_curvature" type="xs:decimal" default="0.5">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float wang_curvature = 0.5;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="wang_noise_percent" type="xs:decimal" default="1">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>float wang_noise_percent = 1;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="wang_noise_type" type="xs:int" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>int wang_noise_type = 0;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="warmth_melts_chance_rev" type="xs:unsignedInt" default="100">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint warmth_melts_chance_rev = 100;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="warmth_melts_to_material" type="xs:string" default="air">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>std::string warmth_melts_to_material = "air";<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-<!-- Material Attributes -->
+
+		<!-- Material Attributes -->
 	</xs:complexType>
 
 	<!-- Material Reactions -->
 	<xs:complexType name="MaterialReactions">
+		<!-- Reaction Docs --><xs:annotation><xs:documentation><![CDATA[<br>```cpp<br>class Reaction {<br>&emsp;&emsp;&emsp;&emsp;bool fast_reaction = 0; //  Makes the reaction go faster<br>&emsp;&emsp;&emsp;&emsp;int probability = 0; //  If the cells are selected this is the percentage chance the reaction occurs<br>&emsp;&emsp;&emsp;&emsp;std::string input_cell1; //  The first cell in the reaction<br>&emsp;&emsp;&emsp;&emsp;std::string output_cell1; //  The material input_cell1 is converted to<br>&emsp;&emsp;&emsp;&emsp;std::string input_cell2; //  The second cell in the reaction<br>&emsp;&emsp;&emsp;&emsp;std::string output_cell2; //  The material input_cell2 is converted to<br>&emsp;&emsp;&emsp;&emsp;std::string input_cell3 = ""; //  If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and output_cell3 must be set<br>&emsp;&emsp;&emsp;&emsp;std::string output_cell3 = ""; //  If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and input_cell3 must be set<br>&emsp;&emsp;&emsp;&emsp;std::string cosmetic_particle = "";<br>&emsp;&emsp;&emsp;&emsp;int req_lifetime = 0; //  Only do the reaction if input_cell1 has lived longer than this<br>&emsp;&emsp;&emsp;&emsp;int blob_radius1 = 0; //  Radius of pixels of input_cell1 to react<br>&emsp;&emsp;&emsp;&emsp;int blob_radius2 = 0; //  Radius of pixels of input_cell1 to react<br>&emsp;&emsp;&emsp;&emsp;bool blob_restrict_to_input_material1 = 1;<br>&emsp;&emsp;&emsp;&emsp;bool blob_restrict_to_input_material2 = 1;<br>&emsp;&emsp;&emsp;&emsp;bool destroy_horizontally_lonely_pixels = 0;<br>&emsp;&emsp;&emsp;&emsp;REACTION_DIRECTION direction = none; //  Only do the reaction if input_cell2 is in this direction from input_cell2<br>&emsp;&emsp;&emsp;&emsp;bool convert_all = 0; //  If true floodfills the connected region of each input cell type and converts them to their respective output<br>&emsp;&emsp;&emsp;&emsp;std::string entity = ""; //  Loads this entity at the reaction coords when it happens<br>&emsp;&emsp;&emsp;&emsp;float audio_fx_volume_1 = 0;<br>};<br>```<br>]]></xs:documentation></xs:annotation><!-- Reaction Docs -->
 		<xs:choice>
 			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
 		</xs:choice>
-		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_radius1" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_radius2" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<!-- ? -->
-		<xs:attribute name="convert_all" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="direction" type="REACTION_DIRECTIONS" default="none">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="entity" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation>path</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
+		<!-- Reaction Attributes -->
 		<xs:attribute name="fast_reaction" type="NoitaBool" default="0">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>bool fast_reaction = 0; //  Makes the reaction go faster<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="probability" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int probability = 0; //  If the cells are selected this is the percentage chance the reaction occurs<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="input_cell1" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="input_cell2" type="xs:string" use="required">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="input_cell3" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>std::string input_cell1; //  The first cell in the reaction<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell1" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>std::string output_cell1; //  The material input_cell1 is converted to<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell2" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string input_cell2; //  The second cell in the reaction<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell2" type="xs:string" use="required">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>std::string output_cell2; //  The material input_cell2 is converted to<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="input_cell3" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string input_cell3 = ""; //  If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and output_cell3 must be set<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="output_cell3" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>std::string output_cell3 = ""; //  If this is empty its a 2 cell reaction, if it's not then it's a 3 cell reaction, and input_cell3 must be set<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="probability" type="xs:decimal" default="0">
+		<xs:attribute name="cosmetic_particle" type="xs:string" default="">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>std::string cosmetic_particle = "";<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="req_lifetime" type="xs:integer" default="0">
+		<xs:attribute name="req_lifetime" type="xs:int" default="0">
 			<xs:annotation>
-				<xs:documentation />
+				<xs:documentation><![CDATA[```cpp<br>int req_lifetime = 0; //  Only do the reaction if input_cell1 has lived longer than this<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="blob_radius1" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int blob_radius1 = 0; //  Radius of pixels of input_cell1 to react<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_radius2" type="xs:int" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>int blob_radius2 = 0; //  Radius of pixels of input_cell1 to react<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material1" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool blob_restrict_to_input_material1 = 1;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="blob_restrict_to_input_material2" type="NoitaBool" default="1">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool blob_restrict_to_input_material2 = 1;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="destroy_horizontally_lonely_pixels" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool destroy_horizontally_lonely_pixels = 0;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="direction" type="REACTION_DIRECTION" default="none">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>REACTION_DIRECTION direction = none; //  Only do the reaction if input_cell2 is in this direction from input_cell2<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="convert_all" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool convert_all = 0; //  If true floodfills the connected region of each input cell type and converts them to their respective output<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="entity" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string entity = ""; //  Loads this entity at the reaction coords when it happens<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="audio_fx_volume_1" type="xs:decimal" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>float audio_fx_volume_1 = 0;<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+<!-- Reaction Attributes -->
 	</xs:complexType>
 
 	<!-- Materials -->

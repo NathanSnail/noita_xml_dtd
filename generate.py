@@ -42,6 +42,8 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     enum = "::Enum"
     if ty == "Hex8":
         return [("", "Hex8")]
+    if ty == "REACTION_DIRECTION":
+        return [("", "REACTION_DIRECTION")]
     if ty == "StatusEffectType":
         return [("", "GAME_EFFECT")]
     if ty[-len(enum) :] == enum:
@@ -555,6 +557,46 @@ material_xsd = replace_metatag(
     + "]]></xs:documentation></xs:annotation>",
     "<!-- Material Docs -->",
 )
+
+reaction_attributes_json = json.load(open("./reaction_attributes.json", "r"))
+reaction_fields = []
+reaction_attributes = "\n"
+for attribute in reaction_attributes_json:
+    print(attribute["type"])
+    ty = get_xml_type(attribute["type"])[0][1]
+    this_field = Field(
+        attribute["name"],
+        attribute["type"],
+        attribute.get("default", "-"),
+        "",
+        attribute.get("doc", ""),
+    )
+    reaction_fields.append(this_field)
+    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
+    reaction_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation>{doc}</xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>
+"""
+
+material_xsd = replace_metatag(
+    open("materials_source.xsd", "r").read(),
+    reaction_attributes,
+    "<!-- Reaction Attributes -->",
+)
+material_xsd = replace_metatag(
+    material_xsd,
+    "<xs:annotation><xs:documentation><![CDATA["
+    + NL
+    + render_component_cpp(Component("Reaction", reaction_fields))
+    .replace("\n", NL)
+    .replace("\t", TAB)
+    + NL
+    + "]]></xs:documentation></xs:annotation>",
+    "<!-- Reaction Docs -->",
+)
+
 
 config_explosion = next(
     render_config(config) for config in configs if config.name == "ConfigExplosion"
