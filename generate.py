@@ -620,4 +620,7 @@ out += prune_builtin(material_xsd)
 with open("./sprite.xsd", "r") as sprite_file:
     out += prune_builtin(sprite_file.read())
 
+with open("./biomes_all.xsd", "r") as biomes_all_file:
+    out += prune_builtin(biomes_all_file.read())
+
 open("merged.xsd", "w").write(out + "\n</xs:schema>")

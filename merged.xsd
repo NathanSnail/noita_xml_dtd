@@ -15362,5 +15362,19 @@
 			<xs:selector xpath="RectAnimation" />
 			<xs:field xpath="@name" />
 		</xs:unique>
+	</xs:element>	
+
+	<xs:complexType name="BiomeAllBiome" mixed="true">
+		<xs:attribute name="color" type="Hex8" use="required"></xs:attribute>
+		<xs:attribute name="biome_filename" type="xs:string" use="required"></xs:attribute>
+	</xs:complexType>
+	<xs:element name="BiomesToLoad">
+		<xs:complexType mixed="true">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Biome" type="BiomeAllBiome"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="biome_image_map" type="xs:string"></xs:attribute>
+			<xs:attribute name="biome_offset_y" type="xs:int"></xs:attribute>
+		</xs:complexType>
 	</xs:element>
 </xs:schema>
