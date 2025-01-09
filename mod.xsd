@@ -1,0 +1,77 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!--Builtin-->
+	<xs:simpleType name="NoitaBool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Builtin-->
+	<xs:element name="Mod">
+		<xs:complexType mixed="true">
+			<!-- Mod Docs --><xs:annotation><xs:documentation><![CDATA[<br>```cpp<br>class Mod {<br>&emsp;&emsp;&emsp;&emsp;std::string name; //  The name of the mod in game<br>&emsp;&emsp;&emsp;&emsp;std::string description; //  The description of the mod in game<br>&emsp;&emsp;&emsp;&emsp;bool request_no_api_restrictions = 0; //  If true then this mod requires unsafe mods to be enabled and has full access to luajit, note this means it can't be put on the workshop<br>&emsp;&emsp;&emsp;&emsp;std::string ui_newgame_name = ""; //  If this is a gamemode mod then this is the name of that gamemode<br>&emsp;&emsp;&emsp;&emsp;std::string ui_newgame_description = ""; //  If this is a gamemode mod then this is the description of that gamemode<br>&emsp;&emsp;&emsp;&emsp;std::string ui_newgame_gfx_banner_bg = "0.5"; //  If this is a gamemode then this is the path to the background of the banner<br>&emsp;&emsp;&emsp;&emsp;std::string ui_newgame_gfx_banner_fg = "0.5"; //  If this is a gamemode then this is the path to the foreground of the banner<br>&emsp;&emsp;&emsp;&emsp;bool is_game_mode = 0; //  If true then this mod can't be enabled and is started from the newgame menu<br>&emsp;&emsp;&emsp;&emsp;bool game_mode_supports_save_slots = 0; //  If true then this mod can't be enabled and is started from the newgame menu<br>&emsp;&emsp;&emsp;&emsp;bool is_translation = 0; //  If true then this mod can't change the game and instead uses `translation_xml_path` and `translation_csv_path` to specify its content<br>&emsp;&emsp;&emsp;&emsp;std::string translation_xml_path = ""; //  Path to the translations csv for this modded language<br>&emsp;&emsp;&emsp;&emsp;std::string translation_csv_path = ""; //  Path to the font xml for this modded language<br>};<br>```<br>]]></xs:documentation></xs:annotation><!-- Mod Docs -->
+			<!-- Mod Attributes -->
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string name; //  The name of the mod in game<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string description; //  The description of the mod in game<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="request_no_api_restrictions" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool request_no_api_restrictions = 0; //  If true then this mod requires unsafe mods to be enabled and has full access to luajit, note this means it can't be put on the workshop<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_newgame_name" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_newgame_name = ""; //  If this is a gamemode mod then this is the name of that gamemode<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_newgame_description" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_newgame_description = ""; //  If this is a gamemode mod then this is the description of that gamemode<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_newgame_gfx_banner_bg" type="xs:string" default="0.5">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_newgame_gfx_banner_bg = "0.5"; //  If this is a gamemode then this is the path to the background of the banner<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ui_newgame_gfx_banner_fg" type="xs:string" default="0.5">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string ui_newgame_gfx_banner_fg = "0.5"; //  If this is a gamemode then this is the path to the foreground of the banner<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_game_mode" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool is_game_mode = 0; //  If true then this mod can't be enabled and is started from the newgame menu<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="game_mode_supports_save_slots" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool game_mode_supports_save_slots = 0; //  If true then this mod can't be enabled and is started from the newgame menu<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="is_translation" type="NoitaBool" default="0">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>bool is_translation = 0; //  If true then this mod can't change the game and instead uses `translation_xml_path` and `translation_csv_path` to specify its content<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="translation_xml_path" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string translation_xml_path = ""; //  Path to the translations csv for this modded language<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="translation_csv_path" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation><![CDATA[```cpp<br>std::string translation_csv_path = ""; //  Path to the font xml for this modded language<br>```]]></xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+<!-- Mod Attributes -->
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

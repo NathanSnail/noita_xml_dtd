@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!--Builtin-->
+	<xs:simpleType name="NoitaBool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0" />
+			<xs:enumeration value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Builtin-->
+	<xs:element name="Mod">
+		<xs:complexType mixed="true">
+			<!-- Mod Docs -->
+			<!-- Mod Docs -->
+			<!-- Mod Attributes -->
+			<!-- Mod Attributes -->
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -623,4 +623,50 @@ with open("./sprite.xsd", "r") as sprite_file:
 with open("./biomes_all.xsd", "r") as biomes_all_file:
     out += prune_builtin(biomes_all_file.read())
 
+mod_xsd = open("./mod_src.xsd", "r").read()
+mod_xsd = mod_xsd
+
+mod_attributes_json = json.load(open("./mod_attributes.json", "r"))
+mod_fields = []
+mod_attributes = "\n"
+for attribute in mod_attributes_json:
+    print(attribute["type"])
+    ty = get_xml_type(attribute["type"])[0][1]
+    this_field = Field(
+        attribute["name"],
+        attribute["type"],
+        attribute.get("default", "-"),
+        "",
+        attribute.get("doc", ""),
+    )
+    mod_fields.append(this_field)
+    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
+    mod_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation>{doc}</xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>
+"""
+
+mod_xsd = replace_metatag(
+    mod_xsd,
+    mod_attributes,
+    "<!-- Mod Attributes -->",
+)
+
+mod_xsd = replace_metatag(
+    mod_xsd,
+    "<xs:annotation><xs:documentation><![CDATA["
+    + NL
+    + render_component_cpp(Component("Mod", mod_fields))
+    .replace("\n", NL)
+    .replace("\t", TAB)
+    + NL
+    + "]]></xs:documentation></xs:annotation>",
+    "<!-- Mod Docs -->",
+)
+
+open("./mod.xsd", "w").write(mod_xsd)
+out += prune_builtin(mod_xsd)
+
 open("merged.xsd", "w").write(out + "\n</xs:schema>")
