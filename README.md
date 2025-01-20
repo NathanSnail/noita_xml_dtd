@@ -8,8 +8,8 @@ In order to use this, link this xsd in your xml lsp, Noita does support this syn
 <?xml-model href="merged.xsd" type="application/xml-xsd"?>
 ```
 \- it's parser skips it. but linking it globally is better.
-For Neovim this is how you'd configure it with nvim-lspconfig, the settings should
-be the same in any editor though.
+In Neovim this is how you'd configure it for lemminx with nvim-lspconfig, the general
+approach should be applicable to any editor though.
 ```lua
 local servers = {
 	lemminx = {
