@@ -3497,17 +3497,17 @@
 				<xs:documentation><![CDATA[```cpp<br>int uses_remaining = 3;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="good_fx_material" type="xs:int" default="0">
+		<xs:attribute name="good_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int good_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="neutral_fx_material" type="xs:int" default="0">
+		<xs:attribute name="neutral_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int neutral_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="evil_fx_material" type="xs:int" default="0">
+		<xs:attribute name="evil_fx_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int evil_fx_material = 0; //  String name of material for particles emitted on successful sacrifice<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4144,7 +4144,7 @@
 				<xs:documentation><![CDATA[```cpp<br>ARC_TYPE::Enum type; //  which implementation the arc should use<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  string name for the material the arc is made of<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4282,7 +4282,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool play_only_if_visible = 0; //  plays sounds only if entity position is on screen and not covered by fog of war<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="m_audio_physics_material" type="xs:int" default="0">
+		<xs:attribute name="m_audio_physics_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int m_audio_physics_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -4780,7 +4780,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string ignored_material_tag; //  if set, will not eat any materials with this tag. please note that this lowers the performance of cell eating by some amount.<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ignored_material" type="xs:int" default="0">
+		<xs:attribute name="ignored_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ignored_material = 0; //  String name of a material that shouldn't be eaten by the component<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7397,7 +7397,7 @@
 				<xs:documentation><![CDATA[```cpp<br>RAGDOLL_FX::Enum ragdoll_effect; //  if set, will use this for ragdoll effect<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ragdoll_material" type="xs:int" default="0">
+		<xs:attribute name="ragdoll_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ragdoll_material = 0; //  converts to string name of the material that ragdoll is made out of<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -7954,7 +7954,7 @@
 				<xs:documentation><![CDATA[```cpp<br>int mState = 0; //  0 = detached, 1 = attached<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ray_skip_material" type="xs:int" default="0">
+		<xs:attribute name="ray_skip_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -8028,7 +8028,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool is_limp = 0; //  If 1, will apply verlet animation to simulate ragdoll-like limbs<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ray_skip_material" type="xs:int" default="0">
+		<xs:attribute name="ray_skip_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int ray_skip_material = 0; //  String name of material to not cast rays against. Defaults to 'aluminium'<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9219,7 +9219,7 @@
 				<xs:documentation><![CDATA[```cpp<br>std::string collapse_images = "data/procedural_gfx/collapse_big/$[0-14].png"; //  loads these files randomly to do the collapse shapes<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="chunk_material" type="xs:int" default="0">
+		<xs:attribute name="chunk_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int chunk_material = 0; //  String name of chunk material<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -9544,12 +9544,12 @@
 				<xs:documentation><![CDATA[```cpp<br>int mRadius = 0; // [0, 512] <br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="from_material" type="xs:int" default="0">
+		<xs:attribute name="from_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int from_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="to_material" type="xs:int" default="0">
+		<xs:attribute name="to_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int to_material = 0;<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -11543,7 +11543,7 @@
 				<xs:documentation><![CDATA[```cpp<br>float capsule_y_percent = 0.3;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="material" type="xs:int" default="0">
+		<xs:attribute name="material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int material = 0; //  the material to use for collision audio<br>```]]></xs:documentation>
 			</xs:annotation>
@@ -12023,7 +12023,7 @@
 				<xs:documentation><![CDATA[```cpp<br>bool never_color = 0; //  Petri: body_colored didn't seem to work, so I added never_color. It can be set to true if you never want the potion to be colored<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="custom_color_material" type="xs:int" default="0">
+		<xs:attribute name="custom_color_material" type="xs:string" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int custom_color_material = 0; //  if set, will always use the color from this material<br>```]]></xs:documentation>
 			</xs:annotation>

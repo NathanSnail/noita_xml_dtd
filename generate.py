@@ -36,10 +36,13 @@ def xml_encode(s: str) -> str:
     return s.replace(">", "&gt;").replace("<", "&lt;")
 
 
-def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
+def get_xml_type(name: str, ty: str) -> list[tuple[str, str]] | str:
     lens = "LensValue"
     unsigned = "unsigned"
+    material = "material"
     enum = "::Enum"
+    if ty == "int" and name[-len(material) :] == material:
+        return [("", "xs:string")]
     if ty == "Hex8":
         return [("", "Hex8")]
     if ty == "REACTION_DIRECTION":
@@ -49,7 +52,7 @@ def get_xml_type(ty: str) -> list[tuple[str, str]] | str:
     if ty[-len(enum) :] == enum:
         return [("", ty[: -len(enum)])]
     if ty[: len(lens)] == lens:
-        return get_xml_type(ty[len(lens) + 1 : -1])
+        return get_xml_type(name, ty[len(lens) + 1 : -1])
     if ty == "float" or ty == "double":
         return [("", "xs:decimal")]
     if ty[:3] == "int":
@@ -206,7 +209,7 @@ def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) ->
 
 
 def render_field(field: Field, component_name: str) -> tuple[str, str]:
-    tys = get_xml_type(field.ty)
+    tys = get_xml_type(field.name, field.ty)
     if type(tys) is str:
         return (
             f'\t\t\t\t<xs:element name="{field.name}" type="{tys}" minOccurs="0"/>',
@@ -524,7 +527,7 @@ material_attributes = f"""\n\t\t<xs:attribute name="name" type="xs:string" use="
 \t\t</xs:attribute>
 """
 for attribute in material_attributes_json:
-    ty = get_xml_type(attribute["type"])[0][1]
+    ty = get_xml_type("", attribute["type"])[0][1]
     this_field = Field(
         attribute["name"],
         attribute["type"],
@@ -563,7 +566,7 @@ reaction_fields = []
 reaction_attributes = "\n"
 for attribute in reaction_attributes_json:
     print(attribute["type"])
-    ty = get_xml_type(attribute["type"])[0][1]
+    ty = get_xml_type("", attribute["type"])[0][1]
     this_field = Field(
         attribute["name"],
         attribute["type"],
@@ -631,7 +634,7 @@ mod_fields = []
 mod_attributes = "\n"
 for attribute in mod_attributes_json:
     print(attribute["type"])
-    ty = get_xml_type(attribute["type"])[0][1]
+    ty = get_xml_type("", attribute["type"])[0][1]
     this_field = Field(
         attribute["name"],
         attribute["type"],
