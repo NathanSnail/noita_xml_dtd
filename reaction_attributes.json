@@ -7,9 +7,9 @@
 	},
 	{
 		"name": "probability",
-		"type": "int",
+		"type": "float",
 		"default": "0",
-		"doc": "If the cells are selected this is the percentage chance the reaction occurs"
+		"doc": "If the cells are selected this is the percentage chance the reaction occurs. This can have up to 2 decimal places, further precision does nothing."
 	},
 	{
 		"name": "input_cell1",
