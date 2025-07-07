@@ -334,7 +334,7 @@
 			<xs:choice maxOccurs="unbounded" minOccurs="0">
 				<xs:element ref="Entity" />
 				<xs:element name="Base" type="Base" />
-				<xs:element name="Transform" type="Transform" />
+				<xs:element name="_Transform" type="Transform" />
 				<xs:element name="AIAttackComponent" type="AIAttackComponent" />
 				<xs:element name="AIComponent" type="AIComponent" />
 				<xs:element name="AbilityComponent" type="AbilityComponent" />

@@ -453,7 +453,7 @@ out = f"""
 \t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
 \t\t\t\t<xs:element ref="Entity" />
 \t\t\t\t<xs:element name="Base" type="Base" />
-\t\t\t\t<xs:element name="Transform" type="Transform" />
+\t\t\t\t<xs:element name="_Transform" type="Transform" />
 \t\t\t\t{"\n\t\t\t\t".join([f"<xs:element name=\"{comp.name}\" type=\"{comp.name}\" />" for comp in components])}
 \t\t\t</xs:choice>
 \t\t</xs:sequence>
