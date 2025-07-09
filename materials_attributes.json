@@ -12,12 +12,12 @@
     },
     {
         "name": "audio_materialaudio_type",
-        "type": "std::string",
+        "type": "MATERIALAUDIO_TYPE",
         "default": "NONE"
     },
     {
         "name": "audio_materialbreakaudio_type",
-        "type": "std::string",
+        "type": "MATERIALBREAKAUDIO_TYPE",
         "default": "NONE"
     },
     {
@@ -85,12 +85,12 @@
     {
         "name": "cold_freezes_to_material",
         "type": "std::string",
-        "default": "air"
+        "default": ""
     },
     {
         "name": "convert_to_box2d_material",
         "type": "std::string",
-        "default": "air"
+        "default": ""
     },
     {
         "name": "crackability",
@@ -285,6 +285,11 @@
         "default": "0"
     },
     {
+        "name": "on_fire_convert_to_material",
+        "type": "std::string",
+        "default": ""
+    },
+    {
         "name": "on_fire_flame_material",
         "type": "std::string",
         "default": "fire"
@@ -317,7 +322,7 @@
     {
         "name": "solid_break_to_type",
         "type": "std::string",
-        "default": "air"
+        "default": ""
     },
     {
         "name": "solid_collide_with_self",
@@ -357,7 +362,7 @@
     {
         "name": "solid_on_collision_material",
         "type": "std::string",
-        "default": "air"
+        "default": ""
     },
     {
         "name": "solid_on_collision_splash_power",
@@ -443,6 +448,6 @@
     {
         "name": "warmth_melts_to_material",
         "type": "std::string",
-        "default": "air"
+        "default": ""
     }
 ]
