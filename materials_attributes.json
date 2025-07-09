@@ -285,6 +285,11 @@
         "default": "0"
     },
     {
+        "name": "on_fire_convert_to_material",
+        "type": "std::string",
+        "default": ""
+    },
+    {
         "name": "on_fire_flame_material",
         "type": "std::string",
         "default": "fire"
