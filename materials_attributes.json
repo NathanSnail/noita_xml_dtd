@@ -1,5 +1,12 @@
 [
     {
+        "name": "name",
+        "type": "std::string",
+        "default": "-",
+        "doc": "Internal name, should be unique, otherwise will overwrite materials.",
+        "required": true
+    },
+    {
         "name": "always_ignites_damagemodel",
         "type": "bool",
         "default": "0",

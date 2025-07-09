@@ -3,6 +3,7 @@ import re
 import sys
 from dataclasses import dataclass
 import json
+from typing import Dict, List, Tuple
 
 PRIMARY_FILE = True
 
@@ -109,6 +110,32 @@ def get_xml_type(name: str, ty: str) -> list[tuple[str, str]] | str:
         return "Transform"
     if ty in config_types:
         return ty
+    # enums:
+    if ty in [
+        "MATERIALAUDIO_TYPE",
+        "MOVETOSURFACE_TYPE",
+        "RAGDOLL_FX",
+        "INVENTORY_KIND",
+        "DAMAGE_TYPES",
+        "AUDIO_LAYER",
+        "GAME_EFFECT",
+        "PROJECTILE_TYPE",
+        "JOINT_TYPE",
+        "ARC_TYPE",
+        "HIT_EFFECT",
+        "MATERIALAUDIO_TYPE",
+        "MATERIALBREAKAUDIO_TYPE",
+        "EDGE_STYLE",
+        "EXPLOSION_TRIGGER_TYPE",
+        "LUA_VM_TYPE",
+        "FOG_OF_WAR_TYPE",
+        "NOISE_TYPE",
+        "GENERAL_NOISE",
+        "BIOME_TYPE",
+        "VERLET_TYPE",
+        "PARTICLE_EMITTER_CUSTOM_STYLE",
+    ]:
+        return [("", ty)]
     # defined to be invalid
     if ty in ["EntityID", "WormPartPositions"]:
         return []
@@ -510,6 +537,61 @@ def prune_builtin(src: str) -> str:
 
 open("entity.xsd", "w").write(out + "\n</xs:schema>")
 
+
+@dataclass
+class RenderedJson:
+    docs: str
+    attributes: str
+
+
+def render_json(path_name: str, class_name: str) -> RenderedJson:
+
+    attributes_json = json.load(open(f"./{path_name}_attributes.json", "r"))
+    fields = []
+    attributes = "\n"
+    for attribute in attributes_json:
+        print(attribute["type"])
+        ty = get_xml_type("", attribute["type"])[0][1]
+        this_field = Field(
+            attribute["name"],
+            attribute["type"],
+            attribute.get("default", "-"),
+            "",
+            attribute.get("doc", ""),
+        )
+        fields.append(this_field)
+        doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
+        attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
+\t\t\t<xs:annotation>
+\t\t\t\t<xs:documentation>{doc}</xs:documentation>
+\t\t\t</xs:annotation>
+\t\t</xs:attribute>
+"""
+
+    docs = (
+        "<xs:annotation><xs:documentation><![CDATA["
+        + NL
+        + render_component_cpp(Component(class_name, fields))
+        .replace("\n", NL)
+        .replace("\t", TAB)
+        + NL
+        + "]]></xs:documentation></xs:annotation>"
+    )
+
+    return RenderedJson(docs, attributes)
+
+
+def apply_replacements(path_name: str, replacements: Dict[str, str]):
+    xsd = open(f"./{path_name}_src.xsd", "r").read()
+    for name, replacement in replacements.items():
+        xsd = replace_metatag(xsd, replacement, f"<!-- {name} -->")
+
+    global out
+    open(f"./{path_name}.xsd", "w").write(xsd)
+
+    out += prune_builtin(xsd)
+
+
 # Update materials.xsd
 material_attributes_json = json.load(open("./materials_attributes.json", "r"))
 name_field = Field(
@@ -545,7 +627,7 @@ for attribute in material_attributes_json:
 """
 
 material_xsd = replace_metatag(
-    open("materials_source.xsd", "r").read(),
+    open("materials_src.xsd", "r").read(),
     material_attributes,
     "<!-- Material Attributes -->",
 )
@@ -626,50 +708,8 @@ with open("./sprite.xsd", "r") as sprite_file:
 with open("./biomes_all.xsd", "r") as biomes_all_file:
     out += prune_builtin(biomes_all_file.read())
 
-mod_xsd = open("./mod_src.xsd", "r").read()
-mod_xsd = mod_xsd
-
-mod_attributes_json = json.load(open("./mod_attributes.json", "r"))
-mod_fields = []
-mod_attributes = "\n"
-for attribute in mod_attributes_json:
-    print(attribute["type"])
-    ty = get_xml_type("", attribute["type"])[0][1]
-    this_field = Field(
-        attribute["name"],
-        attribute["type"],
-        attribute.get("default", "-"),
-        "",
-        attribute.get("doc", ""),
-    )
-    mod_fields.append(this_field)
-    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
-    mod_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation>{doc}</xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-"""
-
-mod_xsd = replace_metatag(
-    mod_xsd,
-    mod_attributes,
-    "<!-- Mod Attributes -->",
+mod_replacements = render_json("mod", "Mod")
+apply_replacements(
+    "mod",
+    {"Mod Attributes": mod_replacements.attributes, "Mod Docs": mod_replacements.docs},
 )
-
-mod_xsd = replace_metatag(
-    mod_xsd,
-    "<xs:annotation><xs:documentation><![CDATA["
-    + NL
-    + render_component_cpp(Component("Mod", mod_fields))
-    .replace("\n", NL)
-    .replace("\t", TAB)
-    + NL
-    + "]]></xs:documentation></xs:annotation>",
-    "<!-- Mod Docs -->",
-)
-
-open("./mod.xsd", "w").write(mod_xsd)
-out += prune_builtin(mod_xsd)
-
-open("merged.xsd", "w").write(out + "\n</xs:schema>")
