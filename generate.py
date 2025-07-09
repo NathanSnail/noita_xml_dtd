@@ -545,7 +545,6 @@ class RenderedJson:
 
 
 def render_json(path_name: str, class_name: str) -> RenderedJson:
-
     attributes_json = json.load(open(f"./{path_name}_attributes.json", "r"))
     fields = []
     attributes = "\n"
@@ -593,95 +592,8 @@ def apply_replacements(path_name: str, replacements: Dict[str, str]):
 
 
 # Update materials.xsd
-material_attributes_json = json.load(open("./materials_attributes.json", "r"))
-name_field = Field(
-    "name",
-    "std::string",
-    "-",
-    "",
-    "Internal name, should be unique, otherwise will overwrite materials.",
-)
-material_fields = [name_field]
-material_attributes = f"""\n\t\t<xs:attribute name="name" type="xs:string" use="required">
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation><![CDATA[{"```cpp" + NL + render_field_cpp(name_field).replace("\t","") + NL + "```"}]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-"""
-for attribute in material_attributes_json:
-    ty = get_xml_type("", attribute["type"])[0][1]
-    this_field = Field(
-        attribute["name"],
-        attribute["type"],
-        attribute["default"],
-        "",
-        attribute.get("doc", ""),
-    )
-    material_fields.append(this_field)
-    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
-    material_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" default="{attribute["default"]}">
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation>{doc}</xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-"""
-
-material_xsd = replace_metatag(
-    open("materials_src.xsd", "r").read(),
-    material_attributes,
-    "<!-- Material Attributes -->",
-)
-material_xsd = replace_metatag(
-    material_xsd,
-    "<xs:annotation><xs:documentation><![CDATA["
-    + NL
-    + render_component_cpp(Component("CellData", material_fields))
-    .replace("\n", NL)
-    .replace("\t", TAB)
-    + NL
-    + "]]></xs:documentation></xs:annotation>",
-    "<!-- Material Docs -->",
-)
-
-reaction_attributes_json = json.load(open("./reaction_attributes.json", "r"))
-reaction_fields = []
-reaction_attributes = "\n"
-for attribute in reaction_attributes_json:
-    print(attribute["type"])
-    ty = get_xml_type("", attribute["type"])[0][1]
-    this_field = Field(
-        attribute["name"],
-        attribute["type"],
-        attribute.get("default", "-"),
-        "",
-        attribute.get("doc", ""),
-    )
-    reaction_fields.append(this_field)
-    doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
-    reaction_attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation>{doc}</xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-"""
-
-material_xsd = replace_metatag(
-    material_xsd,
-    reaction_attributes,
-    "<!-- Reaction Attributes -->",
-)
-material_xsd = replace_metatag(
-    material_xsd,
-    "<xs:annotation><xs:documentation><![CDATA["
-    + NL
-    + render_component_cpp(Component("Reaction", reaction_fields))
-    .replace("\n", NL)
-    .replace("\t", TAB)
-    + NL
-    + "]]></xs:documentation></xs:annotation>",
-    "<!-- Reaction Docs -->",
-)
-
+material_attributes_json = render_json("materials", "CellData")
+reaction_attributes_json = render_json("reaction", "Reaction")
 
 config_explosion = next(
     render_config(config) for config in configs if config.name == "ConfigExplosion"
@@ -689,19 +601,22 @@ config_explosion = next(
 config_damage_critical = next(
     render_config(config) for config in configs if config.name == "ConfigDamageCritical"
 )
-material_xsd = replace_metatag(
-    material_xsd,
-    f"""
+config_explosion_types = f"""
 {config_damage_critical}
 {config_explosion}
-""",
-    "<!-- ConfigExplosion -->",
+"""
+
+apply_replacements(
+    "materials",
+    {
+        "Material Attributes": material_attributes_json.attributes,
+        "Material Docs": material_attributes_json.docs,
+        "Reaction Attributes": reaction_attributes_json.attributes,
+        "Reaction Docs": reaction_attributes_json.docs,
+        "ConfigExplosion": config_explosion_types,
+    },
 )
 
-open("./materials.xsd", "w").write(material_xsd)
-
-# Merge files
-out += prune_builtin(material_xsd)
 with open("./sprite.xsd", "r") as sprite_file:
     out += prune_builtin(sprite_file.read())
 
