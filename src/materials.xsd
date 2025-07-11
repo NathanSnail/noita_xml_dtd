@@ -11,9 +11,9 @@
 			<xs:pattern value="[0-9A-Fa-f]{8}|0" />
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- ConfigExplosion -->
+	<!-- Configs and Enums -->
 	<xs:complexType name="ConfigExplosion" />
-	<!-- ConfigExplosion -->
+	<!-- Configs and Enums -->
 	<!--Builtin-->
 	<xs:simpleType name="CELL_TYPE">
 		<xs:restriction base="xs:string">

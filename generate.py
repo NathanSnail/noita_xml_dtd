@@ -511,7 +511,8 @@ out = f"""
 """[
     1:
 ]
-out += "\n".join([render_config(config) for config in configs])
+configs_rendered = "\n".join([render_config(config) for config in configs])
+out += configs_rendered
 out += "\n"
 out += "\n".join([render_component(component) for component in components])
 # out = out.replace("\t","").replace("\n","")
@@ -602,9 +603,10 @@ config_explosion = next(
 config_damage_critical = next(
     render_config(config) for config in configs if config.name == "ConfigDamageCritical"
 )
-config_explosion_types = f"""
+configs_and_enums = f"""
 {config_damage_critical}
 {config_explosion}
+{"\n".join(render_enum(enum) for enum in enums)}
 """
 
 apply_replacements(
@@ -614,7 +616,7 @@ apply_replacements(
         "Material Docs": material_attributes_json.docs,
         "Reaction Attributes": reaction_attributes_json.attributes,
         "Reaction Docs": reaction_attributes_json.docs,
-        "ConfigExplosion": config_explosion_types,
+        "Configs and Enums": configs_and_enums,
     },
 )
 
