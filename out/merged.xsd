@@ -2847,7 +2847,7 @@
 		<!-- Some Unknown Type: STATS_KEY_VALUE_MAP for KEY_VALUE_STATS -->
 	</xs:complexType>
 	<xs:complexType name="CosmeticParticleConfig" mixed="true">
-		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class CosmeticParticleConfig {<br>&emsp;&emsp;&emsp;&emsp;int m_material_id;<br>&emsp;&emsp;&emsp;&emsp;bool cosmetic_force_create;<br>&emsp;&emsp;&emsp;&emsp;bool render_back;<br>&emsp;&emsp;&emsp;&emsp;bool render_on_grid;<br>&emsp;&emsp;&emsp;&emsp;bool draw_as_long;<br>&emsp;&emsp;&emsp;&emsp;float airflow_force;<br>&emsp;&emsp;&emsp;&emsp;float airflow_scale;<br>&emsp;&emsp;&emsp;&emsp;float friction;<br>&emsp;&emsp;&emsp;&emsp;float probability;<br>&emsp;&emsp;&emsp;&emsp;bool particle_single_width;<br>&emsp;&emsp;&emsp;&emsp;bool fade_based_on_lifetime;<br>&emsp;&emsp;&emsp;&emsp;uint32 color;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 vel;<br>&emsp;&emsp;&emsp;&emsp;types::aabb vel_random;<br>&emsp;&emsp;&emsp;&emsp;uint32 color; //  if something else than 0 will use this color<br>&emsp;&emsp;&emsp;&emsp;ValueRange lifetime;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 gravity;<br>&emsp;&emsp;&emsp;&emsp;ValueRangeInt count;<br>};<br>```]]> </xs:documentation> </xs:annotation>
+		<xs:annotation> <xs:documentation> <![CDATA[```cpp<br>class CosmeticParticleConfig {<br>&emsp;&emsp;&emsp;&emsp;int m_material_id;<br>&emsp;&emsp;&emsp;&emsp;bool cosmetic_force_create;<br>&emsp;&emsp;&emsp;&emsp;bool render_back;<br>&emsp;&emsp;&emsp;&emsp;bool render_on_grid;<br>&emsp;&emsp;&emsp;&emsp;bool draw_as_long;<br>&emsp;&emsp;&emsp;&emsp;float airflow_force;<br>&emsp;&emsp;&emsp;&emsp;float airflow_scale;<br>&emsp;&emsp;&emsp;&emsp;float friction;<br>&emsp;&emsp;&emsp;&emsp;float probability;<br>&emsp;&emsp;&emsp;&emsp;bool particle_single_width;<br>&emsp;&emsp;&emsp;&emsp;bool fade_based_on_lifetime;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 vel;<br>&emsp;&emsp;&emsp;&emsp;types::aabb vel_random;<br>&emsp;&emsp;&emsp;&emsp;uint32 color; //  if something else than 0 will use this color<br>&emsp;&emsp;&emsp;&emsp;ValueRange lifetime;<br>&emsp;&emsp;&emsp;&emsp;types_vector2 gravity;<br>&emsp;&emsp;&emsp;&emsp;ValueRangeInt count;<br>};<br>```]]> </xs:documentation> </xs:annotation>
 		<xs:attribute name="m_material_id" type="xs:int" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>int m_material_id;<br>```]]></xs:documentation>
@@ -2901,11 +2901,6 @@
 		<xs:attribute name="fade_based_on_lifetime" type="NoitaBool" default="0">
 			<xs:annotation>
 				<xs:documentation><![CDATA[```cpp<br>bool fade_based_on_lifetime;<br>```]]></xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="color" type="xs:unsignedInt" default="0">
-			<xs:annotation>
-				<xs:documentation><![CDATA[```cpp<br>uint32 color;<br>```]]></xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<!-- Some Unknown Type: types_vector2 for vel -->

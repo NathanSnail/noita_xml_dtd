@@ -2300,10 +2300,6 @@
             {
                 "type": "bool",
                 "name": "fade_based_on_lifetime"
-            },
-            {
-                "type": "uint32",
-                "name": "color"
             }
         ],
         "custom_data_types": [
