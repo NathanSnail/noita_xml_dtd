@@ -1,4 +1,4 @@
-<?xml-model href="mod.xsd" type="application/xml-xsd"?>
+<?xml-model href="../out/mod.xsd" type="application/xml-xsd"?>
 <Mod
 	name="Tweakeroo"
 	description="Tweak your Noita!"

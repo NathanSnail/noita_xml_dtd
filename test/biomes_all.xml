@@ -1,4 +1,4 @@
-<?xml-model href="biomes_all.xsd" type="application/xml-xsd"?>
+<?xml-model href="../out/biomes_all.xsd" type="application/xml-xsd"?>
 <BiomesToLoad
 	biome_image_map="data/biome_impl/biome_map.png"
 	biome_offset_y="14">
