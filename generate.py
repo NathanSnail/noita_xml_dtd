@@ -4,6 +4,7 @@ import sys
 from dataclasses import dataclass
 import json
 from typing import Dict, List, Tuple
+from typing_extensions import deprecated
 
 PRIMARY_FILE = True
 
@@ -301,7 +302,7 @@ def trim_end(s: str):
 
 # configs are identical to components really, so we can just reuse component code
 configs_json = json.load(
-    open("./config_betas.json", "r")
+    open("./src/config_betas.json", "r")
 )  # credits to dexter for getting these, from https://github.com/dextercd/Noita-Component-Explorer/blob/main/data/configs_beta.json
 configs: list[Component] = []
 config_types = set()
@@ -403,7 +404,7 @@ for l in docs.split("\n"):
 
 enums: list[Enum] = []
 enum_content = (
-    open("./enum_src", "r").read().split("\n")
+    open("./src/enums", "r").read().split("\n")
 )  # this was generated from ghidra
 for i in range(len(enum_content) // 2):
     name = enum_content[i * 2]
@@ -535,7 +536,7 @@ def prune_builtin(src: str) -> str:
     )
 
 
-open("entity.xsd", "w").write(out + "\n</xs:schema>")
+open("./out/entity.xsd", "w").write(out + "\n</xs:schema>")
 
 
 @dataclass
@@ -545,7 +546,7 @@ class RenderedJson:
 
 
 def render_json(path_name: str, class_name: str) -> RenderedJson:
-    attributes_json = json.load(open(f"./{path_name}_attributes.json", "r"))
+    attributes_json = json.load(open(f"./src/{path_name}.json", "r"))
     fields = []
     attributes = "\n"
     for attribute in attributes_json:
@@ -581,12 +582,12 @@ def render_json(path_name: str, class_name: str) -> RenderedJson:
 
 
 def apply_replacements(path_name: str, replacements: Dict[str, str]):
-    xsd = open(f"./{path_name}_src.xsd", "r").read()
+    xsd = open(f"./src/{path_name}.xsd", "r").read()
     for name, replacement in replacements.items():
         xsd = replace_metatag(xsd, replacement, f"<!-- {name} -->")
 
     global out
-    open(f"./{path_name}.xsd", "w").write(xsd)
+    open(f"./out/{path_name}.xsd", "w").write(xsd)
 
     out += prune_builtin(xsd)
 
@@ -617,14 +618,23 @@ apply_replacements(
     },
 )
 
-with open("./sprite.xsd", "r") as sprite_file:
-    out += prune_builtin(sprite_file.read())
 
-with open("./biomes_all.xsd", "r") as biomes_all_file:
-    out += prune_builtin(biomes_all_file.read())
+@deprecated("Use render_json and apply_replacements instead")
+def handwritten(name: str):
+    global out
+    with open(f"./src/{name}.xsd", "r") as src_file:
+        content = src_file.read()
+        out += prune_builtin(src_file.read())
+        open(f"./out/{name}.xsd", "w").write(content)
+
+
+handwritten("sprite")
+handwritten("biomes_all")
 
 mod_replacements = render_json("mod", "Mod")
 apply_replacements(
     "mod",
     {"Mod Attributes": mod_replacements.attributes, "Mod Docs": mod_replacements.docs},
 )
+
+open("./out/merged.xsd", "w").write(out + "\n</xs:schema>")

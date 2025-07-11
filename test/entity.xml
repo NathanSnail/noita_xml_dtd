@@ -3,7 +3,7 @@
 	<Base file="data/etities/animals/longleg.xml">
 		<AIComponent TEMP_TEMP_TEMP="0.0" />
 	</Base>
-	<Transform scale.x="1.0" rotation="0.0" position.x="0.0" scale.y="1.0" />
+	<_Transform scale.x="1.0" rotation="0.0" position.x="0.0" scale.y="1.0" />
 	<InheritTransformComponent>
 		<Transform position.x="0.0" />
 	</InheritTransformComponent>
