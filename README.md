@@ -17,7 +17,7 @@ local servers = {
 			xml = {
 				fileAssociations = {
 					{
-						systemId = "/home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
+						systemId = "/home/modder/Documents/code/noita_xml_dtd/out/merged.xsd", -- path must be absolute
 						pattern = "**/*.xml",
 					},
 				},
@@ -25,4 +25,7 @@ local servers = {
 		},
 	},
 }
+for k, v in pairs(servers) do
+	vim.lsp.config[k] = v
+end
 ```
