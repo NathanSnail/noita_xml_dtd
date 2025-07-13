@@ -17,16 +17,16 @@ Add the XML definitions to the `"xml.fileAssociations"` table, it should look so
 ```json
 	"xml.fileAssociations": [
 		{
-			"systemId": "ENTIRE/FILEPATH/TO/THIS/REPOSITORY/ON/YOUR/COMPUTER/merged.xsd",
-			"pattern": "**/*.xml",
+			"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/merged.xsd",
+			"pattern": "**/*.xml"
 		},
 		{
-			"systemId": "ENTIRE/FILEPATH/TO/THIS/REPOSITORY/ON/YOUR/COMPUTER/mod.xsd",
-			"pattern": "**/mod.xml",
+			"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/mod.xsd",
+			"pattern": "**/mod.xml"
 		}
 	]
 ```
-`ENTIRE/FILEPATH/TO/THIS/REPOSITORY/ON/YOUR/COMPUTER` should of course be the filepath leading to where you have the related definition files.
+`/home/modder/Documents/code/noita_xml_dtd/out/` should of course be the filepath leading to where you have the related definition files.
 You can modify the `"pattern"` if you would like to better specify which files the definitions will apply to
 
 
@@ -42,6 +42,10 @@ local servers = {
 					{
 						systemId = "/home/modder/Documents/code/noita_xml_dtd/out/merged.xsd", -- path must be absolute
 						pattern = "**/*.xml",
+					},
+					{
+						systemId = "/home/modder/Documents/code/noita_xml_dtd/out/mod.xsd",
+						pattern = "**/mod.xml",
 					},
 				},
 			},
