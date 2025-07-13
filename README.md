@@ -15,16 +15,16 @@ In the top bar of VSC, go to File>Preferences>Settings and search for XML under 
 Open it up and scroll down to `Xml: File Associations` and click on `Edit in settings.json`
 Add the XML definitions to the `"xml.fileAssociations"` table, it should look something like this:
 ```json
-	"xml.fileAssociations": [
-		{
-			"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/merged.xsd",
-			"pattern": "**/*.xml"
-		},
-		{
-			"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/mod.xsd",
-			"pattern": "**/mod.xml"
-		}
-	]
+"xml.fileAssociations": [
+	{
+		"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/merged.xsd",
+		"pattern": "**/*.xml"
+	},
+	{
+		"systemId": "/home/modder/Documents/code/noita_xml_dtd/out/mod.xsd",
+		"pattern": "**/mod.xml"
+	}
+]
 ```
 `/home/modder/Documents/code/noita_xml_dtd/out/` should of course be the filepath leading to where you have the related definition files.
 You can modify the `"pattern"` if you would like to better specify which files the definitions will apply to
