@@ -1,0 +1,6 @@
+<?xml-model href="../out/entity.xsd" type="application/xml-xsd"?>
+<Entity>
+	<ProjectileComponent>
+		<config extra_entities="" />
+	</ProjectileComponent>
+</Entity>
