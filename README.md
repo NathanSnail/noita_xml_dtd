@@ -30,7 +30,7 @@ Add the XML definitions to the `"xml.fileAssociations"` table, it should look so
 You can modify the `"pattern"` if you would like to better specify which files the definitions will apply to
 
 
-## Instructions for add to Neovim:
+## Instructions for adding to Neovim:
 In Neovim this is how you'd configure it for lemminx with nvim-lspconfig, the general
 approach should be applicable to any editor though.
 ```lua
