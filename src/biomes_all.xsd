@@ -1,22 +1,22 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!--Builtin-->
-	<xs:simpleType name="Hex8">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}|0" />
-		</xs:restriction>
-	</xs:simpleType>
+	<xsd:simpleType name="Hex8">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9A-Fa-f]{8}|0" />
+		</xsd:restriction>
+	</xsd:simpleType>
 	<!--Builtin-->
-	<xs:complexType name="BiomeAllBiome" mixed="true">
-		<xs:attribute name="color" type="Hex8" use="required"></xs:attribute>
-		<xs:attribute name="biome_filename" type="xs:string" use="required"></xs:attribute>
-	</xs:complexType>
-	<xs:element name="BiomesToLoad">
-		<xs:complexType mixed="true">
-			<xs:sequence minOccurs="0" maxOccurs="unbounded">
-				<xs:element name="Biome" type="BiomeAllBiome"></xs:element>
-			</xs:sequence>
-			<xs:attribute name="biome_image_map" type="xs:string"></xs:attribute>
-			<xs:attribute name="biome_offset_y" type="xs:int"></xs:attribute>
-		</xs:complexType>
-	</xs:element>
-</xs:schema>
+	<xsd:complexType name="BiomeAllBiome" mixed="true">
+		<xsd:attribute name="color" type="Hex8" use="required"></xsd:attribute>
+		<xsd:attribute name="biome_filename" type="xsd:string" use="required"></xsd:attribute>
+	</xsd:complexType>
+	<xsd:element name="BiomesToLoad">
+		<xsd:complexType mixed="true">
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="Biome" type="BiomeAllBiome"></xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="biome_image_map" type="xsd:string"></xsd:attribute>
+			<xsd:attribute name="biome_offset_y" type="xsd:int"></xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

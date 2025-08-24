@@ -44,7 +44,7 @@ def get_xml_type(name: str, ty: str) -> list[tuple[str, str]] | str:
     material = "material"
     enum = "::Enum"
     if ty == "int" and name[-len(material) :] == material:
-        return [("", "xs:string")]
+        return [("", "xsd:string")]
     if ty == "Hex8":
         return [("", "Hex8")]
     if ty == "REACTION_DIRECTION":
@@ -56,55 +56,55 @@ def get_xml_type(name: str, ty: str) -> list[tuple[str, str]] | str:
     if ty[: len(lens)] == lens:
         return get_xml_type(name, ty[len(lens) + 1 : -1])
     if ty == "float" or ty == "double":
-        return [("", "xs:decimal")]
+        return [("", "xsd:decimal")]
     if ty[:3] == "int":
-        return [("", "xs:int")]
+        return [("", "xsd:int")]
     if ty[: len(unsigned)] == unsigned or ty[:4] == "uint":
-        return [("", "xs:unsignedInt")]
+        return [("", "xsd:unsignedInt")]
     if ty == "std::string" or ty == "std_string" or ty == "VEC_OF_MATERIALS":
-        return [("", "xs:string")]
+        return [("", "xsd:string")]
     if ty == "bool":
         return [("", "NoitaBool")]
     if ty == "vec2":
         return [
-            (".x", "xs:decimal"),
-            (".y", "xs:decimal"),
+            (".x", "xsd:decimal"),
+            (".y", "xsd:decimal"),
         ]
     if ty == "ivec2":
         return [
-            (".x", "xs:int"),
-            (".y", "xs:int"),
+            (".x", "xsd:int"),
+            (".y", "xsd:int"),
         ]
     if ty == "types::fcolor":
         return [
-            (".r", "xs:decimal"),
-            (".g", "xs:decimal"),
-            (".b", "xs:decimal"),
-            (".a", "xs:decimal"),
+            (".r", "xsd:decimal"),
+            (".g", "xsd:decimal"),
+            (".b", "xsd:decimal"),
+            (".a", "xsd:decimal"),
         ]
     if ty == "ValueRange":
         return [
-            (".min", "xs:decimal"),
-            (".max", "xs:decimal"),
+            (".min", "xsd:decimal"),
+            (".max", "xsd:decimal"),
         ]
     if ty == "ValueRangeInt":
         return [
-            (".min", "xs:int"),
-            (".max", "xs:int"),
+            (".min", "xsd:int"),
+            (".max", "xsd:int"),
         ]
     if ty == "types::aabb":
         return [
-            (".min_x", "xs:decimal"),
-            (".min_y", "xs:decimal"),
-            (".max_x", "xs:decimal"),
-            (".max_y", "xs:decimal"),
+            (".min_x", "xsd:decimal"),
+            (".min_y", "xsd:decimal"),
+            (".max_x", "xsd:decimal"),
+            (".max_y", "xsd:decimal"),
         ]
     if ty == "types::iaabb":
         return [
-            (".min_x", "xs:int"),
-            (".min_y", "xs:int"),
-            (".max_x", "xs:int"),
-            (".max_y", "xs:int"),
+            (".min_x", "xsd:int"),
+            (".min_y", "xsd:int"),
+            (".max_x", "xsd:int"),
+            (".max_y", "xsd:int"),
         ]
     # objects
     if ty == "types::xform":
@@ -194,11 +194,11 @@ def get_default_for_sub_field(field: Field, ty: str, component_name: str) -> str
         )
 
     if field.default != "-":
-        if ty == "xs:decimal":
+        if ty == "xsd:decimal":
             return format_decimal(field.default)
         return field.default
 
-    return "0" if ty != "xs:string" else ""
+    return "0" if ty != "xsd:string" else ""
 
 
 COMPONENTS_WITH_MATERIALS = {
@@ -216,10 +216,10 @@ def get_type_for_sub_field(field_name: str, ty: str, component_name: str) -> str
             return "Hex8"
     elif component_name == "GenomeDataComponent":
         if field_name == "herd_id":
-            return "xs:string"
+            return "xsd:string"
     elif component_name in COMPONENTS_WITH_MATERIALS:
         if "material" in field_name:
-            return "xs:string"
+            return "xsd:string"
     return ty
 
 
@@ -227,11 +227,11 @@ def render_sub_field(field: Field, suffix: str, ty: str, component_name: str) ->
     true_type = get_type_for_sub_field(field.name, ty, component_name)
     default = get_default_for_sub_field(field, true_type, component_name)
     return f"""
-\t\t<xs:attribute name="{field.name}{suffix}" type="{true_type}" default="{default}">
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{render_field_cpp(field).replace("\t","")}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>"""[
+\t\t<xsd:attribute name="{field.name}{suffix}" type="{true_type}" default="{default}">
+\t\t\t<xsd:annotation>
+\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{render_field_cpp(field).replace("\t","")}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>"""[
         1:
     ]
 
@@ -240,7 +240,7 @@ def render_field(field: Field, component_name: str) -> tuple[str, str]:
     tys = get_xml_type(field.name, field.ty)
     if type(tys) is str:
         return (
-            f'\t\t\t\t<xs:element name="{field.name}" type="{tys}" minOccurs="0"/>',
+            f'\t\t\t\t<xsd:element name="{field.name}" type="{tys}" minOccurs="0"/>',
             "",
         )
     if len(tys) == 0:
@@ -266,14 +266,14 @@ def render_component(comp: Component) -> str:
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
-\t<xs:complexType name="{comp.name}" mixed="true">
-\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xs:documentation> </xs:annotation>{f"""
-\t\t\t<xs:all>
+\t<xsd:complexType name="{comp.name}" mixed="true">
+\t\t<xsd:annotation> <xsd:documentation> <![CDATA[{render_component_cpp(comp)}]]> </xsd:documentation> </xsd:annotation>{f"""
+\t\t\t<xsd:all>
 {"\n".join(objects)}
-\t\t\t</xs:all>""" if len(objects) != 0 else ""}{
+\t\t\t</xsd:all>""" if len(objects) != 0 else ""}{
 "\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
-\t\t<xs:attributeGroup ref="CommonComponentAttributes"/>
-\t</xs:complexType>"""[
+\t\t<xsd:attributeGroup ref="CommonComponentAttributes"/>
+\t</xsd:complexType>"""[
         1:
     ]
 
@@ -283,13 +283,13 @@ def render_config(config: Component) -> str:
     attrs = [x[1] for x in fields if x[1] != ""]
     objects = [x[0] for x in fields if x[0] != ""]
     return f"""
-\t<xs:complexType name="{config.name}" mixed="true">
-\t\t<xs:annotation> <xs:documentation> <![CDATA[{render_component_cpp(config)}]]> </xs:documentation> </xs:annotation>{f"""
-\t\t\t<xs:all>
+\t<xsd:complexType name="{config.name}" mixed="true">
+\t\t<xsd:annotation> <xsd:documentation> <![CDATA[{render_component_cpp(config)}]]> </xsd:documentation> </xsd:annotation>{f"""
+\t\t\t<xsd:all>
 {"\n".join(objects)}
-\t\t\t</xs:all>""" if len(objects) != 0 else ""}{
+\t\t\t</xsd:all>""" if len(objects) != 0 else ""}{
 "\n" + "\n".join(attrs) if len(attrs) != 0 else ""}
-\t</xs:complexType>"""[
+\t</xsd:complexType>"""[
         1:
     ]
 
@@ -416,11 +416,11 @@ enums.append(Enum("TeleportComponentState", [""]))
 
 def render_enum(enum: Enum) -> str:
     return f"""
-\t<xs:simpleType name="{enum.name}">
-\t\t<xs:restriction base="xs:string">
-{"\n".join([f'\t\t\t<xs:enumeration value="{variant}"/>' for variant in enum.variants])}
-\t\t</xs:restriction>
-\t</xs:simpleType>"""[
+\t<xsd:simpleType name="{enum.name}">
+\t\t<xsd:restriction base="xsd:string">
+{"\n".join([f'\t\t\t<xsd:enumeration value="{variant}"/>' for variant in enum.variants])}
+\t\t</xsd:restriction>
+\t</xsd:simpleType>"""[
         1:
     ]
 
@@ -432,82 +432,82 @@ transform = {
 }
 
 out = f"""
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-\t<xs:simpleType name="NoitaBool">
-\t\t<xs:restriction base="xs:string">
-\t\t\t<xs:enumeration value="0" />
-\t\t\t<xs:enumeration value="1" />
-\t\t</xs:restriction>
-\t</xs:simpleType>
-\t<xs:simpleType name="Hex8">
-\t\t<xs:restriction base="xs:string">
-\t\t\t<xs:pattern value="[0-9A-Fa-f]{{8}}|0" />
-\t\t\t</xs:restriction>
-\t</xs:simpleType>
-\t<xs:attributeGroup name="CommonComponentAttributes">
-\t\t<xs:attribute name="_tags" type="xs:string" default="" />
-\t\t<xs:attribute name="_enabled" type="NoitaBool" default="1" />
-\t</xs:attributeGroup>
-\t<xs:complexType name="Transform" mixed="true">
-\t\t<xs:annotation>
-\t\t\t<xs:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xs:documentation>
-\t\t</xs:annotation>
-\t\t<xs:attribute name="position.x" type="xs:decimal" default="0" >
-\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-\t\t<xs:attribute name="position.y" type="xs:decimal" default="0" >
-\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-\t\t<xs:attribute name="scale.x" type="xs:decimal" default="1" >
-\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-\t\t<xs:attribute name="scale.y" type="xs:decimal" default="1" >
-\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-\t\t<xs:attribute name="rotation" type="xs:decimal" default="0" >
-\t\t\t<xs:annotation>
-\t\t\t\t\t<xs:documentation><![CDATA[```cpp{NL}{transform["rotation"]}{NL}```]]></xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
-\t</xs:complexType>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+\t<xsd:simpleType name="NoitaBool">
+\t\t<xsd:restriction base="xsd:string">
+\t\t\t<xsd:enumeration value="0" />
+\t\t\t<xsd:enumeration value="1" />
+\t\t</xsd:restriction>
+\t</xsd:simpleType>
+\t<xsd:simpleType name="Hex8">
+\t\t<xsd:restriction base="xsd:string">
+\t\t\t<xsd:pattern value="[0-9A-Fa-f]{{8}}|0" />
+\t\t\t</xsd:restriction>
+\t</xsd:simpleType>
+\t<xsd:attributeGroup name="CommonComponentAttributes">
+\t\t<xsd:attribute name="_tags" type="xsd:string" default="" />
+\t\t<xsd:attribute name="_enabled" type="NoitaBool" default="1" />
+\t</xsd:attributeGroup>
+\t<xsd:complexType name="Transform" mixed="true">
+\t\t<xsd:annotation>
+\t\t\t<xsd:documentation><![CDATA[```cpp{NL}class types::xform {{{NL}{TAB}{transform["position"]}{NL}{TAB}{transform["scale"]}{NL}{TAB}{transform["rotation"]}{NL}}};```]]></xsd:documentation>
+\t\t</xsd:annotation>
+\t\t<xsd:attribute name="position.x" type="xsd:decimal" default="0" >
+\t\t\t<xsd:annotation>
+\t\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
+\t\t<xsd:attribute name="position.y" type="xsd:decimal" default="0" >
+\t\t\t<xsd:annotation>
+\t\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{transform["position"]}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
+\t\t<xsd:attribute name="scale.x" type="xsd:decimal" default="1" >
+\t\t\t<xsd:annotation>
+\t\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
+\t\t<xsd:attribute name="scale.y" type="xsd:decimal" default="1" >
+\t\t\t<xsd:annotation>
+\t\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{transform["scale"]}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
+\t\t<xsd:attribute name="rotation" type="xsd:decimal" default="0" >
+\t\t\t<xsd:annotation>
+\t\t\t\t\t<xsd:documentation><![CDATA[```cpp{NL}{transform["rotation"]}{NL}```]]></xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
+\t</xsd:complexType>
 \t{"\n".join([render_enum(enum) for enum in enums])}
-\t<xs:complexType name="EntityBase">
-\t\t<xs:sequence minOccurs="0">
-\t\t\t<xs:choice maxOccurs="unbounded" minOccurs="0">
-\t\t\t\t<xs:element ref="Entity" />
-\t\t\t\t<xs:element name="Base" type="Base" />
-\t\t\t\t<xs:element name="_Transform" type="Transform" />
-\t\t\t\t{"\n\t\t\t\t".join([f"<xs:element name=\"{comp.name}\" type=\"{comp.name}\" />" for comp in components])}
-\t\t\t</xs:choice>
-\t\t</xs:sequence>
-\t\t<xs:attribute name="name" type="xs:string" />
-\t\t<xs:attribute name="tags" type="xs:string" />
-\t\t<xs:attribute name="serialize" type="NoitaBool" default="1" />
-\t</xs:complexType>
-\t<xs:element name="Entity" type="EntityBase">
-\t\t<xs:annotation>
-\t\t\t<xs:documentation>Represents an entity that can be loaded into the world</xs:documentation>
-\t\t</xs:annotation>
-\t</xs:element>
-\t<xs:complexType name="Base">
-\t\t<xs:annotation>
-\t\t\t<xs:documentation>Base file</xs:documentation>
-\t\t</xs:annotation>
-\t\t<xs:complexContent>
-\t\t\t<xs:extension base="EntityBase">
-\t\t\t\t<xs:attribute name="file" type="xs:string" use="required"/>
-\t\t\t\t<xs:attribute name="include_children" type="NoitaBool"/>
-\t\t\t</xs:extension>
-\t\t</xs:complexContent>
-\t</xs:complexType>
+\t<xsd:complexType name="EntityBase">
+\t\t<xsd:sequence minOccurs="0">
+\t\t\t<xsd:choice maxOccurs="unbounded" minOccurs="0">
+\t\t\t\t<xsd:element ref="Entity" />
+\t\t\t\t<xsd:element name="Base" type="Base" />
+\t\t\t\t<xsd:element name="_Transform" type="Transform" />
+\t\t\t\t{"\n\t\t\t\t".join([f"<xsd:element name=\"{comp.name}\" type=\"{comp.name}\" />" for comp in components])}
+\t\t\t</xsd:choice>
+\t\t</xsd:sequence>
+\t\t<xsd:attribute name="name" type="xsd:string" />
+\t\t<xsd:attribute name="tags" type="xsd:string" />
+\t\t<xsd:attribute name="serialize" type="NoitaBool" default="1" />
+\t</xsd:complexType>
+\t<xsd:element name="Entity" type="EntityBase">
+\t\t<xsd:annotation>
+\t\t\t<xsd:documentation>Represents an entity that can be loaded into the world</xsd:documentation>
+\t\t</xsd:annotation>
+\t</xsd:element>
+\t<xsd:complexType name="Base">
+\t\t<xsd:annotation>
+\t\t\t<xsd:documentation>Base file</xsd:documentation>
+\t\t</xsd:annotation>
+\t\t<xsd:complexContent>
+\t\t\t<xsd:extension base="EntityBase">
+\t\t\t\t<xsd:attribute name="file" type="xsd:string" use="required"/>
+\t\t\t\t<xsd:attribute name="include_children" type="NoitaBool"/>
+\t\t\t</xsd:extension>
+\t\t</xsd:complexContent>
+\t</xsd:complexType>
 """[
     1:
 ]
@@ -537,7 +537,7 @@ def prune_builtin(src: str) -> str:
     )
 
 
-open("./out/entity.xsd", "w").write(out + "\n</xs:schema>")
+open("./out/entity.xsd", "w").write(out + "\n</xsd:schema>")
 
 
 @dataclass
@@ -562,21 +562,21 @@ def render_json(path_name: str, class_name: str) -> RenderedJson:
         )
         fields.append(this_field)
         doc = f"""<![CDATA[{"```cpp" + NL + render_field_cpp(this_field).replace("\t", "") + NL + "```"}]]>"""
-        attributes += f"""\t\t<xs:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
-\t\t\t<xs:annotation>
-\t\t\t\t<xs:documentation>{doc}</xs:documentation>
-\t\t\t</xs:annotation>
-\t\t</xs:attribute>
+        attributes += f"""\t\t<xsd:attribute name="{attribute["name"]}" type="{ty}" {f'default="{attribute["default"]}"' if not attribute.get("required", False) else 'use="required"'}>
+\t\t\t<xsd:annotation>
+\t\t\t\t<xsd:documentation>{doc}</xsd:documentation>
+\t\t\t</xsd:annotation>
+\t\t</xsd:attribute>
 """
 
     docs = (
-        "<xs:annotation><xs:documentation><![CDATA["
+        "<xsd:annotation><xsd:documentation><![CDATA["
         + NL
         + render_component_cpp(Component(class_name, fields))
         .replace("\n", NL)
         .replace("\t", TAB)
         + NL
-        + "]]></xs:documentation></xs:annotation>"
+        + "]]></xsd:documentation></xsd:annotation>"
     )
 
     return RenderedJson(docs, attributes)
@@ -639,4 +639,4 @@ apply_replacements(
     {"Mod Attributes": mod_replacements.attributes, "Mod Docs": mod_replacements.docs},
 )
 
-open("./out/merged.xsd", "w").write(out + "\n</xs:schema>")
+open("./out/merged.xsd", "w").write(out + "\n</xsd:schema>")

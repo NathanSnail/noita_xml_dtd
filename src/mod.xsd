@@ -1,18 +1,18 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!--Builtin-->
-	<xs:simpleType name="NoitaBool">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="0" />
-			<xs:enumeration value="1" />
-		</xs:restriction>
-	</xs:simpleType>
+	<xsd:simpleType name="NoitaBool">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
 	<!--Builtin-->
-	<xs:element name="Mod">
-		<xs:complexType mixed="true">
+	<xsd:element name="Mod">
+		<xsd:complexType mixed="true">
 			<!-- Mod Docs -->
 			<!-- Mod Docs -->
 			<!-- Mod Attributes -->
 			<!-- Mod Attributes -->
-		</xs:complexType>
-	</xs:element>
-</xs:schema>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

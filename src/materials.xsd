@@ -1,287 +1,287 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!--Builtin-->
-	<xs:simpleType name="NoitaBool">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="0" />
-			<xs:enumeration value="1" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="Hex8">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9A-Fa-f]{8}|0" />
-		</xs:restriction>
-	</xs:simpleType>
+	<xsd:simpleType name="NoitaBool">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Hex8">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9A-Fa-f]{8}|0" />
+		</xsd:restriction>
+	</xsd:simpleType>
 	<!-- Configs and Enums -->
-	<xs:complexType name="ConfigExplosion" />
+	<xsd:complexType name="ConfigExplosion" />
 	<!-- Configs and Enums -->
 	<!--Builtin-->
-	<xs:simpleType name="CELL_TYPE">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="solid" />
-			<xs:enumeration value="liquid" />
-			<xs:enumeration value="fire" />
-			<xs:enumeration value="gas" />
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="REACTION_DIRECTION">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="none" />
-			<xs:enumeration value="top" />
-			<xs:enumeration value="bottom" />
-			<xs:enumeration value="left" />
-			<xs:enumeration value="right" />
-		</xs:restriction>
-	</xs:simpleType>
+	<xsd:simpleType name="CELL_TYPE">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="solid" />
+			<xsd:enumeration value="liquid" />
+			<xsd:enumeration value="fire" />
+			<xsd:enumeration value="gas" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="REACTION_DIRECTION">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="none" />
+			<xsd:enumeration value="top" />
+			<xsd:enumeration value="bottom" />
+			<xsd:enumeration value="left" />
+			<xsd:enumeration value="right" />
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<!-- Material Graphics Edge Images Type -->
-	<xs:complexType name="MaterialGraphicsEdgeImages">
-		<xs:choice>
-			<xs:element name="Image" maxOccurs="unbounded">
-				<xs:complexType mixed="true">
-					<xs:attribute name="do_only_horizontal_stripe" type="NoitaBool" />
-					<xs:attribute name="do_only_vertical_stripe" type="NoitaBool" />
-					<xs:attribute name="allow_random_rotation" type="NoitaBool" />
-					<xs:attribute name="filename" type="xs:string" />
-					<xs:attribute name="min_angle" type="xs:integer" />
-					<xs:attribute name="max_angle" type="xs:integer" />
-				</xs:complexType>
-			</xs:element>
-		</xs:choice>
-	</xs:complexType>
+	<xsd:complexType name="MaterialGraphicsEdgeImages">
+		<xsd:choice>
+			<xsd:element name="Image" maxOccurs="unbounded">
+				<xsd:complexType mixed="true">
+					<xsd:attribute name="do_only_horizontal_stripe" type="NoitaBool" />
+					<xsd:attribute name="do_only_vertical_stripe" type="NoitaBool" />
+					<xsd:attribute name="allow_random_rotation" type="NoitaBool" />
+					<xsd:attribute name="filename" type="xsd:string" />
+					<xsd:attribute name="min_angle" type="xsd:integer" />
+					<xsd:attribute name="max_angle" type="xsd:integer" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
 
 	<!-- Material Graphics Edge Type -->
-	<xs:complexType name="MaterialGraphicsEdge" mixed="true">
-		<xs:sequence>
-			<xs:element name="EdgeGraphics">
-				<xs:complexType mixed="true">
-					<xs:sequence>
-						<xs:element name="Images" type="MaterialGraphicsEdgeImages" />
-					</xs:sequence>
-					<xs:attribute name="color" type="Hex8" />
-					<xs:attribute name="overwrite" type="NoitaBool" />
-					<xs:attribute name="percent" type="xs:decimal" />
-					<xs:attribute name="require_same_material" type="NoitaBool" />
-					<xs:attribute name="require_same_material_type" type="NoitaBool" />
+	<xsd:complexType name="MaterialGraphicsEdge" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="EdgeGraphics">
+				<xsd:complexType mixed="true">
+					<xsd:sequence>
+						<xsd:element name="Images" type="MaterialGraphicsEdgeImages" />
+					</xsd:sequence>
+					<xsd:attribute name="color" type="Hex8" />
+					<xsd:attribute name="overwrite" type="NoitaBool" />
+					<xsd:attribute name="percent" type="xsd:decimal" />
+					<xsd:attribute name="require_same_material" type="NoitaBool" />
+					<xsd:attribute name="require_same_material_type" type="NoitaBool" />
 					<!-- enum? -->
-					<xs:attribute name="type" type="xs:string" />
-					<xs:attribute name="z" type="xs:integer" />
-				</xs:complexType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
+					<xsd:attribute name="type" type="xsd:string" />
+					<xsd:attribute name="z" type="xsd:integer" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
 
 	<!-- Material Graphics Type -->
-	<xs:complexType name="MaterialGraphics" mixed="true">
-		<xs:choice>
-			<xs:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
-		</xs:choice>
-		<xs:attribute name="color" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
+	<xsd:complexType name="MaterialGraphics" mixed="true">
+		<xsd:choice>
+			<xsd:element name="Edge" type="MaterialGraphicsEdge" minOccurs="0" />
+		</xsd:choice>
+		<xsd:attribute name="color" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
 		<!-- enum? -->
-		<xs:attribute name="fire_colors_index" type="xs:integer" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="is_grass" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="is_grass_hashed" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="normal_mapped" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_all_around" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_bottom" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_bottom_left" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_bottom_right" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_left" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_lonely" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_right" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_top" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_top_left" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="pixel_top_right" type="Hex8" default="00000000">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
+		<xsd:attribute name="fire_colors_index" type="xsd:integer" default="0">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="is_grass" type="NoitaBool" default="0">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="is_grass_hashed" type="NoitaBool" default="0">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="normal_mapped" type="NoitaBool" default="0">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_all_around" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_bottom" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_bottom_left" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_bottom_right" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_left" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_lonely" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_right" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_top" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_top_left" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="pixel_top_right" type="Hex8" default="00000000">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
 		<!-- huh> -->
-		<xs:attribute name="randomize_colors" type="NoitaBool" default="0">
-			<xs:annotation>
-				<xs:documentation />
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="texture_file" type="xs:string" default="">
-			<xs:annotation>
-				<xs:documentation>path</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:complexType>
+		<xsd:attribute name="randomize_colors" type="NoitaBool" default="0">
+			<xsd:annotation>
+				<xsd:documentation />
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="texture_file" type="xsd:string" default="">
+			<xsd:annotation>
+				<xsd:documentation>path</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
 
 	<!-- Material Status Effect Type -->
-	<xs:complexType name="MaterialStatusEffects">
-		<xs:choice minOccurs="1" maxOccurs="unbounded">
-			<xs:element name="Ingestion">
-				<xs:complexType>
-					<xs:choice>
-						<xs:element name="StatusEffect" minOccurs="1"
+	<xsd:complexType name="MaterialStatusEffects">
+		<xsd:choice minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="Ingestion">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="StatusEffect" minOccurs="1"
 							maxOccurs="unbounded">
-							<xs:complexType>
-								<xs:attribute name="type" type="xs:string" />
-								<xs:attribute name="amount" type="xs:decimal" />
-							</xs:complexType>
-						</xs:element>
-					</xs:choice>
-				</xs:complexType>
-			</xs:element>
-			<xs:element name="Stains">
-				<xs:complexType>
-					<xs:choice>
-						<xs:element name="StatusEffect" minOccurs="1"
+							<xsd:complexType>
+								<xsd:attribute name="type" type="xsd:string" />
+								<xsd:attribute name="amount" type="xsd:decimal" />
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Stains">
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="StatusEffect" minOccurs="1"
 							maxOccurs="unbounded">
-							<xs:complexType>
-								<xs:attribute name="type" type="xs:string" />
-							</xs:complexType>
-						</xs:element>
-					</xs:choice>
-				</xs:complexType>
-			</xs:element>
-		</xs:choice>
-	</xs:complexType>
+							<xsd:complexType>
+								<xsd:attribute name="type" type="xsd:string" />
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
 
 	<!-- Material Particle Effect Type -->
-	<xs:complexType name="MaterialParticleEffect" mixed="true">
-		<xs:attribute name="vel.y" type="xs:decimal" />
-		<xs:attribute name="vel_random.min_x" type="xs:decimal" />
-		<xs:attribute name="vel_random.max_x" type="xs:decimal" />
-		<xs:attribute name="vel_random.min_y" type="xs:decimal" />
-		<xs:attribute name="vel_random.max_y" type="xs:decimal" />
-		<xs:attribute name="lifetime.min" type="xs:decimal" />
-		<xs:attribute name="lifetime.max" type="xs:decimal" />
-		<xs:attribute name="gravity.x" type="xs:decimal" />
-		<xs:attribute name="gravity.y" type="xs:decimal" />
-		<xs:attribute name="render_on_grid" type="NoitaBool" />
-		<xs:attribute name="particle_single_width" type="NoitaBool" />
-		<xs:attribute name="draw_as_long" type="NoitaBool" />
-		<xs:attribute name="airflow_force" type="xs:decimal" />
-		<xs:attribute name="airflow_scale" type="xs:decimal" />
-		<xs:attribute name="friction" type="xs:decimal" />
-		<xs:attribute name="probability" type="xs:decimal" />
-		<xs:attribute name="count.min" type="xs:nonNegativeInteger" />
-		<xs:attribute name="count.max" type="xs:nonNegativeInteger" />
+	<xsd:complexType name="MaterialParticleEffect" mixed="true">
+		<xsd:attribute name="vel.y" type="xsd:decimal" />
+		<xsd:attribute name="vel_random.min_x" type="xsd:decimal" />
+		<xsd:attribute name="vel_random.max_x" type="xsd:decimal" />
+		<xsd:attribute name="vel_random.min_y" type="xsd:decimal" />
+		<xsd:attribute name="vel_random.max_y" type="xsd:decimal" />
+		<xsd:attribute name="lifetime.min" type="xsd:decimal" />
+		<xsd:attribute name="lifetime.max" type="xsd:decimal" />
+		<xsd:attribute name="gravity.x" type="xsd:decimal" />
+		<xsd:attribute name="gravity.y" type="xsd:decimal" />
+		<xsd:attribute name="render_on_grid" type="NoitaBool" />
+		<xsd:attribute name="particle_single_width" type="NoitaBool" />
+		<xsd:attribute name="draw_as_long" type="NoitaBool" />
+		<xsd:attribute name="airflow_force" type="xsd:decimal" />
+		<xsd:attribute name="airflow_scale" type="xsd:decimal" />
+		<xsd:attribute name="friction" type="xsd:decimal" />
+		<xsd:attribute name="probability" type="xsd:decimal" />
+		<xsd:attribute name="count.min" type="xsd:nonNegativeInteger" />
+		<xsd:attribute name="count.max" type="xsd:nonNegativeInteger" />
 		<!-- ? -->
-		<xs:attribute name="m_material_id" type="xs:integer" />
-	</xs:complexType>
+		<xsd:attribute name="m_material_id" type="xsd:integer" />
+	</xsd:complexType>
 
 	<!-- Material Type -->
-	<xs:complexType name="Material" mixed="true">
+	<xsd:complexType name="Material" mixed="true">
 		<!-- Material Docs -->
 
 		<!-- Material Docs -->
-		<xs:choice minOccurs="0" maxOccurs="unbounded">
-			<xs:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
-			<xs:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0"
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Graphics" type="MaterialGraphics" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="StatusEffects" type="MaterialStatusEffects" minOccurs="0"
 				maxOccurs="1" />
-			<xs:element name="ParticleEffect" type="MaterialParticleEffect" minOccurs="0"
+			<xsd:element name="ParticleEffect" type="MaterialParticleEffect" minOccurs="0"
 				maxOccurs="1" />
-			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0"
+			<xsd:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0"
 				maxOccurs="1" />
-		</xs:choice>
+		</xsd:choice>
 		<!-- Material Attributes -->
 
 		<!-- Material Attributes -->
-	</xs:complexType>
+	</xsd:complexType>
 
 	<!-- Material Reactions -->
-	<xs:complexType name="MaterialReactions">
+	<xsd:complexType name="MaterialReactions">
 		<!-- Reaction Docs -->
 
 		<!-- Reaction Docs -->
-		<xs:choice>
-			<xs:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
-		</xs:choice>
+		<xsd:choice>
+			<xsd:element name="ExplosionConfig" type="ConfigExplosion" minOccurs="0" />
+		</xsd:choice>
 		<!-- Reaction Attributes -->
 
 		<!-- Reaction Attributes -->
-	</xs:complexType>
+	</xsd:complexType>
 
 	<!-- Materials -->
-	<xs:element name="Materials">
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded" minOccurs="0">
-				<xs:element name="CellData" type="Material" minOccurs="0"
+	<xsd:element name="Materials">
+		<xsd:complexType mixed="true">
+			<xsd:choice maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="CellData" type="Material" minOccurs="0"
 					maxOccurs="unbounded" />
-				<xs:element name="CellDataChild" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:complexContent>
-							<xs:extension base="Material">
-								<xs:attribute name="_parent" type="xs:string"
+				<xsd:element name="CellDataChild" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType mixed="true">
+						<xsd:complexContent>
+							<xsd:extension base="Material">
+								<xsd:attribute name="_parent" type="xsd:string"
 									use="required" />
-								<xs:attribute name="_inherit_reactions"
+								<xsd:attribute name="_inherit_reactions"
 									type="NoitaBool" />
-							</xs:extension>
-						</xs:complexContent>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Reaction" type="MaterialReactions" minOccurs="0"
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Reaction" type="MaterialReactions" minOccurs="0"
 					maxOccurs="unbounded" />
-				<xs:element name="ReqReaction" type="MaterialReactions" minOccurs="0"
+				<xsd:element name="ReqReaction" type="MaterialReactions" minOccurs="0"
 					maxOccurs="unbounded" />
-			</xs:choice>
-		</xs:complexType>
-		<xs:unique name="UniqueMaterialName">
-			<xs:selector xpath="CellData | CellDataChild" />
-			<xs:field xpath="@name" />
-		</xs:unique>
-		<xs:unique name="UniqueMaterialWang">
-			<xs:selector xpath="CellData | CellDataChild" />
-			<xs:field xpath="@wang_color" />
-		</xs:unique>
-	</xs:element>
-</xs:schema>
+			</xsd:choice>
+		</xsd:complexType>
+		<xsd:unique name="UniqueMaterialName">
+			<xsd:selector xpath="CellData | CellDataChild" />
+			<xsd:field xpath="@name" />
+		</xsd:unique>
+		<xsd:unique name="UniqueMaterialWang">
+			<xsd:selector xpath="CellData | CellDataChild" />
+			<xsd:field xpath="@wang_color" />
+		</xsd:unique>
+	</xsd:element>
+</xsd:schema>

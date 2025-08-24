@@ -1,81 +1,81 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<!--Sprite, might need some
 	description on hover later, also some defaults are unknown-->
 	<!--Builtin-->
-	<xs:simpleType name="NoitaBool">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="0" />
-			<xs:enumeration value="1" />
-		</xs:restriction>
-	</xs:simpleType>
+	<xsd:simpleType name="NoitaBool">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
 	<!--Builtin-->
-	<xs:element name="Sprite">
-		<xs:complexType mixed="true">
-			<xs:choice maxOccurs="unbounded" minOccurs="0">
-				<xs:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:choice>
-							<xs:element name="Event" minOccurs="0"
+	<xsd:element name="Sprite">
+		<xsd:complexType mixed="true">
+			<xsd:choice maxOccurs="unbounded" minOccurs="0">
+				<xsd:element name="RectAnimation" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType mixed="true">
+						<xsd:choice>
+							<xsd:element name="Event" minOccurs="0"
 								maxOccurs="unbounded">
-								<xs:complexType mixed="true">
-									<xs:attribute name="name" type="xs:string"
+								<xsd:complexType mixed="true">
+									<xsd:attribute name="name" type="xsd:string"
 										use="required" />
-									<xs:attribute name="frame"
-										type="xs:nonNegativeInteger"
+									<xsd:attribute name="frame"
+										type="xsd:nonNegativeInteger"
 										use="required" />
-									<xs:attribute name="max_distance"
-										type="xs:positiveInteger" />
-									<xs:attribute name="probability"
-										type="xs:decimal" />
-									<xs:attribute name="on_finished"
+									<xsd:attribute name="max_distance"
+										type="xsd:positiveInteger" />
+									<xsd:attribute name="probability"
+										type="xsd:decimal" />
+									<xsd:attribute name="on_finished"
 										type="NoitaBool" />
-									<xs:attribute name="check_physics_material"
+									<xsd:attribute name="check_physics_material"
 										type="NoitaBool" />
-								</xs:complexType>
-							</xs:element>
-						</xs:choice>
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="frame_count" type="xs:positiveInteger"
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:choice>
+						<xsd:attribute name="name" type="xsd:string" use="required" />
+						<xsd:attribute name="frame_count" type="xsd:positiveInteger"
 							use="required" />
-						<xs:attribute name="frames_per_row" type="xs:positiveInteger"
+						<xsd:attribute name="frames_per_row" type="xsd:positiveInteger"
 							use="required" />
-						<xs:attribute name="frame_width" type="xs:positiveInteger"
+						<xsd:attribute name="frame_width" type="xsd:positiveInteger"
 							use="required" />
-						<xs:attribute name="frame_height" type="xs:positiveInteger"
+						<xsd:attribute name="frame_height" type="xsd:positiveInteger"
 							use="required" />
-						<xs:attribute name="frame_wait" type="xs:decimal" use="required" />
-						<xs:attribute name="pos_x" type="xs:integer" default="0" />
-						<xs:attribute name="pos_y" type="xs:integer" default="0" />
-						<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-						<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-						<xs:attribute name="shrink_by_one_pixel" type="NoitaBool" />
-						<xs:attribute name="has_offset" type="NoitaBool" default="1" />
-						<xs:attribute name="loop" type="NoitaBool" default="0" />
-						<xs:attribute name="next_animation" type="xs:string" default="" />
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
-					<xs:complexType mixed="true">
-						<xs:attribute name="name" type="xs:string" use="required" />
-						<xs:attribute name="color" type="xs:hexBinary" use="required" />
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-			<xs:attribute name="filename" type="xs:string" use="required" />
-			<xs:attribute name="hotspots_filename" type="xs:string" />
-			<xs:attribute name="offset_x" type="xs:decimal" default="0" />
-			<xs:attribute name="offset_y" type="xs:decimal" default="0" />
-			<xs:attribute name="position_x" type="xs:decimal" default="0" />
-			<xs:attribute name="position_y" type="xs:decimal" default="0" />
-			<xs:attribute name="default_animation" type="xs:string" default="default" />
-			<xs:attribute name="color_a" type="xs:decimal" default="1" />
-			<xs:attribute name="color_b" type="xs:decimal" default="1" />
-			<xs:attribute name="color_g" type="xs:decimal" default="1" />
-			<xs:attribute name="color_r" type="xs:decimal" default="1" />
-		</xs:complexType>
-		<xs:unique name="UniqueRectAnimationName">
-			<xs:selector xpath="RectAnimation" />
-			<xs:field xpath="@name" />
-		</xs:unique>
-	</xs:element>
-</xs:schema>
+						<xsd:attribute name="frame_wait" type="xsd:decimal" use="required" />
+						<xsd:attribute name="pos_x" type="xsd:integer" default="0" />
+						<xsd:attribute name="pos_y" type="xsd:integer" default="0" />
+						<xsd:attribute name="offset_x" type="xsd:decimal" default="0" />
+						<xsd:attribute name="offset_y" type="xsd:decimal" default="0" />
+						<xsd:attribute name="shrink_by_one_pixel" type="NoitaBool" />
+						<xsd:attribute name="has_offset" type="NoitaBool" default="1" />
+						<xsd:attribute name="loop" type="NoitaBool" default="0" />
+						<xsd:attribute name="next_animation" type="xsd:string" default="" />
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Hotspot" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType mixed="true">
+						<xsd:attribute name="name" type="xsd:string" use="required" />
+						<xsd:attribute name="color" type="xsd:hexBinary" use="required" />
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:attribute name="filename" type="xsd:string" use="required" />
+			<xsd:attribute name="hotspots_filename" type="xsd:string" />
+			<xsd:attribute name="offset_x" type="xsd:decimal" default="0" />
+			<xsd:attribute name="offset_y" type="xsd:decimal" default="0" />
+			<xsd:attribute name="position_x" type="xsd:decimal" default="0" />
+			<xsd:attribute name="position_y" type="xsd:decimal" default="0" />
+			<xsd:attribute name="default_animation" type="xsd:string" default="default" />
+			<xsd:attribute name="color_a" type="xsd:decimal" default="1" />
+			<xsd:attribute name="color_b" type="xsd:decimal" default="1" />
+			<xsd:attribute name="color_g" type="xsd:decimal" default="1" />
+			<xsd:attribute name="color_r" type="xsd:decimal" default="1" />
+		</xsd:complexType>
+		<xsd:unique name="UniqueRectAnimationName">
+			<xsd:selector xpath="RectAnimation" />
+			<xsd:field xpath="@name" />
+		</xsd:unique>
+	</xsd:element>
+</xsd:schema>
