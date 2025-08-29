@@ -1,0 +1,18 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--Builtin-->
+	<xsd:simpleType name="NoitaBool">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--Builtin-->
+	<xsd:element name="MagicNumbers">
+		<xsd:complexType mixed="true">
+			<!-- MagicNumbers Docs -->
+			<!-- MagicNumbers Docs -->
+			<!-- MagicNumbers Attributes -->
+			<!-- MagicNumbers Attributes -->
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

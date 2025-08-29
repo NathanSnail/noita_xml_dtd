@@ -61,7 +61,7 @@ def get_xml_type(name: str, ty: str) -> list[tuple[str, str]] | str:
         return [("", "xsd:int")]
     if ty[: len(unsigned)] == unsigned or ty[:4] == "uint":
         return [("", "xsd:unsignedInt")]
-    if ty == "std::string" or ty == "std_string" or ty == "VEC_OF_MATERIALS":
+    if ty == "string" or ty == "std::string" or ty == "std_string" or ty == "VEC_OF_MATERIALS":
         return [("", "xsd:string")]
     if ty == "bool":
         return [("", "NoitaBool")]
@@ -551,7 +551,7 @@ def render_json(path_name: str, class_name: str) -> RenderedJson:
     fields = []
     attributes = "\n"
     for attribute in attributes_json:
-        print(attribute["type"])
+        print(attribute)
         ty = get_xml_type("", attribute["type"])[0][1]
         this_field = Field(
             attribute["name"],
@@ -637,6 +637,12 @@ mod_replacements = render_json("mod", "Mod")
 apply_replacements(
     "mod",
     {"Mod Attributes": mod_replacements.attributes, "Mod Docs": mod_replacements.docs},
+)
+
+magic_replacements = render_json("magic_numbers", "MagicNumbers")
+apply_replacements(
+    "magic_numbers",
+    {"MagicNumbers Attributes": magic_replacements.attributes, "MagicNumbers Docs": magic_replacements.docs},
 )
 
 open("./out/merged.xsd", "w").write(out + "\n</xsd:schema>")
